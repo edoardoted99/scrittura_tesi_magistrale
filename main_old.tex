@@ -1,0 +1,91 @@
+\documentclass[a4paper,12pt]{article} % aggiungi ,twoside se richiesto
+
+% -------------------------------------------------
+% PACCHETTI BASE
+% -------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage[natbib=true,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage{booktabs}
+
+\usepackage{minted}
+
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usemintedstyle{friendly} % stile "friendly" leggibile (puoi provare anche "monokai" o "borland")
+
+% Colori opzionali per lo sfondo
+\definecolor{LightGray}{gray}{0.97}
+
+
+\newcommand{\ws}{\texttt{\_}}
+
+
+\graphicspath{{images/}}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    captionpos=b,
+    literate={à}{{\`a}}1 {è}{{\`e}}1 {é}{{\'e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+}
+
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+
+% -------------------------------------------------
+% INTESTAZIONE TESI
+% -------------------------------------------------
+\title{%
+Large Language Models \\
+\large Architettura, Addestramento e Impatti Applicativi
+}
+
+\author{[Il tuo nome]}
+\date{Anno Accademico 2024--2025}
+
+% -------------------------------------------------
+% DOCUMENTO
+% -------------------------------------------------
+\begin{document}
+
+% Frontespizio e abstract
+\include{style/titlepage}
+\include{style/abstract}
+
+% Indice
+\tableofcontents
+
+% -------------------------------------------------
+% CAPITOLI
+% -------------------------------------------------
+\include{chapters/01_introduction}
+\include{chapters/02_words_and_tokens}
+\include{chapters/03_n_gram_lms}
+%\include{chapters/03_training_finetuning}
+%\include{chapters/04_valutazione_risultati}
+%\include{chapters/05_impatti_etici}
+%\include{chapters/06_conclusioni}
+
+% -------------------------------------------------
+% BIBLIOGRAFIA
+% -------------------------------------------------
+\printbibliography
+
+\end{document}

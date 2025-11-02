@@ -1,0 +1,573 @@
+\chapter{Parole e Tokens}
+\section{Parole e Tokens}
+Viviamo immersi nei simboli: parole, numeri, codici, linguaggi formali. E' necessario trovare un modo per preparare i modelli alla manipolazione di tali simboli, e tale processo è chiamato \textbf{tokenizzazione}. Essa consiste nella pratica di mettere insieme dei caratteri per costruire dei mattoncini basilari la cui combinazione di essi ricostruisce un intero simbolo. In questo capitolo verrà introdotto il sitema \textbf{Unicode}, il moderno sistema per rappresentare i caratteri e la codifica \textbf{UTF-8}. Successivamente verrà presentato un aloritmo standard detto \textbf{Byte-Pair Encoding (BPE)} che automaticamente spezza un input testuale in tokens. Tutti i sistemi di tokenizzazione dipendono dalle \textbf{Regular Expressions}. Infine si introdurrà una metrica chiamata \textbf{Edit Distance} utile a misurare la similarità tra parole o stringhe.
+
+\subsection{Le parole}
+
+Quante parole ci sono nella frase:
+
+\hspace*{.1\textwidth}%
+\begin{minipage}{.8\textwidth}
+\textit{They picnicked by the pool, then lay back on the grass and looked at the stars.}
+\end{minipage}
+
+\noindent
+Questa frase contiene \textbf{16 parole} se non consideriamo la punteggiatura, oppure \textbf{18} se la includiamo. 
+La scelta dipende dal compito: i modelli di linguaggio, ad esempio, tendono a considerare la punteggiatura come parole separate, 
+mentre in altri contesti si può ignorarla.
+
+Nel \textbf{linguaggio parlato} la definizione di ``parola'' diventa ancora più complessa. 
+In un'\textit{utterance} (cioè una frase pronunciata), possiamo trovare \textbf{disfluenze} come \textit{uh} o \textit{um}, 
+oppure parole interrotte come \textit{main-} in ``I do uh main- mainly business data processing''. 
+Questi elementi sono detti rispettivamente \textit{filled pauses} e \textit{fragments}. 
+A seconda dell'applicazione, possiamo decidere se trattarli come vere e proprie parole oppure no. 
+Ad esempio, in un sistema di \textbf{trascrizione automatica} potremmo volerli rimuovere; 
+ma in un sistema di \textbf{riconoscimento vocale}, mantenerli può essere utile, perché le disfluenze forniscono indizi sul ritmo e la struttura del discorso, 
+e possono persino aiutare a identificare il parlante.
+
+Un’altra distinzione importante riguarda i \textbf{word types} e le \textbf{word instances} (chiamate anche \textit{word tokens}). 
+\begin{itemize}
+    \item I \textbf{word types} sono le \textbf{parole distinte} presenti in un corpus: se il vocabolario è $V$, 
+    allora il numero di tipi è la sua dimensione $|V|$.
+    \item Le \textbf{word instances} sono invece il \textbf{numero totale di parole effettive}, cioè le \textit{running words}, indicate con $N$.
+\end{itemize}
+
+Nella frase del picnic, ignorando la punteggiatura, abbiamo \textbf{14 tipi} e \textbf{16 occorrenze} di parole:
+
+\begin{center}
+\textit{They picnicked by the pool, then lay back on the grass and looked at the stars.}
+\end{center}
+
+Infine, dobbiamo ancora prendere decisioni come: le parole \textit{They} e \textit{they} sono da considerarsi uguali? 
+La risposta dipende dall’obiettivo. 
+In alcuni casi possiamo trattarle come lo stesso tipo di parola, in altri la distinzione tra maiuscole e minuscole è significativa. Una conseguenza di queste definizoni è che maggiore è il numero di parole in un corpus.
+
+
+\bigskip
+\noindent
+\textbf{La relazione tra numero di tipi e numero di istanze: la legge di Heaps (o di Herdan)}
+
+\noindent
+La relazione tra il numero di tipi di parola $|V|$ e il numero totale di parole $N$ 
+segue una legge empirica nota come \textbf{Legge di Herdan} (Herdan, 1960) o \textbf{Legge di Heaps} (Heaps, 1978). 
+Essa descrive come la dimensione del vocabolario cresce al crescere della lunghezza del testo, 
+ed è espressa dalla seguente equazione:
+
+\begin{equation}
+|V| = k N^{\beta}
+\end{equation}
+
+\noindent
+dove $k$ e $\beta$ sono costanti positive e $0 < \beta < 1$. 
+Il valore di $\beta$ dipende dal tipo di testo e dal genere linguistico: in molti casi empirici varia tra $0.44$ e $0.56$.  
+In termini qualitativi, possiamo dire che la dimensione del vocabolario cresce 
+un po' più rapidamente della radice quadrata della lunghezza del testo (in parole).
+
+\medskip
+\noindent
+La legge di Heaps riflette il fatto che, man mano che si leggono o generano più parole, 
+si incontrano continuamente termini nuovi. Tuttavia, la crescita del vocabolario rallenta progressivamente: 
+all’inizio ogni nuova parola è spesso inedita, ma col tempo la maggior parte delle parole incontrate 
+sono già apparse in precedenza.
+
+\medskip
+\noindent
+È anche possibile distinguere due categorie di parole:
+\begin{itemize}
+    \item le \textbf{function words}, ovvero parole grammaticali come \textit{a}, \textit{of}, \textit{the}, 
+    il cui numero è tendenzialmente limitato in una lingua;
+    \item le \textbf{content words}, cioè sostantivi, verbi e aggettivi che esprimono significato, 
+    e che possono crescere indefinitamente (ad esempio nomi propri o termini tecnici).
+\end{itemize}
+
+\noindent
+Modelli che distinguono tra queste due classi di parole possono mostrare 
+due diverse fasi di crescita del vocabolario, con due valori distinti di $\beta$: 
+uno iniziale (quando si introducono sia parole grammaticali sia di contenuto), 
+e uno successivo, in cui solo le parole di contenuto continuano ad aumentare.
+
+\subsection{Unicode}
+L'Unicode standard è un metodo per rappresentare testo scritto usando qualsiasi carattere in qualsiasi lingua. Un piccolo accenno alla storia. Nel 1960 i caratteri latente usati per scrivere l'inglese weano rappresentati con un codice chiamato \textbf{ASCII} (American Standard Case for Information Interchange). Un byte è una sequenza di 8 bit e quindi può rappresentare
+\begin{equation*}
+    N = 2^8 =256
+\end{equation*}
+valori diversi da \texttt{0} a \texttt{255} in decimale, o da \texttt{00} a \texttt{FF} in esadecimale.  Lo standard ASCII del 1960 usava solamente 7 bit, quindi 128 valori diversi che andavano da 0 a 127. Il bit più significativo \textit{high-order bit}, quello più a sinistra, veniva impostato a 0 e quindi non veniva utilizzato per codificare caratteri. Perché solamente 127 caratteri? Dei 128 possibili codici (da 0 a 127) 95 rappresentano \textbf{caratteri stampabili} (lettere, numeri, punteggiatura, simboli). 33 (da 0 a 31 e il 127) sono \textbf{codici di controllo} non stampabili. Servivano per le teletypes, cioè macchine da scrivere elettroniche e antichi temrinali per indicare cose come andare a capo, nuova linea, cancellare, bip sonoro ecc.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l c c l}
+\toprule
+\textbf{Tipo di codice} & \textbf{Range ASCII} & \textbf{Quantità} & \textbf{Descrizione} \\ 
+\midrule
+Controllo & 0--31, 127 & 33 & Istruzioni per dispositivi (non caratteri stampabili) \\
+Stampabili & 32--126 & 95 & Lettere, numeri, simboli, punteggiatura \\
+Totale & 0--127 & 128 & Usano solo 7 bit (bit alto = 0) \\
+\bottomrule
+\end{tabular}
+\caption{Classificazione dei codici ASCII}
+\end{table}
+
+Quindi il primo bit veniva messo sempre a zero in parte perché non era necessario per i sistemi informatici del tempo, in parte perché questo faceva risparmiare traffico di trasmissione e veniva quindi utilizzato solo come bit di verifica e di controllo per verificare che non vi fossero errori di trasmissione. Solo successivamente si è iniziata a sentire l'esigenza di introdurre ulteriori caratteri come le lettere accentate o ulteriori simboli e di conseguenza anche quindi la necessità di utilizzare il bit rimantente. Per esempio i Cinesi hanno circa 100.000 caratteri nel sistema Unicode e in totale sono circa 150.000. Quindi come si fa ad organizzare questa necessità? In 
+
+\subsubsection{Code points}
+Il sistema Unicode assegna a ogni carattere del mondo un identificatore univoco chiamato code point.
+Un code point è una rappresentazione astratta del carattere (non della sua forma grafica) ed è identificato da un numero, tradizionalmente scritto in esadecimale, che va da \texttt{0x0000} a \texttt{0x10FFFF} — cioè da 0 a 1.114.111 in decimale. Avere più di un milione di possibili code point significa che c’è ampio spazio per rappresentare tutti i caratteri esistenti — inclusi quelli di lingue con migliaia di simboli, come il cinese (che ne ha circa 100.000), oltre a simboli matematici, emoji e perfino lingue antiche o inventate. Per convenzione i code points si scrivono con il prefisso \texttt{U+}. Ad esempio
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Codice Unicode} & \textbf{Carattere} & \textbf{Descrizione} \\ \hline
+U+0041 & A & LATIN CAPITAL LETTER A \\ \hline
+U+0061 & a & LATIN SMALL LETTER A \\ \hline
+
+\end{tabular}
+\caption{Esempi di caratteri Unicode e le loro descrizioni}
+\end{table}
+
+
+\subsubsection{UTF-8 Encoding}
+Sebbene il punto di codice (l'ID univoco) sia la rappresentazione Unicode astratta del
+carattere, non inseriamo semplicemente quell'ID in un file di testo. Invece ogniqualvolta abbimao biosngo di rappresentare un carattere in una stirnga di testo, noi scriviamo un \textbf{encoding} del carattere. Ci sono molti metodi di encoding, ma l'UTF-8 è lo standard e l'intero web utlizza tale metodo. I code points vanno da \texttt{U+0000} che corrisponde allo 0 a \texttt{U+10FFFF} che corrisponde a 1.114.111 nel decimale. Per catturare tutte le possibilità occorrono al minimo \textbf{21 bit} questo perché
+
+\begin{equation*}
+     2^{21} = 2.097.152 > 1.114.111
+\end{equation*}
+Le possibili soluzioni di encoding sono le seguenti
+\begin{itemize}
+    \item \textbf{UTF-32}. Utilizzare 4 byte (32 bit) per ogni carattere e scriviamo direttamente il numero in un code point
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Carattere} & \textbf{Code point} & \textbf{UTF-32 (esadecimale)} \\ \hline
+h & U+0068 & 00 00 00 68 \\ \hline
+e & U+0065 & 00 00 00 65 \\ \hline
+l & U+006C & 00 00 00 6C \\ \hline
+l & U+006C & 00 00 00 6C \\ \hline
+o & U+006F & 00 00 00 6F \\ \hline
+\end{tabular}
+\caption{Rappresentazione dei caratteri della parola ``hello'' in UTF-32}
+\end{table}
+quindi "hello`` in UTF-32 occupa 20 byte (5 caratteri x 4 byte). Funziona ma è \textbf{poco efficiente}. I file diventano quattro volte più grandi rispetto all'ASCII.
+
+\item \textbf{UTF-8}. Per risolvere il problema  si è inventata una soluzione di encoding a\textbf{lunghezza variabile}. I caratteri ASCII (i primi 127 code points, cioè da U+0000 a U+007F) utilizzano \textbf{1 solo byte} (esattamente come in ASCII). I caratteri successivi (accenti, simboli, ideogrammi, emoji) usano 2, 3 o 4 byte a a seconda del valore del code point. 
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{| c | c | c | c |}
+\hline
+\textbf{Carattere} & \textbf{Code point} & \textbf{UTF-8 (esadecimale)} & \textbf{Byte usati} \\ \hline
+h & U+0068 & \texttt{68} & 1 \\ \hline
+e & U+0065 & \texttt{65} & 1 \\ \hline
+l & U+006C & \texttt{6C} & 1 \\ \hline
+o & U+006F & \texttt{6F} & 1 \\ \hline
+ñ & U+00F1 & \texttt{C3 B1} & 2 \\ \hline
+
+\end{tabular}
+\caption{Esempi di caratteri Unicode e loro codifica UTF-8}
+\end{table}
+
+In questo modo "hello`` resta identico in ASCII e UTF-8: \texttt{68 65 6C 6C 6F}.  Ed è per questo che \textbf{i file ASCII sono validi anche in UTF-8}.
+
+\end{itemize}
+
+Riassumendo:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{| l | c | c | l | l |}
+\hline
+\textbf{Encoding} & \textbf{Byte fissi o variabili?} & \textbf{Byte per carattere} & \textbf{Pro} & \textbf{Contro} \\ \hline
+\textbf{ASCII}  & 1 & 1 & Semplice, compatibile & Solo 127 caratteri \\ \hline
+\textbf{UTF-32} & Fissi (4) & Sempre 4 & Facile da usare in memoria & File enormi \\ \hline
+\textbf{UTF-16} & Variabili (2 o 4) & 2--4 & Compromesso per lingue europee/asiatiche & Meno compatibile \\ \hline
+\textbf{UTF-8}  & Variabili (1--4) & 1--4 & Efficiente, compatibile con ASCII & Decodifica leggermente più complessa \\ \hline
+\end{tabular}
+\caption{Confronto tra diverse codifiche di caratteri}
+\end{table}
+
+e in conclusione i code points servono per \textit{identificare logicamente} ogni carattere. Gli encoding (UTF-8, UTF-16 e UTF-32) servono a \textit{rappresentare fisicamente} i code points nei file. UTF-8 è il formato standard del web perché è efficiente, compatibile con ASCII, non introduce byte nulli e può rappresentare tutti i caratteri Unicode. 
+\subsection{Subword Tokenization: Byte-Pair Encoding}
+
+La \textbf{tokenizzazione} è il \textbf{primo stadio dell'elaborazione del linguaggio naturale (NLP)}.  
+È il processo di \textbf{segmentazione} che converte il testo in \textbf{tokens}, ossia unità di base utilizzate dagli algoritmi di elaborazione.  
+
+Per convertire un testo in tokens possiamo scegliere tra \textbf{parole}, \textbf{sillabe} o \textbf{caratteri}, ma ognuna di queste opzioni presenta dei limiti.  
+Le parole e le sillabe possono sembrare una buona scelta, ma sono \textbf{difficili da definire in modo preciso e coerente} tra lingue e contesti diversi.  
+Le lettere, invece, sono \textbf{unità troppo piccole} per catturare il significato linguistico.  
+
+In pratica, quindi, si utilizza un \textbf{approccio data-driven}, ovvero basato sull’analisi dei dati, per determinare automaticamente le unità linguistiche più appropriate.  
+
+Una domanda fondamentale è: \textbf{perché abbiamo bisogno di tokenizzare l’input}?  
+Una ragione principale è che la tokenizzazione consente di convertire il testo in un \textbf{insieme deterministico e standardizzato di unità}.  
+In questo modo, diversi sistemi e algoritmi possono operare sullo stesso testo in maniera \textbf{coerente e confrontabile}.  
+
+Ad esempio, la tokenizzazione ci permette di rispondere in modo univoco a domande come: “Quanto è lungo questo testo?” oppure “‘don’t’ o ‘New York’ sono un token o due?”.  
+Questa \textbf{standardizzazione} è quindi essenziale per la \textbf{riproducibilità degli esperimenti di NLP} e per il corretto funzionamento di molti algoritmi, come le \textbf{misure di perplexity} nei modelli linguistici, che assumono che tutti i testi siano tokenizzati secondo criteri fissi.  
+
+Un ulteriore vantaggio dei metodi di \textbf{tokenizzazione basati su unità più piccole}, come \textbf{morfemi} o \textbf{lettere}, è che essi \textbf{eliminano il problema delle parole sconosciute} (\textit{unknown words}).  
+
+Cosa intendiamo con questo?  
+Nei sistemi di NLP, gli algoritmi apprendono informazioni sul linguaggio da un insieme di testi chiamato \textbf{corpus di addestramento} (\textit{training corpus}), e poi applicano queste conoscenze a un \textbf{corpus di test}, che contiene testi nuovi.  
+Il problema nasce quando nel corpus di test compaiono \textbf{parole mai viste} durante l’addestramento.  
+
+Ad esempio, se il sistema ha incontrato le parole \textit{low}, \textit{new} e \textit{newer}, ma non \textit{lower}, non saprà come trattare quest’ultima, poiché non la riconosce come unità nota.  
+
+Per affrontare questo problema, i \textbf{tokenizzatori moderni} adottano un \textbf{approccio data-driven}, inducendo automaticamente \textbf{insiemi di token più piccoli delle parole}, chiamati \textbf{subword units} o \textbf{subwords}.  
+Queste unità possono essere \textbf{sottostringhe arbitrarie} oppure \textbf{unità linguisticamente significative}, come i morfemi \textit{-er} o \textit{-est}.  
+
+Nei moderni schemi di tokenizzazione, molti tokens corrispondono a \textbf{parole intere}, ma altri rappresentano \textbf{morfemi o frammenti ricorrenti di parole}.  
+Questo approccio consente di rappresentare \textbf{qualsiasi parola non vista} come una \textbf{combinazione di subword già note}.  
+
+Ad esempio, se il sistema non avesse mai incontrato la parola \textit{lower}, potrebbe comunque segmentarla in \textit{low} e \textit{er}, entrambe già presenti nel vocabolario.  
+Nel caso limite, una parola particolarmente rara o un acronimo (come \textit{GRPO}) potrebbe essere \textbf{scomposto in singole lettere}, garantendo comunque una rappresentazione coerente e gestibile.  
+
+Infine, gli \textbf{algoritmi di tokenizzazione} maggiormente utilizzati nei moderni \textbf{modelli di linguaggio} sono due:  
+\begin{itemize}
+    \item \textbf{Byte-Pair Encoding (BPE)} \cite{sennrich-etal-2016-neural}  
+    \item \textbf{Unigram Language Modeling} \cite{kudo-2018-subword}
+\end{itemize}
+
+
+Come quasi tutti i sistemi di tokenizzazione, il \textbf{Byte-Pair Encoding (BPE)} si compone di due parti: un \textbf{trainer} e un \textbf{encoder}.  
+In generale, nella fase di \textbf{training dei tokens} prendiamo un \textbf{corpus di addestramento} e da esso estraiamo un \textbf{vocabolario}, ovvero un insieme di tokens che rappresentano le unità apprese dal modello.  
+Successivamente, l’\textbf{encoder} utilizza questo vocabolario per \textbf{segmentare e convertire una nuova frase di test} nei corrispondenti tokens appresi durante la fase di training.  
+
+Nel paragrafo seguente vedremo più nel dettaglio come funziona l’algoritmo BPE e come esso costruisce progressivamente il proprio vocabolario di subword.
+
+\subsection{BPE Training}
+
+L’algoritmo di \textbf{Byte-Pair Encoding (BPE)} effettua un processo di \textbf{fusione iterativa} di tokens adiacenti più frequenti per creare progressivamente tokens più lunghi.  
+In altre parole, il BPE parte da unità molto piccole (come i singoli caratteri) e, ad ogni iterazione, unisce le coppie di simboli più frequenti nel corpus di addestramento, costruendo un vocabolario di subword sempre più ricco.  
+
+All’inizio, il vocabolario è semplicemente l’insieme di tutti i \textbf{caratteri individuali} presenti nel corpus.  
+L’algoritmo esamina quindi il \textbf{corpus di training} e trova la \textbf{coppia di simboli adiacenti più frequente}.  
+Immaginiamo, ad esempio, che il nostro corpus sia composto da 10 caratteri e che il vocabolario iniziale contenga 5 simboli:  
+\{A, B, C, D, E\}.  
+
+\begin{center}
+A B D C A B E C A B
+\end{center}
+
+La coppia più frequente è “A B”.  
+L’algoritmo quindi unisce questa coppia in un nuovo token \textbf{AB}, lo aggiunge al vocabolario e sostituisce tutte le occorrenze di “A B” con “AB”:  
+
+\begin{center}
+AB D C AB E C AB
+\end{center}
+
+Ora il vocabolario diventa \{A, B, C, D, E, AB\} e il corpus ha lunghezza 7.  
+La coppia più frequente diventa “C AB”, che viene fusa in un nuovo token \textbf{CAB}, aggiornando il vocabolario a \{A, B, C, D, E, AB, CAB\} e riducendo ulteriormente la lunghezza del corpus.  
+
+L’algoritmo continua in questo modo a \textbf{contare e fondere} coppie di tokens, creando sequenze sempre più lunghe, fino a quando non vengono effettuate \textbf{k fusioni}.  
+Il parametro \textbf{k} rappresenta quindi il numero di nuove unità (subword) da apprendere.  
+Il vocabolario finale sarà costituito dall’insieme dei caratteri iniziali più i \textbf{k nuovi simboli generati}.  
+Questo è il \textbf{cuore dell’algoritmo BPE}.  
+
+In pratica, però, il BPE non viene eseguito sull’intera sequenza di caratteri del corpus, ma solo \textbf{all’interno delle parole}.  
+Ciò significa che le fusioni non attraversano i confini tra parole.  
+Per ottenere questo risultato, il corpus viene prima suddiviso in parole utilizzando \textbf{spazi bianchi e punteggiatura} (spesso tramite espressioni regolari).  
+In questo modo, ogni parola viene trattata come una sequenza di caratteri indipendente, con le fusioni permesse solo all’interno di ciascuna di esse.  
+Vediamo ora un piccolo esempio sintetico con il seguente corpus:  
+
+\begin{center}
+\textit{set new new renew reset renew}
+\end{center}
+
+Dividendo il corpus in parole (con i rispettivi conteggi di frequenza), otteniamo:  
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Corpus} & \textbf{Conteggio} \\
+\hline
+\_ n e w & 2 \\
+\_ r e n e w & 2 \\
+\_ s e t & 1 \\
+\_ r e s e t & 1 \\
+\end{tabular}
+\end{center}
+
+Il vocabolario iniziale sarà:  
+\{ \_, e, n, r, s, t, w \}.  
+
+L’algoritmo ora conta tutte le \textbf{coppie di simboli adiacenti}.  
+La coppia più frequente è \textbf{n e}, che compare 4 volte (due in “new” e due in “renew”).  
+Questa viene quindi fusa in un nuovo simbolo \textbf{ne}, aggiornando il vocabolario:  
+
+\begin{center}
+\{ \_, e, n, r, s, t, w, ne \}
+\end{center}
+
+Il corpus aggiornato diventa:  
+
+\begin{center}
+\_ ne w \quad \_ r e ne w \quad \_ s e t \quad \_ r e s e t
+\end{center}
+
+La coppia più frequente ora è \textbf{ne w}, che viene fusa nel nuovo token \textbf{new}:  
+
+\begin{center}
+\_ new \quad \_ r e new \quad \_ s e t \quad \_ r e s e t
+\end{center}
+
+Aggiornando così il vocabolario:  
+\{ \_, e, n, r, s, t, w, ne, new \}.  
+
+Successivamente, la coppia più frequente è \textbf{r e}, che viene fusa in \textbf{re}, inducendo naturalmente il \textbf{prefisso linguistico “re-”}:  
+
+\begin{center}
+\_ new \quad \_ re new \quad \_ s e t \quad \_ re s e t
+\end{center}
+
+\noindent
+Se continuiamo, le prossime fusioni (\textit{merge}) e i rispettivi vocabolari sono i seguenti:
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Merge} & \textbf{Vocabolario corrente} \\
+\hline
+(\_ , new) & \texttt{\_, e, n, r, s, t, w, ne, new, \_r, \_re, \_new} \\
+(\_re, new) & \texttt{\_, e, n, r, s, t, w, ne, new, \_r, \_re, \_new, \_renew} \\
+(s, e) & \texttt{\_, e, n, r, s, t, w, ne, new, \_r, \_re, \_new, \_renew, se} \\
+(se, t) & \texttt{\_, e, n, r, s, t, w, ne, new, \_r, \_re, \_new, \_renew, se, set} \\
+\end{tabular}
+\end{center}
+
+\bigskip
+
+Infine, il processo di training del BPE può essere riassunto dal seguente pseudocodice:
+
+
+% --- BLOCCO DI CODICE ---
+\begin{verbatim}
+	def byte_pair_encoding(corpus, num_merges):
+	"""
+	Implementazione semplificata del training BPE.
+	
+	Parametri:
+	corpus (list of list of str): corpus tokenizzato a livello di carattere.
+	Esempio: [["n", "e", "w"], ["r", "e", "n", "e", "w"]]
+	num_merges (int): numero di merge (k)
+	
+	Ritorna:
+	vocab (set): insieme dei token appresi
+	"""
+	
+	# 1. vocabolario iniziale: tutti i caratteri unici
+	vocab = set(char for word in corpus for char in word)
+	
+	# 2. funzione ausiliaria per contare coppie adiacenti
+	def get_stats(corpus):
+	pairs = {}
+	for word in corpus:
+	for i in range(len(word) - 1):
+	pair = (word[i], word[i + 1])
+	pairs[pair] = pairs.get(pair, 0) + 1
+	return pairs
+	
+	# 3. funzione per unire la coppia più frequente
+	def merge_pair(pair, corpus):
+	merged = []
+	bigram = " ".join(pair)
+	replacement = "".join(pair)
+	for word in corpus:
+	word_str = " ".join(word)
+	# sostituisce la coppia più frequente con il nuovo token
+	new_word = word_str.replace(bigram, replacement)
+	merged.append(new_word.split())
+	return merged
+	
+	# 4. ciclo principale: effettua k fusioni
+	for i in range(num_merges):
+	pairs = get_stats(corpus)
+	if not pairs:
+	break
+	# coppia più frequente
+	best_pair = max(pairs, key=pairs.get)
+	corpus = merge_pair(best_pair, corpus)
+	vocab.add("".join(best_pair))
+	print(f"Merge {i+1}: {best_pair} -> {''.join(best_pair)}")
+	
+	return vocab
+	
+	
+	# Esempio d'uso
+	corpus = [
+	["_", "n", "e", "w"],
+	["_", "r", "e", "n", "e", "w"],
+	["_", "s", "e", "t"],
+	["_", "r", "e", "s", "e", "t"]
+	]
+	
+	vocab = byte_pair_encoding(corpus, num_merges=7)
+	print("\nVocabolario finale:")
+	print(vocab)
+\end{verbatim}
+
+
+
+In sintesi, il \textbf{BPE training} costruisce un vocabolario di subword apprendendo iterativamente le combinazioni di simboli più frequenti, consentendo così ai modelli linguistici di gestire in modo efficiente parole nuove o rare.
+\subsection{BPE Encoder}
+In questa fase non si impara pià nulla. Una volta appreso il \textbf{vocabolario}, entra in gioco il \textbf{BPE encoder}, che viene utilizzato per tokenizzare nuove frasi di test.  
+L’encoder applica al testo di input le stesse \textbf{regole di fusione} (\textit{merge rules}) apprese durante la fase di training, seguendo rigorosamente lo \textbf{stesso ordine} in cui queste sono state acquisite.  
+In altre parole, l’encoder non tiene conto delle frequenze presenti nei dati di test, ma utilizza esclusivamente le regole derivate dalle frequenze osservate nel corpus di addestramento.
+
+Il processo di codifica avviene come segue:  
+innanzitutto, ogni parola della frase di test viene segmentata nei suoi \textbf{caratteri costituenti}.  
+Successivamente, le regole di fusione vengono applicate una dopo l’altra in modo \textbf{greedy} (cioè sempre scegliendo la fusione valida più lunga possibile), secondo l’ordine stabilito durante il training.  Ad esempio, la prima regola sostituirà ogni occorrenza di \texttt{n e} con \texttt{ne}, la seconda unirà \texttt{ne w} in \texttt{new}, e così via.  Alla fine del processo, molte delle fusioni ricreeranno semplicemente parole già viste nel corpus di addestramento. Tuttavia, il vantaggio del BPE è che esso impara anche \textbf{unità morfologiche riutilizzabili}, come il prefisso \textit{re-} (che potrà apparire in combinazioni non viste come \textit{revisit} o \textit{rearrange}), oppure la radice \textit{new}, che potrà ricomparire in parole nuove come \textit{anew}. Nelle applicazioni reali, il BPE viene eseguito su corpora molto grandi, con \textbf{decine di migliaia di fusioni} (ad esempio 50.000, 100.000 o persino 200.000 merge).  
+Il risultato è che la maggior parte delle parole comuni può essere rappresentata come un singolo token, mentre solo le parole più rare o sconosciute vengono suddivise in più subword. Questo approccio funziona particolarmente bene per lingue come l’inglese.  Nei sistemi multilingue, invece, il vocabolario appreso può essere fortemente \textbf{sbilanciato verso l’inglese}, lasciando un numero inferiore di tokens disponibili per le altre lingue, come approfondiremo più avanti.
+
+
+\paragraph{Le regole di fusione.}
+Durante la fase di training del BPE non viene prodotto soltanto un vocabolario finale, 
+ma anche un insieme ordinato di \textbf{regole di fusione} (\textit{merge rules}). 
+Ogni regola rappresenta una coppia di simboli che è stata fusa durante l’addestramento, 
+e l’ordine in cui le regole vengono apprese è fondamentale. 
+
+Il \textbf{vocabolario} descrive l’insieme dei tokens appresi, 
+mentre le \textbf{regole di fusione} costituiscono la sequenza di operazioni 
+che l’encoder dovrà applicare per tokenizzare nuovi testi. 
+In fase di encoding, infatti, il modello non ricalcola le frequenze nei dati di test, 
+ma applica in modo deterministico le stesse regole apprese nel training, 
+nell’ordine in cui sono state salvate.
+
+In pratica, un sistema BPE salva due file distinti:
+\begin{itemize}
+    \item un file di vocabolario (\texttt{vocab.txt}), che contiene tutti i tokens finali;
+    \item un file di regole (\texttt{merges.txt}), che elenca le coppie fuse in ordine di apprendimento.
+\end{itemize}
+Queste informazioni permettono di riprodurre in modo coerente la stessa tokenizzazione su nuovi testi.
+
+\subsection{Corpora}
+
+Le \textbf{parole} non compaiono nel vuoto: ogni testo che analizziamo è prodotto da una o più persone, in un determinato \textbf{contesto linguistico}, in un luogo e in un tempo specifico, con un preciso scopo comunicativo.  
+Per questo motivo, ogni \textbf{corpus linguistico} è una rappresentazione situata del linguaggio, e riflette una varietà di fattori come la lingua, il dialetto, la provenienza geografica, lo stile o il genere testuale.
+
+Un aspetto fondamentale riguarda la \textbf{varietà linguistica}.  
+Gli algoritmi di NLP dovrebbero essere testati e sviluppati su più lingue, e non solo sull’inglese, che purtroppo domina gran parte della ricerca contemporanea (Bender, 2019).  
+Anche all’interno di una stessa lingua, esistono molteplici \textbf{varietà} e \textbf{registri}, legati a differenze regionali, sociali o culturali.  
+Ad esempio, i testi che incorporano caratteristiche dell’\textbf{African American English (AAE)} o dell’\textbf{African American Vernacular English (AAVE)} presentano strutture e forme diverse rispetto al Mainstream American English (MAE), e richiedono strumenti NLP in grado di riconoscere e gestire tali varietà (Blodgett et al., 2016; King, 2020).
+
+Inoltre, è frequente che in uno stesso testo compaiano più lingue, fenomeno noto come \textbf{code-switching}.  
+Questo è comune in contesti multilingue, ad esempio nei social media, dove un utente può alternare spontaneamente parole o frasi in lingue diverse (Solorio et al., 2014; Jurgens et al., 2017).  
+
+Oltre alla lingua, altre dimensioni influenzano la natura di un corpus:
+\begin{itemize}
+    \item il \textbf{genere testuale} (articoli di giornale, narrativa, testi scientifici, conversazioni, social media, ecc.);
+    \item le \textbf{caratteristiche demografiche} degli autori (età, genere, classe sociale, provenienza);
+    \item il \textbf{periodo storico} in cui il testo è stato prodotto, poiché la lingua cambia nel tempo.
+\end{itemize}
+
+Poiché il linguaggio è così fortemente situato, è fondamentale, nello sviluppo di modelli di NLP basati su corpora, considerare \textbf{chi ha prodotto il linguaggio}, \textbf{in quale contesto} e \textbf{con quale scopo}.  
+Per garantire trasparenza, riproducibilità e uso etico dei dati, è buona pratica accompagnare ogni corpus con una \textbf{datasheet} (Gebru et al., 2020) o una \textbf{data statement} (Bender et al., 2021).  
+Questi documenti descrivono in modo dettagliato le caratteristiche e il processo di costruzione del corpus, specificando informazioni fondamentali come:
+
+\begin{itemize}
+    \item \textbf{Motivazione:} per quale scopo è stato raccolto il corpus, da chi e con quale finanziamento;
+    \item \textbf{Contesto situazionale:} quando e in quali condizioni il testo è stato scritto o parlato (ad esempio: linguaggio spontaneo, social media, dialogo, monologo, ecc.);
+    \item \textbf{Varietà linguistica:} quale lingua, dialetto o regione rappresenta il corpus;
+    \item \textbf{Demografia degli autori:} età, genere, provenienza socioeconomica o etnica dei produttori del testo;
+    \item \textbf{Processo di raccolta:} dimensione del corpus, modalità di campionamento, consenso informato, eventuali pre-processing e metadati disponibili;
+    \item \textbf{Annotazione:} tipo di annotazioni presenti, formazione e caratteristiche degli annotatori, metodologia utilizzata;
+    \item \textbf{Distribuzione:} eventuali vincoli di copyright o restrizioni di proprietà intellettuale.
+\end{itemize}
+
+L’inclusione di una datasheet o di una data statement consente di \textbf{documentare il contesto, la provenienza e i limiti del corpus}, facilitando la valutazione critica dei risultati e promuovendo pratiche di NLP più \textbf{trasparenti, eque e riproducibili}.
+\subsection{Minimum Edit Distance}
+
+La \textbf{Minimum Edit Distance (MED)} è una misura di somiglianza tra due stringhe.  
+Essa rappresenta il \emph{numero minimo di operazioni di modifica} (inserzioni, cancellazioni o sostituzioni) necessarie per trasformare una stringa sorgente $X$ in una stringa obiettivo $Y$.
+
+Date due stringhe
+\[
+X = x_1, x_2, \dots, x_n \quad \text{e} \quad Y = y_1, y_2, \dots, y_m,
+\]
+definiamo $D[i, j]$ come la distanza minima per trasformare il prefisso $X[1..i]$ in $Y[1..j]$.  
+La distanza tra le stringhe intere sarà quindi $D[n, m]$.
+
+La \textbf{ricorrenza} del problema, basata sulla programmazione dinamica, è:
+\[
+D[i, j] = \min
+\begin{cases}
+D[i-1, j] + \text{del-cost}(x_i) & \text{(cancellazione)}\\[6pt]
+D[i, j-1] + \text{ins-cost}(y_j) & \text{(inserzione)}\\[6pt]
+D[i-1, j-1] + \text{sub-cost}(x_i, y_j) & \text{(sostituzione o match)}
+\end{cases}
+\]
+con condizioni di base
+\[
+D[0, 0] = 0, \quad D[i, 0] = i, \quad D[0, j] = j.
+\]
+
+Nella versione di \textbf{Levenshtein}, i costi sono:
+\[
+\text{ins-cost}(x) = 1, \quad
+\text{del-cost}(x) = 1, \quad
+\text{sub-cost}(x, y) =
+\begin{cases}
+0 & \text{se } x = y\\
+2 & \text{se } x \neq y
+\end{cases}
+\]
+
+L’algoritmo seguente mostra l’implementazione in pseudocodice:
+
+\begin{verbatim}
+function MIN_EDIT_DISTANCE(source, target)
+    n ← length(source)
+    m ← length(target)
+    create matrix D[n+1, m+1]
+
+    for i = 1 to n: D[i,0] ← i
+    for j = 1 to m: D[0,j] ← j
+
+    for i = 1 to n:
+        for j = 1 to m:
+            if source[i] == target[j]:
+                cost ← 0
+            else:
+                cost ← 2
+            D[i,j] ← min(
+                D[i-1,j] + 1,      # cancellazione
+                D[i,j-1] + 1,      # inserzione
+                D[i-1,j-1] + cost  # sostituzione
+            )
+    return D[n,m]
+\end{verbatim}
+
+\noindent
+\textbf{Esempio.}  
+Consideriamo la trasformazione di \texttt{intention} in \texttt{execution} con costi $(1,1,2)$:
+\[
+D(\texttt{intention}, \texttt{execution}) = 8.
+\]
+Una possibile sequenza di operazioni ottimali è:
+\begin{align*}
+\texttt{intention} &\xrightarrow{\text{del } i} \texttt{ntention}\\
+&\xrightarrow{\text{sub } n \to e} \texttt{etention}\\
+&\xrightarrow{\text{sub } t \to x} \texttt{exention}\\
+&\xrightarrow{\text{ins } u} \texttt{exentionu}\\
+&\xrightarrow{\text{sub } n \to c} \texttt{executiou}\\
+&\xrightarrow{\text{sub } o \to n} \texttt{execution}
+\end{align*}
+Totale: $1$ cancellazione, $1$ inserzione, $4$ sostituzioni → costo complessivo $= 8$.
+
+La MED è utilizzata in molti ambiti del Natural Language Processing:  
+\emph{correzione ortografica} (distanza tra parola digitata e dizionario),  
+\emph{riconoscimento vocale} (Word Error Rate),  
+\emph{traduzione automatica} (allineamento di frasi) e persino in \emph{biologia computazionale} (confronto tra sequenze di DNA).
+
+È importante notare che la Minimum Edit Distance misura una \textbf{distanza di forma}, non di significato.  
+Due parole possono essere simili ortograficamente ma diverse semanticamente (\emph{es.} \texttt{cane} e \texttt{pane}), o viceversa (\emph{es.} \texttt{gatto} e \texttt{felino}).  
+Come vedremo più avanti con gli \textbf{embeddings semantici}, esistono metriche in grado di catturare la \emph{somiglianza di significato}, anziché quella puramente ortografica.
+
+\[
+\boxed{
+\text{Minimum Edit Distance} =
+\min_{\text{tutte le sequenze di edit}} \sum \text{costo delle operazioni}
+}
+\]
+Essa fornisce una misura quantitativa della somiglianza tra stringhe e rappresenta una base fondamentale per molti algoritmi di NLP basati sulla \textbf{programmazione dinamica}.
