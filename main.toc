@@ -35,10 +35,10 @@
 \contentsline {subsection}{\numberline {3.3.1}Entropia}{30}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Entropia di una sequenza}{30}{subsection.3.3.2}%
 \contentsline {paragraph}{Tasso di entropia.}{30}{section*.7}%
-\contentsline {paragraph}{Il teorema di Shannon–McMillan–Breiman.}{30}{section*.8}%
+\contentsline {paragraph}{Il teorema di Shannon–McMillan–Breiman.}{31}{section*.8}%
 \contentsline {paragraph}{Intuizione.}{31}{section*.9}%
 \contentsline {subsection}{\numberline {3.3.3}Cross-Entropy}{31}{subsection.3.3.3}%
-\contentsline {paragraph}{Stima su sequenze lunghe.}{31}{section*.10}%
+\contentsline {paragraph}{Stima su sequenze lunghe.}{32}{section*.10}%
 \contentsline {paragraph}{Relazione con l’entropia.}{32}{section*.11}%
 \contentsline {paragraph}{Interpretazione intuitiva.}{32}{section*.12}%
 \contentsline {subsection}{\numberline {3.3.4}Relazione con la Perplessità}{32}{subsection.3.3.4}%
@@ -49,3 +49,5 @@
 \contentsline {paragraph}{Codici a lunghezza fissa.}{33}{section*.16}%
 \contentsline {paragraph}{Codici a lunghezza variabile.}{33}{section*.17}%
 \contentsline {paragraph}{Esempio intuitivo.}{34}{section*.18}%
+\contentsline {chapter}{\numberline {4}Regressione Logistica e classificazione del testo}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Machine learning e classificazione}{35}{section.4.1}%

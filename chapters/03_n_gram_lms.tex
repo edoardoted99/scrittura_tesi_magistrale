@@ -220,6 +220,7 @@ I pesi $\lambda$ non sono fissati a priori, ma appresi da un \emph{held-out set}
 In alternativa all’interpolazione, si può ricorrere al \textbf{backoff}: se un $n$-gramma non è disponibile, si ``retrocede'' a un $(n{-}1)$-gramma, e così via fino agli unigrammi. Nei modelli classici, per garantire una distribuzione di probabilità corretta, si effettua una forma di \emph{discounting}.  
 
 Una variante molto usata in applicazioni pratiche è lo \textbf{stupid backoff}. Qui non si cerca di mantenere una distribuzione valida, ma si applica una semplice regola:
+
 \[
 S(w_n \mid h) =
 \begin{cases}
@@ -227,9 +228,16 @@ S(w_n \mid h) =
 	\lambda \, S(w_n \mid h') & \text{altrimenti},
 \end{cases}
 \]
-dove $h'$ è il contesto accorciato e $\lambda$ un fattore costante (tipicamente $0.4$).  
 
-Lo \emph{stupid backoff} non definisce una vera distribuzione probabilistica, ma è molto efficace su grandi corpus e in scenari di ricerca su larga scala.
+dove:
+\begin{itemize}
+	\item $S(w_n \mid h)$ è la \textbf{funzione di punteggio} (\emph{score}) assegnata alla parola $w_n$ dato il contesto $h$; non rappresenta una probabilità normalizzata, ma una quantità proporzionale alla probabilità stimata;
+	\item $C(\cdot)$ indica i conteggi osservati nel corpus;
+	\item $h'$ è il contesto accorciato (ad esempio, passando da trigramma a bigramma, o da bigramma a unigramma);
+	\item $\lambda$ è un fattore di penalizzazione costante (tipicamente $0.4$) applicato ogni volta che si ``retrocede''.
+\end{itemize}
+
+Lo \emph{stupid backoff} non definisce una vera distribuzione probabilistica (poiché i valori di $S$ non sommano a 1), ma fornisce punteggi comparabili tra diverse sequenze. È molto efficace su grandi corpus e in scenari di ricerca su larga scala, come nel motore linguistico di Google \citep{Brants2007}.
 
 \section{Perplessità ed Entropia}
 
