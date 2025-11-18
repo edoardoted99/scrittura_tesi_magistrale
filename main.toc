@@ -8,12 +8,12 @@
 \contentsline {section}{\numberline {2.1}Parole e Tokens}{3}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Le parole}{3}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Unicode}{5}{subsection.2.1.2}%
-\contentsline {subsubsection}{Code points}{6}{section*.2}%
-\contentsline {subsubsection}{UTF-8 Encoding}{6}{section*.3}%
+\contentsline {subsubsection}{Code points}{6}{section*.3}%
+\contentsline {subsubsection}{UTF-8 Encoding}{7}{section*.5}%
 \contentsline {subsection}{\numberline {2.1.3}Subword Tokenization: Byte-Pair Encoding}{8}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}BPE Training}{10}{subsection.2.1.4}%
 \contentsline {subsection}{\numberline {2.1.5}BPE Encoder}{14}{subsection.2.1.5}%
-\contentsline {paragraph}{Le regole di fusione.}{15}{section*.4}%
+\contentsline {paragraph}{Le regole di fusione.}{15}{section*.9}%
 \contentsline {subsection}{\numberline {2.1.6}Corpora}{15}{subsection.2.1.6}%
 \contentsline {subsection}{\numberline {2.1.7}Minimum Edit Distance}{17}{subsection.2.1.7}%
 \contentsline {chapter}{\numberline {3}N-gram Language Models}{21}{chapter.3}%
@@ -34,20 +34,23 @@
 \contentsline {section}{\numberline {3.3}Perplessità ed Entropia}{29}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Entropia}{30}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Entropia di una sequenza}{30}{subsection.3.3.2}%
-\contentsline {paragraph}{Tasso di entropia.}{30}{section*.7}%
-\contentsline {paragraph}{Il teorema di Shannon–McMillan–Breiman.}{31}{section*.8}%
-\contentsline {paragraph}{Intuizione.}{31}{section*.9}%
+\contentsline {paragraph}{Tasso di entropia.}{30}{section*.13}%
+\contentsline {paragraph}{Il teorema di Shannon–McMillan–Breiman.}{31}{section*.14}%
+\contentsline {paragraph}{Intuizione.}{31}{section*.15}%
 \contentsline {subsection}{\numberline {3.3.3}Cross-Entropy}{31}{subsection.3.3.3}%
-\contentsline {paragraph}{Stima su sequenze lunghe.}{32}{section*.10}%
-\contentsline {paragraph}{Relazione con l’entropia.}{32}{section*.11}%
-\contentsline {paragraph}{Interpretazione intuitiva.}{32}{section*.12}%
+\contentsline {paragraph}{Stima su sequenze lunghe.}{32}{section*.16}%
+\contentsline {paragraph}{Relazione con l’entropia.}{32}{section*.17}%
+\contentsline {paragraph}{Interpretazione intuitiva.}{32}{section*.18}%
 \contentsline {subsection}{\numberline {3.3.4}Relazione con la Perplessità}{32}{subsection.3.3.4}%
-\contentsline {paragraph}{Intuizione.}{32}{section*.13}%
-\contentsline {paragraph}{Forma pratica.}{33}{section*.14}%
-\contentsline {paragraph}{Interpretazione.}{33}{section*.15}%
+\contentsline {paragraph}{Intuizione.}{32}{section*.19}%
+\contentsline {paragraph}{Forma pratica.}{33}{section*.20}%
+\contentsline {paragraph}{Interpretazione.}{33}{section*.21}%
 \contentsline {subsection}{\numberline {3.3.5}Entropia e Compressione dei Dati}{33}{subsection.3.3.5}%
-\contentsline {paragraph}{Codici a lunghezza fissa.}{33}{section*.16}%
-\contentsline {paragraph}{Codici a lunghezza variabile.}{33}{section*.17}%
-\contentsline {paragraph}{Esempio intuitivo.}{34}{section*.18}%
+\contentsline {paragraph}{Codici a lunghezza fissa.}{33}{section*.22}%
+\contentsline {paragraph}{Codici a lunghezza variabile.}{33}{section*.23}%
+\contentsline {paragraph}{Esempio intuitivo.}{34}{section*.24}%
 \contentsline {chapter}{\numberline {4}Regressione Logistica e classificazione del testo}{35}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Machine learning e classificazione}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Funzione sigmoide}{36}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Embeddings}{39}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Embeddings}{39}{section.5.1}%
