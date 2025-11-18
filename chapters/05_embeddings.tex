@@ -5,7 +5,7 @@
     Words are for meaning; Once you get the meaning you can forget the words.
 }{Zhuangzi}
 
-Introduzione
+\newpage
 
 \section{Embeddings}
 L’asfalto per cui Los Angeles è famosa si trova soprattutto sulle sue autostrade. 
@@ -20,6 +20,26 @@ ma Thylacosmilus aveva gli stessi lunghi canini superiori e, come Smilodon,
 una protezione ossea (una flangia) sulla mandibola inferiore.
 La somiglianza tra questi due mammiferi è uno dei numerosi esempi di evoluzione parallela o convergente, 
 in cui particolari contesti o ambienti portano all’evoluzione di strutture molto simili in specie differenti (Gould, 1980).
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Caratteristica} & \textbf{Smilodon} & \textbf{Thylacosmilus} \\
+        \midrule
+        Tipo & Mammifero placentato & Marsupiale \\
+        Area geografica & Nord e Sud America & Sud America (Argentina) \\
+        Epoca & Pleistocene & Miocene \\
+        Periodo & 2.5M – 10k anni fa & 9M – 3M anni fa \\
+        Denti a sciabola & Sì & Sì \\
+        Flangia mandibolare & Sì & Sì \\
+        Relazione evolutiva & Felino (o simile) & Marsupiale predatore \\
+        Tipo di evoluzione & --- & Convergente con Smilodon \\
+        \bottomrule
+    \end{tabular}
+    \caption{Confronto tra Smilodon e Thylacosmilus}
+\end{table}
+
 
 \begin{figure}[h!]
     \centering
@@ -37,13 +57,199 @@ in cui particolari contesti o ambienti portano all’evoluzione di strutture mol
     \caption{Confronto tra Smilodon e Thylacosmilus}
 \end{figure}
 
+\subsection{Ipotesi distribuzionale}
 
 Il ruolo del contesto è importante anche per la somiglianza di un tipo di organismo meno biologico: 
-la parola. Le parole che compaiono in contesti simili tendono ad avere significati simili. 
+la parola. \textit{Le parole che compaiono in contesti simili tendono ad avere significati simili.}
 Questo legame tra somiglianza nella distribuzione delle parole e somiglianza nel loro significato è chiamato 
-ipotesi distribuzionale. L’ipotesi fu formulata per la prima volta negli anni 
+\textbf{ipotesi distribuzionale}. L’ipotesi fu formulata per la prima volta negli anni 
 ’50 da linguisti come Joos (1950), Harris (1954) e Firth (1957), che notarono che parole sinonime 
 (come oculist ed eye-doctor) tendevano a comparire nello stesso ambiente (ad esempio vicino a parole come eye o examined), 
-con la quantità di differenza di significato tra due parole “corrispondente più o meno alla quantità di differenza nei 
-loro ambienti” (Harris, 1954, p. 157).
+con la quantità di differenza di significato tra due parole ``corrispondente più o meno alla quantità di differenza nei 
+loro ambienti'' (Harris, 1954, p. 157). 
+
+\subsection{Semantica lessicale}
+Iniziamo introducendo qualche principio di base sul significato delle parole. 
+Come possiamo rappresentare il significato di una parola in un computer?
+In un \textit{n}-gram language model, ogni parola è rappresentata come una 
+stringa di lettere o come un indice in una lista di un vocabolario.
+
+Questa, tuttavia, non è una vera rappresentazione del significato della parola.
+La parola \textit{cat}, ad esempio, può essere rappresentata semplicemente come la 
+stringa ``cat'' oppure come l'indice 2 in una tabella di vocabolario. 
+Ma questa codifica non ci dice nulla sul fatto che un gatto sia un animale,
+che sia simile a un cane, o che abbia certe proprietà. 
+In altre parole, il modello non ``capisce'' il significato: tratta ogni parola come
+un semplice simbolo distinto dagli altri.
+
+Il risultato è che il significato non è contenuto nella rappresentazione, ma può
+essere solo inferito indirettamente dalla distribuzione della parola nel testo
+(dove appare, con quali parole co-occorre, quali sequenze forma). 
+Questa idea è alla base dell'ipotesi distribuzionale: parole che compaiono in 
+contesti simili tendono ad avere significati simili.
+
+Proprio perché le rappresentazioni simboliche degli \textit{n}-gram non possono
+catturare similitudini o relazioni semantiche, sono stati sviluppati modelli più
+moderni come gli \textit{embeddings}, che rappresentano ogni parola tramite un 
+vettore numerico capace di riflettere somiglianze e strutture semantiche.
+
+In alcune tradizioni filosofiche, per rappresentare il significato di una parola 
+si usava semplicemente il suo corrispettivo scritto in maiuscoletto; ad esempio, 
+il significato di ``dog'' veniva rappresentato come \textsc{dog}, e quello di 
+``cat'' come \textsc{cat}. In altri casi si aggiungeva un apostrofo, come in 
+\textsc{dog'}. Questa convenzione, che a volte compare anche in corsi introduttivi 
+di logica, riflette una visione puramente simbolica del significato: il simbolo 
+che rappresenta la parola \textit{è} il suo significato.
+
+Si tratta però di un modello estremamente limitato e insoddisfacente. 
+Scrivere \textsc{dog} al posto di ``dog'' non aggiunge alcuna informazione su ciò 
+che un cane è, su quali proprietà abbia, o su come il suo significato sia 
+relazionato a quello di parole simili come ``cat'' o a parole opposte come ``rock''. 
+Il simbolo è solo una versione stilizzata della parola stessa.
+
+La debolezza di questo approccio è ben illustrata da una battuta attribuita alla 
+semanticista Barbara Partee: se chiediamo ``qual è il significato della vita?'', 
+la risposta, secondo questo modello, sarebbe semplicemente \textsc{life'}. 
+Ovviamente, sappiamo che il significato non può essere ridotto a un'etichetta 
+arbitraria.
+
+Ciò che ci interessa, invece, è un modello che ci permetta di cogliere 
+somiglianze e differenze tra significati: ad esempio, che ``cat'' sia più simile a 
+``dog'' che a ``table'', che ``hot'' sia l'opposto di ``cold'', o che verbi come 
+``buy'', ``sell'' e ``pay'' descrivano lo stesso evento di acquisto da tre 
+prospettive differenti. Idealmente, una rappresentazione del significato dovrebbe 
+permettere anche di derivare inferenze utili per compiti di comprensione del 
+linguaggio, come il question answering o il dialogo.
+
+
+\subsection{Proprietà del significato lessicale}
+
+Possiamo analizzare il significato delle parole attraverso una serie di proprietà
+linguistiche fondamentali:
+
+\begin{itemize}
+    \item \textbf{Lemma e forme flesse}.  
+    Il lemma è la forma canonica di una parola (ad es.\ \textit{mouse}); 
+    le sue forme flesse (\textit{mice}, \textit{sung}, \textit{duermes}) sono dette 
+    \textit{wordforms}. Ogni lemma può avere molteplici significati, chiamati 
+    \textit{sensi} della parola.
+
+    \item \textbf{Polisemia}.  
+    Un lemma può essere associato a più sensi distinti (ad es.\ \textit{mouse} come 
+    animale oppure come dispositivo elettronico). Questo rende necessaria la 
+    \textit{disambiguazione del senso}.
+
+    \item \textbf{Sinonimia}.  
+    Due parole (o sensi) sono sinonimi se hanno significati molto simili 
+    (ad es.\ \textit{car}/\textit{automobile}). La sinonimia non è mai perfetta: 
+    secondo il \textit{principio di contrasto}, differenze formali corrispondono a 
+    differenze di significato.
+
+    \item \textbf{Similarità tra parole}.  
+    Due parole possono essere simili pur non essendo sinonimi 
+    (ad es.\ \textit{cat} e \textit{dog}). La similarità lessicale è utile per 
+    compiti come question answering, parafrasi e confronto tra frasi.
+
+    \item \textbf{Correlatezza semantica (relatedness)}.  
+    Parole che non sono simili possono comunque essere semanticamente collegate, 
+    perché partecipano allo stesso evento o dominio (ad es.\ \textit{coffee} e 
+    \textit{cup}). Le parole possono inoltre appartenere allo stesso 
+    \textit{campo semantico} (ospedale, ristorante, casa).
+
+    \item \textbf{Connotazione}.  
+    Le parole hanno componenti affettive, legate a emozioni, opinioni o valori. 
+    Alcune hanno connotazione positiva (\textit{wonderful}), altre negativa 
+    (\textit{dreary}). Le connotazioni sono centrali per compiti come 
+    sentiment analysis e stance detection.
+
+\end{itemize}
+
+
+\subsubsection{L'ipotesi di Osgood: il significato come punto in uno spazio vettoriale}
+
+Un contributo fondamentale alla rappresentazione del significato proviene dal 
+lavoro di Osgood et al.\ (1957), che studiarono la componente affettiva delle parole. 
+Osgood mostrò che i giudizi emotivi associati a una parola possono essere descritti 
+lungo tre dimensioni principali:
+
+\begin{enumerate}
+    \item \textbf{Valenza}: quanto la parola è percepita come positiva o negativa.
+    \item \textbf{Arousal}: quanto la parola induce attivazione emotiva.
+    \item \textbf{Dominanza}: quanto la parola implica controllo o sottomissione.
+\end{enumerate}
+
+Ogni parola può quindi essere rappresentata come una tripla di valori numerici 
+che ne definiscono la posizione in questo spazio tridimensionale. Ad esempio:
+
+\[
+\textit{heartbreak} \rightarrow [2.5,\ 5.7,\ 3.6]
+\]
+
+L’intuizione rivoluzionaria di Osgood è che il significato di una parola possa essere 
+rappresentato come un \textbf{vettore in uno spazio semantico}. Questa idea 
+anticipa direttamente i moderni modelli di \textit{word embeddings}, in cui ogni 
+parola è descritta come un punto in uno spazio multidimensionale che cattura 
+somiglianze, connotazioni e relazioni semantiche.
+
+
+\subsection{Semantica vettoriale}
+Vector semantics è lo standard di rappresentaizone per la rappresentaizone del singificato delle parole nel nlp.
+Le radici di questo approccio risalgono agli anni '50 quando due idee conversero:
+\begin{enumerate}
+    \item L’idea di Osgood (1957), descritta sopra, di rappresentare la connotazione di una parola come un punto in uno spazio tridimensionale.
+    \item L'ipotesi ditribuzionale. La proposta di linguisti come Joos (1950), Harris (1954) e Firth (1957) di definire il significato di una parola tramite la sua distribuzione nell’uso linguistico, cioè tramite le parole che la circondano o gli ambienti grammaticali in cui appare.
+\end{enumerate}
+Questa seconda idea si basa sull'intuizione che due parole che compaiono in 
+contesti simili tendono ad avere significati simili. Possiamo illustrare questa 
+intuizione con un semplice esempio.
+
+Supponiamo di non conoscere il significato della parola \textit{ongchoi}, ma di 
+incontrarla nei seguenti contesti:
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item \textit{L'ongchoi è deliziosa saltata con aglio.}
+    \item \textit{L'ongchoi è ottima servita con riso.}
+    \item \textit{...foglie di ongchoi con salse salate...}
+\end{enumerate}
+
+Ora immaginiamo di aver già visto molte di queste parole-contesto in altri esempi, 
+come:
+
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item \textit{...gli spinaci saltati con aglio serviti sul riso...}
+    \item \textit{...le coste, con i loro gambi e foglie, sono molto gustose...}
+    \item \textit{...il cavolo riccio e altre verdure a foglia dal sapore salato...}
+\end{enumerate}
+
+Il fatto che \textit{ongchoi} compaia insieme a parole come \textit{riso}, 
+\textit{aglio}, \textit{deliziosa} e \textit{salata}, proprio come \textit{spinaci}, 
+\textit{coste} o \textit{cavolo riccio}, suggerisce che l'ongchoi sia una 
+\textbf{verdura a foglia} simile a queste altre verdure.
+
+Questa è esattamente l'intuizione alla base della semantica vettoriale: possiamo 
+rappresentare il significato di una parola osservando e contando le parole che 
+compaiono nei suoi contesti. Parole che condividono contesti simili tendono ad 
+avere vettori simili e quindi significati simili. I vettori per rappresentare le parole vengono chiamati \textbf{word embeddings}.
+La parola ``embedding'' deriva storicamente  dalla suo significato mateamtica ovvero quello di mppare da uno spazio ad un altro.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/embeddings_plot_sweets.png}
+    \caption{Visualizzaizone 2-dimensionale di 200 di uno spazio 200-dimensionale dell'algortimo word2vec Embeddings
+    per delle parole vicino alla parole \textit{sweet}.}
+    \label{fig:embeddings_plot_sweets}
+\end{figure}
+
+La figura \ref{fig:embeddings_plot_sweets} mostra una visualizzazione bidimensionale di un insieme di word embeddings appresi dall'algoritmo Word2Vec.
+Si vede come parole semanticamente simili (ipoesi distribuzionale) compaiono vicine nello spazio vettoriale (idea di semantica vettoriale).
+
+\subsection{Simple count-based embeddings}
+Introduciamo ora il primo modo di calcolare i word vector mbeddings. Il metodo più semplice è basato sulla \textbf{matrice di co-occorrenza}.
+Un modo per rappresentare quanto spesso le parole co-occorrono. Definiremo un particolare tipo di co-occorenza, il \textbf{word-context matrix}, 
+nel quale ogni riga della amtrice rappresenta una parola nel vocabolario e ogni colonna rappresnta quanto spesso ogni altra parola nel vocabolario appare vicina.
+Sarà pertanto una matrice quadrata di dimensione $|V| \times |V|$ dove $|V|$ è la dimensione del vocabolario. 
+Ogni cella $M_{i,j}$ della matrice conterrà il numero di volte che la parola $w_j$ appare nel vicina alla parola $w_i$. Ma ovviamnete 
+cosa significa ``vicina''? Possiamo definire una \textbf{finestra di contesto} di dimensione $k$ che indica quante parole a sinistra e a destra
 
