@@ -59,3 +59,27 @@
 \contentsline {subsection}{\numberline {5.1.3}Proprietà del significato lessicale}{42}{subsection.5.1.3}%
 \contentsline {subsubsection}{L'ipotesi di Osgood: il significato come punto in uno spazio vettoriale}{43}{section*.27}%
 \contentsline {subsection}{\numberline {5.1.4}Semantica vettoriale}{44}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Simple count-based embeddings}{45}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}Cosine Similarity}{48}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Word2Vec}{49}{subsection.5.1.7}%
+\contentsline {subsubsection}{Il classificatore}{51}{section*.32}%
+\contentsline {subsubsection}{Algoritmo di apprendimento}{55}{section*.38}%
+\contentsline {subsection}{\numberline {5.1.8}Proprietà semantiche degli embeddings}{56}{subsection.5.1.8}%
+\contentsline {subsubsection}{1. Influenza della finestra di contesto}{56}{section*.39}%
+\contentsline {subsubsection}{2. First-order vs. second-order similarity}{57}{section*.40}%
+\contentsline {subsubsection}{3. Analogical reasoning (modello del parallelogramma)}{57}{section*.41}%
+\contentsline {subsubsection}{4. Struttura geometrica: ortogonalità e parallelismo}{58}{section*.42}%
+\contentsline {subsubsection}{5. Effetti pratici}{58}{section*.43}%
+\contentsline {subsection}{\numberline {5.1.9}Embeddings as the input to neural net classifiers}{58}{subsection.5.1.9}%
+\contentsline {chapter}{\numberline {6}Reti Neurali}{59}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Unità neurali}{60}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Il problema dell’XOR e la necessità dei livelli nascosti}{60}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Feedforward Neural Networks}{61}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Embeddings come input dei classificatori neurali}{62}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}La embedding matrix}{62}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Ottenere l’embedding tramite vettori one-hot}{63}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Rappresentare una sequenza di parole}{63}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}Dare gli embedding in input a un classificatore}{63}{subsection.6.4.4}%
+\contentsline {subsection}{\numberline {6.4.5}Pooling: esempio per la classificazione di sentiment}{64}{subsection.6.4.5}%
+\contentsline {subsection}{\numberline {6.4.6}Concatenazione: esempio per il language modeling}{64}{subsection.6.4.6}%
+\contentsline {subsection}{\numberline {6.4.7}Perché gli embedding migliorano i modelli neurali}{65}{subsection.6.4.7}%

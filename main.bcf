@@ -2347,9 +2347,13 @@
     <bcf:citekey order="1">sennrich-etal-2016-neural</bcf:citekey>
     <bcf:citekey order="2">kudo-2018-subword</bcf:citekey>
     <bcf:citekey order="3">Brants2007</bcf:citekey>
-    <bcf:citekey order="4">sennrich-etal-2016-neural</bcf:citekey>
-    <bcf:citekey order="5">kudo-2018-subword</bcf:citekey>
-    <bcf:citekey order="6">Brants2007</bcf:citekey>
+    <bcf:citekey order="4">jurafsky</bcf:citekey>
+    <bcf:citekey order="5">jurafsky</bcf:citekey>
+    <bcf:citekey order="6">jurafsky</bcf:citekey>
+    <bcf:citekey order="7">sennrich-etal-2016-neural</bcf:citekey>
+    <bcf:citekey order="8">kudo-2018-subword</bcf:citekey>
+    <bcf:citekey order="9">Brants2007</bcf:citekey>
+    <bcf:citekey order="10">jurafsky</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

@@ -12,10 +12,32 @@
 \@writefile{toc}{\contentsline {subsubsection}{L'ipotesi di Osgood: il significato come punto in uno spazio vettoriale}{43}{section*.27}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.4}Semantica vettoriale}{44}{subsection.5.1.4}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Visualizzaizone 2-dimensionale di 200 di uno spazio 200-dimensionale dell'algortimo word2vec Embeddings per delle parole vicino alla parole \textit  {sweet}.\relax }}{45}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:embeddings_plot_sweets}{{5.2}{45}{Visualizzaizone 2-dimensionale di 200 di uno spazio 200-dimensionale dell'algortimo word2vec Embeddings per delle parole vicino alla parole \textit {sweet}.\relax }{figure.caption.28}{}}
+\newlabel{fig:embeddings_plot_sweets@cref}{{[figure][2][5]5.2}{[1][45][]45}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.5}Simple count-based embeddings}{45}{subsection.5.1.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Esempio di matrice di co-occorrenza con finestra di contesto di ampiezza 1.\relax }}{46}{table.caption.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Estratto reale della matrice word-context calcolata sul corpus Wikipedia, come mostrato in Fig.~5.3 di \blx@tocontentsinit {0}\cite {jurafsky}.\relax }}{47}{table.caption.30}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Estratto reale di vettori di co-occorrenza calcolati sul corpus Wikipedia (mostra solo alcune dimensioni del vettore).\relax }}{47}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:jurafsky53}{{5.3}{47}{Estratto reale di vettori di co-occorrenza calcolati sul corpus Wikipedia (mostra solo alcune dimensioni del vettore).\relax }{figure.caption.31}{}}
+\newlabel{fig:jurafsky53@cref}{{[figure][3][5]5.3}{[1][46][]47}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.6}Cosine Similarity}{48}{subsection.5.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.7}Word2Vec}{49}{subsection.5.1.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Il classificatore}{51}{section*.32}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Lo skip-gram apprende in totale due insiemi di embedding, uno per i target e uno per i contesti, per un totale di $2|V|$ vettori, ciascuno di dimensione $d$. L’addestramento del modello ha quindi un unico scopo: apprendere questi vettori in modo da massimizzare la probabilità che le parole realmente vicine nel testo risultino simili nei loro embedding\relax }}{53}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:skipgram_structure}{{5.4}{53}{Lo skip-gram apprende in totale due insiemi di embedding, uno per i target e uno per i contesti, per un totale di $2|V|$ vettori, ciascuno di dimensione $d$. L’addestramento del modello ha quindi un unico scopo: apprendere questi vettori in modo da massimizzare la probabilità che le parole realmente vicine nel testo risultino simili nei loro embedding\relax }{figure.caption.37}{}}
+\newlabel{fig:skipgram_structure@cref}{{[figure][4][5]5.4}{[1][53][]53}}
+\@writefile{toc}{\contentsline {subsubsection}{Algoritmo di apprendimento}{55}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.8}Proprietà semantiche degli embeddings}{56}{subsection.5.1.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{1. Influenza della finestra di contesto}{56}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{2. First-order vs. second-order similarity}{57}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{3. Analogical reasoning (modello del parallelogramma)}{57}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{4. Struttura geometrica: ortogonalità e parallelismo}{58}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{5. Effetti pratici}{58}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.9}Embeddings as the input to neural net classifiers}{58}{subsection.5.1.9}\protected@file@percent }
 \@setckpt{chapters/05_embeddings}{
-\setcounter{page}{46}
-\setcounter{equation}{0}
-\setcounter{enumi}{8}
+\setcounter{page}{59}
+\setcounter{equation}{3}
+\setcounter{enumi}{4}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
@@ -24,12 +46,12 @@
 \setcounter{part}{0}
 \setcounter{chapter}{5}
 \setcounter{section}{1}
-\setcounter{subsection}{4}
+\setcounter{subsection}{9}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{2}
-\setcounter{table}{1}
+\setcounter{figure}{4}
+\setcounter{table}{3}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
 \setcounter{lstnumber}{1}
@@ -67,7 +89,7 @@
 \setcounter{parenlevel}{0}
 \setcounter{blx@maxsection}{0}
 \setcounter{blx@maxsegment@0}{0}
-\setcounter{blx@sectionciteorder@0}{3}
+\setcounter{blx@sectionciteorder@0}{6}
 \setcounter{mincomprange}{10}
 \setcounter{maxcomprange}{100000}
 \setcounter{mincompwidth}{1}
@@ -150,9 +172,9 @@
 \setcounter{smartand}{1}
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
-\setcounter{Item}{13}
+\setcounter{Item}{17}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{43}
+\setcounter{bookmark@seq@number}{48}
 \setcounter{FancyVerbLine}{0}
 \setcounter{caption@flags}{0}
 \setcounter{continuedfloat}{0}
