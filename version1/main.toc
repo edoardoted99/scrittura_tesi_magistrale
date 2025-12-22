@@ -83,3 +83,10 @@
 \contentsline {subsection}{\numberline {6.4.5}Pooling: esempio per la classificazione di sentiment}{64}{subsection.6.4.5}%
 \contentsline {subsection}{\numberline {6.4.6}Concatenazione: esempio per il language modeling}{64}{subsection.6.4.6}%
 \contentsline {subsection}{\numberline {6.4.7}Perché gli embedding migliorano i modelli neurali}{65}{subsection.6.4.7}%
+\contentsline {chapter}{\numberline {7}Large Language models}{67}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduzione}{67}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Tipi di architetture dei Language Models}{67}{section.7.2}%
+\contentsline {chapter}{\numberline {8}Transformer}{71}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Attenzione}{72}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}L'attenzione più formalmente}{73}{subsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1.2}Versione semplificata dell'attenzione}{74}{subsection.8.1.2}%

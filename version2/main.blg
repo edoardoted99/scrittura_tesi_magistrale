@@ -1,0 +1,17 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'main.blg'
+[146] biber:340> INFO - === lun dic 22, 2025, 12:46:58
+[177] Biber.pm:418> INFO - Reading 'main.bcf'
+[298] Biber.pm:972> INFO - Found 3 citekeys in bib section 0
+[328] Biber.pm:4383> INFO - Processing section 0
+[355] Biber.pm:4574> INFO - Looking for bibtex file 'references.bib' for section 0
+[356] bibtex.pm:1713> INFO - LaTeX decoding ...
+[370] bibtex.pm:1518> INFO - Found BibTeX data source 'references.bib'
+[455] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[455] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[455] Biber.pm:4203> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'it-IT'
+[455] Biber.pm:4209> INFO - No sort tailoring available for locale 'it-IT'
+[466] bbl.pm:654> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[469] bbl.pm:757> INFO - Output to main.bbl
+[470] Biber.pm:130> WARN - I didn't find a database entry for 'hinton1987autoencoders' (section 0)
+[470] Biber.pm:132> INFO - WARNINGS: 1

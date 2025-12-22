@@ -1,0 +1,101 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{autoencodersbank2020autoencoders}{article}{}
+      \name{author}{3}{}{%
+        {{hash=76336ddce201e52fc8c459288637258b}{%
+           family={Bank},
+           familyi={B\bibinitperiod},
+           given={Dor},
+           giveni={D\bibinitperiod}}}%
+        {{hash=f5db36b1b1777c62a6c09cd8acbaff16}{%
+           family={Koenigstein},
+           familyi={K\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod}}}%
+        {{hash=d05a6442a67a9d44901f3a7688baed50}{%
+           family={Giryes},
+           familyi={G\bibinitperiod},
+           given={Raja},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{8c23fa9017ff38233f15ff4cbba3c970}
+      \strng{fullhash}{8c23fa9017ff38233f15ff4cbba3c970}
+      \strng{bibnamehash}{8c23fa9017ff38233f15ff4cbba3c970}
+      \strng{authorbibnamehash}{8c23fa9017ff38233f15ff4cbba3c970}
+      \strng{authornamehash}{8c23fa9017ff38233f15ff4cbba3c970}
+      \strng{authorfullhash}{8c23fa9017ff38233f15ff4cbba3c970}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{CoRR}
+      \field{title}{Autoencoders}
+      \field{volume}{abs/2003.05991}
+      \field{year}{2020}
+      \verb{eprint}
+      \verb 2003.05991
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2003.05991
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2003.05991
+      \endverb
+    \endentry
+    \entry{michelucci2022introductionautoencoders}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=1624ef9b4518e6d2c2d40d29a4c62b16}{%
+           family={Michelucci},
+           familyi={M\bibinitperiod},
+           given={Umberto},
+           giveni={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{1624ef9b4518e6d2c2d40d29a4c62b16}
+      \strng{fullhash}{1624ef9b4518e6d2c2d40d29a4c62b16}
+      \strng{bibnamehash}{1624ef9b4518e6d2c2d40d29a4c62b16}
+      \strng{authorbibnamehash}{1624ef9b4518e6d2c2d40d29a4c62b16}
+      \strng{authornamehash}{1624ef9b4518e6d2c2d40d29a4c62b16}
+      \strng{authorfullhash}{1624ef9b4518e6d2c2d40d29a4c62b16}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{An Introduction to Autoencoders}
+      \field{year}{2022}
+      \verb{eprint}
+      \verb 2201.03898
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2201.03898
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2201.03898
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{hinton1987autoencoders}
+\endrefsection
+\endinput
+

@@ -277,18 +277,35 @@ z = Uh
 
 dove $\hat{y}$ è un vettore di dimensione $|V|$ che contiene la probabilità per 
 ciascuna possibile parola successiva.
-
 \subsection{Perché gli embedding migliorano i modelli neurali}
 
-L’uso degli embedding offre due grandi vantaggi:
+L’uso degli embedding offre due grandi vantaggi fondamentali per i modelli 
+linguistici neurali:
 
 \begin{itemize}
-    \item \textbf{Generalizzazione}: parole simili hanno embedding simili, quindi il 
-    modello può generalizzare a contesti mai visti (es.\ ``the dog gets'' → ``fed'').
-    \item \textbf{Efficienza}: gli embedding riducono drasticamente la dimensionalità e 
-    permettono economie computazionali rispetto ai modelli basati su one-hot.
+    \item \textbf{Generalizzazione}: parole semanticamente simili hanno 
+    embedding simili. Questo consente al modello di estendere ciò che ha appreso 
+    anche a contesti mai osservati esplicitamente durante l’addestramento. \\
+    Un esempio chiarisce il punto: supponiamo che nel training compaia la frase 
+    ``Devo assicurarmi che il gatto venga nutrito'', ma non compaia mai la sequenza 
+    ``il cane venga''. Se nel test incontriamo il contesto 
+    ``Mi sono dimenticato di assicurarmi che il cane venga'', un modello 
+    n-gram tradizionale non potrà prevedere correttamente la parola successiva 
+    ``nutrito'', perché non ha mai visto ``cane'' in quel contesto. 
+    Un modello neurale invece, avendo appreso che \emph{gatto} e \emph{cane} 
+    hanno embedding simili, può generalizzare dal contesto visto con ``gatto'' e 
+    assegnare comunque una probabilità alta alla continuazione ``nutrito'' anche 
+    dopo ``cane''. 
+    
+    \item \textbf{Efficienza}: gli embedding riducono drasticamente la 
+    dimensionalità rispetto alle rappresentazioni one-hot e permettono una 
+    parametrizzazione più compatta. Ciò rende il modello più efficiente, facilita 
+    l’ottimizzazione e consente di apprendere rappresentazioni distribuite molto 
+    più informative.
 \end{itemize}
 
-Questi concetti costituiscono la base dei moderni modelli linguistici neurali: reti 
-capaci di apprendere automaticamente rappresentazioni sempre più ricche del 
-contenuto linguistico.
+Questi meccanismi rendono gli embedding la base dei moderni modelli linguistici 
+neurali: architetture capaci di apprendere automaticamente rappresentazioni 
+sempre più ricche e astratte del contenuto linguistico, andando ben oltre le 
+limitazioni dei modelli statistici tradizionali.
+
