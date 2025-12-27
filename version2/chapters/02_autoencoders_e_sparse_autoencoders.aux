@@ -4,14 +4,29 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Introduzione}{3}{section.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Autoencoders: definizione e formulazione generale}{3}{section.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Apprendimento non supervisionato}{3}{subsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Encoder, decoder e spazio latente}{4}{subsection.2.2.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Schema di funzionamento di un autoencoder \blx@tocontentsinit {0}\parencite {michelucci2022introductionautoencoders}\relax }}{4}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:autoencoder}{{2.1}{4}{Schema di funzionamento di un autoencoder \parencite {michelucci2022introductionautoencoders}\relax }{figure.caption.2}{}}
 \newlabel{fig:autoencoder@cref}{{[figure][1][2]2.1}{[1][4][]4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Regolarizzazione negli autoencoders}{5}{section.2.2}\protected@file@percent }
-\@setckpt{chapters/02_autoencoders}{
-\setcounter{page}{6}
-\setcounter{equation}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}Funzione obiettivo e errore di ricostruzione}{5}{subsection.2.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Il problema dell’identità e la necessità di vincoli}{5}{section.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Bottleneck e riduzione della dimensionalità}{6}{subsection.2.3.1}\protected@file@percent }
+\newlabel{eq:latent_dim_ae}{{2.6}{6}{Bottleneck e riduzione della dimensionalità}{equation.2.3.6}{}}
+\newlabel{eq:latent_dim_ae@cref}{{[equation][6][2]2.6}{[1][6][]6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Introduzione di vincoli}{6}{subsection.2.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Relazioni con la PCA}{8}{subsection.2.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Interpretabilità delle feature latenti}{12}{section.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Rappresentazioni latenti disentangled}{13}{subsection.2.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Sparse Autoencoders}{14}{section.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.\relax }}{14}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:sparse_autoencoder}{{2.2}{14}{La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.\relax }{figure.caption.5}{}}
+\newlabel{fig:sparse_autoencoder@cref}{{[figure][2][2]2.2}{[1][14][]14}}
+\@setckpt{chapters/02_autoencoders_e_sparse_autoencoders}{
+\setcounter{page}{16}
+\setcounter{equation}{19}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -20,12 +35,12 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{2}
-\setcounter{section}{2}
+\setcounter{section}{5}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{1}
+\setcounter{figure}{2}
 \setcounter{table}{0}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
@@ -149,7 +164,7 @@
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{5}
+\setcounter{bookmark@seq@number}{15}
 \setcounter{FancyVerbLine}{0}
 \setcounter{caption@flags}{0}
 \setcounter{continuedfloat}{0}
@@ -157,7 +172,7 @@
 \setcounter{subtable}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{2}
+\setcounter{tcolorbox@number}{3}
 \setcounter{definition}{0}
 \setcounter{lstlisting}{0}
 \setcounter{section@level}{1}

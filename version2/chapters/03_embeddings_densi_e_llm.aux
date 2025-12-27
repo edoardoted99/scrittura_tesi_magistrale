@@ -1,17 +1,29 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Autoencoders}{3}{chapter.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Embeddings densi e Large Language Models}{17}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Introduzione}{3}{section.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Schema di funzionamento di un autoencoder \blx@tocontentsinit {0}\parencite {michelucci2022introductionautoencoders}\relax }}{4}{figure.caption.2}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:autoencoder}{{2.1}{4}{Schema di funzionamento di un autoencoder \parencite {michelucci2022introductionautoencoders}\relax }{figure.caption.2}{}}
-\newlabel{fig:autoencoder@cref}{{[figure][1][2]2.1}{[1][4][]4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Regolarizzazione negli autoencoders}{5}{section.2.2}\protected@file@percent }
-\@setckpt{chapters/02_autoencoders}{
-\setcounter{page}{6}
-\setcounter{equation}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Embeddings testuali e rappresentazioni semantiche}{18}{section.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Word, sentence e document embeddings}{18}{subsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Embeddings nei modelli di linguaggio moderni}{18}{subsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Proprietà degli embeddings densi}{18}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Alta dimensionalità e informazione distribuita}{18}{subsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Continuità e non-monosemanticità}{18}{subsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Il problema dell’interpretabilità}{18}{section.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Limiti dell’interpretazione dimensionale}{18}{subsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Conseguenze pratiche per controllo e spiegabilità}{18}{subsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Superposition e concetti distribuiti}{18}{section.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Sovrapposizione semantica negli embeddings}{18}{subsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Relazione con la capacità del modello}{18}{subsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}La necessità di rappresentazioni sparse}{18}{section.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Sparsità come principio induttivo}{18}{subsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Disentanglement e interpretabilità}{18}{subsection.3.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Sparse Autoencoders come strumento di disentanglement}{18}{section.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Dagli embeddings densi alle feature sparse}{18}{subsection.3.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Collegamento con il lavoro di tesi}{18}{subsection.3.6.2}\protected@file@percent }
+\@setckpt{chapters/03_embeddings_densi_e_llm}{
+\setcounter{page}{19}
+\setcounter{equation}{0}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -19,13 +31,13 @@
 \setcounter{footnote}{0}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
-\setcounter{chapter}{2}
-\setcounter{section}{2}
-\setcounter{subsection}{0}
+\setcounter{chapter}{3}
+\setcounter{section}{6}
+\setcounter{subsection}{2}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{1}
+\setcounter{figure}{0}
 \setcounter{table}{0}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
@@ -149,7 +161,7 @@
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{5}
+\setcounter{bookmark@seq@number}{34}
 \setcounter{FancyVerbLine}{0}
 \setcounter{caption@flags}{0}
 \setcounter{continuedfloat}{0}
@@ -157,8 +169,8 @@
 \setcounter{subtable}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{2}
+\setcounter{tcolorbox@number}{3}
 \setcounter{definition}{0}
 \setcounter{lstlisting}{0}
-\setcounter{section@level}{1}
+\setcounter{section@level}{2}
 }

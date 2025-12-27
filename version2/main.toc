@@ -4,3 +4,79 @@
 \contentsline {section}{\numberline {1.1}Introduzione}{1}{section.1.1}%
 \contentsline {chapter}{\numberline {2}Autoencoders}{3}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Introduzione}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Autoencoders: definizione e formulazione generale}{3}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Apprendimento non supervisionato}{3}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Encoder, decoder e spazio latente}{4}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Funzione obiettivo e errore di ricostruzione}{5}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Il problema dell’identità e la necessità di vincoli}{5}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Bottleneck e riduzione della dimensionalità}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Introduzione di vincoli}{6}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Relazioni con la PCA}{8}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Interpretabilità delle feature latenti}{12}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Rappresentazioni latenti disentangled}{13}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}Sparse Autoencoders}{14}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Embeddings densi e Large Language Models}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Embeddings testuali e rappresentazioni semantiche}{18}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Word, sentence e document embeddings}{18}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Embeddings nei modelli di linguaggio moderni}{18}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Proprietà degli embeddings densi}{18}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Alta dimensionalità e informazione distribuita}{18}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Continuità e non-monosemanticità}{18}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Il problema dell’interpretabilità}{18}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Limiti dell’interpretazione dimensionale}{18}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Conseguenze pratiche per controllo e spiegabilità}{18}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Superposition e concetti distribuiti}{18}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Sovrapposizione semantica negli embeddings}{18}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Relazione con la capacità del modello}{18}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}La necessità di rappresentazioni sparse}{18}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Sparsità come principio induttivo}{18}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Disentanglement e interpretabilità}{18}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Sparse Autoencoders come strumento di disentanglement}{18}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Dagli embeddings densi alle feature sparse}{18}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Collegamento con il lavoro di tesi}{18}{subsection.3.6.2}%
+\contentsline {chapter}{\numberline {4}Dataset e setup sperimentale}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Descrizione del dataset medico pediatrico}{20}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Dominio clinico e tipologia dei dati}{20}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Aspetti linguistici e privacy}{20}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Generazione degli embeddings}{20}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Modello di embedding utilizzato}{20}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Considerazioni sulla lingua italiana}{20}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Setup sperimentale}{20}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Configurazione dell’addestramento}{20}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Baseline di confronto}{20}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Metriche di valutazione}{20}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Metriche di ricostruzione}{20}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Metriche di interpretabilità}{20}{subsection.4.4.2}%
+\contentsline {chapter}{\numberline {5}Risultati sperimentali}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Qualità della ricostruzione}{22}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Analisi quantitativa}{22}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Stabilità del modello}{22}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Analisi della sparsità delle rappresentazioni}{22}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Distribuzione delle attivazioni}{22}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Confronto tra configurazioni}{22}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Interpretabilità delle feature latenti}{22}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Risultati quantitativi}{22}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Analisi qualitativa}{22}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Analisi qualitativa dei concetti medici}{22}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Esempi di feature clinicamente rilevanti}{22}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Coerenza semantica}{22}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Confronto con baseline e aspettative}{22}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Confronto con approcci densi}{22}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Discussione dei risultati}{22}{subsection.5.5.2}%
+\contentsline {chapter}{\numberline {6}Discussione}{23}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Analisi critica dei risultati}{23}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Interpretazione complessiva}{23}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}Limiti del metodo}{23}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Limiti computazionali}{23}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Limiti metodologici}{23}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}Considerazioni sul dominio medico}{23}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Affidabilità e interpretabilità clinica}{23}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Implicazioni etiche}{23}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Generalizzabilità dell’approccio}{23}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Altri domini applicativi}{23}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Altre lingue e modelli}{23}{subsection.6.4.2}%
+\contentsline {chapter}{\numberline {7}Conclusioni}{25}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Sintesi dei contributi}{25}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Sviluppi futuri}{25}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Estensioni di Prisma}{25}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Direzioni di ricerca}{25}{subsection.7.2.2}%

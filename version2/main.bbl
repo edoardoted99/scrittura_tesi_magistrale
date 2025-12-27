@@ -43,8 +43,8 @@
       \strng{authorbibnamehash}{8c23fa9017ff38233f15ff4cbba3c970}
       \strng{authornamehash}{8c23fa9017ff38233f15ff4cbba3c970}
       \strng{authorfullhash}{8c23fa9017ff38233f15ff4cbba3c970}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}
@@ -76,8 +76,8 @@
       \strng{authorbibnamehash}{1624ef9b4518e6d2c2d40d29a4c62b16}
       \strng{authornamehash}{1624ef9b4518e6d2c2d40d29a4c62b16}
       \strng{authorfullhash}{1624ef9b4518e6d2c2d40d29a4c62b16}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprintclass}{cs.LG}
@@ -94,8 +94,59 @@
       \verb https://arxiv.org/abs/2201.03898
       \endverb
     \endentry
+    \entry{wang2024disentangledrepresentationlearning}{misc}{}
+      \name{author}{5}{}{%
+        {{hash=03d3e23852937fa39b0e34246c4ecd1d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=b2dcceb92d2313a3f299f0bec1d21c7c}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Hong},
+           giveni={H\bibinitperiod}}}%
+        {{hash=2706f7497430a3e24c27c2c0421ca372}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Si'ao},
+           giveni={S\bibinitperiod}}}%
+        {{hash=620e472be0dfe4a9b5cb886e4d2e21cf}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Zihao},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=0676a6e59032b74998e77a785a02670f}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Wenwu},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{fullhash}{e32a49608d8fa1f36442339ab30dfca7}
+      \strng{bibnamehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{authorbibnamehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{authornamehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{authorfullhash}{e32a49608d8fa1f36442339ab30dfca7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{Disentangled Representation Learning}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2211.11695
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2211.11695
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2211.11695
+      \endverb
+    \endentry
   \enddatalist
-  \missing{hinton1987autoencoders}
 \endrefsection
 \endinput
 

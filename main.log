@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  25 DEC 2025 13:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  23 DEC 2025 10:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**./version2/main.tex
+(./version2/main.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21>
 (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
@@ -990,83 +990,50 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip87
 \dth@everypar=\toks44
 )
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-Package: tcolorbox 2022/01/07 version 5.0.2 text color boxes
-
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
-Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks45
-\verbatim@line=\toks46
-\verbatim@in@stream=\read6
-)
-(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
-Package: environ 2014/05/04 v0.3 A new way to define environments
-
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
-Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
-))
-\tcb@titlebox=\box81
-\tcb@upperbox=\box82
-\tcb@lowerbox=\box83
-\tcb@phantombox=\box84
-\c@tcbbreakpart=\count468
-\c@tcblayer=\count469
-\c@tcolorbox@number=\count470
-\tcb@temp=\box85
-\tcb@temp=\box86
-\tcb@temp=\box87
-\tcb@temp=\box88
-)
-\c@definition=\count471
+\c@definition=\count468
 
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count472
-\@quotereset=\count473
-(./main.aux (./style/abstract.aux) (./chapters/01_introduzione.aux)
-(./chapters/02_autoencoders_e_sparse_autoencoders.aux)
-(./chapters/03_embeddings_densi_e_llm.aux) (./chapters/04_prisma_sistema.aux)
-(./chapters/05_dataset_e_setup_sperimentale.aux)
-(./chapters/06_risultati_sperimentali.aux) (./chapters/07_discussione.aux)
-(./chapters/08_conclusioni.aux))
+\@quotelevel=\count469
+\@quotereset=\count470
+No file main.aux.
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Info: Redefining \it@ocap on input line 83.
-LaTeX Info: Redefining \it@ccap on input line 83.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Info: Redefining \it@ocap on input line 71.
+LaTeX Info: Redefining \it@ccap on input line 71.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count474
+\scratchcounter=\count471
 \scratchdimen=\dimen293
-\scratchbox=\box89
-\nofMPsegments=\count475
-\nofMParguments=\count476
-\everyMPshowfont=\toks47
-\MPscratchCnt=\count477
+\scratchbox=\box81
+\nofMPsegments=\count472
+\nofMParguments=\count473
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count474
 \MPscratchDim=\dimen294
-\MPnumerator=\count478
-\makeMPintoPDFobject=\count479
-\everyMPtoPDFconversion=\toks48
+\MPnumerator=\count475
+\makeMPintoPDFobject=\count476
+\everyMPtoPDFconversion=\toks46
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1077,8 +1044,8 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package translations Info: no dictionary file `translations-basic-dictionary-it
-alian.trsl' found. on input line 83.
-\c@lstlisting=\count480
+alian.trsl' found. on input line 71.
+\c@lstlisting=\count477
 Package biblatex Info: Trying to load language 'italian'...
 Package biblatex Info: ... file 'italian.lbx' found.
 
@@ -1091,11 +1058,12 @@ Package biblatex Info: Automatic encoding selection.
 \openout4 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' found.
- (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 83.
-Package biblatex Info: Reference segment=0 on input line 83.
-Package hyperref Info: Link coloring OFF on input line 83.
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
+Package biblatex Info: Reference section=0 on input line 71.
+Package biblatex Info: Reference segment=0 on input line 71.
+Package hyperref Info: Link coloring OFF on input line 71.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -1105,25 +1073,23 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count481
+\c@section@level=\count478
 )
-LaTeX Info: Redefining \ref on input line 83.
-LaTeX Info: Redefining \pageref on input line 83.
-LaTeX Info: Redefining \nameref on input line 83.
-
-(./main.out) (./main.out)
+LaTeX Info: Redefining \ref on input line 71.
+LaTeX Info: Redefining \pageref on input line 71.
+LaTeX Info: Redefining \nameref on input line 71.
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 90.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 90.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1133,211 +1099,27 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-\openout2 = `style/abstract.aux'.
-
-
-No file style/abstract.tex.
-[2
-
-
-
-
-] (./main.toc [3] [4]
-Underfull \vbox (badness 1953) has occurred while \output is active []
-
- [5])
-\tf@toc=\write7
-\openout7 = `main.toc'.
-
-
-[6]
-\openout2 = `chapters/01_introduzione.aux'.
-
- (./chapters/01_introduzione.tex
-Capitolo 1.
-) [1
-
-
-
-]
-\openout2 = `chapters/02_autoencoders_e_sparse_autoencoders.aux'.
-
- (./chapters/02_autoencoders_e_sparse_autoencoders.tex [2
-
-
-
-
-]
-Capitolo 2.
-[3]
-<images/autoencoder.png, id=461, 535.2497pt x 145.29282pt>
-File: images/autoencoder.png Graphic file (type png)
-<use images/autoencoder.png>
-Package pdftex.def Info: images/autoencoder.png  used on input line 62.
-(pdftex.def)             Requested size: 390.0pt x 105.86998pt.
- [4 <./images/autoencoder.png (PNG copy)>] [5] [6] [7] [8] [9] [10] [11]
-[12] [13]
-<images/SAE_diagram.png, id=540, 534.99875pt x 409.53pt>
-File: images/SAE_diagram.png Graphic file (type png)
-<use images/SAE_diagram.png>
-Package pdftex.def Info: images/SAE_diagram.png  used on input line 572.
-(pdftex.def)             Requested size: 195.0pt x 149.26787pt.
- [14 <./images/SAE_diagram.png>]) [15]
-\openout2 = `chapters/03_embeddings_densi_e_llm.aux'.
-
-
-(./chapters/03_embeddings_densi_e_llm.tex [16
-
-
-
-
-]
-Capitolo 3.
-
-Overfull \hbox (0.45541pt too wide) in paragraph at lines 23--23
-[]\T1/cmr/bx/n/17.28 Sparse Au-toen-co-ders co-me stru-men-to di di-
- []
-
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17]
-Overfull \vbox (317.22678pt too high) has occurred while \output is active []
-
-
-Overfull \hbox (4.94936pt too wide) has occurred while \output is active
-\T1/cmr/m/n/12 18 \T1/cmr/m/sl/12 CAPITOLO 3.  EMBEDDINGS DENSI E LARGE LANGUAG
-E MODELS
- []
-
-[18]
-\openout2 = `chapters/04_prisma_sistema.aux'.
-
-
-No file chapters/04_prisma_sistema.tex.
-\openout2 = `chapters/05_dataset_e_setup_sperimentale.aux'.
-
-(./chapters/05_dataset_e_setup_sperimentale.tex
-Capitolo 4.
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19
-
-
-
-
-
-
-
-]
-Overfull \vbox (30.18341pt too high) has occurred while \output is active []
-
-
-[20]
-\openout2 = `chapters/06_risultati_sperimentali.aux'.
-
- (./chapters/06_risultati_sperimentali.tex
-Capitolo 5.
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [21
-
-
-
-
-]
-Overfull \vbox (136.7051pt too high) has occurred while \output is active []
-
-
-[22]
-\openout2 = `chapters/07_discussione.aux'.
-
- (./chapters/07_discussione.tex
-Capitolo 6.
-) [23
-
-
-
-
-]
-\openout2 = `chapters/08_conclusioni.aux'.
-
- (./chapters/08_conclusioni.tex [24
-
-
-
-
-]
-Capitolo 7.
-) [25] [26
-
-
-
-]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-11.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-Overfull \hbox (6.6995pt too wide) in paragraph at lines 112--112
-[]\T1/cmr/m/n/12 Umberto Mi-che-luc-ci. \T1/cmr/m/it/12 An In-tro-duc-tion to A
-u-toen-co-ders\T1/cmr/m/n/12 . 2022. ar-Xiv: []$\T1/cmtt/m/n/12 2201 .
- []
-
-[27
-
-] (./main.aux (./style/abstract.aux) (./chapters/01_introduzione.aux)
-(./chapters/02_autoencoders_e_sparse_autoencoders.aux)
-(./chapters/03_embeddings_densi_e_llm.aux) (./chapters/04_prisma_sistema.aux)
-(./chapters/05_dataset_e_setup_sperimentale.aux)
-(./chapters/06_risultati_sperimentali.aux) (./chapters/07_discussione.aux)
-(./chapters/08_conclusioni.aux))
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 381E42A23FCC8389616F017FB9D45E71;17360.
-Package logreq Info: Writing requests to 'main.run.xml'.
-\openout1 = `main.run.xml'.
-
- ) 
+! I can't write on file `style/abstract.aux'.
+\@include ...mmediate \openout \@partaux "#1.aux" 
+                                                  \immediate \write \@partau...
+l.78 \include{style/abstract}
+                             
+(Press Enter to retry, or Control-D to exit; default file extension is `.tex')
+Please type another output file name: 
+! Emergency stop.
+\@include ...mmediate \openout \@partaux "#1.aux" 
+                                                  \immediate \write \@partau...
+l.78 \include{style/abstract}
+                             
+End of file on the terminal!
+
+ 
 Here is how much of TeX's memory you used:
- 38917 strings out of 480122
- 786294 string characters out of 5893077
- 1420574 words of memory out of 5000000
- 56166 multiletter control sequences out of 15000+600000
- 488400 words of font info for 75 fonts, out of 8000000 for 9000
+ 36288 strings out of 480122
+ 717358 string characters out of 5893077
+ 1343705 words of memory out of 5000000
+ 53793 multiletter control sequences out of 15000+600000
+ 474460 words of font info for 43 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 84i,8n,89p,737b,1913s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk
-> </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk>
- </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> 
-</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <
-/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </
-home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </h
-ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1200.600pk> </ho
-me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </hom
-e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home
-/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/
-edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/e
-do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-
-Output written on main.pdf (33 pages, 314437 bytes).
-PDF statistics:
- 1120 PDF objects out of 1200 (max. 8388607)
- 666 compressed objects within 7 object streams
- 142 named destinations out of 1000 (max. 500000)
- 663 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 84i,6n,89p,748b,801s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
