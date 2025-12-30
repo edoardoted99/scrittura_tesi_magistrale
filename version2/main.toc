@@ -15,68 +15,40 @@
 \contentsline {section}{\numberline {2.4}Interpretabilità delle feature latenti}{12}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Rappresentazioni latenti disentangled}{13}{subsection.2.4.1}%
 \contentsline {section}{\numberline {2.5}Sparse Autoencoders}{14}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Embeddings densi e Large Language Models}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Embeddings testuali e rappresentazioni semantiche}{18}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Word, sentence e document embeddings}{18}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Embeddings nei modelli di linguaggio moderni}{18}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Proprietà degli embeddings densi}{18}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Alta dimensionalità e informazione distribuita}{18}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Continuità e non-monosemanticità}{18}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Il problema dell’interpretabilità}{18}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Limiti dell’interpretazione dimensionale}{18}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Conseguenze pratiche per controllo e spiegabilità}{18}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Superposition e concetti distribuiti}{18}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Sovrapposizione semantica negli embeddings}{18}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Relazione con la capacità del modello}{18}{subsection.3.4.2}%
-\contentsline {section}{\numberline {3.5}La necessità di rappresentazioni sparse}{18}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Sparsità come principio induttivo}{18}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Disentanglement e interpretabilità}{18}{subsection.3.5.2}%
-\contentsline {section}{\numberline {3.6}Sparse Autoencoders come strumento di disentanglement}{18}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Dagli embeddings densi alle feature sparse}{18}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Collegamento con il lavoro di tesi}{18}{subsection.3.6.2}%
-\contentsline {chapter}{\numberline {4}Dataset e setup sperimentale}{19}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Descrizione del dataset medico pediatrico}{20}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Dominio clinico e tipologia dei dati}{20}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Aspetti linguistici e privacy}{20}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Generazione degli embeddings}{20}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Modello di embedding utilizzato}{20}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Considerazioni sulla lingua italiana}{20}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Setup sperimentale}{20}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Configurazione dell’addestramento}{20}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Baseline di confronto}{20}{subsection.4.3.2}%
-\contentsline {section}{\numberline {4.4}Metriche di valutazione}{20}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Metriche di ricostruzione}{20}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Metriche di interpretabilità}{20}{subsection.4.4.2}%
-\contentsline {chapter}{\numberline {5}Risultati sperimentali}{21}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Qualità della ricostruzione}{22}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Analisi quantitativa}{22}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Stabilità del modello}{22}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Analisi della sparsità delle rappresentazioni}{22}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Distribuzione delle attivazioni}{22}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Confronto tra configurazioni}{22}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Interpretabilità delle feature latenti}{22}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Risultati quantitativi}{22}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Analisi qualitativa}{22}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Analisi qualitativa dei concetti medici}{22}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Esempi di feature clinicamente rilevanti}{22}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Coerenza semantica}{22}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}Confronto con baseline e aspettative}{22}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Confronto con approcci densi}{22}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Discussione dei risultati}{22}{subsection.5.5.2}%
-\contentsline {chapter}{\numberline {6}Discussione}{23}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Analisi critica dei risultati}{23}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Interpretazione complessiva}{23}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}Limiti del metodo}{23}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Limiti computazionali}{23}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Limiti metodologici}{23}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}Considerazioni sul dominio medico}{23}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Affidabilità e interpretabilità clinica}{23}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Implicazioni etiche}{23}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}Generalizzabilità dell’approccio}{23}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Altri domini applicativi}{23}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Altre lingue e modelli}{23}{subsection.6.4.2}%
-\contentsline {chapter}{\numberline {7}Conclusioni}{25}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Sintesi dei contributi}{25}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Sviluppi futuri}{25}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Estensioni di Prisma}{25}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Direzioni di ricerca}{25}{subsection.7.2.2}%
+\contentsline {chapter}{\numberline {3}Embeddings}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introduzione}{18}{section.3.1}%
+\contentsline {section}{\numberline {3.2}L'ipotesi distribuzionale}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Ipotesi di Osgood}{19}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Embeddings}{20}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Simple count-based embeddings}{20}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Riduzione dimensionale tramite SVD}{22}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Cosine Similarity}{23}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Word2Vec}{24}{subsection.3.4.4}%
+\contentsline {subsubsection}{Il classificatore}{25}{section*.9}%
+\contentsline {subsubsection}{Esempio delle matrici $W$ e $C$}{28}{section*.15}%
+\contentsline {subsubsection}{Algoritmo di apprendimento}{29}{section*.16}%
+\contentsline {subsection}{\numberline {3.4.5}Proprietà semantiche degli embeddings}{31}{subsection.3.4.5}%
+\contentsline {subsubsection}{1. Influenza della finestra di contesto}{31}{section*.17}%
+\contentsline {subsubsection}{2. First-order vs. second-order similarity}{31}{section*.18}%
+\contentsline {subsubsection}{3. Analogical reasoning (modello del parallelogramma)}{31}{section*.19}%
+\contentsline {subsubsection}{4. Struttura geometrica: ortogonalità e parallelismo}{32}{section*.20}%
+\contentsline {subsubsection}{5. Effetti pratici}{32}{section*.21}%
+\contentsline {section}{\numberline {3.5}Contextual Embeddings}{33}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Modelli di linguaggio neurali}{34}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Reti neurali ricorrenti e LSTM}{36}{section.3.7}%
+\contentsline {section}{\numberline {3.8}ELMo e il contesto bidirezionale}{38}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Attention e Self-Attention}{39}{section.3.9}%
+\contentsline {section}{\numberline {3.10}BERT e Masked Language Modeling}{40}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Motivazione per il disentanglement degli embeddings di BERT}{42}{section.3.11}%
+\contentsline {chapter}{\numberline {4}Disentangling Dense Embeddings \\with Sparse Autoencoders}{45}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Motivazione e contesto}{45}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Metodologia e Architettura}{46}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Definizione del Modello}{46}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Vincolo di Sparsità \textit {k-Sparse}}{47}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Funzione di Costo e Addestramento}{47}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Interpretazione Automatizzata delle Feature}{48}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Feature Families e Struttura Gerarchica}{48}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Feature Families e Struttura Gerarchica}{49}{section.4.5}%
+\contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{49}{section*.23}%
+\contentsline {subsection}{\numberline {4.5.1}Costruzione del Grafo di Co-occorrenza}{50}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Identificazione delle Feature Families}{51}{subsection.4.5.2}%

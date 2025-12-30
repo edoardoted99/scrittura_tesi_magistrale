@@ -158,3 +158,140 @@ migliorare l’interpretabilità delle rappresentazioni apprese.
 \subsection{Rappresentazioni monosemantiche}
 
 
+
+
+1) Contextual Embeddings: definizione e motivazione
+
+📍 Capitolo 11 – Masked Language Models
+
+Sezione 11.3 – Contextual Embeddings
+Qui trovi:
+
+definizione formale di contextual embeddings
+
+distinzione word types vs word instances
+
+relazione con polisemia e disambiguazione del senso
+
+esempi geometrici (cluster per senso)
+
+
+nlp_stanford
+
+👉 È il punto ideale per agganciarti direttamente alla frase finale del tuo capitolo.
+
+2) Language Models come sorgente degli embeddings contestuali
+
+📍 Capitolo 9 – The Transformer
+📍 Capitolo 10 – Large Language Models
+
+Cap. 9 (inizio): language modeling neurale e stati contestuali
+
+Cap. 10: paradigma pretrain → finetune e transfer learning
+
+
+nlp_stanford
+
+👉 Qui capisci perché gli embeddings contestuali non sono parametri, ma output di un LM.
+
+3) RNN / LSTM come primi embeddings contestuali
+
+📍 Capitolo 8 – Recurrent Neural Networks
+
+Hidden state come rappresentazione dipendente dal contesto
+
+Limiti strutturali (compressione, dipendenze lunghe)
+
+(Questa parte è implicitamente richiamata nel Cap. 11 come “pre-transformer”)
+
+👉 Serve come ponte concettuale, non come focus tecnico.
+
+4) Necessità del contesto bidirezionale
+
+📍 Capitolo 11 – Introduzione
+
+Motivazione della bidirezionalità
+
+Limiti dei causal language models per task interpretativi
+
+
+nlp_stanford
+
+👉 Qui il libro è molto chiaro: comprensione ≠ generazione.
+
+5) ELMo come modello di transizione
+
+📍 Capitolo 11 – esempi applicativi
+
+Uso di ELMo embeddings in WSD e analisi semantica
+
+Confronto implicito con BERT
+
+
+nlp_stanford
+
+👉 Studialo come tappa storica, non come architettura da dettagliare.
+
+6) Attention e Self-Attention
+
+📍 Capitolo 9 – The Transformer
+
+Sezione 9.1 – Attention
+
+dot-product attention
+
+query / key / value
+
+
+nlp_stanford
+
+👉 È il prerequisito matematico minimo per capire il Transformer.
+
+7) Transformer Encoder
+
+📍 Capitolo 9 – The Transformer
+
+Sezioni 9.1–9.2
+
+multi-head self-attention
+
+feed-forward per token
+
+residual + layer norm
+
+positional encoding
+
+
+nlp_stanford
+
+👉 Studia il blocco encoder: BERT è encoder-only.
+
+8) BERT e Masked Language Modeling (punto di arrivo)
+
+📍 Capitolo 11 – Masked Language Models
+
+Sezione 11.1 – Bidirectional Transformer Encoders
+
+differenza encoder-only vs decoder-only
+
+Training con Masked Language Modeling
+
+Next Sentence Prediction (storico)
+
+
+nlp_stanford
+
+👉 Questa è la reference centrale per BERT.
+
+9) Uso degli embeddings BERT
+
+📍 Capitolo 11 + Capitoli applicativi successivi
+
+Token embeddings per NER, POS, WSD
+
+[CLS] per classificazione
+
+
+nlp_stanford
+
+👉 Serve per chiudere il capitolo in modo applicativo.

@@ -146,6 +146,63 @@
       \verb https://arxiv.org/abs/2211.11695
       \endverb
     \endentry
+    \entry{jm3}{book}{}
+      \name{author}{2}{}{%
+        {{hash=bd33d7a70284b5ead9c7985cb5c9929c}{%
+           family={Jurafsky},
+           familyi={J\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=9ed8bee488b2703da341cded66bf83cb}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={James\bibnamedelima H.},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{b5e6a2accdc2023c51f42c6ec010d19b}
+      \strng{fullhash}{b5e6a2accdc2023c51f42c6ec010d19b}
+      \strng{bibnamehash}{b5e6a2accdc2023c51f42c6ec010d19b}
+      \strng{authorbibnamehash}{b5e6a2accdc2023c51f42c6ec010d19b}
+      \strng{authornamehash}{b5e6a2accdc2023c51f42c6ec010d19b}
+      \strng{authorfullhash}{b5e6a2accdc2023c51f42c6ec010d19b}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{note}{Online manuscript released August 24, 2025}
+      \field{title}{Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition with Language Models}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://web.stanford.edu/~jurafsky/slp3/
+      \endverb
+      \verb{url}
+      \verb https://web.stanford.edu/~jurafsky/slp3/
+      \endverb
+    \endentry
+    \entry{davies2015wikipedia}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=48f427e0352f9d97eb37585a65f73622}{%
+           family={Davies},
+           familyi={D\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{48f427e0352f9d97eb37585a65f73622}
+      \strng{fullhash}{48f427e0352f9d97eb37585a65f73622}
+      \strng{bibnamehash}{48f427e0352f9d97eb37585a65f73622}
+      \strng{authorbibnamehash}{48f427e0352f9d97eb37585a65f73622}
+      \strng{authornamehash}{48f427e0352f9d97eb37585a65f73622}
+      \strng{authorfullhash}{48f427e0352f9d97eb37585a65f73622}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.english-corpora.org/wiki/}}
+      \field{note}{Adapted from Wikipedia}
+      \field{title}{The Wikipedia Corpus: 4.6 million articles, 1.9 billion words}
+      \field{year}{2015}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

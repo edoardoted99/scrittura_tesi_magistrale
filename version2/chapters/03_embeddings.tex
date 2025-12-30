@@ -1,0 +1,1255 @@
+\chapter{Embeddings}
+
+\epigraph{
+    Nets are for fish; once you get the fish you can forget the net.\\
+    Words are for meaning; once you get the meaning you can forget the words.
+}{Zhuangzi}
+
+\newpage
+
+\section{Introduzione}
+Quando leggiamo un testo, noi esseri umani siamo dotati della capacità di coglierne un aspetto di significato. Questo implica che dietro alle parole che leggiamo si cela una rappresentazione semantica che vorremmo potenzialmente far apprendere anche alle macchine.  
+Dal momento che le macchine parlano con la lingua dei numeri e, non come noi, con quella delle parole è stato necessario introdurre degli strumenti che vorrebbero in linea di principio assegnare ad ogni parola un numero rappresentatitivo di un singificato. Tale strumenti sono chiamati \emph{embeddings} e in questo capitolo, basandoci sul libro Speech and Language Processing di Stanford \cite{jm3}, si vedrà come vengono costruiti ed implementati per processare il testo.
+
+\section{L'ipotesi distribuzionale}
+
+Supponiamo di non conoscere il significato della parola \textit{ongchoi}, ma di 
+incontrarla nei seguenti contesti:
+
+\begin{enumerate}
+    
+    \item \textit{L'ongchoi è deliziosa saltata con aglio.}
+    \item \textit{L'ongchoi è ottima servita con riso.}
+    \item \textit{...foglie di ongchoi con salse salate...}
+\end{enumerate}
+
+Ora immaginiamo di aver già visto molte di queste parole-contesto in altri esempi, 
+come:
+
+\begin{enumerate}
+   
+    \item \textit{...gli spinaci saltati con aglio serviti sul riso...}
+    \item \textit{...le coste, con i loro gambi e foglie, sono molto gustose...}
+    \item \textit{...il cavolo riccio e altre verdure a foglia dal sapore salato...}
+\end{enumerate}
+
+Il fatto che \textit{ongchoi} compaia insieme a parole come \textit{riso}, 
+\textit{aglio}, \textit{deliziosa} e \textit{salata}, proprio come \textit{spinaci}, 
+\textit{coste} o \textit{cavolo riccio}, suggerisce che l'ongchoi sia una 
+\textbf{verdura a foglia} simile a queste altre verdure.
+
+Questo è il principio dell'ipotesi distribuzionale per il quale la parola \textit{doctor-eye} o \textit{oculist} è probabile che la troviamo nello stesso contesto. 
+\begin{notebox}
+\textbf{Ipotesi Distribuzionale}
+Si definisce ipotesi distribuzionale quella ipotesi per la quale parole simili compaiono in contesti simili.
+\end{notebox}
+
+Tale ipotesi suggerisce che il signficato delle parole venga appreso sulla base del contesto di dove queste appaiono. Se questa intuizione viene seguita allora può divenire possibile trovare una soluzione per assegnare dei numeri a delle parole sulla base della loro occorrenza dentro contesti. Prima di arrivare però a capire come costurire gli emebddings è necessario introdurre una ulteriore intuizione attibuita ad Osgood nel 1957.
+
+\section{Ipotesi di Osgood}
+
+Un contributo fondamentale alla rappresentazione del significato proviene dal 
+lavoro di Osgood et al.\ (1957), che studiarono la componente affettiva delle parole. 
+Osgood mostrò che i giudizi emotivi associati a una parola possono essere descritti 
+lungo tre dimensioni principali:
+
+\begin{enumerate}
+    \item \textbf{Valenza}: quanto la parola è percepita come positiva o negativa.
+    \item \textbf{Arousal}: quanto la parola induce attivazione emotiva.
+    \item \textbf{Dominanza}: quanto la parola implica controllo o sottomissione.
+\end{enumerate}
+
+Ogni parola può quindi essere rappresentata come una tripla di valori numerici 
+che ne definiscono la posizione in questo spazio tridimensionale. Ad esempio:
+
+\[
+\textit{heartbreak} \rightarrow [2.5,\ 5.7,\ 3.6]
+\]
+
+L’intuizione rivoluzionaria di Osgood è la seguente:
+
+
+\begin{notebox}
+\textbf{Ipotesi di Osgood}\\
+Il significato di una parola può essere 
+rappresentato come un vettore in uno spazio semantico.
+\end{notebox}
+
+Questa idea è stata la prima ad 
+anticipare direttamente i moderni modelli di \textit{word embeddings}, in cui ogni 
+parola è descritta come un punto in uno spazio multidimensionale corrispondente ad un singificato. 
+
+\section{Embeddings}
+
+E' stata l'unione di queste due ipotesi ad aprire la strada agli embedidngs come i nostri moderni modelli per la rappresentazione dei significati per cui ogni parole corrisponde ad un vettore in uno spazio semantico. Da un lato si vedrà come l'ipotesi distribuzionale permette di cogliere il significato delle parole, dall'altro come l'ipotesi di Osgood permette di rappresentarle numericamente.
+Vediamo ora l'idea per arrivare alla generazione degli emebddings.
+\subsection{Simple count-based embeddings}
+
+Introduciamo ora il primo modo di calcolare i word vector embeddings. 
+Il metodo più semplice è basato sulla \textbf{matrice di co-occorrenza}, 
+un modo per rappresentare quanto spesso le parole co-occorrono. 
+Definiremo un particolare tipo di co-occorrenza, la \textbf{word-context matrix}, 
+nella quale ogni riga della matrice rappresenta una parola del vocabolario 
+e ogni colonna rappresenta quanto spesso ogni altra parola del vocabolario 
+appare vicina alla parola target. 
+Si tratta quindi di una matrice quadrata di dimensione $|V| \times |V|$, 
+dove $|V|$ è la dimensione del vocabolario.
+
+Ogni cella $M_{i,j}$ della matrice conterrà il numero di volte che la parola $w_j$ 
+compare nel contesto della parola $w_i$. 
+Ma cosa significa esattamente “vicina”? 
+Possiamo definire una \textbf{finestra di contesto} di ampiezza $k$ che indica 
+quante parole a sinistra e a destra consideriamo attorno alla parola target.
+
+\medskip
+
+\noindent
+Supponiamo di avere la frase ``il gatto mangia il topo'' e di utilizzare una 
+finestra di contesto di ampiezza pari a $k=1$. 
+Il vocabolario sarà:
+
+\begin{equation*}
+V = \{\textrm{il}, \textrm{gatto}, \textrm{mangia}, \textrm{topo}\}
+\end{equation*}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcccc}
+\hline
+\textbf{Parola ($w_i$)} & \textbf{il} & \textbf{gatto} & \textbf{mangia} & \textbf{topo} \\
+\hline
+il      & 0 & 1 & 0 & 1 \\
+gatto   & 1 & 0 & 1 & 0 \\
+mangia  & 0 & 1 & 0 & 1 \\
+topo    & 1 & 0 & 1 & 0 \\
+\hline
+\end{tabular}
+\caption{Esempio di matrice di co-occorrenza con finestra di contesto di ampiezza 1.}
+\end{table}
+
+Ogni riga della matrice rappresenta quindi un vettore che descrive una parola. Finora abbiamo visto un esempio molto semplice costruito su una singola frase. 
+In un corpus reale, tuttavia, le co-occorrenze sono molto più numerose e i vettori 
+risultanti hanno tipicamente dimensioni molto grandi e sono estremamente sparsi. 
+Per illustrare questo scenario, riportiamo un estratto reale della matrice di 
+co-occorrenza calcolata sul corpus Wikipedia, come mostrato nella tabella \ref{table:davies2015wikipedia}. In questo esempio consideriamo quattro parole target 
+(\textit{cherry}, \textit{strawberry}, \textit{digital}, \textit{information}) 
+e, per scopi illustrativi, solo sei parole di contesto selezionate: 
+\textit{aardvark}, \textit{computer}, \textit{data}, \textit{result}, 
+\textit{pie}, \textit{sugar}. 
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcccccc}
+\hline
+\textbf{Parola} & \textbf{aardvark} & \textbf{computer} & \textbf{data} & \textbf{result} & \textbf{pie} & \textbf{sugar} \\
+\hline
+cherry       & 0 & 2    & 8    & 9    & 442 & 25 \\
+strawberry   & 0 & 0    & 0    & 1    & 60  & 19 \\
+digital      & 0 & 1670 & 1683 & 85   & 5   & 4  \\
+information  & 0 & 3325 & 3982 & 378  & 5   & 13 \\
+\hline
+\end{tabular}
+\label{table:davies2015wikipedia}
+\caption{Estratto reale della matrice word-context calcolata sul corpus Wikipedia, \cite{davies2015wikipedia}}
+\end{table}
+Come si può osservare, i valori possono essere molto elevati: 
+ad esempio, la parola \textit{information} co-occorre 3982 volte con \textit{data} 
+e 3325 volte con \textit{computer}. 
+Questi valori derivano da milioni di occorrenze nel corpus Wikipedia, motivo per cui 
+sono molto più grandi rispetto agli esempi introduttivi.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{pictures/word_context.png}
+\caption{Estratto reale di vettori di co-occorrenza calcolati sul corpus Wikipedia 
+(mostra solo alcune dimensioni del vettore).}
+\label{fig:jurafsky53}
+\end{figure}
+\noindent
+
+A questo punto abbiamo ottenuto una word-context matrix le cui righe sono le parole target, le colonne sono le parole di contesto, e i valori le co-occorrenze. Data $|V|$ la dimensione del vocabolario, tale matrice ha una dimensionalità
+\begin{equation*}
+    |V| \times |V|.
+\end{equation*}
+Si hanno tuttavia due problemi.
+\begin{enumerate}
+    \item Dal momento che ogni parole co-occorrerà solo con pochissime altre, \textit{la dimensionalità della matrice è enorme}.
+    \item La maggior parte delle celle è nulla, e quindi \textit{i vettori sono estremamente sparsi}.
+\end{enumerate}
+Per affrontare i problemi legati all’elevata dimensionalità e alla 
+natura estremamente sparsa della word--context matrix, si presentano 
+di seguito due famiglie di metodologie: metodi lineari di riduzione 
+dimensionale e metodi neurali.
+
+\subsection{Riduzione dimensionale tramite SVD}
+Un metodo per la riduzione della dimensionalità è la Singular Value Decomposition applicata alla word--context matrix. Sia $M \in \mathbb{R}^{|V| \times |V|}$ la word--context matrix, 
+eventualmente pesata tramite tf-idf. 
+La decomposizione ai valori singolari (Singular Value Decomposition, SVD) 
+consente di fattorizzare $M$ come prodotto di tre matrici:
+\[
+M = U \Sigma V^\top
+\]
+dove $U$ e $V$ sono matrici ortogonali e $\Sigma$ è una matrice diagonale 
+contenente i valori singolari ordinati in modo decrescente.
+
+Ogni valore singolare rappresenta l’importanza di una direzione latente 
+nello spazio semantico. I valori singolari maggiori catturano le 
+correlazioni più rilevanti tra parole e contesti, mentre quelli più piccoli 
+tendono a modellare rumore o variazioni locali meno informative.
+
+Per ottenere una rappresentazione a dimensionalità ridotta, si considera 
+una versione troncata della decomposizione, mantenendo solo i primi 
+$k$ valori singolari:
+\[
+M \approx U_k \Sigma_k V_k^\top
+\]
+con $k \ll |V|$.
+
+Le righe della matrice $U_k \Sigma_k$ costituiscono una rappresentazione 
+densa delle parole target in uno spazio latente di dimensione $k$. 
+In questo nuovo spazio, ogni parola è descritta da un vettore 
+a dimensionalità ridotta, in cui le correlazioni semantiche risultano 
+più evidenti rispetto alla rappresentazione originale sparsa.
+
+È importante osservare che la riduzione dimensionale non elimina 
+esplicitamente la sparsità della matrice originale, ma proietta le parole 
+in uno spazio denso in cui le relazioni semantiche emergono in forma 
+compressa e più robusta.
+
+
+
+
+\subsection{Cosine Similarity}
+Dal momento che i vettori di embeddings vivono in uno spazio vettoriale che è anche uno spazio semantico, è possibile calcolare l'affinità di significato che due vettori hanno tramine la cosine similarity.
+La \textbf{cosine similarity} è una misura di similarità tra vettori che valuta 
+il coseno dell’angolo compreso tra essi nello spazio vettoriale.  
+Data la sua indipendenza dalla lunghezza dei vettori, risulta particolarmente 
+adatta a confrontare vettori di frequenze o di pesi, come quelli derivati da 
+matrici parola-contesto.
+
+\noindent
+Dati due vettori $u$ e $v$, la similarità coseno è definita come:
+
+\begin{equation}
+\text{cosine\_sim}(u, v) = 
+\frac{u \cdot v}{\|u\| \, \|v\|}
+= \frac{\sum_i u_i v_i}{\sqrt{\sum_i u_i^2} \, \sqrt{\sum_i v_i^2}}.
+\end{equation}
+
+\noindent
+Il valore risultante è compreso tra $-1$ e $1$:
+\begin{itemize}
+    \item $1$ indica che i vettori puntano nella stessa direzione (massima similarità),
+    \item $0$ indica che sono ortogonali (nessuna similarità),
+    \item valori negativi indicano direzioni opposte (molto raro nei contesti di NLP).
+\end{itemize}
+
+\noindent
+Nelle applicazioni di elaborazione del linguaggio naturale la cosine similarity è 
+spesso preferita alla distanza Euclidea, perché ci interessa confrontare il 
+\textit{pattern} delle co-occorrenze piuttosto che le loro magnitudini assolute.  
+Ad esempio, due parole che co-occorrono con gli stessi termini di contesto, anche 
+se con frequenze diverse, risulteranno comunque simili.
+
+\medskip
+
+\noindent
+La cosine similarity è quindi il principale strumento per valutare la similarità 
+tra vettori distribuzionali e rappresenta un passaggio fondamentale prima di 
+introdurre i modelli predittivi come Word2Vec, che nascono proprio per superare 
+i limiti computazionali e concettuali degli embeddings basati su conteggi.
+
+
+\subsection{Word2Vec}
+Un'altro metodo per la riduzione della dimensionalità è un metodo neurale.
+In questa sezione ne introduciamo uno dei più famosi per calcolare 
+embeddings densi: il \textit{skip-gram with negative sampling} (SGNS). 
+L'algoritmo skip-gram è uno dei due modelli del pacchetto software 
+\textit{word2vec} proposto da Mikolov et al. (2013) e viene spesso indicato 
+direttamente come ``word2vec''. Questi metodi sono estremamente veloci, 
+efficienti da addestrare e ampiamente disponibili come modelli 
+pre–addestrati. Gli embeddings ottenuti con word2vec sono \textbf{statici}.
+
+
+\begin{notebox}
+\textbf{Embeddings statici}\\
+Ogni parola del 
+vocabolario è associata a un unico vettore che rimane invariato a prescindere dal 
+contesto in cui la parola appare. 
+\end{notebox}
+
+
+Successivamente introdurremo invece gli 
+embeddings contestuali (o \textit{contextual embeddings}), come quelli 
+prodotti da modelli Transformer quali BERT e GPT, che generano un vettore diverso 
+per ciascuna occorrenza della parola, adattandosi al contesto e catturando così i 
+diversi sensi che una parola può assumere. L’intuizione alla base del modello skip-gram è semplice ma estremamente 
+efficace. Invece di contare quante volte una parola $w$ compare vicino a una 
+parola target (ad esempio \textit{albicocca}), addestriamo un classificatore su 
+una task di predizione binaria che risponde alla domanda:
+
+\begin{center}
+``Qual è la probabilità che la parola $w$ compaia nel contesto della parola 
+\textit{albicocca}?''
+\end{center}
+
+\noindent
+Non siamo realmente interessati alla predizione in sé; ciò che ci interessa sono 
+i pesi appresi dal classificatore per svolgere questo compito. Quei pesi 
+diventano le nostre rappresentazioni distribuzionali, ovvero gli embeddings. In questo modo, invece di costruire manualmente vettori basati su conteggi, è il 
+modello stesso che apprende automaticamente una rappresentazione densa e 
+informativa capace di catturare relazioni semantiche e sintattiche tra parole. L'intuizione rivoluzionaria alla base di questo approccio è che il semplice testo 
+continuo può essere utilizzato come segnale di supervisione implicito 
+per addestrare il classificatore. In altre parole, ogni parola che compare nel 
+contesto della parola target (ad esempio una parola $c$ che appare vicino a 
+\textit{albicocca}) fornisce automaticamente un’etichetta positiva alla domanda 
+``È probabile che la parola $c$ compaia nel contesto di \textit{albicocca}?''. 
+
+\noindent
+Questo tipo di segnale, noto come self-supervision, consente di evitare 
+qualsiasi forma di annotazione manuale. L’idea fu inizialmente proposta 
+nell’ambito del \textit{neural language modeling}, quando Bengio et al. (2003) e 
+Collobert et al. (2011) mostrarono che un modello neurale in grado di prevedere la 
+parola successiva poteva utilizzare proprio la parola seguente nel testo come 
+supervisione, apprendendo contestualmente anche una rappresentazione distribuzionale 
+per ogni parola. Pertanto word2vec invece di prevedere la parola successiva, 
+formula una \textbf{task di classificazione binaria}. Inoltre word2vec semplifica l’architettura: al posto di una rete neurale profonda 
+con livelli nascosti, utilizza una semplice \textbf{regressione logistica}, molto più 
+facile da addestrare.
+
+\noindent
+L’intuizione alla base dello skip-gram with negative sampling può essere riassunta 
+nei seguenti passi:
+
+\begin{enumerate}
+    \item Considerare la parola target e una parola del suo contesto come un 
+          \textbf{esempio positivo}.
+    \item Campionare casualmente altre parole dal vocabolario per ottenere 
+          \textbf{esempi negativi}.
+    \item Addestrare un classificatore di regressione logistica a distinguere 
+          esempi positivi ed esempi negativi.
+    \item Utilizzare i pesi appresi dal modello come \textbf{embeddings} delle parole.
+\end{enumerate}
+
+\subsubsection{Il classificatore}
+
+Per comprendere il modello skip-gram, cominciamo dalla \textbf{task di classificazione} che esso deve svolgere.  
+L’idea alla base è estremamente semplice: dato una parola target $w$ e una parola candidata $c$, vogliamo stimare la probabilità che $c$ sia realmente una parola di contesto per $w$.
+
+Consideriamo una frase come la seguente:
+
+\begin{quote}
+\emph{``\dots limone, un cucchiaio di marmellata di albicocca, un pizzico \dots''}
+\end{quote}
+
+e supponiamo di utilizzare una finestra di contesto di ampiezza $\pm 2$.  
+La parola target è dunque \textit{albicocca}, mentre le parole che la circondano sono:
+
+\[
+c_1=\text{un},\quad 
+c_2=\text{cucchiaio},\quad 
+w=\text{albicocca},\quad 
+c_3=\text{marmellata},\quad 
+c_4=\text{di}.
+\]
+
+Ogni coppia $(w,c_i)$ costituisce un \textbf{esempio positivo} per il nostro classificatore.  
+Vogliamo che il modello assegni:
+
+\[
+(\text{albicocca}, \text{marmellata}) \longrightarrow \text{probabilità alta}
+\]
+\[
+(\text{albicocca}, \text{formichiere}) \longrightarrow \text{probabilità bassa}
+\]
+
+Formalmente, il classificatore stima:
+
+\begin{equation}
+P(+ \mid w, c)
+\tag{5.11}
+\end{equation}
+
+cioè la probabilità che $c$ sia un vero contesto di $w$.  
+Naturalmente, la probabilità che $c$ \emph{non} sia un contesto è:
+
+\[
+P(- \mid w, c) = 1 - P(+ \mid w, c).
+\]
+
+\medskip
+\noindent
+\textbf{Come calcoliamo questa probabilità?}
+
+L'intuizione dello skip-gram è che due parole sono buoni vicini nel testo se i loro \textbf{vettori di embedding} sono simili.  
+Usiamo quindi il prodotto scalare tra i vettori densi della parola target $\mathbf{w}$ e della parola di contesto $\mathbf{c}$:
+
+\[
+\textrm{Similarity}(w,c) \sim \mathbf{w}\cdot \mathbf{c}.
+\]
+
+Il prodotto scalare può assumere qualsiasi valore reale, quindi per trasformarlo in una probabilità compresa tra 0 e 1 applichiamo la funzione sigmoide:
+
+\begin{equation}
+\sigma(x)=\frac{1}{1+e^{-x}}.
+\end{equation}
+
+Otteniamo così il modello probabilistico del classificatore:
+
+\begin{equation}
+P(+ \mid w, c)=\sigma(\mathbf{w} \cdot \mathbf{c}).
+\tag{5.15}
+\end{equation}
+
+Analogamente:
+
+\[
+P(-\mid w,c) = \sigma(-\mathbf{w}\cdot \mathbf{c}).
+\]
+
+\medskip
+\noindent
+\textbf{Più parole nel contesto: il caso generale}
+
+Finora abbiamo considerato una singola parola $c$, ma nella realtà abbiamo una finestra con $L$ parole di contesto:
+
+\[
+c_1, c_2, \ldots, c_L.
+\]
+
+Lo skip-gram adotta una semplificazione fondamentale:  
+\textit{le parole nel contesto sono considerate indipendenti l’una dall’altra}.  
+Ciò consente di modellare la probabilità complessiva come un semplice prodotto:
+
+\begin{equation}
+P(+ \mid w, c_{1:L}) = \prod_{i=1}^L \sigma(\mathbf{w}\cdot\mathbf{c_i}).
+\tag{5.17}
+\end{equation}
+
+Per stabilità numerica si lavora quasi sempre con il logaritmo:
+
+\begin{equation}
+\log P(+ \mid w, c_{1:L}) = \sum_{i=1}^L \log \sigma(\mathbf{w}\cdot \mathbf{c_i}).
+\tag{5.18}
+\end{equation}
+
+\medskip
+\noindent
+In sintesi, lo skip-gram addestra un classificatore che assegna una probabilità alla coppia ``parola target + finestra di contesto'' basandosi sulla similarità tra i rispettivi vettori di embedding.  
+Per calcolare questa probabilità sono necessari due tipi di vettori per ogni parola del vocabolario:
+
+\begin{itemize}
+    \item un vettore quando la parola compare come \textbf{target} (matrice $W$),
+    \item un vettore distinto quando la parola compare come \textbf{contesto} o \textbf{rumore} (matrice $C$).
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/embeddings_w2vec.png}
+    \caption{Lo skip-gram apprende in totale due insiemi di embedding, uno per i target e uno per i contesti, per un totale di $2|V|$ vettori, ciascuno di dimensione $d$.  
+        L’addestramento del modello ha quindi un unico scopo: apprendere questi vettori in modo da massimizzare la probabilità che le parole realmente vicine nel testo risultino simili nei loro embedding}
+    \label{fig:skipgram_structure}
+\end{figure}
+
+\medskip
+\noindent
+\textbf{Nota sulla dimensione del contesto.}
+Se la finestra ha ampiezza $\pm k$ parole, allora il numero totale di parole nel contesto è:
+\[
+L = 2k.
+\]
+Ad esempio, una finestra $\pm 2$ come nel nostro caso produce $L = 4$ parole di contesto.  
+Per questo motivo, nelle formule usiamo la notazione compatta $c_{1:L}$ per indicare le $L$ parole attorno al target $w$.\\
+
+\subsubsection{Esempio delle matrici $W$ e $C$} 
+
+Riprendiamo la frase d’esempio e supponiamo che il vocabolario locale sia:
+\[
+V = \{\text{limone},\ \text{un},\ \text{cucchiaio},\ \text{marmellata},\ \text{albicocca},\ \text{pizzico}\}.
+\]
+Supponiamo inoltre che la dimensione degli embedding sia $d=3$ (solo per semplicità espositiva).  
+Lo skip-gram mantiene \emph{due} vettori per ogni parola: uno come \textbf{target} (matrice $W$) e uno come \textbf{contesto} (matrice $C$).  
+In forma schematica:
+
+\[
+W =
+\begin{bmatrix}
+\mathbf{w}_{\text{limone}} \\
+\mathbf{w}_{\text{un}} \\
+\mathbf{w}_{\text{cucchiaio}} \\
+\mathbf{w}_{\text{marmellata}} \\
+\mathbf{w}_{\text{albicocca}} \\
+\mathbf{w}_{\text{pizzico}} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.1 & 0.3 & -0.2 \\
+-0.4 & 0.2 & 0.1 \\
+0.6 & -0.1 & 0.0 \\
+-0.2 & 0.5 & 0.4 \\
+0.8 & 0.7 & -0.3 \\
+-0.1 & -0.4 & 0.2
+\end{bmatrix}
+\]
+
+\[
+C =
+\begin{bmatrix}
+\mathbf{c}_{\text{limone}} \\
+\mathbf{c}_{\text{un}} \\
+\mathbf{c}_{\text{cucchiaio}} \\
+\mathbf{c}_{\text{marmellata}} \\
+\mathbf{c}_{\text{albicocca}} \\
+\mathbf{c}_{\text{pizzico}} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.0 & -0.2 & 0.1 \\
+-0.3 & 0.4 & 0.5 \\
+0.2 & 0.1 & -0.3 \\
+0.7 & -0.1 & 0.2 \\
+-0.5 & 0.6 & 0.3 \\
+0.1 & -0.4 & -0.2
+\end{bmatrix}
+\]
+
+Per la coppia positiva $(\text{albicocca}, \text{marmellata})$ il classificatore calcolerebbe:
+
+\[
+\mathbf{w}_{\text{albicocca}} \cdot \mathbf{c}_{\text{marmellata}}
+= (0.8)(0.7) + (0.7)(-0.1) + (-0.3)(0.2)
+= 0.56 - 0.07 - 0.06 = 0.43,
+\]
+
+\[
+P(+ \mid w=\text{albicocca}, c=\text{marmellata})
+= \sigma(0.43) \approx 0.605.
+\]
+
+Per una coppia negativa come $(\text{albicocca},\ \text{pizzico})$:
+
+\[
+\mathbf{w}_{\text{albicocca}} \cdot \mathbf{c}_{\text{pizzico}}
+= (0.8)(0.1) + (0.7)(-0.4) + (-0.3)(-0.2)
+= 0.08 - 0.28 + 0.06
+= -0.14,
+\]
+
+\[
+P(+ \mid w=\text{albicocca}, c=\text{pizzico})
+= \sigma(-0.14) \approx 0.465.
+\]
+
+Questo esempio numerico mostra concretamente come il modello sfrutti i due insiemi di embedding $W$ e $C$ per assegnare una probabilità alla relazione di contesto.
+\subsubsection{Algoritmo di apprendimento}
+L’algoritmo procede assegnando inizialmente un vettore di embedding \emph{casuale} 
+sia per ogni parola come \textbf{target} (matrice $W$) sia per ogni parola come 
+\textbf{contesto} (matrice $C$).  
+A partire da questi vettori iniziali, l’apprendimento consiste nello spostare 
+iterativamente gli embedding in modo che:
+
+\begin{itemize}
+    \item la parola target $w$ diventi più simile (dot product maggiore) ai vettori
+          delle parole che compaiono realmente nel suo contesto;
+    \item la parola target $w$ diventi meno simile (dot product minore) ai vettori
+          delle parole che non compaiono nel suo contesto.
+\end{itemize}
+
+Per capire come funziona, consideriamo un singolo esempio di training tratto 
+dalla frase vista in precedenza:
+
+\begin{quote}
+\emph{``\dots limone, un cucchiaio di marmellata di albicocca, un pizzico \dots''}
+\end{quote}
+
+Con una finestra di contesto di ampiezza $\pm 2$, otteniamo la parola target 
+$w=\text{albicocca}$ e le $L=4$ parole di contesto:
+
+\[
+c_1 = \text{un},\qquad 
+c_2 = \text{cucchiaio},\qquad
+c_3 = \text{marmellata},\qquad
+c_4 = \text{di}.
+\]
+
+Ciascuna coppia $(w, c_i)$ costituisce un \textbf{esempio positivo}.  
+Per addestrare un classificatore binario, però, servono anche esempi negativi.  
+Lo skip-gram con negative sampling (SGNS) genera per ogni esempio positivo 
+$(w, c_{pos})$ un certo numero $k$ di esempi negativi scegliendo parole casuali 
+dal vocabolario (dette \textit{noise words}), che non devono essere il target $w$.  
+Ad esempio, con $k=2$:
+
+\[
+(\text{albicocca}, \text{marmellata}) 
+\Rightarrow
+\text{negativi: } (\text{albicocca}, \text{aardvark}),\; 
+(\text{albicocca}, \text{seven})
+\]
+
+Le noise words non vengono scelte in modo uniforme, ma seguono una distribuzione 
+\textbf{pesata}:
+
+\[
+P_\alpha(w)=\frac{\text{count}(w)^\alpha}{\sum_{w'} \text{count}(w')^\alpha},
+\]
+
+dove tipicamente $\alpha = 0.75$.  
+Questa scelta aumenta leggermente la probabilità delle parole rare, migliorando 
+le prestazioni del modello. Dato un esempio positivo $(w,c_{pos})$ e i corrispondenti $k$ esempi negativi 
+$c_{neg1},\ldots,c_{negk}$, lo skip-gram definisce la seguente funzione di perdita:
+
+\begin{equation}
+L = - \log \sigma(c_{pos} \cdot w)
+    - \sum_{i=1}^k \log \sigma(-c_{neg_i} \cdot w),
+\end{equation}
+
+che esprime il desiderio di:
+\begin{itemize}
+    \item massimizzare il dot product tra $w$ e $c_{pos}$;
+    \item minimizzare il dot product tra $w$ e i $k$ contesti negativi.
+\end{itemize}
+
+\medskip
+\noindent
+Ricordiamo che il modello mantiene due embedding distinti per ogni parola $i$:
+\[
+w_i \in W \qquad\text{(embedding target)}, 
+\]
+\[
+c_i \in C \qquad\text{(embedding contesto)}.
+\]
+Al termine dell’addestramento, gli embedding finali possono essere ottenuti usando 
+solo $W$ oppure combinando i due vettori, ad esempio con $w_i + c_i$. Come nei metodi basati sui conteggi (ad es. tf-idf), la dimensione della finestra 
+di contesto $L$ influenza la qualità degli embedding e viene spesso ottimizzata su 
+un insieme di validazione.
+\subsection{Proprietà semantiche degli embeddings}
+Gli embeddings catturano diversi tipi di informazione semantica e sintattica.  
+In questa sezione riassumiamo in modo schematico le proprietà più rilevanti.
+\subsubsection{1. Influenza della finestra di contesto}
+
+La dimensione della finestra di contesto ($L = 2k$) determina il tipo di similarità appresa:
+
+\begin{itemize}
+    \item Finestra piccola ($\pm 1$ o $\pm 2$)  
+    $\rightarrow$ similarità più syntactic-like: parole con stesso ruolo grammaticale.  
+    Esempio: \textit{scrive} $\approx$ \textit{dice}, \textit{risponde}.
+    \item Finestra ampia ($\pm 5$ o più)  
+    $\rightarrow$ similarità più topical-like: parole dello stesso ambito tematico. Esempio: \textit{ospedale} $\approx$ \textit{ambulanze}, \textit{infermieri}.
+\end{itemize}
+
+
+\subsubsection{2. First-order vs. second-order similarity}
+
+\begin{itemize}
+    \item First-order co-occurrence (associazione sintagmatica):  
+    due parole compaiono vicine nel testo.  
+    Esempio: \textit{scrisse}–\textit{libro}, \textit{poema}.
+    
+    \item Second-order co-occurrence (associazione paradigmatica):  
+    due parole hanno contesti simili, anche se non compaiono mai insieme.  
+    Esempio: \textit{scrisse}–\textit{disse}–\textit{osservò}.
+\end{itemize}
+
+Gli embeddings dense (come word2vec) catturano soprattutto la second-order similarity.
+
+\medskip
+
+\subsubsection{3. Analogical reasoning (modello del parallelogramma)}
+
+Gli embeddings rappresentano non solo il significato singolo, ma anche le relazioni tra parole.
+
+Il principio è:
+
+\[
+b^{*} \approx b - a + a^{*}
+\]
+
+Esempi classici:
+
+\[
+\text{king} - \text{man} + \text{woman} \approx \text{queen}
+\]
+
+\[
+\text{Paris} - \text{France} + \text{Italy} \approx \text{Rome}
+\]
+
+\begin{itemize}
+    \item Funziona bene per relazioni frequenti e regolari:
+    capitali, genere grammaticale, flessione morfologica.
+    \item Meno efficace per relazioni astratte o parole rare.
+\end{itemize}
+
+
+
+\subsubsection{4. Struttura geometrica: ortogonalità e parallelismo}
+
+Nel loro spazio vettoriale, gli embeddings possono essere interpretati geometricamente:
+
+\begin{itemize}
+    \item Parallelismo: vettori paralleli indicano relazioni analoghe  
+    (es. direzione “maschio→femmina” simile per più parole).
+    \item Ortogonalità: vettori ortogonali indicano concetti indipendenti  
+    (similarità coseno $= 0$).
+    \item Direzione: direzioni dello spazio codificano proprietà semantiche  
+    (genere, tempo verbale, grado comparativo).
+\end{itemize}
+
+\medskip
+
+\subsubsection{5. Effetti pratici}
+
+\begin{itemize}
+    \item Gli embeddings incorporano automaticamente informazione sintattica e semantica.
+    \item Le relazioni emergono senza supervisione (self-supervised learning).
+    \item La scelta di finestra, dimensione del vettore e algoritmo influenza fortemente il risultato.
+\end{itemize}
+
+
+\section{Contextual Embeddings}
+
+Nelle sezioni precedenti abbiamo visto che gli embeddings statici, una volta
+completata la fase di addestramento, associano a ciascuna parola del vocabolario una
+rappresentazione vettoriale fissa. In questo approccio, il significato di una parola è
+modellato come una proprietà stabile e indipendente dal contesto in cui essa appare.
+Tuttavia, il significato linguistico non è un’entità immutabile, ma dipende in modo
+cruciale dal contesto sintattico e semantico in cui una parola viene utilizzata.
+
+Una stessa parola può infatti esprimere significati diversi (polisemia), come nel
+caso di termini quali \textit{spesso}, che può riferirsi sia a una frequenza sia a una
+caratteristica di spessore. Inoltre, anche quando il senso rimane invariato, il
+contributo semantico di una parola può variare in profondità e sfumature a seconda
+della frase in cui compare. Queste osservazioni rendono evidente il limite degli
+embeddings statici e motivano la necessità di rappresentazioni del significato
+capaci di adattarsi dinamicamente al contesto.
+
+Per rispondere a questa esigenza sono stati introdotti i \textit{contextual
+embeddings}, ovvero rappresentazioni vettoriali che modellano il significato di una
+parola come funzione dell’intera sequenza in cui essa appare. A differenza degli
+embeddings statici, gli embeddings contestuali non sono parametri direttamente
+associati alle parole del vocabolario, ma emergono come risultato dell’elaborazione
+di una sequenza di testo da parte di un modello di linguaggio neurale.
+
+\medskip
+
+\noindent
+Dato un modello di linguaggio pre--addestrato e una nuova frase in input, è possibile
+interpretare la sequenza dei vettori di uscita del modello come un insieme di
+embeddings contestuali, uno per ciascun token della frase. Tali vettori catturano
+informazioni sintattiche e semantiche dipendenti dal contesto e possono essere
+utilizzati in qualsiasi task che richieda una rappresentazione del significato di
+parole o token in contesto.
+
+\begin{notebox}
+\textbf{Embeddings contestuali}\\
+Data una sequenza di token di input $x_1, \ldots, x_n$, un modello di linguaggio
+produce una sequenza di vettori di uscita $h_1^{(L)}, \ldots, h_n^{(L)}$, dove $L$
+denota l’ultimo strato del modello. Il vettore $h_i^{(L)}$ rappresenta il significato
+del token $x_i$ nel contesto della sequenza $x_1, \ldots, x_n$.
+\end{notebox}
+
+\noindent
+Nella pratica, anziché utilizzare esclusivamente il vettore di uscita dell’ultimo
+strato del modello, è comune costruire la rappresentazione contestuale di un token
+combinando le informazioni provenienti da più livelli. Una scelta frequente consiste
+nel calcolare la media dei vettori di uscita degli ultimi quattro strati,
+ovvero $h_i^{(L)}, h_i^{(L-1)}, h_i^{(L-2)}$ e $h_i^{(L-3)}$, ottenendo una
+rappresentazione più robusta che integra informazioni a diversi livelli di
+astrazione.
+
+\medskip
+
+\noindent
+Questa distinzione è concettualmente fondamentale: mentre gli embeddings statici
+rappresentano il significato di \emph{tipi di parola} (word types), gli embeddings
+contestuali rappresentano il significato di \emph{istanze di parola} (word
+instances), ovvero di una parola specifica all’interno di un contesto specifico.
+In altre parole, il significato non è più una proprietà intrinseca della parola, ma il
+risultato della sua interazione con le altre parole della sequenza.
+
+\medskip
+
+\noindent
+Per comprendere come tali rappresentazioni contestuali vengano effettivamente
+generate, è ora necessario analizzare il funzionamento dei modelli di linguaggio
+neurali, che costituiscono la sorgente primaria degli embeddings contestuali.
+
+
+
+
+\section{Modelli di linguaggio neurali}
+\label{sec:neural_language_models}
+
+I \textit{modelli di linguaggio neurali} costituiscono il meccanismo fondamentale
+attraverso cui vengono generate le rappresentazioni contestuali introdotte nella
+sezione precedente. L’idea centrale è che, per poter predire correttamente una
+parola in un determinato contesto, un modello debba necessariamente costruire una
+rappresentazione interna del contesto stesso. È proprio questa rappresentazione
+interna che, nei modelli moderni, viene interpretata come embedding contestuale.
+
+\begin{notebox}
+Formalmente, un modello di linguaggio assegna una probabilità a una sequenza di
+token $x_1, \ldots, x_n$. Nei modelli neurali tale probabilità viene fattorizzata
+tramite la regola della catena:
+\[
+P(x_1, \ldots, x_n) = \prod_{i=1}^{n} P(x_i \mid x_1, \ldots, x_{i-1}),
+\]
+riducendo il problema alla stima della probabilità della parola successiva dato il
+contesto precedente. Il compito del modello è quindi quello di apprendere le
+regolarità statistiche, sintattiche e semantiche del linguaggio a partire da grandi
+corpora testuali.
+\end{notebox}
+
+
+
+Durante l’inferenza forward (o \textit{decoding}), dato un contesto di parole
+precedenti, il modello esegue un forward pass sulla rete neurale per produrre una
+distribuzione di probabilità sulle possibili parole successive. Nei primi modelli di
+linguaggio neurali, il contesto osservabile è limitato a una finestra di dimensione
+fissa che considera un numero $N$ di parole nel passato. Per chiarezza espositiva,
+consideriamo il caso $N = 3$, in cui il contesto è costituito dalle parole
+$w_{t-1}$, $w_{t-2}$ e $w_{t-3}$. Ciascuna parola del contesto viene inizialmente rappresentata come un vettore
+\textit{one-hot} di dimensione $|V|$, dove $|V|$ è la dimensione del vocabolario.
+Questi vettori vengono poi proiettati in uno spazio denso tramite una matrice di
+embedding $E \in \mathbb{R}^{d \times |V|}$. La moltiplicazione della matrice $E$
+per un vettore one-hot seleziona la colonna corrispondente alla parola, producendo il
+suo embedding vettoriale. Gli embedding delle parole di contesto vengono quindi
+concatenati per formare un unico vettore di input $e$.
+
+\medskip
+
+\noindent
+Il vettore $e$ viene successivamente trasformato da uno strato nascosto della rete,
+tramite una moltiplicazione per una matrice di pesi $W$, l’aggiunta di un termine di
+bias $b$ e l’applicazione di una funzione di attivazione non lineare $\sigma$,
+ottenendo lo stato nascosto $h$. Lo stato nascosto viene quindi proiettato nello
+spazio delle dimensioni del vocabolario tramite una seconda matrice di pesi $U$,
+generando un vettore di punteggi $z$. L’ultimo passo consiste nell’applicazione della funzione \textit{softmax}, che
+trasforma i punteggi in una distribuzione di probabilità. Dopo l’applicazione del
+softmax, ciascun nodo $i$ dello strato di uscita stima la probabilità che la parola
+successiva $w_t$ sia la parola del vocabolario con indice $i$, dato il contesto:
+\[
+P(w_t = i \mid w_{t-1}, w_{t-2}, w_{t-3}).
+\]
+In sintesi, le equazioni di un modello di linguaggio neurale feedforward con finestra
+di contesto di dimensione 3, dati vettori di input one-hot per ciascuna parola di
+contesto, sono le seguenti:
+\begin{equation}
+\begin{aligned}
+e &= [E x_{t-3};\ E x_{t-2};\ E x_{t-1}] \\
+h &= \sigma(W e + b) \\
+z &= U h \\
+\hat{y} &= \text{softmax}(z)
+\end{aligned}
+\tag{3.1}
+\end{equation}
+
+\noindent
+Si noti che il vettore di embedding $e$ è ottenuto concatenando gli embedding delle
+parole di contesto; nel seguito utilizzeremo il punto e virgola per indicare la
+concatenazione di vettori. Sebbene questi modelli siano in grado di apprendere rappresentazioni
+distribuzionali utili e abbiano rappresentato un passo fondamentale verso la
+modellazione neurale del linguaggio, essi presentano limiti strutturali evidenti. In
+particolare, la dimensione del contesto è fissa e l’informazione contestuale viene
+compressa in un’unica rappresentazione, rendendo difficile catturare dipendenze a
+lungo raggio e strutture sintattiche complesse. Questi limiti hanno motivato lo sviluppo di modelli sequenziali più espressivi, in
+grado di aggiornare dinamicamente la rappresentazione del contesto man mano che
+la sequenza viene processata. Nel prossimo paragrafo analizzeremo le
+\textit{Recurrent Neural Networks} (RNN) e le loro estensioni, le
+\textit{Long Short-Term Memory} (LSTM), che rappresentano il primo tentativo
+sistematico di modellare il linguaggio come una sequenza di lunghezza variabile e di
+produrre embeddings contestuali dipendenti dall’intera storia precedente.
+
+
+\section{Reti neurali ricorrenti e LSTM}
+\label{sec:rnn_lstm}
+
+I modelli di linguaggio neurali feedforward introdotti nella sezione precedente
+rappresentano un primo passo verso la modellazione distribuzionale del linguaggio,
+ma soffrono di un limite strutturale fondamentale: il contesto è limitato a una
+finestra di dimensione fissa e non può adattarsi dinamicamente alla lunghezza della
+sequenza. Per superare questo vincolo, sono state introdotte le
+\textit{Recurrent Neural Networks} (RNN), architetture progettate per elaborare
+sequenze di lunghezza arbitraria mantenendo una rappresentazione del contesto che
+viene aggiornata passo dopo passo.
+
+\medskip
+
+\noindent
+In una RNN, la sequenza di input viene processata iterativamente. A ogni passo
+temporale $t$, il modello riceve in input il token corrente $x_t$ e aggiorna uno
+\textit{stato nascosto} $h_t$, che dipende sia dall’input corrente sia dallo stato
+precedente:
+\[
+h_t = f(h_{t-1}, x_t),
+\]
+dove $f$ è una funzione non lineare parametrizzata. Lo stato nascosto $h_t$
+costituisce una rappresentazione compatta del contesto osservato fino al passo $t$ e
+può essere interpretato come una rappresentazione contestuale del token corrente.
+
+\medskip
+
+\noindent
+Nei modelli di linguaggio basati su RNN, la probabilità della parola successiva viene
+stimata a partire dallo stato nascosto corrente:
+\[
+P(w_t \mid w_1, \ldots, w_{t-1}) = g(h_{t-1}),
+\]
+dove $g$ è tipicamente una trasformazione affine seguita da una funzione softmax.
+In questo modo, la RNN è in grado di modellare dipendenze sequenziali senza imporre
+un limite fisso alla dimensione del contesto, rappresentando un avanzamento
+significativo rispetto ai modelli feedforward.
+
+\medskip
+
+\noindent
+Nonostante questi vantaggi, le RNN presentano importanti difficoltà nell’apprendere
+dipendenze a lungo raggio. Durante l’addestramento tramite backpropagation through
+time, i gradienti possono tendere a svanire o esplodere, rendendo difficile
+l’aggiornamento efficace dei parametri per sequenze lunghe. Questo problema,
+noto come \textit{vanishing gradient problem}, limita la capacità delle RNN di
+catturare relazioni distanti nel testo.
+
+\medskip
+
+\noindent
+Per affrontare tali limiti sono state introdotte le \textit{Long Short-Term Memory}
+(LSTM), una variante delle RNN progettata per mantenere e aggiornare informazioni
+rilevanti su orizzonti temporali più lunghi. Le LSTM introducono una struttura di
+memoria esplicita, controllata da meccanismi di gating, che regolano quali
+informazioni debbano essere conservate, aggiornate o dimenticate nel tempo. Grazie
+a questi meccanismi, le LSTM risultano più stabili durante l’addestramento e più
+efficaci nel modellare dipendenze a lungo raggio.
+
+\medskip
+
+\noindent
+Dal punto di vista delle rappresentazioni, gli stati nascosti prodotti da RNN e LSTM
+possono essere interpretati come le prime forme di \emph{embeddings contestuali}
+appresi da modelli di linguaggio neurali. Ogni token è associato a un vettore che
+dipende dall’intera storia precedente della sequenza, consentendo di distinguere
+occorrenze diverse della stessa parola in contesti diversi.
+
+\medskip
+
+\noindent
+Tuttavia, anche le LSTM presentano limiti strutturali rilevanti. In primo luogo, il
+contesto viene comunque compresso in un singolo stato nascosto, che deve riassumere
+tutta l’informazione rilevante della sequenza precedente. In secondo luogo, le RNN e
+le LSTM elaborano la sequenza in modo intrinsecamente sequenziale, impedendo una
+parallelizzazione efficiente del calcolo. Infine, nei modelli di linguaggio standard,
+il contesto utilizzato è tipicamente unidirezionale, limitato alle parole precedenti.
+
+\medskip
+
+\noindent
+Questi limiti hanno motivato lo sviluppo di modelli in grado di sfruttare informazioni
+provenienti sia dal contesto sinistro sia da quello destro di una parola. Nel
+prossimo paragrafo analizzeremo ELMo, un modello che introduce embeddings
+contestuali bidirezionali basati su reti ricorrenti, rappresentando un’importante
+tappa intermedia nel percorso che conduce ai modelli basati sull’architettura
+Transformer.
+
+
+\section{ELMo e il contesto bidirezionale}
+\label{sec:elmo}
+
+Le RNN e le LSTM introducono per la prima volta rappresentazioni contestuali
+dipendenti dalla sequenza, ma nei modelli di linguaggio standard tali
+rappresentazioni sono tipicamente \emph{unidirezionali}, poiché il contesto utilizzato
+per predire una parola è limitato alle parole precedenti. Tuttavia, molti compiti di
+comprensione del linguaggio naturale richiedono di interpretare una parola alla luce
+dell’intera frase, includendo anche il contesto destro. Questa osservazione ha
+motivato lo sviluppo di modelli in grado di produrre rappresentazioni
+contestuali \emph{bidirezionali}.
+
+\medskip
+
+\noindent
+ELMo (\textit{Embeddings from Language Models}) rappresenta uno dei primi modelli
+in grado di fornire embeddings contestuali profondi e bidirezionali. Il modello è
+basato su una architettura \textit{biLSTM}, ovvero due LSTM separate che processano
+la sequenza in direzione sinistra--destra e destra--sinistra. Le rappresentazioni
+prodotte da entrambe le direzioni vengono quindi combinate per ottenere un embedding
+contestuale per ciascun token.
+
+\medskip
+
+\noindent
+Un aspetto distintivo di ELMo è l’utilizzo di rappresentazioni \emph{stratificate}. Il
+modello produce infatti più livelli di rappresentazione per ogni token, ciascuno dei
+quali cattura informazioni linguistiche a diversi livelli di astrazione. Le
+rappresentazioni finali utilizzate nei task downstream non corrispondono
+necessariamente all’output di un singolo strato, ma vengono ottenute come
+combinazione pesata degli stati prodotti dai diversi strati del modello.
+
+\medskip
+
+\noindent
+Dal punto di vista semantico, ELMo fornisce embeddings distinti per ogni occorrenza
+di una parola, consentendo di catturare in modo efficace fenomeni di polisemia e
+disambiguazione del senso. In questo senso, ELMo rappresenta un passaggio cruciale
+nel superamento definitivo del paradigma degli embeddings statici e dimostra
+empiricamente l’utilità delle rappresentazioni contestuali profonde per una vasta
+gamma di compiti linguistici.
+
+\medskip
+
+\noindent
+Nonostante questi progressi, ELMo eredita alcuni limiti strutturali dalle architetture
+ricorrenti su cui è basato. In particolare, l’elaborazione della sequenza rimane
+intrinsecamente sequenziale, limitando la possibilità di parallelizzazione del
+calcolo. Inoltre, sebbene la bidirezionalità consenta di sfruttare l’intero contesto,
+l’informazione deve comunque essere mediata attraverso stati ricorrenti, rendendo
+difficile modellare direttamente dipendenze molto distanti nella sequenza.
+
+\medskip
+
+\noindent
+Questi limiti hanno motivato l’introduzione di un nuovo paradigma architetturale, in
+cui le parole di una sequenza possono interagire direttamente tra loro senza essere
+mediate da uno stato ricorrente. Nel prossimo paragrafo introdurremo il meccanismo
+di \textit{attention} e, in particolare, la \textit{self-attention}, che costituisce il
+fondamento dei modelli Transformer.
+
+
+\section{Attention e Self-Attention}
+\label{sec:attention}
+
+I modelli basati su RNN e LSTM, inclusi quelli bidirezionali come ELMo, producono
+rappresentazioni contestuali efficaci, ma presentano un limite strutturale comune:
+l’informazione contestuale deve essere mediata attraverso uno stato ricorrente che
+riassume l’intera sequenza. Questo meccanismo di compressione rende difficile
+modellare in modo diretto dipendenze a lungo raggio e relazioni complesse tra parole
+distanti nella frase.
+
+\medskip
+
+\noindent
+Per superare questo limite è stato introdotto il meccanismo di \textit{attention}, che
+permette a un modello di selezionare dinamicamente le parti più rilevanti del
+contesto quando deve produrre una rappresentazione o una predizione. L’idea
+fondamentale dell’attention è che, anziché affidarsi a una singola rappresentazione
+globale del contesto, il modello possa accedere direttamente a tutte le
+rappresentazioni disponibili e assegnare loro un peso in base alla rilevanza rispetto
+a un determinato obiettivo.
+
+\medskip
+
+\noindent
+In termini intuitivi, il meccanismo di attention consente al modello di rispondere
+alla domanda: \emph{quali parole del contesto sono più informative per interpretare
+il token corrente?} I pesi di attenzione determinano l’importanza relativa di ciascun
+token del contesto e vengono utilizzati per combinare le rappresentazioni disponibili
+in una nuova rappresentazione contestuale.
+
+\medskip
+
+\noindent
+Un’evoluzione fondamentale di questo meccanismo è rappresentata dalla
+\textit{self-attention}. A differenza dell’attention classica, in cui l’attenzione è
+calcolata tra due sequenze distinte (ad esempio una sequenza sorgente e una
+sequenza target), nella self-attention ciascun token di una sequenza può
+attendere direttamente a tutti gli altri token della stessa sequenza. In questo modo,
+ogni parola costruisce la propria rappresentazione contestuale come combinazione
+pesata delle rappresentazioni di tutte le altre parole della frase.
+
+\medskip
+
+\noindent
+La self-attention presenta diversi vantaggi rispetto ai modelli ricorrenti. In primo
+luogo, consente di modellare direttamente dipendenze a lungo raggio, poiché la
+distanza tra due token nella sequenza non influisce sulla loro capacità di interagire.
+In secondo luogo, l’elaborazione della sequenza non è più intrinsecamente
+sequenziale: le rappresentazioni di tutti i token possono essere calcolate in
+parallelo, migliorando significativamente l’efficienza computazionale e la
+scalabilità del modello.
+
+\medskip
+
+\noindent
+Dal punto di vista delle rappresentazioni, la self-attention produce per ciascun
+token una rappresentazione contestuale che integra informazioni provenienti
+dall’intera sequenza. Il significato di una parola emerge quindi come risultato
+esplicito delle interazioni con tutte le altre parole della frase, piuttosto che come
+un riassunto implicito codificato in uno stato ricorrente.
+
+\medskip
+
+\noindent
+Tuttavia, il meccanismo di attention da solo non definisce un modello completo di
+linguaggio o di rappresentazione. Per ottenere un’architettura in grado di produrre
+rappresentazioni contestuali profonde e composizionali è necessario combinare la
+self-attention con ulteriori componenti strutturali, come trasformazioni non lineari,
+meccanismi di normalizzazione e informazioni sulla posizione dei token nella
+sequenza.
+
+\medskip
+
+\noindent
+Nel prossimo paragrafo introdurremo l’architettura Transformer, che integra il
+meccanismo di self-attention in una struttura modulare e profonda, costituendo il
+fondamento dei moderni modelli di linguaggio basati su embeddings contestuali,
+incluso BERT.
+
+
+
+\section{BERT e Masked Language Modeling}
+\label{sec:bert}
+
+L’architettura Transformer encoder introdotta nella sezione precedente fornisce un
+meccanismo potente per la costruzione di rappresentazioni contestuali, ma da sola
+non determina come tali rappresentazioni debbano essere apprese né quale obiettivo
+di addestramento sia più adatto ai compiti di comprensione del linguaggio naturale.
+BERT (\textit{Bidirectional Encoder Representations from Transformers}) rappresenta
+una risposta a questa esigenza, combinando il Transformer encoder con un obiettivo
+di addestramento specificamente progettato per produrre embeddings contestuali
+profondamente bidirezionali.
+
+\medskip
+
+\noindent
+A differenza dei modelli di linguaggio causali, che predicono la parola successiva
+utilizzando esclusivamente il contesto sinistro, BERT utilizza un Transformer
+\emph{encoder-only} e adotta un obiettivo di addestramento che consente al modello di
+sfruttare simultaneamente il contesto sinistro e destro di ciascun token. Questa
+caratteristica rende BERT particolarmente adatto a compiti interpretativi, come la
+classificazione di testo, il riconoscimento di entità nominate e la disambiguazione
+del senso delle parole.
+
+\medskip
+
+\noindent
+Il principale obiettivo di addestramento di BERT è il \textit{Masked Language
+Modeling} (MLM). Durante il pretraining, una frazione dei token di una frase viene
+mascherata e il modello è addestrato a predire i token originali a partire dal contesto
+circostante. In questo modo, il modello è costretto a costruire rappresentazioni che
+integrano informazioni provenienti da entrambe le direzioni della sequenza, dando
+luogo a embeddings contestuali profondamente bidirezionali.
+
+\medskip
+
+\noindent
+Dal punto di vista architetturale, l’input di BERT è costituito dalla somma di tre
+componenti: l’embedding del token (tipicamente ottenuto tramite una
+tokenizzazione a sotto-parole), l’embedding di posizione e un embedding di segmento
+utilizzato per distinguere parti diverse dell’input. L’output del modello è una
+sequenza di vettori contestuali, uno per ciascun token, prodotti dall’ultimo strato
+del Transformer encoder.
+
+\medskip
+
+\noindent
+Un elemento distintivo di BERT è l’introduzione di un token speciale \texttt{[CLS]},
+inserito all’inizio della sequenza di input. Il vettore contestuale associato a questo
+token viene spesso utilizzato come rappresentazione dell’intera sequenza in compiti
+di classificazione. Parallelamente, i vettori associati agli altri token forniscono
+rappresentazioni contestuali a livello di parola, utilizzabili per compiti di
+annotazione sequenziale e analisi semantica.
+
+\medskip
+
+\noindent
+Come nei modelli contestuali precedenti, anche in BERT è comune non utilizzare
+esclusivamente il vettore di uscita dell’ultimo strato, ma combinare le
+rappresentazioni provenienti da più livelli del modello. In particolare, la media o
+la somma dei vettori degli ultimi strati consente di integrare informazioni a diversi
+livelli di astrazione, rendendo gli embeddings più robusti e informativi.
+
+\medskip
+
+\noindent
+Il paradigma di addestramento di BERT segue lo schema \textit{pretrain}--\textit{finetune}.
+Nella fase di pretraining, il modello apprende rappresentazioni generali del
+linguaggio a partire da grandi quantità di testo non annotato. Nella fase di
+finetuning, tali rappresentazioni vengono adattate a specifici compiti downstream
+mediante l’aggiunta di teste di classificazione leggere e un addestramento
+supervisionato su dataset più piccoli.
+
+\medskip
+
+\noindent
+Dal punto di vista delle rappresentazioni, BERT produce embeddings contestuali
+profondi, stratificati e ad alta dimensionalità, che incorporano in modo entangled
+informazioni sintattiche, semantiche e pragmatiche. Questa ricchezza rappresentativa
+è una delle principali ragioni del successo empirico di BERT, ma rende al contempo
+complessa l’interpretazione delle singole dimensioni e delle strutture latenti degli
+embedding.
+
+\medskip
+
+\noindent
+Nel prossimo paragrafo discuteremo perché tali rappresentazioni, pur essendo
+estremamente efficaci, beneficiano di tecniche di analisi e \textit{disentanglement},
+motivando l’utilizzo di metodi basati su autoencoder sparsi per l’interpretazione e la
+scomposizione degli embeddings di BERT, che costituisce l’obiettivo principale di
+questa tesi.
+
+\section{Motivazione per il disentanglement degli embeddings di BERT}
+\label{sec:motivation_disentanglement}
+
+Il percorso seguito in questo capitolo ha mostrato come gli embeddings moderni,
+in particolare quelli prodotti da BERT, rappresentino il punto di arrivo di una
+progressiva evoluzione delle rappresentazioni distribuzionali del linguaggio: da
+vettori statici associati a tipi di parola a rappresentazioni contestuali profonde,
+dipendenti dall’intera sequenza e apprese tramite modelli di linguaggio neurali
+bidirezionali.
+
+\medskip
+
+\noindent
+Gli embeddings di BERT sono caratterizzati da un’elevata capacità rappresentativa.
+Essi catturano simultaneamente informazioni sintattiche, semantiche e pragmatiche,
+distribuite su molte dimensioni e stratificate lungo i diversi livelli del modello.
+Questa ricchezza informativa è alla base delle eccellenti prestazioni empiriche di
+BERT in una vasta gamma di compiti di elaborazione del linguaggio naturale.
+
+\medskip
+
+\noindent
+Tuttavia, tale potenza rappresentativa ha un costo in termini di interpretabilità.
+Le informazioni codificate negli embeddings di BERT risultano fortemente
+\emph{entangled}: singole dimensioni non corrispondono a proprietà linguistiche
+chiaramente interpretabili e le strutture latenti che emergono nello spazio
+vettoriale sono difficili da analizzare direttamente. Di conseguenza, comprendere
+quali fattori semantici o sintattici contribuiscano a una determinata rappresentazione
+diventa un compito non banale.
+
+\medskip
+
+\noindent
+Questo problema è particolarmente rilevante nel contesto di applicazioni che
+richiedono trasparenza, analisi qualitativa o controllo delle rappresentazioni
+interne del modello. In tali scenari, non è sufficiente disporre di embeddings
+accurati: è necessario poterli interpretare, analizzare e, in alcuni casi,
+scomporre in componenti latenti più semplici e semanticamente coerenti.
+
+\medskip
+
+\noindent
+Le tecniche di \textit{disentanglement} delle rappresentazioni mirano proprio a
+questo obiettivo: separare i fattori latenti che contribuiscono alla costruzione di
+una rappresentazione densa, rendendo esplicite strutture che risultano altrimenti
+sovrapposte. In questo contesto, gli autoencoder sparsi rappresentano uno strumento
+particolarmente adatto, poiché consentono di apprendere rappresentazioni latenti
+compatte in cui solo un numero limitato di componenti è attivo per ciascun input.
+
+\medskip
+
+\noindent
+Applicare tecniche di disentanglement agli embeddings di BERT consente quindi di
+analizzare la struttura interna di queste rappresentazioni, individuare dimensioni o
+fattori latenti interpretabili e studiare come diverse proprietà linguistiche
+emergano nello spazio vettoriale. Questo approccio permette di coniugare l’elevata
+capacità rappresentativa dei modelli di linguaggio moderni con un maggiore grado di
+interpretabilità.
+
+\medskip
+
+\noindent
+Nel capitolo successivo introdurremo il formalismo degli autoencoder e, in
+particolare, degli \textit{sparse autoencoders}, discutendone le proprietà teoriche
+e il loro utilizzo come strumento per il disentanglement di rappresentazioni dense.
+Successivamente, tali tecniche verranno applicate agli embeddings di BERT
+attraverso l’applicazione sviluppata in questa tesi, fornendo un caso di studio
+concreto sull’analisi e l’interpretazione delle rappresentazioni contestuali.
