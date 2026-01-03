@@ -203,6 +203,63 @@
       \field{title}{The Wikipedia Corpus: 4.6 million articles, 1.9 billion words}
       \field{year}{2015}
     \endentry
+    \entry{BUONOCORE2023104431}{article}{}
+      \name{author}{5}{}{%
+        {{hash=b07829987703fa54137f4c9edd9813e8}{%
+           family={Buonocore},
+           familyi={B\bibinitperiod},
+           given={Tommaso\bibnamedelima Mario},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=ef1ee0c44493d49a239d5ffe779dcae7}{%
+           family={Crema},
+           familyi={C\bibinitperiod},
+           given={Claudio},
+           giveni={C\bibinitperiod}}}%
+        {{hash=253c779ca8f74cd1078e055bd7c0855b}{%
+           family={Redolfi},
+           familyi={R\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d085f6efbeadd2711ad64b8dcbbee89f}{%
+           family={Bellazzi},
+           familyi={B\bibinitperiod},
+           given={Riccardo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=5ab07af568d021ad260736762fdeca5e}{%
+           family={Parimbelli},
+           familyi={P\bibinitperiod},
+           given={Enea},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{86b70c98e7d6ddc4fb3f0c02c68c9670}
+      \strng{fullhash}{184e22afa7f01c56438c517f09dcfa35}
+      \strng{bibnamehash}{86b70c98e7d6ddc4fb3f0c02c68c9670}
+      \strng{authorbibnamehash}{86b70c98e7d6ddc4fb3f0c02c68c9670}
+      \strng{authornamehash}{86b70c98e7d6ddc4fb3f0c02c68c9670}
+      \strng{authorfullhash}{184e22afa7f01c56438c517f09dcfa35}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In the era of digital healthcare, the huge volumes of textual information generated every day in hospitals constitute an essential but underused asset that could be exploited with task-specific, fine-tuned biomedical language representation models, improving patient care and management. For such specialized domains, previous research has shown that fine-tuning models stemming from broad-coverage checkpoints can largely benefit additional training rounds over large-scale in-domain resources. However, these resources are often unreachable for less-resourced languages like Italian, preventing local medical institutions to employ in-domain adaptation. In order to reduce this gap, our work investigates two accessible approaches to derive biomedical language models in languages other than English, taking Italian as a concrete use-case: one based on neural machine translation of English resources, favoring quantity over quality; the other based on a high-grade, narrow-scoped corpus natively written in Italian, thus preferring quality over quantity. Our study shows that data quantity is a harder constraint than data quality for biomedical adaptation, but the concatenation of high-quality data can improve model performance even when dealing with relatively size-limited corpora. The models published from our investigations have the potential to unlock important research opportunities for Italian hospitals and academia. Finally, the set of lessons learned from the study constitutes valuable insights towards a solution to build biomedical language models that are generalizable to other less-resourced languages and different domain settings.}
+      \field{issn}{1532-0464}
+      \field{journaltitle}{Journal of Biomedical Informatics}
+      \field{title}{Localizing in-domain adaptation of transformer-based biomedical language models}
+      \field{volume}{144}
+      \field{year}{2023}
+      \field{pages}{104431}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jbi.2023.104431
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1532046423001521
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1532046423001521
+      \endverb
+      \keyw{Natural language processing,Deep learning,Language model,Biomedical text mining,Transformer}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

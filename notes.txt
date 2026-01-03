@@ -1,0 +1,36 @@
+
+\subsection{Riduzione dimensionale tramite SVD}
+Un metodo per la riduzione della dimensionalità è la Singular Value Decomposition applicata alla word--context matrix. Sia $M \in \mathbb{R}^{|V| \times |V|}$ la word--context matrix, 
+eventualmente pesata tramite tf-idf. 
+La decomposizione ai valori singolari (Singular Value Decomposition, SVD) 
+consente di fattorizzare $M$ come prodotto di tre matrici:
+\[
+M = U \Sigma V^\top
+\]
+dove $U$ e $V$ sono matrici ortogonali e $\Sigma$ è una matrice diagonale 
+contenente i valori singolari ordinati in modo decrescente.
+
+Ogni valore singolare rappresenta l’importanza di una direzione latente 
+nello spazio semantico. I valori singolari maggiori catturano le 
+correlazioni più rilevanti tra parole e contesti, mentre quelli più piccoli 
+tendono a modellare rumore o variazioni locali meno informative.
+
+Per ottenere una rappresentazione a dimensionalità ridotta, si considera 
+una versione troncata della decomposizione, mantenendo solo i primi 
+$k$ valori singolari:
+\[
+M \approx U_k \Sigma_k V_k^\top
+\]
+con $k \ll |V|$.
+
+Le righe della matrice $U_k \Sigma_k$ costituiscono una rappresentazione 
+densa delle parole target in uno spazio latente di dimensione $k$. 
+In questo nuovo spazio, ogni parola è descritta da un vettore 
+a dimensionalità ridotta, in cui le correlazioni semantiche risultano 
+più evidenti rispetto alla rappresentazione originale sparsa.
+
+È importante osservare che la riduzione dimensionale non elimina 
+esplicitamente la sparsità della matrice originale, ma proietta le parole 
+in uno spazio denso in cui le relazioni semantiche emergono in forma 
+compressa e più robusta.
+

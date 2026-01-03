@@ -35,16 +35,14 @@ In generale, ciascuna osservazione appartiene allo spazio
 $\mathbb{R}^n$, ovvero $\mathbf{x}_i \in \mathbb{R}^n$. L’obiettivo di un
 autoencoder è apprendere una rappresentazione dei dati tale da permettere la
 ricostruzione dell’input nel modo più accurato possibile, minimizzando una
-misura dell’errore di ricostruzione.
-
-L’interesse verso questo tipo di modelli risiede nel fatto che la
+misura dell’errore di ricostruzione. L’interesse verso questo tipo di modelli risiede nel fatto che la
 rappresentazione latente appresa può essere utilizzata in numerose
 applicazioni, come la riduzione della dimensionalità, l’estrazione di
 caratteristiche, il denoising e l’anomaly detection. Una definizione formale
 di autoencoder è la seguente.
 
 \begin{notebox}
-\textbf{Definizione 1.} \textit{Un autoencoder è un tipo di algoritmo il cui
+\textbf{Autoencoder} \textit{Un autoencoder è un tipo di algoritmo il cui
 scopo principale è apprendere una rappresentazione dei dati, utilizzabile per
 diverse applicazioni, imparando a ricostruire in modo sufficientemente
 accurato un insieme di osservazioni di input}
@@ -132,9 +130,7 @@ Al fine di evitare che l’autoencoder apprenda una banale funzione identità e 
 favorire l’apprendimento di rappresentazioni astratte e informative dei dati,
 una strategia comunemente adottata consiste nell’imporre una riduzione della
 dimensionalità tra lo spazio di input e lo spazio latente. Tale configurazione
-architetturale prende il nome di \textbf{bottleneck} o \textbf{strozzatura}.
-
-In un’architettura con bottleneck, la dimensione dello spazio latente $q$ è
+architetturale prende il nome di \textbf{bottleneck} o \textbf{strozzatura}. In un’architettura con bottleneck, la dimensione dello spazio latente $q$ è
 strettamente inferiore alla dimensione dell’input $n$ ($q < n$). In queste
 condizioni, l’encoder realizza una mappatura che comprime l’informazione
 contenuta nei dati di ingresso:
@@ -143,9 +139,7 @@ contenuta nei dati di ingresso:
     \label{eq:latent_dim_ae}
 \end{equation}
 costringendo il modello a selezionare e preservare esclusivamente le componenti
-più rilevanti dell’input ai fini della ricostruzione.
-
-La presenza della strozzatura impedisce quindi una copia diretta dei dati e
+più rilevanti dell’input ai fini della ricostruzione. La presenza della strozzatura impedisce quindi una copia diretta dei dati e
 spinge l’autoencoder a catturare strutture, correlazioni e regolarità latenti
 presenti nel dataset. Al termine dell’addestramento, lo spazio latente
 costituisce una rappresentazione compatta e astratta dei dati, che può essere
@@ -256,6 +250,8 @@ la matrice di covarianza empirica è data da
     C = \frac{1}{M} X^\top X \in \mathbb{R}^{n \times n}.
 \end{equation*}
 
+
+
 L’obiettivo della PCA consiste nell’individuare una direzione unitaria
 $\mathbf{w}_1 \in \mathbb{R}^n$ lungo la quale la proiezione dei dati presenti la
 massima varianza. Indicando con $y_i = \mathbf{w}_1^\top \mathbf{x}_i$ la
@@ -281,6 +277,15 @@ matriciale si ottiene
     =
     \mathbf{w}_1^\top C \mathbf{w}_1.
 \end{equation*}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/meno.jpeg}
+    \caption{L'immagine mostra Davide Mononcello in uno stato di sonno}
+    \label{fig:skipgram_structure}
+\end{figure}
+
 
 Il problema della ricerca della direzione di massima varianza può quindi essere
 formulato come il seguente problema di ottimizzazione vincolata:

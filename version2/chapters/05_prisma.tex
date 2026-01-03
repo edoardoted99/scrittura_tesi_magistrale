@@ -1,23 +1,119 @@
-\chapter{Prisma: sistema per il disentanglement di embeddings}
+\chapter{Prisma}
 
-\section{Obiettivi e filosofia del sistema}
-\subsection{La metafora del prisma}
-\subsection{Scelte progettuali}
+\section{Introduzione}
+Prisma è un’applicazione nata con l’obiettivo di rendere interpretabili gli \textit{embeddings} testuali, generalizzando questo processo a qualsiasi insieme di documenti. Gli \textit{embeddings}, pur essendo rappresentazioni ricche dal punto di vista semantico, tendono a condensare molteplici concetti in uno spazio denso e difficilmente esplorabile, rendendo complessa l’analisi del loro contenuto.
 
-\section{Architettura generale di Prisma}
-\subsection{Panoramica dei moduli}
-\subsection{Flusso dei dati}
+L’idea alla base di Prisma richiama il comportamento di un prisma ottico: così come un fascio di luce bianca viene scomposto nelle sue componenti cromatiche fondamentali, allo stesso modo un \textit{embedding} semanticamente denso può essere ``rifratto'' nei concetti che lo compongono. Il software si propone di decomporre queste rappresentazioni compatte in dimensioni concettuali interpretabili, fornendo una visione strutturata del contenuto semantico. Un obiettivo centrale è l’accessibilità: Prisma mira ad abbassare la barriera d’ingresso per utenti non specialisti, fornendo un’interfaccia intuitiva per esplorare rappresentazioni semantiche complesse.
 
-\section{Pipeline di addestramento dei Sparse Autoencoders}
-\subsection{Preprocessing del dataset}
-\subsection{Configurazione del modello}
-\subsection{Funzione obiettivo e iperparametri}
+\section{Architettura}
+L'applicazione è sviluppata in Python utilizzando il framework Django come nucleo centrale per la gestione della logica di business e dell'interfaccia web. Il sistema si appoggia a un database SQLite locale per la persistenza dei dati e interagisce con il framework Ollama per l'esecuzione dei modelli di linguaggio (LLM) necessari all'interpretazione.
 
-\section{Interpretazione automatica delle feature latenti}
-\subsection{Selezione delle feature}
-\subsection{Metodologia di interpretazione}
-\subsection{Valutazione dell’interpretabilità}
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}[
+    font=\sffamily\small,
+    node distance=1.2cm and 1.5cm,
+    % Stili semplificati
+    core/.style={rectangle, draw, fill=blue!5, thick, rounded corners, minimum width=10cm, minimum height=6cm},
+    module/.style={rectangle, draw, fill=white, thick, rounded corners, text width=2.5cm, align=center, minimum height=3cm},
+    db/.style={cylinder, draw, shape border rotate=90, fill=orange!20, text width=1.5cm, align=center, minimum height=1.5cm},
+    ext/.style={rectangle, draw, fill=red!10, thick, rounded corners, text width=2.5cm, align=center, minimum height=1cm},
+    line/.style={draw, -{Stealth[scale=1.2]}, thick},
+    both/.style={draw, {Stealth[scale=1.2]}-{Stealth[scale=1.2]}, thick}
+]
 
-\section{Interazione e visualizzazione dei concetti}
-\subsection{Esplorazione delle feature}
-\subsection{Manipolazione semantica}
+    % Django Core Container
+    \node [core] (django) {};
+    \node[anchor=north, yshift=-0.2cm] at (django.north) {\textbf{Django Core}};
+
+    % Moduli interni (senza sottotesto)
+    \node [module, xshift=-3.2cm, yshift=-0.3cm] (emb) at (django.center) {\textbf{Generazione Embedding}};
+    \node [module, yshift=-0.3cm] (sae) at (django.center) {\textbf{Training SAE}};
+    \node [module, xshift=3.2cm, yshift=-0.3cm] (interp) at (django.center) {\textbf{Interpretazione}};
+
+    % Elementi Esterni
+    \node [db, right=of django, xshift=0.3cm] (sqlite) {Database\\(SQLite)};
+    \node [ext, below=of interp, yshift=-0.5cm] (ollama) {Ollama API};
+
+    % Connessioni Flusso
+    \path [line] (emb) -- (sae);
+    \path [line] (sae) -- (interp);
+    
+    % Connessioni Infrastruttura
+    \path [both] (django.east) -- (sqlite);
+    \path [both] (interp.south) -- (ollama);
+
+\end{tikzpicture}
+\caption{Schema semplificato dell'architettura di Prisma.}
+\label{fig:architettura_semplice}
+\end{figure}
+
+\section{Generazione Embeddings}
+Il flusso operativo inizia con la creazione di un \texttt{Dataset} e la successiva trasformazione dei documenti in vettori numerici. L'applicazione permette di selezionare diversi modelli di codifica, tra cui modelli specializzati per il dominio clinico (come \textit{medbit}) o modelli multilingua performanti (come la famiglia \textit{GTE}).
+
+\subsection{Gestione di documenti lunghi: strategia \textit{chunk-and-average}}
+
+Un aspetto strutturale del sistema Prisma riguarda la gestione di documenti testuali la cui lunghezza eccede il limite massimo di input dei modelli Transformer utilizzati per la generazione di embeddings.
+In particolare, molti modelli della famiglia BERT-like accettano in input una sequenza di lunghezza massima pari a
+\[
+L_{\max} = 512 \ \text{token}.
+\]
+Di conseguenza, un documento con lunghezza superiore a $L_{\max}$ non può essere processato integralmente in un singolo forward pass. 
+Una soluzione na{\"i}ve consiste nella troncatura (\textit{truncation}) del testo, che mantiene solo i primi $L_{\max}$ token;
+tuttavia, questa scelta può eliminare porzioni informative rilevanti (ad esempio conclusioni, diagnosi o follow-up riportati in coda al documento). Per preservare l'intero contenuto informativo, Prisma implementa una strategia di segmentazione denominata \textit{chunk-and-average},
+che consente di codificare testi arbitrariamente lunghi producendo un singolo embedding globale per documento.
+
+\paragraph{Tokenizzazione e vincoli di lunghezza}
+Dato un documento testuale $D$, esso viene prima trasformato in una sequenza di token tramite un tokenizer associato al modello scelto. Indichiamo tale sequenza come
+\[
+T = (t_1, t_2, \dots, t_N),
+\]
+dove $N$ è il numero totale di token ottenuti dalla tokenizzazione e i token $t_i$ possono rappresentare parole intere o sotto-parole (subword), a seconda del vocabolario del modello.
+I modelli Transformer richiedono tipicamente l'aggiunta di token speciali che delimitano la sequenza e ne abilitano alcune funzionalità interne. Ad esempio, nei modelli tipo BERT è comune inserire un token di classificazione \texttt{[CLS]} all'inizio e un token di separazione \texttt{[SEP]} alla fine. Indichiamo con $N_{\text{special}}$ il numero di token speciali necessari. La lunghezza massima effettivamente disponibile per il contenuto testuale (cioè per i token provenienti dal documento) è quindi
+\[
+W_{\text{eff}} = L_{\max} - N_{\text{special}}.
+\]
+
+\paragraph{Segmentazione in chunk contigui}
+Se $N \le W_{\text{eff}}$, il documento può essere processato direttamente. Se invece $N > W_{\text{eff}}$, la sequenza $T$ viene suddivisa in $K$ segmenti contigui (\textit{chunks}) ciascuno di lunghezza al più $W_{\text{eff}}$:
+\[
+C_k = (t_{(k-1)W_{\text{eff}} + 1}, \dots, t_{\min(kW_{\text{eff}},\, N)}),
+\qquad k = 1,\dots,K,
+\]
+dove
+\[
+K = \left\lceil \frac{N}{W_{\text{eff}}} \right\rceil.
+\]
+Ciascun chunk viene poi confezionato come input valido per il modello aggiungendo i token speciali richiesti (ad esempio \texttt{[CLS]} e \texttt{[SEP]}), in modo che la lunghezza totale dell'input sia $\le L_{\max}$.
+
+\paragraph{Embedding per chunk e concetto di pooling}
+Sia $f_{\theta}$ il modello Transformer selezionato (con parametri $\theta$). Dato un chunk $C_k$ composto da $m_k$ token (dopo l'aggiunta dei token speciali), il forward pass del modello produce una sequenza di vettori nascosti (hidden states), uno per ciascun token:
+\[
+f_{\theta}(C_k) = (\mathbf{h}^{(k)}_1, \mathbf{h}^{(k)}_2, \dots, \mathbf{h}^{(k)}_{m_k}),
+\qquad \mathbf{h}^{(k)}_j \in \mathbb{R}^{d},
+\]
+dove $d$ è la dimensionalità interna della rappresentazione (hidden size) del modello. Per ottenere un singolo vettore che rappresenti l'intero chunk, Prisma applica un'operazione di \textit{pooling}. Con il termine pooling si intende una funzione di aggregazione che combina la sequenza di vettori token-level in un unico vettore a livello di segmento (segment-level). Nel caso più comune utilizzato in Prisma, si adotta il \textit{mean pooling}, ovvero la media aritmetica dei vettori dei token (tipicamente escludendo eventuali token speciali, a seconda dell'implementazione):
+\[
+\mathbf{e}_k = \text{MeanPool}\bigl(f_{\theta}(C_k)\bigr)
+= \frac{1}{m_k} \sum_{j=1}^{m_k} \mathbf{h}^{(k)}_j,
+\qquad \mathbf{e}_k \in \mathbb{R}^{d}.
+\]
+Intuitivamente, il mean pooling produce un vettore che riassume il contenuto semantico del chunk distribuendo il contributo su tutti i token che lo compongono, senza privilegiare una posizione specifica della sequenza.
+
+\paragraph{Aggregazione a livello documento}
+Una volta ottenuti gli embedding dei singoli chunk $\mathbf{e}_1,\dots,\mathbf{e}_K$, Prisma costruisce un embedding globale per il documento $D$ combinandoli tramite media aritmetica:
+\[
+\mathbf{v}_D = \frac{1}{K}\sum_{k=1}^{K} \mathbf{e}_k,
+\qquad \mathbf{v}_D \in \mathbb{R}^{d}.
+\]
+Questa scelta consente di ottenere una rappresentazione unica e confrontabile tra documenti, anche quando le loro lunghezze originali sono molto diverse. Inoltre, la procedura garantisce che tutte le parti del testo contribuiscano alla rappresentazione finale, evitando la perdita sistematica di informazione tipica della troncatura.
+
+\section{Training SAE}
+Una volta generati gli \textit{embeddings}, il sistema procede alla loro scomposizione tramite il modulo \textit{Sparse Autoencoders} (SAE). In questa fase, l'utente configura un'istanza di \texttt{SAERun} definendo parametri quali l'\textit{expansion factor} (per determinare la dimensione del livello latente) e la \textit{k-sparsity} (per regolare il numero di neuroni attivi contemporaneamente).
+
+Il training produce un modello capace di ricostruire l'input densificato attraverso una rappresentazione sparsa. Al termine, Prisma genera automaticamente analisi visive, tra cui mappe di calore della similarità delle matrici e della co-occorrenza, che permettono di valutare statisticamente la qualità delle feature estratte prima dell'interpretazione semantica.
+
+\section{Interpretazione}
+L'ultima fase del processo trasforma le feature matematiche in concetti comprensibili. Il modulo \textit{Explorer} utilizza le attivazioni più significative di ogni feature per estrarre ``evidenze'' testuali dai documenti originali.
+
+Queste evidenze vengono inviate all'API locale di Ollama, che genera un'etichetta (\textit{label}) e una descrizione testuale per ogni feature. Prisma supporta la gestione di interpretazioni multiple per la stessa feature e permette di organizzare i concetti in \texttt{FeatureFamily}, ricostruendo una gerarchia semantica che va dai concetti generali a quelli più specifici.

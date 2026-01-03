@@ -20,26 +20,30 @@
 \contentsline {section}{\numberline {3.2}L'ipotesi distribuzionale}{18}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Ipotesi di Osgood}{19}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Embeddings}{20}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Simple count-based embeddings}{20}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Riduzione dimensionale tramite SVD}{22}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Cosine Similarity}{23}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Word2Vec}{24}{subsection.3.4.4}%
-\contentsline {subsubsection}{Il classificatore}{25}{section*.9}%
-\contentsline {subsubsection}{Esempio delle matrici $W$ e $C$}{28}{section*.15}%
-\contentsline {subsubsection}{Algoritmo di apprendimento}{29}{section*.16}%
-\contentsline {subsection}{\numberline {3.4.5}Proprietà semantiche degli embeddings}{31}{subsection.3.4.5}%
-\contentsline {subsubsection}{1. Influenza della finestra di contesto}{31}{section*.17}%
-\contentsline {subsubsection}{2. First-order vs. second-order similarity}{31}{section*.18}%
-\contentsline {subsubsection}{3. Analogical reasoning (modello del parallelogramma)}{31}{section*.19}%
-\contentsline {subsubsection}{4. Struttura geometrica: ortogonalità e parallelismo}{32}{section*.20}%
-\contentsline {subsubsection}{5. Effetti pratici}{32}{section*.21}%
-\contentsline {section}{\numberline {3.5}Contextual Embeddings}{33}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Modelli di linguaggio neurali}{34}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Reti neurali ricorrenti e LSTM}{36}{section.3.7}%
-\contentsline {section}{\numberline {3.8}ELMo e il contesto bidirezionale}{38}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Attention e Self-Attention}{39}{section.3.9}%
-\contentsline {section}{\numberline {3.10}BERT e Masked Language Modeling}{40}{section.3.10}%
-\contentsline {section}{\numberline {3.11}Motivazione per il disentanglement degli embeddings di BERT}{42}{section.3.11}%
+\contentsline {subsection}{\numberline {3.4.1}Embeddings count-based}{21}{subsection.3.4.1}%
+\contentsline {subsubsection}{Matrice termine-documento}{21}{section*.8}%
+\contentsline {subsubsection}{Matrice termine-termine}{22}{section*.10}%
+\contentsline {subsection}{\numberline {3.4.2}Riduzione dimensionale tramite SVD}{24}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Cosine Similarity}{25}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Word2Vec: un approccio predittivo}{26}{subsection.3.4.4}%
+\contentsline {subsubsection}{Il classificatore e la funzione sigmoide}{26}{section*.12}%
+\contentsline {subsubsection}{Apprendimento e Negative Sampling}{27}{section*.13}%
+\contentsline {subsubsection}{Perché due matrici? Il ruolo di $W$ e $C$}{27}{section*.14}%
+\contentsline {subsection}{\numberline {3.4.5}Proprietà semantiche degli embeddings}{28}{subsection.3.4.5}%
+\contentsline {section}{\numberline {3.5}Contextual Embeddings}{30}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Modelli di linguaggio neurali}{31}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Reti neurali ricorrenti e LSTM}{33}{section.3.7}%
+\contentsline {section}{\numberline {3.8}ELMo e il contesto bidirezionale}{35}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Attention e Self-Attention}{36}{section.3.9}%
+\contentsline {section}{\numberline {3.10}BERT e Masked Language Modeling}{38}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Motivazione per il disentanglement degli embeddings di BERT}{39}{section.3.11}%
+\contentsline {section}{\numberline {3.12}Pooling}{41}{section.3.12}%
+\contentsline {subsubsection}{Strategie di pooling}{42}{section*.18}%
+\contentsline {subsection}{\numberline {3.12.1}Pooling gerarchico per sequenze lunghe}{43}{subsection.3.12.1}%
+\contentsline {paragraph}{Segmentazione in chunk}{43}{section*.19}%
+\contentsline {paragraph}{Pooling a livello di token (intra-chunk)}{44}{section*.20}%
+\contentsline {paragraph}{Pooling a livello di chunk (inter-chunk)}{44}{section*.21}%
+\contentsline {paragraph}{Interpretazione come pooling gerarchico}{44}{section*.22}%
 \contentsline {chapter}{\numberline {4}Disentangling Dense Embeddings \\with Sparse Autoencoders}{45}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Motivazione e contesto}{45}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Metodologia e Architettura}{46}{section.4.2}%
@@ -52,3 +56,21 @@
 \contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{49}{section*.23}%
 \contentsline {subsection}{\numberline {4.5.1}Costruzione del Grafo di Co-occorrenza}{50}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Identificazione delle Feature Families}{51}{subsection.4.5.2}%
+\contentsline {chapter}{\numberline {5}Prisma}{53}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduzione}{53}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Architettura}{53}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Generazione Embeddings}{54}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{54}{subsection.5.3.1}%
+\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{55}{section*.25}%
+\contentsline {paragraph}{Segmentazione in chunk contigui}{55}{section*.26}%
+\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{55}{section*.27}%
+\contentsline {paragraph}{Aggregazione a livello documento}{56}{section*.28}%
+\contentsline {section}{\numberline {5.4}Training SAE}{56}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Interpretazione}{57}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{59}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduzione}{59}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Pedianet}{59}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Scelta del modello di embedding}{60}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Esperimento}{60}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}Abstracts}{61}{section.6.3}%
+\contentsline {section}{\numberline {6.4}PubMed}{61}{section.6.4}%
