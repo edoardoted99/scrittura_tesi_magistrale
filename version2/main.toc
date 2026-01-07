@@ -90,33 +90,54 @@
 \contentsline {subsubsection}{Visione d’insieme: un \textit {decoder-only} che impila blocchi}{69}{section*.73}%
 \contentsline {subsection}{\numberline {3.9.7}Nota: \textit {logit lens} e terminologia \textit {decoder-only}}{69}{subsection.3.9.7}%
 \contentsline {paragraph}{Nota terminologica: \textit {decoder-only}.}{69}{section*.75}%
-\contentsline {chapter}{\numberline {4}Disentangling Dense Embeddings \\with Sparse Autoencoders}{71}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Motivazione e contesto}{71}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Metodologia e Architettura}{72}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Definizione del Modello}{72}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Vincolo di Sparsità \textit {k-Sparse}}{73}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Funzione di Costo e Addestramento}{73}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Interpretazione Automatizzata delle Feature}{74}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Feature Families e Struttura Gerarchica}{74}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Feature Families e Struttura Gerarchica}{75}{section.4.5}%
-\contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{75}{section*.76}%
-\contentsline {subsection}{\numberline {4.5.1}Costruzione del Grafo di Co-occorrenza}{76}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Identificazione delle Feature Families}{77}{subsection.4.5.2}%
-\contentsline {chapter}{\numberline {5}Prisma}{79}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduzione}{79}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Architettura}{79}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Generazione Embeddings}{80}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{80}{subsection.5.3.1}%
-\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{81}{section*.78}%
-\contentsline {paragraph}{Segmentazione in chunk contigui}{81}{section*.79}%
-\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{81}{section*.80}%
-\contentsline {paragraph}{Aggregazione a livello documento}{82}{section*.81}%
-\contentsline {section}{\numberline {5.4}Training SAE}{82}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Interpretazione}{83}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{85}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduzione}{85}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Pedianet}{85}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Scelta del modello di embedding}{86}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Esperimento}{86}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}Abstracts}{87}{section.6.3}%
-\contentsline {section}{\numberline {6.4}PubMed}{87}{section.6.4}%
+\contentsline {section}{\numberline {3.10}Large Language Models}{71}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Large Language Models con Transformer: generazione condizionata}{71}{subsection.3.10.1}%
+\contentsline {paragraph}{Perché “predire parole” è utile per tanti task.}{72}{section*.77}%
+\contentsline {paragraph}{Esempio: riassunto come generazione condizionata.}{73}{section*.78}%
+\contentsline {paragraph}{Nota sul passo successivo (ponte verso BERT).}{73}{section*.81}%
+\contentsline {section}{\numberline {3.11}Sampling per la generazione con LLM}{74}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Perché non basta il campionamento ``puro''}{75}{subsection.3.11.1}%
+\contentsline {subsection}{\numberline {3.11.2}Top-$k$ sampling}{75}{subsection.3.11.2}%
+\contentsline {subsection}{\numberline {3.11.3}Top-$p$ (nucleus) sampling}{76}{subsection.3.11.3}%
+\contentsline {subsection}{\numberline {3.11.4}Temperature sampling}{76}{subsection.3.11.4}%
+\contentsline {section}{\numberline {3.12}Pretraining dei Large Language Models}{77}{section.3.12}%
+\contentsline {subsection}{\numberline {3.12.1}Setup, notazione e obiettivo di language modeling}{77}{subsection.3.12.1}%
+\contentsline {subsection}{\numberline {3.12.2}Self-supervision e funzione obiettivo}{78}{subsection.3.12.2}%
+\contentsline {subsection}{\numberline {3.12.3}Teacher forcing}{79}{subsection.3.12.3}%
+\contentsline {subsection}{\numberline {3.12.4}Efficienza computazionale: parallelismo nei transformer}{80}{subsection.3.12.4}%
+\contentsline {subsection}{\numberline {3.12.5}Dati di pretraining: fonti e filtraggio}{80}{subsection.3.12.5}%
+\contentsline {paragraph}{Filtri di qualità e sicurezza.}{81}{section*.84}%
+\contentsline {paragraph}{Aspetti etici e legali (panoramica).}{81}{section*.85}%
+\contentsline {subsection}{\numberline {3.12.6}Dal pretraining all'adattamento: finetuning}{82}{subsection.3.12.6}%
+\contentsline {paragraph}{Tipi di adattamento (senza anticipare modelli specifici).}{82}{section*.87}%
+\contentsline {paragraph}{Collegamento alle sezioni successive.}{83}{section*.88}%
+\contentsline {chapter}{\numberline {4}Disentangling Dense Embeddings \\with Sparse Autoencoders}{85}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Motivazione e contesto}{85}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Metodologia e Architettura}{86}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Definizione del Modello}{86}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Vincolo di Sparsità \textit {k-Sparse}}{87}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Funzione di Costo e Addestramento}{87}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Interpretazione Automatizzata delle Feature}{88}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Feature Families e Struttura Gerarchica}{88}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Feature Families e Struttura Gerarchica}{89}{section.4.5}%
+\contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{89}{section*.89}%
+\contentsline {subsection}{\numberline {4.5.1}Costruzione del Grafo di Co-occorrenza}{90}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Identificazione delle Feature Families}{91}{subsection.4.5.2}%
+\contentsline {chapter}{\numberline {5}Prisma}{93}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduzione}{93}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Architettura}{93}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Generazione Embeddings}{94}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{94}{subsection.5.3.1}%
+\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{95}{section*.91}%
+\contentsline {paragraph}{Segmentazione in chunk contigui}{95}{section*.92}%
+\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{95}{section*.93}%
+\contentsline {paragraph}{Aggregazione a livello documento}{96}{section*.94}%
+\contentsline {section}{\numberline {5.4}Training SAE}{96}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Interpretazione}{97}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{99}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduzione}{99}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Pedianet}{99}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Scelta del modello di embedding}{100}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Esperimento}{100}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}Abstracts}{101}{section.6.3}%
+\contentsline {section}{\numberline {6.4}PubMed}{101}{section.6.4}%

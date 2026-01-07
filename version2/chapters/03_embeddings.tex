@@ -1579,3 +1579,391 @@ I language model moderni (stile GPT) corrispondono, in sostanza, a questa sola m
 %   pictures/decoder_only_stack.png (Fig. 9.15)
 % Oppure modifica i path negli \includegraphics.
 % ------------------------------------------------------------
+
+% =========================================================
+% 10 Large Language Models (LLM) — Sezioni 10.0 / 10.1
+% (testo in ITA basato sul filo logico di Jurafsky & Martin)
+% =========================================================
+
+\section{Large Language Models}
+\label{sec:llm}
+
+Nelle sezioni precedenti abbiamo visto come il Transformer (in particolare nella variante
+\emph{decoder-only}) costruisca rappresentazioni contestuali tramite self-attention causale e,
+attraverso la \emph{language modeling head}, produca una distribuzione di probabilità sul token
+successivo. A questo punto il passo concettuale naturale è chiedersi cosa succede quando
+questa architettura viene addestrata (\emph{pretrained}) su quantità enormi di testo: nasce così
+la famiglia dei \textbf{Large Language Models} (LLM).
+
+L’idea di fondo si collega direttamente all’ipotesi distribuzionale discussa all’inizio del capitolo:
+se gran parte della conoscenza linguistica (e una quota non banale di conoscenza sul mondo)
+è contenuta nelle regolarità statistiche del testo, allora un modello addestrato a predire i token
+successivi su corpora massivi può assorbire tali regolarità e riutilizzarle in molti compiti diversi.
+In questa prospettiva, la conoscenza non viene “inserita” manualmente, ma emerge come
+\emph{sottoprodotto} dell’addestramento auto-supervisionato.
+
+\begin{notebox}
+\textbf{Pretraining (auto-supervision)}\\
+Un LLM viene addestrato a predire il token successivo in moltissimi contesti diversi.
+Il testo stesso fornisce l’etichetta: dato un prefisso, il token successivo osservato nel corpus è il target.
+\end{notebox}
+
+Questa capacità di predizione, quando combinata con finestre di contesto molto ampie, rende gli LLM
+particolarmente efficaci nei compiti in cui serve \textbf{generare testo} (riassunti, traduzione, risposta a domande,
+assistenti conversazionali, \dots). Nel seguito formalizziamo come si usa un Transformer come LLM e
+perché molti task di NLP possono essere reinterpretati come \emph{word prediction}.
+
+% ---------------------------------------------------------
+\subsection{Large Language Models con Transformer: generazione condizionata}
+\label{subsec:llm_with_transformers}
+
+Un Transformer \emph{decoder-only} implementa un modello autoregressivo: legge un prefisso di token e
+stima la distribuzione del token successivo. In pratica, l’uso tipico avviene in forma di
+\textbf{generazione condizionata}: forniamo al modello un testo di input (spesso chiamato \emph{prompt})
+e chiediamo di continuare a generare token uno alla volta, condizionandosi sia sul prompt sia sui token
+già generati.
+
+\begin{equation}
+P(w_{1:n}) \;=\; \prod_{i=1}^{n} P(w_i \mid w_{<i}),
+\end{equation}
+dove, grazie alla \emph{causal mask}, in posizione $i$ il modello può usare soltanto informazione proveniente
+da posizioni $<i$ (niente “futuro” nella sequenza). Questo è esattamente il vincolo che rende coerente
+la predizione del token successivo.
+
+\begin{figure}[htbp]
+\centering
+% SUGGERIMENTO: copia l'immagine /mnt/data/3c864be5-e2bd-4115-b825-5b3c24b8c8bd.png
+% dentro la tua cartella pictures/ con nome, ad es.: llm_completion.png
+\includegraphics[width=\textwidth]{pictures/llm_completion.png}
+\caption{Completamento autoregressivo left-to-right: i token generati vengono riaggiunti al contesto e diventano parte del prefisso per la predizione successiva.}
+\label{fig:llm_completion}
+\end{figure}
+
+\paragraph{Perché “predire parole” è utile per tanti task.}
+La chiave è che moltissimi problemi di NLP possono essere riformulati come scelta del token (o della sequenza di token)
+più probabile dato un contesto. Ad esempio:
+\begin{itemize}
+    \item \textbf{Classificazione via prompting:} possiamo chiedere al modello di completare una frase istruttiva
+    e confrontare la probabilità di token alternativi (es.\ \emph{positivo} vs \emph{negativo}).
+    \item \textbf{Question answering:} forniamo una domanda e un indicatore del tipo \texttt{A:} e lasciamo che il modello
+    generi l’inizio (e poi il resto) della risposta, massimizzando coerenza col contesto.
+    \item \textbf{Compiti generativi lunghi:} come riassunto o traduzione, in cui la risposta richiede più token, non uno solo.
+\end{itemize}
+
+\paragraph{Esempio: riassunto come generazione condizionata.}
+Nel riassunto, l’input è un testo lungo e l’output è una sua versione più breve. Un modo pratico per
+“dire” al modello cosa vogliamo è aggiungere un delimitatore o un cue testuale (per esempio \texttt{tl;dr}),
+che segnala l’inizio della sintesi. Il modello, avendo visto in addestramento molte occorrenze simili,
+impara ad associare quel pattern alla produzione di un riassunto.
+
+\begin{figure}[htbp]
+\centering
+% copia /mnt/data/9048e4fe-5973-4771-87c4-0f7ff84d6270.png -> pictures/summarization_example.png
+\includegraphics[width=\textwidth]{pictures/summarization_example.png}
+\caption{Esempio di testo e relativo riassunto (scenario tipico di summarization). Il compito può essere visto come generazione condizionata sul documento.}
+\label{fig:summarization_example}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+% copia /mnt/data/9496c24c-325e-465b-bb8c-6c60c85e1418.png -> pictures/tldr_summarization.png
+\includegraphics[width=\textwidth]{pictures/tldr_summarization.png}
+\caption{Riassunto tramite prompting: il token (o stringa) \texttt{tl;dr} agisce da segnale che innesca la generazione di una sintesi, sfruttando la lunga finestra di contesto del Transformer.}
+\label{fig:tldr_summarization}
+\end{figure}
+
+\paragraph{Nota sul passo successivo (ponte verso BERT).}
+L’architettura descritta fin qui è \emph{unidirezionale}: per costruzione non incorpora informazione dai token futuri,
+perché è pensata per generare da sinistra a destra. Per arrivare a BERT, il passaggio narrativo naturale è:
+\begin{quote}
+\emph{se invece di generare testo vogliamo “capire” un testo completo, possiamo permetterci attenzione bidirezionale e un obiettivo di addestramento diverso (masked language modeling), ottenendo embeddings contestuali che vedono sia sinistra sia destra.}
+\end{quote}
+Questo è esattamente il cambio di paradigma che introdurrai quando passerai dai modelli causali (decoder-only) ai modelli encoder bidirezionali come BERT.
+
+% =========================
+% 10.2 Sampling for LLM Generation
+% =========================
+\section{Sampling per la generazione con LLM}
+\label{sec:llm-sampling}
+
+Nelle sezioni precedenti abbiamo visto come un transformer (decoder-only) produca, per ogni posizione $t$,
+un vettore di \emph{logit} $u_t \in \mathbb{R}^{|V|}$ che, tramite softmax, diventa una distribuzione di probabilità
+$y_t$ sul vocabolario $V$.
+A questo punto, per \emph{generare} testo dobbiamo rispondere a una domanda operativa:
+
+\begin{quote}
+dato il contesto (prompt + token già generati), \emph{quale token scegliamo come prossimo?}
+\end{quote}
+
+Il nome generico di questa scelta è \textbf{decoding}. Nel caso più comune per gli LLM, la generazione è
+\textbf{autoregressiva} (o \textbf{causale}): si genera da sinistra a destra, e ogni nuovo token viene aggiunto al contesto
+per predire il successivo. Formalmente, al passo $t$ campioniamo
+\[
+w_t \sim p(w_t \mid w_{<t}),
+\]
+dove $p(\cdot)$ è la distribuzione predetta dal modello.
+
+\subsection{Perché non basta il campionamento ``puro''}
+Un’idea naturale sarebbe: ``campiono direttamente dalla softmax''. In pseudocodice:
+
+% (Se vuoi usare environment algoritmici: \usepackage{algorithm} + \usepackage{algpseudocode})
+\begin{quote}\small
+\textbf{Random sampling (idea base)} \\
+$i \leftarrow 1$ \\
+campiona $w_i \sim p(w)$ \\
+\textbf{while} $w_i \neq \text{EOS}$ \textbf{do} \\
+\hspace*{1em} $i \leftarrow i+1$ \\
+\hspace*{1em} campiona $w_i \sim p(w_i \mid w_{<i})$ \\
+\textbf{end while}
+\end{quote}
+
+Il problema è che una distribuzione su $|V|$ parole ha una ``coda'' lunga: moltissimi token rarissimi hanno
+probabilità individualmente piccole, ma \emph{complessivamente} possono accumulare una massa non trascurabile.
+Questo fa sì che, abbastanza spesso, il modello selezioni token poco appropriati, producendo frasi strane o incoerenti.
+
+Per questo, in pratica, si usano strategie che \emph{limitano} o \emph{rimodellano} la distribuzione, bilanciando due obiettivi:
+\begin{itemize}
+  \item \textbf{Qualità/coerenza} (testo più corretto e stabile, ma rischia di essere ripetitivo),
+  \item \textbf{Diversità/creatività} (testo meno banale, ma più incline a errori o incoerenze).
+\end{itemize}
+
+\subsection{Top-$k$ sampling}
+\label{subsec:topk}
+Nel \textbf{top-$k$ sampling} non si considera l’intero vocabolario: si tengono solo i $k$ token più probabili
+nel contesto, si rinormalizza e poi si campiona tra questi.
+
+Sia $V_k \subseteq V$ l’insieme dei $k$ token con probabilità più alta secondo $p(\cdot \mid w_{<t})$.
+Definiamo la distribuzione troncata:
+\[
+\tilde{p}(w \mid w_{<t}) =
+\begin{cases}
+\dfrac{p(w \mid w_{<t})}{\sum\limits_{w' \in V_k} p(w' \mid w_{<t})} & \text{se } w \in V_k\\[1.2em]
+0 & \text{altrimenti.}
+\end{cases}
+\]
+Quindi si campiona $w_t \sim \tilde{p}(\cdot \mid w_{<t})$.
+
+Osservazione importante: con $k=1$ si ottiene la scelta deterministica del token più probabile (greedy decoding).
+Aumentando $k$, cresce la varietà delle scelte possibili, ma anche il rischio di selezionare token meno adatti.
+
+\subsection{Top-$p$ (nucleus) sampling}
+\label{subsec:topp}
+Il limite del top-$k$ è che $k$ è fisso, ma la ``forma'' della distribuzione cambia da contesto a contesto:
+a volte poche parole coprono quasi tutta la massa di probabilità, altre volte la distribuzione è più piatta.
+
+Nel \textbf{top-$p$ sampling} (o \textbf{nucleus sampling}) non si fissa il numero di token, ma la
+\emph{massa di probabilità} da conservare. Si ordina il vocabolario per probabilità decrescente e si prende il più piccolo insieme
+$V^{(p)}$ tale che:
+\[
+\sum_{w \in V^{(p)}} p(w \mid w_{<t}) \;\ge\; p.
+\]
+Poi si rinormalizza su $V^{(p)}$ e si campiona.
+L’effetto pratico è adattivo: quando il modello è molto sicuro, $V^{(p)}$ può essere piccolo; quando è incerto, l’insieme si allarga.
+
+\subsection{Temperature sampling}
+\label{subsec:temperature}
+Un’altra idea non è ``tagliare'' la distribuzione, ma \textbf{rimodellarla} tramite la \textbf{temperatura}.
+Ricordando che
+\[
+y_t = \mathrm{softmax}(u_t),
+\]
+si introduce un parametro $\tau>0$ e si calcola:
+\[
+y_t = \mathrm{softmax}\!\left(\frac{u_t}{\tau}\right).
+\]
+Intuizione:
+\begin{itemize}
+  \item \textbf{Bassa temperatura} ($0<\tau<1$): la distribuzione si \emph{concentra} sui token più probabili (più ``greedy'').
+  \item \textbf{Alta temperatura} ($\tau>1$): la distribuzione si \emph{appiattisce}, aumentando la diversità.
+\end{itemize}
+
+Nella pratica, molti sistemi combinano temperature e un filtro (top-$p$ o top-$k$), per evitare la coda lunga e, allo stesso tempo,
+controllare quanto la generazione sia conservativa o creativa.
+% =========================
+% 10.3 Pretraining Large Language Models
+% =========================
+\section{Pretraining dei Large Language Models}
+\label{sec:llm-pretraining}
+
+Le sezioni precedenti hanno descritto \emph{come} un large language model (LLM) genera testo: dato un contesto,
+produce una distribuzione di probabilità sul prossimo token e poi, tramite una strategia di decoding (greedy, sampling, ecc.),
+sceglie il token da emettere. In questa sezione chiudiamo il cerchio e descriviamo \emph{come} si addestra un transformer
+affinché questa distribuzione sia utile: l'obiettivo del pretraining è rendere il modello un buon \emph{predittore del prossimo token}
+su una grande varietà di testi, così da acquisire regolarità linguistiche e conoscenze statistiche riutilizzabili in molti compiti.
+
+\subsection{Setup, notazione e obiettivo di language modeling}
+\label{subsec:llm-setup}
+
+Sia $V$ il vocabolario (insieme dei token) e $|V|$ la sua cardinalità. Un testo viene rappresentato come sequenza di token
+\[
+W = (w_1, w_2, \dots, w_T), \qquad \text{con } w_t \in V,
+\]
+dove $T$ è la lunghezza della sequenza (numero di token). Un transformer decoder-only, con maschera causale,
+definisce un modello probabilistico autoregressivo:
+\[
+p_\theta(W) \;=\; \prod_{t=1}^{T} p_\theta(w_t \mid w_{<t}),
+\]
+dove $w_{<t} = (w_1,\dots,w_{t-1})$ e $\theta$ indica l'insieme dei parametri del modello.
+
+In pratica, al passo $t$ il modello produce un vettore di \emph{logit}
+\[
+u_t \in \mathbb{R}^{|V|},
+\]
+che viene normalizzato con una softmax per ottenere una distribuzione di probabilità sul vocabolario:
+\[
+\hat{y}_t = \mathrm{softmax}(u_t) \in \Delta^{|V|-1},
+\]
+dove $\Delta^{|V|-1}$ denota il simplesso delle distribuzioni di probabilità su $|V|$ elementi.
+L'elemento $\hat{y}_t[v]$ è quindi la probabilità assegnata dal modello al token $v \in V$ come \emph{prossimo token}.
+
+\subsection{Self-supervision e funzione obiettivo}
+\label{subsec:self-supervision-obj}
+
+Il pretraining degli LLM è tipicamente \textbf{self-supervised}: non servono etichette manuali, perché il testo stesso fornisce
+la supervisione. L'idea è semplice: dato un prefisso $w_{\le t}$, il ``target'' naturale è il token successivo $w_{t+1}$.
+
+Per formalizzare la loss, definiamo la distribuzione corretta (target) come one-hot sul token vero $w_{t+1}$:
+\[
+y_t[v] =
+\begin{cases}
+1 & \text{se } v = w_{t+1},\\
+0 & \text{altrimenti.}
+\end{cases}
+\]
+La cross-entropy tra target $y_t$ e predizione $\hat{y}_t$ è:
+\[
+L_{\mathrm{CE}}(\hat{y}_t, y_t)
+\;=\;
+-\sum_{v\in V} y_t[v] \log \hat{y}_t[v].
+\]
+Poiché $y_t$ è one-hot, la somma collassa sul token corretto:
+\[
+L_{\mathrm{CE}}(\hat{y}_t, y_t)
+\;=\;
+-\log \hat{y}_t[w_{t+1}]
+\;=\;
+-\log p_\theta(w_{t+1}\mid w_{\le t}).
+\]
+
+Per una sequenza di lunghezza $T$, si minimizza la media (o somma) delle cross-entropy ai vari passi.
+Usando la media:
+\[
+L(W;\theta) \;=\; \frac{1}{T-1} \sum_{t=1}^{T-1} -\log p_\theta(w_{t+1}\mid w_{\le t}).
+\]
+Minimizzare questa loss equivale a massimizzare la log-verosimiglianza (maximum likelihood) del corpus di training.
+
+\begin{figure}[t]
+  \centering
+  % Metti questo file nella cartella indicata, oppure usa \graphicspath
+  \includegraphics[width=\linewidth]{pictures/transformer_llm_training.png}
+  \caption{Addestramento di un transformer come language model: per ogni posizione si predice il token successivo e si calcola una loss di cross-entropy; la loss totale è la media (o somma) sulle posizioni.}
+  \label{fig:train-lm}
+\end{figure}
+
+\subsection{Teacher forcing}
+\label{subsec:teacher-forcing}
+
+Nel training autoregressivo si adotta quasi sempre la strategia detta \textbf{teacher forcing}.
+Anziché far avanzare la sequenza alimentando al modello i token che lui stesso ha predetto, durante l'addestramento
+si fornisce sempre il prefisso \emph{corretto} dal dataset. In altre parole, per calcolare la loss al tempo $t$,
+il modello condiziona su $w_{\le t}$ (vero), non su una storia generata $\tilde{w}_{\le t}$.
+\begin{notebox}
+\textbf{Teacher Forcing}\\
+Nel teacher forcing il modello è addestrato a predire $w_{t+1}$ avendo come contesto il prefisso vero $w_{\le t}$.
+Durante la generazione, invece, il contesto include i token effettivamente generati dal modello. Questa differenza
+(training con storia vera vs inference con storia generata) è una delle ragioni per cui la qualità del decoding e delle strategie di campionamento
+è cruciale: in generazione gli errori possono propagarsi perché il modello si condiziona su output potenzialmente imperfetti.
+\end{notebox}
+Questo ha due conseguenze pratiche:
+\begin{enumerate}
+  \item stabilizza l'ottimizzazione: la rete vede input realistici (prefissi reali), quindi il gradiente è meno rumoroso;
+  \item permette il calcolo della loss su tutte le posizioni in modo efficiente (in particolare con i transformer),
+        perché per ogni token della finestra si conosce già il target successivo.
+\end{enumerate}
+
+% Nota: richiede un pacchetto per i box (scegline uno).
+% Opzione 1: \usepackage{tcolorbox}
+% Opzione 2: \usepackage{mdframed}
+% Qui uso tcolorbox.
+
+\subsection{Efficienza computazionale: parallelismo nei transformer}
+\label{subsec:parallelism}
+
+Nei modelli ricorrenti classici, il calcolo degli stati nascosti è intrinsecamente seriale: per ottenere lo stato al tempo $t$
+serve quello al tempo $t-1$. Nei transformer, invece, (con maschera causale) ogni posizione può essere processata in parallelo
+\emph{all'interno di una stessa forward pass}, perché la dipendenza dal passato è implementata dalla self-attention mascherata:
+ogni token $t$ può ``leggere'' solo posizioni $\le t$, ma tutte le posizioni della finestra vengono comunque elaborate simultaneamente come matrici. In pratica, si costruiscono batch che contengono finestre di lunghezza $T$ (spesso chiamata anche \emph{context length} o \emph{sequence length})
+e si ottimizza la loss media sul batch mediante gradient descent (o varianti).
+Quando un documento è più corto della finestra, si possono concatenare più documenti separandoli con token speciali (ad es.\ fine-documento/testo),
+così da sfruttare al massimo la capacità computazionale.
+
+\subsection{Dati di pretraining: fonti e filtraggio}
+\label{subsec:data}
+
+La qualità e la copertura del pretraining dipendono in larga misura dal corpus.
+Gli LLM moderni usano corpora enormi che combinano:
+\begin{itemize}
+  \item testo dal web (crawl) in grandi quantità,
+  \item sorgenti relativamente curate (enciclopedie, articoli, libri),
+  \item talvolta altre tipologie (dialoghi, forum, materiale tecnico, ecc.).
+\end{itemize}
+L'intuizione è che, su scala molto grande, il modello incontri naturalmente una varietà di stili e contenuti sufficiente
+a imparare regolarità linguistiche generali e molti pattern utili (domande/risposte, definizioni, esempi, spiegazioni, ...).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{pictures/corpus.png}
+  \caption{Esempio di composizione di un grande corpus di pretraining (treemap): diverse sorgenti contribuiscono con proporzioni differenti.}
+  \label{fig:pile}
+\end{figure}
+
+\paragraph{Filtri di qualità e sicurezza.}
+Poiché il web contiene rumore, duplicazioni e contenuti problematici, i corpus vengono in genere \emph{pre-processati}.
+Due famiglie di scelte sono particolarmente comuni:
+\begin{itemize}
+  \item \textbf{Qualità}: deduplicazione (a livello documento o porzioni di testo), rimozione di boilerplate e pagine a bassa densità informativa,
+        esclusione di porzioni non linguistiche quando indesiderate.
+  \item \textbf{Sicurezza/privacy}: tentativi di ridurre contenuti tossici e la presenza di informazioni personali (PII).
+\end{itemize}
+Questi filtri migliorano spesso la resa del modello, ma introducono anche trade-off: criteri troppo aggressivi possono rimuovere esempi utili
+o introdurre bias; criteri troppo permissivi possono lasciare rumore e contenuti problematici.
+
+\paragraph{Aspetti etici e legali (panoramica).}
+L'uso di corpora web solleva questioni importanti (copyright, consenso dei siti, privacy). Qui basta notare che
+la costruzione del dataset non è un dettaglio secondario: è parte integrante del progetto di un LLM e influenza
+sia le capacità sia i rischi del modello.
+
+\subsection{Dal pretraining all'adattamento: finetuning}
+\label{subsec:finetune}
+
+Il pretraining produce un modello ``generale'', ma molte applicazioni richiedono adattamento:
+a un dominio (es.\ medico/legale), a uno stile, a una lingua specifica, o a un formato di risposta desiderato.
+In senso ampio, \textbf{finetuning} indica il processo di partire da un modello pre-addestrato e continuare l'ottimizzazione
+su dati aggiuntivi più mirati.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{pictures/training_llm.png}
+  \caption{Schema concettuale: pretraining su grandi corpora $\rightarrow$ modello generale $\rightarrow$ adattamento su dati specifici (finetuning) $\rightarrow$ modello specializzato.}
+  \label{fig:pretrain-finetune}
+\end{figure}
+
+\paragraph{Tipi di adattamento (senza anticipare modelli specifici).}
+Nel seguito del capitolo e nei capitoli successivi incontreremo più strategie di post-training/finetuning.
+Per ora è sufficiente distinguere \emph{cosa} si modifica:
+\begin{itemize}
+  \item \textbf{Aggiornamento completo}: si aggiornano (quasi) tutti i parametri del modello su un nuovo corpus, spesso mantenendo lo stesso obiettivo di next-token prediction
+        (\emph{continued pretraining}).
+  \item \textbf{Aggiornamento parziale}: si congelano molti pesi e si aggiornano solo sottoinsiemi piccoli o moduli aggiuntivi, per ridurre costi e memoria
+        (\emph{parameter-efficient finetuning}, che descriveremo più avanti).
+  \item \textbf{Adattamenti supervisionati}: in alcune impostazioni di post-training si usano dataset costruiti con coppie input/risposta (o input/etichetta)
+        per ottenere comportamenti più desiderabili (ad esempio seguire istruzioni, rispondere a domande, ecc.). Entreremo nei dettagli nelle sezioni successive del corso/testo.
+\end{itemize}
+
+\paragraph{Collegamento alle sezioni successive.}
+Una volta completato (pre-)training e post-training, restano due domande centrali.
+La prima è come misurare in modo affidabile ciò che il modello ha imparato: non basta guardare la loss, ma serve valutare
+qualità linguistica, coerenza, robustezza e (quando rilevante) factuality, con metriche e benchmark appropriati.
+La seconda è come la scala influenzi queste capacità: aumentando dati, parametri e risorse computazionali cambiano
+sia le prestazioni sia le modalità con cui emergono nuove abilità, con implicazioni pratiche su costi e progettazione.
+Le prossime sezioni affrontano quindi prima la valutazione dei large language models e poi le sfide e i principi legati alla scalabilità.
