@@ -111,33 +111,40 @@
 \contentsline {subsection}{\numberline {3.12.6}Dal pretraining all'adattamento: finetuning}{82}{subsection.3.12.6}%
 \contentsline {paragraph}{Tipi di adattamento (senza anticipare modelli specifici).}{82}{section*.87}%
 \contentsline {paragraph}{Collegamento alle sezioni successive.}{83}{section*.88}%
-\contentsline {chapter}{\numberline {4}Disentangling Dense Embeddings \\with Sparse Autoencoders}{85}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Motivazione e contesto}{85}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Metodologia e Architettura}{86}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Definizione del Modello}{86}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Vincolo di Sparsità \textit {k-Sparse}}{87}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Funzione di Costo e Addestramento}{87}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Interpretazione Automatizzata delle Feature}{88}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Feature Families e Struttura Gerarchica}{88}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Feature Families e Struttura Gerarchica}{89}{section.4.5}%
-\contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{89}{section*.89}%
-\contentsline {subsection}{\numberline {4.5.1}Costruzione del Grafo di Co-occorrenza}{90}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Identificazione delle Feature Families}{91}{subsection.4.5.2}%
-\contentsline {chapter}{\numberline {5}Prisma}{93}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduzione}{93}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Architettura}{93}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Generazione Embeddings}{94}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{94}{subsection.5.3.1}%
-\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{95}{section*.91}%
-\contentsline {paragraph}{Segmentazione in chunk contigui}{95}{section*.92}%
-\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{95}{section*.93}%
-\contentsline {paragraph}{Aggregazione a livello documento}{96}{section*.94}%
-\contentsline {section}{\numberline {5.4}Training SAE}{96}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Interpretazione}{97}{section.5.5}%
-\contentsline {chapter}{\numberline {6}Esperimenti e risultati}{99}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduzione}{99}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Pedianet}{99}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Scelta del modello di embedding}{100}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Esperimento}{100}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}Abstracts}{101}{section.6.3}%
-\contentsline {section}{\numberline {6.4}PubMed}{101}{section.6.4}%
+\contentsline {chapter}{\numberline {4}Il problema del disentanglement}{85}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introduzione}{85}{section.4.1}%
+\contentsline {section}{\numberline {4.2}La superposizione e l'ipotesi dei modelli giocattolo}{86}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}L'emergere della polisemanticità}{86}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Diagrammi di fase e strutture geometriche}{87}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Verso una simulazione rumorosa}{87}{subsection.4.2.3}%
+\contentsline {chapter}{\numberline {5}Disentangling Dense Embeddings \\with Sparse Autoencoders}{89}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduzione}{89}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Ipotesi della superposizione}{90}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Metodologia e Architettura}{90}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Definizione del Modello}{90}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Vincolo di Sparsità \textit {k-Sparse}}{91}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Funzione di Costo e Addestramento}{91}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Interpretazione Automatizzata delle Feature}{92}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Feature Families e Struttura Gerarchica}{92}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Feature Families e Struttura Gerarchica}{93}{section.5.6}%
+\contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{93}{section*.89}%
+\contentsline {subsection}{\numberline {5.6.1}Costruzione del Grafo di Co-occorrenza}{94}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Identificazione delle Feature Families}{95}{subsection.5.6.2}%
+\contentsline {chapter}{\numberline {6}Prisma}{97}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduzione}{97}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Architettura}{97}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Generazione Embeddings}{98}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{98}{subsection.6.3.1}%
+\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{99}{section*.91}%
+\contentsline {paragraph}{Segmentazione in chunk contigui}{99}{section*.92}%
+\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{99}{section*.93}%
+\contentsline {paragraph}{Aggregazione a livello documento}{100}{section*.94}%
+\contentsline {section}{\numberline {6.4}Training SAE}{100}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Interpretazione}{101}{section.6.5}%
+\contentsline {chapter}{\numberline {7}Esperimenti e risultati}{103}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduzione}{103}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Pedianet}{103}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Scelta del modello di embedding}{104}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Esperimento}{104}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Abstracts}{105}{section.7.3}%
+\contentsline {section}{\numberline {7.4}PubMed}{105}{section.7.4}%

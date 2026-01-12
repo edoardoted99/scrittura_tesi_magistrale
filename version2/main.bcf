@@ -2434,14 +2434,17 @@
     <bcf:citekey order="87">jm3</bcf:citekey>
     <bcf:citekey order="88">jm3</bcf:citekey>
     <bcf:citekey order="89">jm3</bcf:citekey>
-    <bcf:citekey order="90">wang2024disentangledrepresentationlearning</bcf:citekey>
-    <bcf:citekey order="91">BUONOCORE2023104431</bcf:citekey>
-    <bcf:citekey order="92">autoencodersbank2020autoencoders</bcf:citekey>
-    <bcf:citekey order="93">michelucci2022introductionautoencoders</bcf:citekey>
-    <bcf:citekey order="94">wang2024disentangledrepresentationlearning</bcf:citekey>
-    <bcf:citekey order="95">jm3</bcf:citekey>
-    <bcf:citekey order="96">jurafsky2024speech</bcf:citekey>
-    <bcf:citekey order="97">BUONOCORE2023104431</bcf:citekey>
+    <bcf:citekey order="90">elhage2022toy</bcf:citekey>
+    <bcf:citekey order="91">elhage2022toy</bcf:citekey>
+    <bcf:citekey order="92">wang2024disentangledrepresentationlearning</bcf:citekey>
+    <bcf:citekey order="93">BUONOCORE2023104431</bcf:citekey>
+    <bcf:citekey order="94">autoencodersbank2020autoencoders</bcf:citekey>
+    <bcf:citekey order="95">michelucci2022introductionautoencoders</bcf:citekey>
+    <bcf:citekey order="96">wang2024disentangledrepresentationlearning</bcf:citekey>
+    <bcf:citekey order="97">jm3</bcf:citekey>
+    <bcf:citekey order="98">jurafsky2024speech</bcf:citekey>
+    <bcf:citekey order="99">elhage2022toy</bcf:citekey>
+    <bcf:citekey order="100">BUONOCORE2023104431</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  7 JAN 2026 12:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  12 JAN 2026 20:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./main.tex
+**main.tex
 (./main.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21>
@@ -1242,7 +1242,8 @@ LaTeX Warning: Label `fig:skipgram_structure' multiply defined.
 
 LaTeX Warning: Label `fig:skipgram_structure@cref' multiply defined.
 
-) (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.aux)
+) (./chapters/04_superposition.aux)
+(./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.aux)
 (./chapters/05_prisma.aux) (./chapters/06_experiments.aux)
 (./chapters/07_dati_esperimenti_e_risultati.aux))
 \openout1 = `main.aux'.
@@ -1360,11 +1361,14 @@ No file style/abstract.tex.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4]
-[5])
+Underfull \vbox (badness 2205) has occurred while \output is active []
+
+ [5])
 \tf@toc=\write8
 \openout8 = `main.toc'.
 
- [6]
+
+[6]
 \openout2 = `chapters/01_introduzione.aux'.
 
  (./chapters/01_introduzione.tex
@@ -1384,19 +1388,19 @@ Capitolo 1.
 ]
 Capitolo 2.
 [3]
-<images/autoencoder.png, id=526, 535.2497pt x 145.29282pt>
+<images/autoencoder.png, id=541, 535.2497pt x 145.29282pt>
 File: images/autoencoder.png Graphic file (type png)
 <use images/autoencoder.png>
 Package pdftex.def Info: images/autoencoder.png  used on input line 60.
 (pdftex.def)             Requested size: 390.0pt x 105.86998pt.
  [4 <./images/autoencoder.png (PNG copy)>] [5] [6] [7]
-<pictures/meno.jpeg, id=564, 1204.5pt x 787.94376pt>
+<pictures/meno.jpeg, id=579, 1204.5pt x 787.94376pt>
 File: pictures/meno.jpeg Graphic file (type jpg)
 <use pictures/meno.jpeg>
 Package pdftex.def Info: pictures/meno.jpeg  used on input line 284.
 (pdftex.def)             Requested size: 272.99881pt x 178.5902pt.
  [8] [9 <./pictures/meno.jpeg>] [10] [11] [12] [13]
-<images/SAE_diagram.png, id=606, 534.99875pt x 409.53pt>
+<images/SAE_diagram.png, id=621, 534.99875pt x 409.53pt>
 File: images/SAE_diagram.png Graphic file (type png)
 <use images/SAE_diagram.png>
 Package pdftex.def Info: images/SAE_diagram.png  used on input line 577.
@@ -1429,7 +1433,7 @@ Overfull \hbox (0.59558pt too wide) in paragraph at lines 158--170
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [21] [22] [23] [24] [25] [26] [27]
-<pictures/embeddings_w2vec.png, id=712, 1294.8375pt x 630.355pt>
+<pictures/embeddings_w2vec.png, id=727, 1294.8375pt x 630.355pt>
 File: pictures/embeddings_w2vec.png Graphic file (type png)
 <use pictures/embeddings_w2vec.png>
 Package pdftex.def Info: pictures/embeddings_w2vec.png  used on input line 379.
@@ -1440,20 +1444,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [29]
 [30] [31]
-<pictures/rnn.png, id=734, 1487.5575pt x 586.19pt>
+<pictures/rnn.png, id=749, 1487.5575pt x 586.19pt>
 File: pictures/rnn.png Graphic file (type png)
 <use pictures/rnn.png>
 Package pdftex.def Info: pictures/rnn.png  used on input line 465.
 (pdftex.def)             Requested size: 390.0pt x 153.68486pt.
  [32 <./pictures/rnn.png>]
-<pictures/rnn_unrolled.png, id=743, 1578.89874pt x 909.3975pt>
+<pictures/rnn_unrolled.png, id=758, 1578.89874pt x 909.3975pt>
 File: pictures/rnn_unrolled.png Graphic file (type png)
 <use pictures/rnn_unrolled.png>
 Package pdftex.def Info: pictures/rnn_unrolled.png  used on input line 491.
 (pdftex.def)             Requested size: 390.0pt x 224.62907pt.
  [33 <./pictures/rnn_unrolled.png>] [34]
 [35]
-<pictures/lstm.png, id=767, 1264.725pt x 791.95876pt>
+<pictures/lstm.png, id=782, 1264.725pt x 791.95876pt>
 File: pictures/lstm.png Graphic file (type png)
 <use pictures/lstm.png>
 Package pdftex.def Info: pictures/lstm.png  used on input line 570.
@@ -1463,7 +1467,7 @@ Package pdftex.def Info: pictures/lstm.png  used on input line 570.
 LaTeX Warning: Reference `fig:fig:seq2seq_formal' on page 39 undefined on input
  line 653.
 
-<pictures/seq2seq_formal.png, id=801, 1716.4125pt x 683.55376pt>
+<pictures/seq2seq_formal.png, id=816, 1716.4125pt x 683.55376pt>
 File: pictures/seq2seq_formal.png Graphic file (type png)
 <use pictures/seq2seq_formal.png>
 Package pdftex.def Info: pictures/seq2seq_formal.png  used on input line 656.
@@ -1481,7 +1485,7 @@ LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-<pictures/bottleneck.png, id=814, 1720.4275pt x 298.11375pt>
+<pictures/bottleneck.png, id=829, 1720.4275pt x 298.11375pt>
 File: pictures/bottleneck.png Graphic file (type png)
 <use pictures/bottleneck.png>
 Package pdftex.def Info: pictures/bottleneck.png  used on input line 709.
@@ -1501,13 +1505,13 @@ Overfull \hbox (41.77638pt too wide) has occurred while \output is active
  []
 
 [41 <./pictures/bottleneck.png>]
-<pictures/attention_dynamic_context.png, id=841, 1055.945pt x 345.29pt>
+<pictures/attention_dynamic_context.png, id=856, 1055.945pt x 345.29pt>
 File: pictures/attention_dynamic_context.png Graphic file (type png)
 <use pictures/attention_dynamic_context.png>
 Package pdftex.def Info: pictures/attention_dynamic_context.png  used on input 
 line 748.
 (pdftex.def)             Requested size: 390.0pt x 127.52873pt.
-<pictures/attention_ci_computation.png, id=846, 1714.405pt x 776.9025pt>
+<pictures/attention_ci_computation.png, id=861, 1714.405pt x 776.9025pt>
 File: pictures/attention_ci_computation.png Graphic file (type png)
 <use pictures/attention_ci_computation.png>
 Package pdftex.def Info: pictures/attention_ci_computation.png  used on input l
@@ -1527,7 +1531,7 @@ Overfull \hbox (186.04929pt too wide) detected at line 809
 []  \OMS/cmsy/m/n/12 !  []  !  []  !  []  !  []\OML/cmm/m/it/12 :
  []
 
-<pictures/transformer_overview.png, id=865, 1515.6625pt x 968.61874pt>
+<pictures/transformer_overview.png, id=880, 1515.6625pt x 968.61874pt>
 File: pictures/transformer_overview.png Graphic file (type png)
 <use pictures/transformer_overview.png>
 Package pdftex.def Info: pictures/transformer_overview.png  used on input line 
@@ -1538,13 +1542,13 @@ Package pdftex.def Info: pictures/transformer_overview.png  used on input line
 LaTeX Warning: Reference `sec:self_attention' on page 46 undefined on input lin
 e 835.
 
-<pictures/selfattn_alpha.png.png, id=886, 1720.4275pt x 850.17625pt>
+<pictures/selfattn_alpha.png.png, id=902, 1720.4275pt x 850.17625pt>
 File: pictures/selfattn_alpha.png.png Graphic file (type png)
 <use pictures/selfattn_alpha.png.png>
 Package pdftex.def Info: pictures/selfattn_alpha.png.png  used on input line 84
 2.
 (pdftex.def)             Requested size: 390.0pt x 192.72136pt.
-<pictures/selfattn_flow.png, id=887, 1725.44624pt x 369.38pt>
+<pictures/selfattn_flow.png, id=903, 1725.44624pt x 369.38pt>
 File: pictures/selfattn_flow.png Graphic file (type png)
 <use pictures/selfattn_flow.png>
 Package pdftex.def Info: pictures/selfattn_flow.png  used on input line 849.
@@ -1566,26 +1570,26 @@ Overfull \hbox (20.02695pt too wide) in paragraph at lines 914--915
  []
 
 [50]
-<pictures/selfattn_head.png, id=931, 1191.45125pt x 918.43124pt>
+<pictures/selfattn_head.png, id=946, 1191.45125pt x 918.43124pt>
 File: pictures/selfattn_head.png Graphic file (type png)
 <use pictures/selfattn_head.png>
 Package pdftex.def Info: pictures/selfattn_head.png  used on input line 931.
 (pdftex.def)             Requested size: 390.0pt x 300.63077pt.
  [51] [52 <./pictures/selfattn_head.png>]
-<pictures/multihead.png, id=951, 1423.3175pt x 642.4pt>
+<pictures/multihead.png, id=966, 1423.3175pt x 642.4pt>
 File: pictures/multihead.png Graphic file (type png)
 <use pictures/multihead.png>
 Package pdftex.def Info: pictures/multihead.png  used on input line 966.
 (pdftex.def)             Requested size: 390.0pt x 176.0185pt.
  [53] [54 <./pictures/multihead.png>]
-<pictures/transformer_block.png, id=969, 1199.48125pt x 915.42pt>
+<pictures/transformer_block.png, id=984, 1199.48125pt x 915.42pt>
 File: pictures/transformer_block.png Graphic file (type png)
 <use pictures/transformer_block.png>
 Package pdftex.def Info: pictures/transformer_block.png  used on input line 100
 2.
 (pdftex.def)             Requested size: 350.99762pt x 267.86752pt.
  [55 <./pictures/transformer_block.png>] [56] [57]
-<pictures/token_stream.png, id=1015, 1711.39375pt x 616.3025pt>
+<pictures/token_stream.png, id=1030, 1711.39375pt x 616.3025pt>
 File: pictures/token_stream.png Graphic file (type png)
 <use pictures/token_stream.png>
 Package pdftex.def Info: pictures/token_stream.png  used on input line 1097.
@@ -1600,18 +1604,18 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1115.
 
 [58 <./pictures/token_stream.png>]
-<pictures/qkt_full.png, id=1027, 1724.4425pt x 549.05125pt>
+<pictures/qkt_full.png, id=1042, 1724.4425pt x 549.05125pt>
 File: pictures/qkt_full.png Graphic file (type png)
 <use pictures/qkt_full.png>
 Package pdftex.def Info: pictures/qkt_full.png  used on input line 1164.
 (pdftex.def)             Requested size: 350.99762pt x 111.75195pt.
  [59]
-<pictures/qkt_masked.png, id=1043, 1723.43875pt x 538.01pt>
+<pictures/qkt_masked.png, id=1058, 1723.43875pt x 538.01pt>
 File: pictures/qkt_masked.png Graphic file (type png)
 <use pictures/qkt_masked.png>
 Package pdftex.def Info: pictures/qkt_masked.png  used on input line 1198.
 (pdftex.def)             Requested size: 350.99762pt x 109.57033pt.
-<pictures/single_head_parallel.png, id=1047, 1716.4125pt x 975.645pt>
+<pictures/single_head_parallel.png, id=1062, 1716.4125pt x 975.645pt>
 File: pictures/single_head_parallel.png Graphic file (type png)
 <use pictures/single_head_parallel.png>
 Package pdftex.def Info: pictures/single_head_parallel.png  used on input line 
@@ -1619,20 +1623,20 @@ Package pdftex.def Info: pictures/single_head_parallel.png  used on input line
 (pdftex.def)             Requested size: 382.19833pt x 217.2478pt.
  [60 <./pictures/qkt_full.png> <./pictures/qkt_masked.png>] [61 <./pictures/sin
 gle_head_parallel.png>] [62]
-<pictures/select_single_embedding.png, id=1088, 1729.46124pt x 376.40625pt>
+<pictures/select_single_embedding.png, id=1103, 1729.46124pt x 376.40625pt>
 File: pictures/select_single_embedding.png Graphic file (type png)
 <use pictures/select_single_embedding.png>
 Package pdftex.def Info: pictures/select_single_embedding.png  used on input li
 ne 1313.
 (pdftex.def)             Requested size: 343.2019pt x 74.69408pt.
-<pictures/select_sequence_embedding.png, id=1093, 1726.45pt x 411.5375pt>
+<pictures/select_sequence_embedding.png, id=1108, 1726.45pt x 411.5375pt>
 File: pictures/select_sequence_embedding.png Graphic file (type png)
 <use pictures/select_sequence_embedding.png>
 Package pdftex.def Info: pictures/select_sequence_embedding.png  used on input 
 line 1333.
 (pdftex.def)             Requested size: 343.2019pt x 81.80995pt.
  [63 <./pictures/select_single_embedding.png>]
-<pictures/token_plus_position.png, id=1109, 1724.4425pt x 684.5575pt>
+<pictures/token_plus_position.png, id=1124, 1724.4425pt x 684.5575pt>
 File: pictures/token_plus_position.png Graphic file (type png)
 <use pictures/token_plus_position.png>
 Package pdftex.def Info: pictures/token_plus_position.png  used on input line 1
@@ -1643,7 +1647,7 @@ ition.png>]
 Underfull \vbox (badness 4913) has occurred while \output is active []
 
  [66]
-<pictures/lm_head_overview.png, id=1138, 1721.43124pt x 743.77875pt>
+<pictures/lm_head_overview.png, id=1154, 1721.43124pt x 743.77875pt>
 File: pictures/lm_head_overview.png Graphic file (type png)
 <use pictures/lm_head_overview.png>
 Package pdftex.def Info: pictures/lm_head_overview.png  used on input line 1470
@@ -1651,26 +1655,26 @@ Package pdftex.def Info: pictures/lm_head_overview.png  used on input line 1470
 (pdftex.def)             Requested size: 370.49881pt x 160.07954pt.
 
 [67 <./pictures/lm_head_overview.png>] [68]
-<pictures/decoder_only_stack.png, id=1164, 992.70876pt x 1000.73875pt>
+<pictures/decoder_only_stack.png, id=1179, 992.70876pt x 1000.73875pt>
 File: pictures/decoder_only_stack.png Graphic file (type png)
 <use pictures/decoder_only_stack.png>
 Package pdftex.def Info: pictures/decoder_only_stack.png  used on input line 15
 42.
 (pdftex.def)             Requested size: 319.80286pt x 322.38075pt.
  [69] [70 <./pictures/decoder_only_stack.png>] [71]
-<pictures/llm_completion.png, id=1186, 1719.42375pt x 947.54pt>
+<pictures/llm_completion.png, id=1201, 1719.42375pt x 947.54pt>
 File: pictures/llm_completion.png Graphic file (type png)
 <use pictures/llm_completion.png>
 Package pdftex.def Info: pictures/llm_completion.png  used on input line 1637.
 (pdftex.def)             Requested size: 390.0pt x 214.92229pt.
  [72 <./pictures/llm_completion.png>]
-<pictures/summarization_example.png, id=1195, 1722.435pt x 928.46875pt>
+<pictures/summarization_example.png, id=1210, 1722.435pt x 928.46875pt>
 File: pictures/summarization_example.png Graphic file (type png)
 <use pictures/summarization_example.png>
 Package pdftex.def Info: pictures/summarization_example.png  used on input line
  1662.
 (pdftex.def)             Requested size: 390.0pt x 210.22818pt.
-<pictures/tldr_summarization.png, id=1196, 1716.4125pt x 915.42pt>
+<pictures/tldr_summarization.png, id=1211, 1716.4125pt x 915.42pt>
 File: pictures/tldr_summarization.png Graphic file (type png)
 <use pictures/tldr_summarization.png>
 Package pdftex.def Info: pictures/tldr_summarization.png  used on input line 16
@@ -1696,20 +1700,20 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1749.
 
 [76] [77]
-<pictures/transformer_llm_training.png, id=1225, 1712.3975pt x 946.53625pt>
+<pictures/transformer_llm_training.png, id=1240, 1712.3975pt x 946.53625pt>
 File: pictures/transformer_llm_training.png Graphic file (type png)
 <use pictures/transformer_llm_training.png>
 Package pdftex.def Info: pictures/transformer_llm_training.png  used on input l
 ine 1858.
 (pdftex.def)             Requested size: 390.0pt x 215.57564pt.
  [78] [79 <./pictures/transformer_llm_training.png>]
-<pictures/corpus.png, id=1238, 1187.43625pt x 654.445pt>
+<pictures/corpus.png, id=1253, 1187.43625pt x 654.445pt>
 File: pictures/corpus.png Graphic file (type png)
 <use pictures/corpus.png>
 Package pdftex.def Info: pictures/corpus.png  used on input line 1915.
 (pdftex.def)             Requested size: 390.0pt x 214.94894pt.
  [80] [81 <./pictures/corpus.png>]
-<pictures/training_llm.png, id=1252, 1434.35875pt x 543.02875pt>
+<pictures/training_llm.png, id=1268, 1434.35875pt x 543.02875pt>
 File: pictures/training_llm.png Graphic file (type png)
 <use pictures/training_llm.png>
 Package pdftex.def Info: pictures/training_llm.png  used on input line 1946.
@@ -1727,11 +1731,9 @@ Overfull \hbox (13.3014pt too wide) in paragraph at lines 1964--102
  []
 
 [82 <./pictures/training_llm.png>] [83]
-\openout2 = `chapters/04_disentangling_dense_embeddings_with_sparse_autoencoder
-s.aux'.
+\openout2 = `chapters/04_superposition.aux'.
 
-
-(./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.tex
+ (./chapters/04_superposition.tex
 [84
 
 
@@ -1740,46 +1742,77 @@ s.aux'.
 ]
 Capitolo 4.
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 1.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [85]
-Overfull \hbox (118.07016pt too wide) has occurred while \output is active
-\T1/cmr/m/n/12 86 \T1/cmr/m/sl/12 CAPITOLO 4.  DISENTANGLING DENSE EMBEDDINGS W
-ITH SPARSE AUTOENCODERS
+Overfull \hbox (2.89052pt too wide) in paragraph at lines 11--11
+[]\T1/cmr/bx/n/17.28 La su-per-po-si-zio-ne e l'i-po-te-si dei mo-del-li gio-
  []
 
-[86] [87]
-Overfull \hbox (118.07016pt too wide) has occurred while \output is active
-\T1/cmr/m/n/12 88 \T1/cmr/m/sl/12 CAPITOLO 4.  DISENTANGLING DENSE EMBEDDINGS W
-ITH SPARSE AUTOENCODERS
+
+LaTeX Warning: Citation 'elhage2022toy' on page 86 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'elhage2022toy' on page 86 undefined on input line 25.
+
+[86])
+Overfull \hbox (10.09663pt too wide) has occurred while \output is active
+\T1/cmr/m/sl/12 4.2.  LA SUPERPOSIZIONE E L'IPOTESI DEI MODELLI GIOCATTOLO \T1/
+cmr/m/n/12 87
  []
 
-[88] [89]
-Overfull \hbox (118.07016pt too wide) has occurred while \output is active
-\T1/cmr/m/n/12 90 \T1/cmr/m/sl/12 CAPITOLO 4.  DISENTANGLING DENSE EMBEDDINGS W
-ITH SPARSE AUTOENCODERS
- []
+[87]
+\openout2 = `chapters/04_disentangling_dense_embeddings_with_sparse_autoencoder
+s.aux'.
 
-[90]) [91]
-\openout2 = `chapters/05_prisma.aux'.
-
- (./chapters/05_prisma.tex
-Overfull \hbox (118.07016pt too wide) has occurred while \output is active
-\T1/cmr/m/n/12 92 \T1/cmr/m/sl/12 CAPITOLO 4.  DISENTANGLING DENSE EMBEDDINGS W
-ITH SPARSE AUTOENCODERS
- []
-
-[92
+ (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.tex [88
 
 
 
 
 ]
 Capitolo 5.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\\' on input line 1.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [89]
+Overfull \hbox (118.07016pt too wide) has occurred while \output is active
+\T1/cmr/m/n/12 90 \T1/cmr/m/sl/12 CAPITOLO 5.  DISENTANGLING DENSE EMBEDDINGS W
+ITH SPARSE AUTOENCODERS
+ []
+
+[90] [91]
+Overfull \hbox (118.07016pt too wide) has occurred while \output is active
+\T1/cmr/m/n/12 92 \T1/cmr/m/sl/12 CAPITOLO 5.  DISENTANGLING DENSE EMBEDDINGS W
+ITH SPARSE AUTOENCODERS
+ []
+
+[92] [93]
+Overfull \hbox (118.07016pt too wide) has occurred while \output is active
+\T1/cmr/m/n/12 94 \T1/cmr/m/sl/12 CAPITOLO 5.  DISENTANGLING DENSE EMBEDDINGS W
+ITH SPARSE AUTOENCODERS
+ []
+
+[94]) [95]
+\openout2 = `chapters/05_prisma.aux'.
+
+ (./chapters/05_prisma.tex
+Overfull \hbox (118.07016pt too wide) has occurred while \output is active
+\T1/cmr/m/n/12 96 \T1/cmr/m/sl/12 CAPITOLO 5.  DISENTANGLING DENSE EMBEDDINGS W
+ITH SPARSE AUTOENCODERS
+ []
+
+[96
+
+
+
+
+]
+Capitolo 6.
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 2
 6.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
@@ -1789,22 +1822,22 @@ Overfull \hbox (3.7292pt too wide) in paragraph at lines 32--32
  [][]\T1/cmss/bx/n/10.95 Interpretazione 
  []
 
-[93] [94] [95] [96]) [97]
+[97] [98] [99] [100]) [101]
 \openout2 = `chapters/06_experiments.aux'.
 
- (./chapters/06_experiments.tex [98
+ (./chapters/06_experiments.tex [102
 
 
 
 
 ]
-Capitolo 6.
-[99] [100]) [101]
+Capitolo 7.
+[103] [104]) [105]
 \openout2 = `chapters/07_dati_esperimenti_e_risultati.aux'.
 
 
 No file chapters/07_dati_esperimenti_e_risultati.tex.
-[102
+[106
 
 
 
@@ -1812,16 +1845,16 @@ No file chapters/07_dati_esperimenti_e_risultati.tex.
 
 
 ]
-Overfull \hbox (6.6995pt too wide) in paragraph at lines 116--116
+Overfull \hbox (6.6995pt too wide) in paragraph at lines 117--117
 []\T1/cmr/m/n/12 Umberto Mi-che-luc-ci. \T1/cmr/m/it/12 An In-tro-duc-tion to A
 u-toen-co-ders\T1/cmr/m/n/12 . 2022. ar-Xiv: []$\T1/cmtt/m/n/12 2201 .
  []
 
-[103
+[107
 
 ] (./main.aux (./style/abstract.aux) (./chapters/01_introduzione.aux)
 (./chapters/02_autoencoders_e_sparse_autoencoders.aux)
-(./chapters/03_embeddings.aux)
+(./chapters/03_embeddings.aux) (./chapters/04_superposition.aux)
 (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.aux)
 (./chapters/05_prisma.aux) (./chapters/06_experiments.aux)
 (./chapters/07_dati_esperimenti_e_risultati.aux))
@@ -1831,8 +1864,14 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 047CEAF8FCD1AA89663686AC26C540E5;18417.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 5F5A862FE48CDA3C4137898FC0624145;18885
+(rerunfilecheck)             After:  2E382FB7952125D610DD9817AC1658DF;19952.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1843,13 +1882,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 51851 strings out of 480122
- 1136254 string characters out of 5893077
- 1779477 words of memory out of 5000000
- 68666 multiletter control sequences out of 15000+600000
+ 51893 strings out of 480122
+ 1137611 string characters out of 5893077
+ 1782320 words of memory out of 5000000
+ 68690 multiletter control sequences out of 15000+600000
  503840 words of font info for 111 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 127i,15n,122p,1768b,1913s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 127i,15n,122p,1766b,1913s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk
 > </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk>
  </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> 
@@ -1887,10 +1926,10 @@ xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (109 pages, 3351061 bytes).
+Output written on main.pdf (113 pages, 3359016 bytes).
 PDF statistics:
- 2329 PDF objects out of 2487 (max. 8388607)
- 1373 compressed objects within 14 object streams
- 426 named destinations out of 1000 (max. 500000)
- 965 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2370 PDF objects out of 2487 (max. 8388607)
+ 1408 compressed objects within 15 object streams
+ 437 named destinations out of 1000 (max. 500000)
+ 989 words of extra memory for PDF output out of 10000 (max. 10000000)
 

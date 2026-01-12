@@ -1,6 +1,6 @@
 \chapter{Disentangling Dense Embeddings \\with Sparse Autoencoders}
 
-\section{Motivazione e contesto}
+\section{Introduzione}
 
 I modelli di linguaggio basati su architetture Transformer producono embeddings
 contestuali estremamente ricchi ed efficaci dal punto di vista empirico. Tuttavia,
@@ -8,17 +8,13 @@ queste rappresentazioni collocano il testo in spazi vettoriali ad alta dimension
 le cui dimensioni non risultano direttamente interpretabili dal punto di vista
 semantico. Il significato è codificato in modo distribuito e fortemente entangled,
 rendendo difficile analizzare, spiegare o controllare le rappresentazioni interne del
-modello.
-
-Questa mancanza di interpretabilità rappresenta un limite rilevante, in particolare
+modello. Questa mancanza di interpretabilità rappresenta un limite rilevante, in particolare
 in applicazioni che richiedono trasparenza, analisi qualitativa o manipolazione
 controllata del significato. Ne deriva l’esigenza di trasformare embeddings densi in
 rappresentazioni latenti più semplici e strutturate, in cui le componenti
 corrispondano a fattori semantici coerenti e, per quanto possibile, indipendenti.
 Questo obiettivo è comunemente indicato come \textit{disentanglement} delle
-rappresentazioni.
-
-In questo capitolo analizziamo il metodo proposto nel lavoro
+rappresentazioni. In questo capitolo analizziamo il metodo proposto nel lavoro
 \emph{Disentangling Dense Embeddings with Sparse Autoencoders}
 \cite{wang2024disentangledrepresentationlearning}, che affronta il problema del
 disentanglement applicando sparse autoencoders agli embeddings prodotti da modelli
@@ -26,6 +22,9 @@ di linguaggio pre-addestrati. L’idea centrale è che l’introduzione di vinco
 sparsità nello spazio latente favorisca l’emergere di feature interpretabili,
 consentendo di scomporre rappresentazioni dense ed entangled in componenti
 semanticamente significative. Di seguito viene illustrata la metodologia proposta.
+
+\section{Ipotesi della superposizione}
+
 
 \section{Metodologia e Architettura}
 
