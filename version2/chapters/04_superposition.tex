@@ -7,31 +7,29 @@ Nel capitolo precedente abbiamo esplorato come i modelli di \textit{embedding} s
 Con l'avvento dei grandi modelli di linguaggio (\textit{Large Language Models}), l'estrazione di una struttura leggibile dallo spazio rappresentazionale ha smesso di essere un mero interesse di ricerca teorica per diventare una necessità impellente. Dal momento in cui l'interazione tra esseri umani e modelli generativi è diventata centrale, la capacità di esercitare un controllo puntuale su tali strumenti è diventata prioritaria. Tale controllo presuppone il bisogno fondamentale di interpretare il loro funzionamento interno: il \textit{disentanglement} dei fattori di variazione diventa quindi la chiave per trasformare sistemi opachi in strumenti trasparenti e affidabili.
 Dal punto di vista della geometria dello spazio rappresentazionale, l'ideale teorico consisterebbe nell'associare ogni singola dimensione a un concetto semantico univoco. In un'ottica ingegneristica, ciò corrisponderebbe alla presenza di "neuroni" specializzati all'interno della rete neurale, la cui attivazione risulti proporzionale all'intensità del concetto espresso. Tuttavia, nella pratica, tale corrispondenza biunivoca è raramente riscontrabile: le rappresentazioni tendono a essere distribuite e i concetti risultano spesso intrecciati tra loro. La sfida di isolare queste componenti semantiche indipendenti costituisce il cuore del problema del \textit{disentanglement}.
 
+\section{Il fenomeno della Superposizione}
 
-\section{La superposizione e l'ipotesi dei modelli giocattolo}
+Idealmente, in una rete neurale ``trasparente'', ogni neurone dovrebbe corrispondere a una singola \textit{feature} (caratteristica) dell'input chiaramente interpretabile. In un classificatore di immagini, ad esempio, ci aspetteremmo di trovare un neurone che si attivi esclusivamente per una specifica forma geometrica o un particolare colore; in un modello di linguaggio, per un preciso concetto sintattico o semantico. Questo fenomeno di corrispondenza biunivoca è definito \textbf{monosemanticità}. Tuttavia, l'evidenza empirica mostra che i neuroni sono spesso \textbf{polisemici}: un singolo neurone può attivarsi in risposta a una moltitudine di stimoli tra loro non correlati. Per indagare questo fenomeno, il lavoro di Anthropic, \textit{Toy Models of Superposition}, ha introdotto il concetto di \textbf{superposizione} attraverso l'analisi di modelli semplificati addestrati su dati sintetici.
 
-L'aspirazione verso un modello perfettamente \textit{disentangled} si scontra con una realtà empirica complessa: nei modelli di linguaggio di grandi dimensioni, è raro che un singolo neurone corrisponda a una singola caratteristica semantica (\textit{feature}) chiaramente interpretabile. Sebbene in alcuni casi si osservino neuroni "monosemantici" (che si attivano, ad esempio, solo per riferimenti a basi chimiche o testi legali), la maggior parte dei neuroni appare "polisemantica", attivandosi per una serie di concetti apparentemente non correlati tra loro.
+\subsection{Formalismo matematico}
+Il problema può essere formalizzato considerando un modello lineare che tenta di mappare un numero $m$ di \textit{features} di input in uno spazio latente di dimensione $d$, dove $d$ rappresenta il numero di neuroni fisici della rete, con $m > d$.
+Sia $x \in \mathbb{R}^m$ un vettore che rappresenta le \textit{features} in ingresso. Il modello comprime queste informazioni in un vettore di attivazioni neuronali $h \in \mathbb{R}^d$ tramite una matrice di pesi $W \in \mathbb{R}^{d \times m}$:
+\begin{equation}
+    h = Wx
+\end{equation}
+Per ricostruire le \textit{features} originali dalle attivazioni dei neuroni, il modello applica la matrice trasposta, seguita da una non-linearità (solitamente una funzione ReLU) necessaria per filtrare il rumore generato dalle interferenze:
+\begin{equation}
+    \hat{x} = \text{ReLU}(W^T h + b) = \text{ReLU}(W^T W x + b)
+\end{equation}
+In un regime di non-superposizione, la rete utilizzerebbe una base ortogonale per rappresentare le \textit{features}, limitandosi a codificarne al massimo $d$. Tuttavia, quando $m > d$, il modello è costretto a ``stipare'' più informazioni di quante siano le dimensioni fisiche disponibili.
 
-Per indagare questa discrepanza, \cite{elhage2022toy} propongono il concetto di \textbf{superposizione} (\textit{superposition}). L'ipotesi di base è che i modelli neurali tentino di rappresentare un numero di caratteristiche $S$ superiore al numero di dimensioni fisiche $d$ disponibili nello spazio latente ($S > d$). 
+\subsection{Il ruolo della sparsità}
+La domanda fondamentale è perché il modello scelga di rappresentare più \textit{features} dei neuroni disponibili. La risposta risiede nella \textbf{sparsità} ($\mathcal{S}$) delle \textit{features}. Nei dati reali, la maggior parte dei concetti non è presente simultaneamente: le \textit{features} sono cioè raramente attive allo stesso tempo.
 
-\subsection{L'emergere della polisemanticità}
-
-Secondo lo studio dei "modelli giocattolo" (\textit{toy models}) condotto dai ricercatori di Anthropic, la superposizione non è un errore di addestramento, ma una strategia di compressione efficiente basata sulla \textbf{sparsità} delle caratteristiche. Nel linguaggio naturale, la maggior parte dei concetti non è presente simultaneamente in una data frase; questa sparsità consente al modello di "impacchettare" più informazioni in uno spazio ristretto.
-
-Dal punto di vista geometrico, se le \textit{feature} fossero dense, il modello tenderebbe a organizzarle in una base ortogonale (similmente a quanto accade in una \textit{Principal Component Analysis}), limitando il numero di concetti rappresentabili alla dimensionalità dello spazio. Tuttavia, quando le \textit{feature} sono sparse, il modello può permettersi di rinunciare all'ortogonalità, accettando una piccola quota di "interferenza" tra i segnali, che viene successivamente filtrata dalle funzioni di attivazione non lineari (come le ReLU).
-
-\subsection{Diagrammi di fase e strutture geometriche}
-
-Il lavoro di \cite{elhage2022toy} dimostra che il passaggio da neuroni monosemantici a polisemantici non è casuale, ma è regolato da un vero e proprio \textbf{cambiamento di fase}. Tale transizione dipende da due fattori critici:
+Se le \textit{features} sono sparse, il modello può sfruttare una proprietà geometrica degli spazi ad alta dimensionalità: l'esistenza di un numero esponenziale di vettori \textbf{quasi-ortogonali} (vettori il cui prodotto scalare è prossimo a zero, $\epsilon$). Il modello accetta quindi un compromesso:
 \begin{itemize}
-    \item \textbf{Sparsità:} Più una caratteristica è rara, più è probabile che il modello la collochi in superposizione.
-    \item \textbf{Importanza:} Caratteristiche fondamentali per il task tendono a reclamare una dimensione dedicata (diventando monosemantiche), mentre caratteristiche marginali vengono compresse.
+    \item \textbf{Vantaggio:} Può rappresentare un numero di concetti $m \gg d$.
+    \item \textbf{Costo:} Introduce delle interferenze (rumore) tra le \textit{features} a causa della mancata ortogonalità perfetta.
 \end{itemize}
 
-In questo regime di superposizione, le caratteristiche si organizzano in strutture geometriche sorprendentemente regolari, come poligoni e politopi (triangoli, pentagoni, tetraedri). Queste configurazioni rappresentano il punto di equilibrio ottimale tra la necessità di minimizzare l'interferenza reciproca e quella di massimizzare il numero di concetti memorizzati.
-
-\subsection{Verso una simulazione rumorosa}
-
-L'implicazione più profonda di questa teoria è che le reti neurali che osserviamo nella pratica possano essere interpretate come una "simulazione rumorosa" di reti molto più grandi e sparse. In questa prospettiva, un modello polisemantico non è intrinsecamente privo di struttura, ma sta eseguendo calcoli in uno spazio "virtuale" di dimensioni molto superiori a quelle fisiche del suo strato nascosto. 
-
-Il problema del \textit{disentanglement} diventa quindi la sfida di invertire questa compressione: trovare il modo di mappare i neuroni polisemantici verso queste caratteristiche latenti originali, rendendo nuovamente trasparente ciò che il modello ha dovuto "intrecciare" per ragioni di efficienza computazionale.
+Quando la sparsità è elevata, il rumore di interferenza diventa trascurabile rispetto al beneficio computazionale di poter codificare una vasta gamma di concetti. La superposizione emerge quindi come una strategia di compressione ottimale, permettendo alla rete di simulare un'architettura molto più grande utilizzando un numero limitato di neuroni fisici.

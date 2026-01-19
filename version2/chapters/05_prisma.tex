@@ -117,3 +117,38 @@ Il training produce un modello capace di ricostruire l'input densificato attrave
 L'ultima fase del processo trasforma le feature matematiche in concetti comprensibili. Il modulo \textit{Explorer} utilizza le attivazioni più significative di ogni feature per estrarre ``evidenze'' testuali dai documenti originali.
 
 Queste evidenze vengono inviate all'API locale di Ollama, che genera un'etichetta (\textit{label}) e una descrizione testuale per ogni feature. Prisma supporta la gestione di interpretazioni multiple per la stessa feature e permette di organizzare i concetti in \texttt{FeatureFamily}, ricostruendo una gerarchia semantica che va dai concetti generali a quelli più specifici.
+
+
+
+\section{Esperimenti}
+In questo lavoro di tesi sono stati condotti tre esperimenti principali. 
+Il primo è stato chiamato Pedianet e riguarda dati medici che verranno in seguito presentati e descritti, il secondo basato su un dataset di abstracts di paper scientifici generale, il terzo invece riguarda un dataset di papers scientifici di PubMed. 
+Verranno di seguito descritti e verranno presentati i risultati ottenuti. 
+
+\section{Pedianet}
+
+
+Il progetto Pedianet è una rete italiana di pediatria di famiglia fondata nel 1998, con l’obiettivo di raccogliere, strutturare e analizzare i dati clinici pediatrici derivanti dalla normale attività ambulatoriale dei pediatri di libera scelta (PLS). 
+L’iniziativa nasce per colmare una lacuna storica nella ricerca clinica pediatrica, ovvero la scarsa disponibilità di dati real-world relativi alla popolazione infantile. 
+A differenza di altri database europei che includono anche adulti, Pedianet è uno dei pochi progetti esclusivamente focalizzati sull’età pediatrica, risultando così un archivio unico nel panorama della ricerca biomedica europea. 
+La rete è composta da oltre 400 pediatri distribuiti su tutto il territorio italiano, che utilizzano la stessa piattaforma elettronica (Junior Bit) per la gestione delle cartelle cliniche dei pazienti. 
+Circa 3700 pediatri utilizzano questo software, e sono potenziali candidati ad aderire alla rete. Tutti i dati raccolti vengono trasmessi tramite connessione protetta a un server centrale situato a Padova,
+dove vengono validati, standardizzati e archiviati. I dati raccolti sono nella forma di cartelle cliniche pediatriche, ma presentano il problema di non essere strutturati, ovvero non organizzati e non seprati in classi.
+Con la nascita dei large language models questi dati hanno assunto un valore completamente nuovo perché se correttammente lavorati e organizzati, dal momento che vanno a ricoprire un dominio molto specifico e verticale, si prestano benissimo a funzionare come dati di addestramento nel campo di modelli di NLP.
+Un'altra motivazione per cui è necessario intervenire con strumenti di NLP è quello di svolgere task di classificaione per destinare questi dati al mondo della ricerca.
+Per esempio si vorrebbe raccogliere tutte quelle cartelle che hanno visto casi di \textit{bronchiolite}, ma non bastano metodi di regulary expression dal momento che ci sono cartelle che invece presentano casi di \textit{sospetta} bronchiolite. Si proverà quindi ad intervenire con la metodologia presentata nei precedenti capitoli per processare questi dati.
+Ecco il testo della sottosezione in formato paragrafo unico:
+
+\subsection{Scelta del modello di embedding} 
+Per la generazione delle rappresentazioni vettoriali è stato selezionato il modello MedBIT \cite{BUONOCORE2023104431}, progettato per colmare il divario tecnologico nelle lingue meno fornite di risorse biomediche come l’italiano. Nel lavoro di riferimento, gli autori mettono a confronto due approcci distinti: BioBIT, basato sulla traduzione automatica neurale di milioni di abstract di PubMed per privilegiare la quantità dei dati , e MedBIT, che raffina tale conoscenza attraverso l’uso di un corpus di alta qualità composto da libri di testo medici scritti nativamente in italiano. La scelta di MedBIT per il progetto Pedianet risulta ottimale innanzitutto per la sua natività linguistica; poiché i dati di Pedianet sono redatti interamente in italiano dai medici di base , il modello garantisce una rappresentazione più naturale e sintatticamente corretta rispetto ai sistemi basati su traduzioni automatiche, riducendo le ambiguità semantiche. Queste caratteristiche rendono MedBIT lo strumento più affidabile per catturare le delicate sfumature cliniche presenti nei diari dei pediatri italiani, permettendo di distinguere efficacemente tra diagnosi accertate e semplici sospetti.
+
+
+\subsection{Esperimento} 
+Per la conduzione dell'esperimento sono state processate circa 200.000 cartelle cliniche provenienti dal database Pedianet. Durante la fase preliminare di analisi, è emersa una criticità significativa legata alla lunghezza dei testi: una porzione rilevante delle note cliniche superava il limite di lunghezza massima ($L_{max}$) imposto dall'architettura del modello MedBIT (tipicamente 512 tokens). La troncatura del testo (truncation) avrebbe comportato la perdita di informazioni potenzialmente cruciali situate nella parte finale delle note cliniche, compromettendo la qualità della rappresentazione semantica. Per ovviare a questo problema senza perdere contenuto informativo, è stata adottata una strategia di \textit{chunk-and-average}.
+Formalmente, dato un documento $D$ costituito da una sequenza di token $T = {t_1, t_2, \dots, t_N}$, dove $N > L_{max}$, il testo viene suddiviso in $K$ segmenti (chunks) contigui $C_1, C_2, \dots, C_K$. La lunghezza effettiva utilizzabile per ogni chunk è definita come $W_{eff} = L_{max} - N_{special}$, dove $N_{special}$ rappresenta il numero di token speciali richiesti dal modello (es. \texttt{[CLS]} e \texttt{[SEP]}).
+Il documento viene quindi partizionato in modo tale che ogni chunk $C_k$ contenga una sottosequenza di token di lunghezza al più $W_{eff}$: $$ C_k = {t_{i}, \dots, t_{i + W_{eff} - 1}} $$
+Per ogni segmento $k$, viene calcolato un embedding denso $\mathbf{e}k \in \mathbb{R}^d$ attraverso il modello $f\theta$: $$ \mathbf{e}k = \text{Pooling}(f\theta(C_k)) $$ dove la funzione di pooling (nel nostro caso, \textit{mean pooling}) aggrega gli stati nascosti dell'ultimo layer del modello per ottenere una singola rappresentazione vettoriale per il segmento.
+Infine, la rappresentazione vettoriale globale dell'intero documento clinico $\mathbf{v}_D$ è ottenuta calcolando la media aritmetica degli embedding dei singoli segmenti. Questo approccio permette di condensare l'informazione distribuita lungo tutto il testo in un unico punto nello spazio latente: $$ \mathbf{v}D = \frac{1}{K} \sum{k=1}^{K} \mathbf{e}_k $$
+Questa metodologia garantisce che ogni parte della cartella clinica contribuisca equamente alla rappresentazione finale, preservando dettagli sintomatologici o diagnostici che potrebbero trovarsi in qualsiasi punto della narrazione medica. A valle di questo processo di codifica, i vettori risultanti sono stati utilizzati per addestrare gli autoencoder sparsi (SAE) oggetto dello studio.
+
+\section{Abstracts}
