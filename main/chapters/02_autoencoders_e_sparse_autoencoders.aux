@@ -1,34 +1,47 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Autoencoders e Sparse Autoencoders}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Autoencoders: definizione e formulazione generale}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Apprendimento non supervisionato}{2}{subsubsection.2.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Encoder, decoder e spazio latente}{3}{subsubsection.2.1.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schema di funzionamento di un autoencoder \blx@tocontentsinit {0}\parencite {michelucci2022introductionautoencoders}\relax }}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{sec:autoencoders}{{2}{2}{Autoencoders e Sparse Autoencoders}{section.2}{}}
+\newlabel{sec:autoencoders@cref}{{[section][2][]2}{[1][2][]2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Esempi di immagini MNIST $28 \times 28$. Nella riga superiore sono mostrate immagini originali, mentre nella riga inferiore sono riportate versioni contaminate da rumore. La maggior parte delle possibili configurazioni pixel-wise non corrisponde a immagini semanticamente significative.\relax }}{2}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:autoencoder}{{1}{3}{Schema di funzionamento di un autoencoder \parencite {michelucci2022introductionautoencoders}\relax }{figure.caption.2}{}}
-\newlabel{fig:autoencoder@cref}{{[figure][1][]1}{[1][2][]3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Funzione obiettivo e errore di ricostruzione}{3}{subsubsection.2.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Il problema dell’identità e la necessità di vincoli}{4}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Bottleneck e riduzione della dimensionalità}{4}{subsubsection.2.2.1}\protected@file@percent }
-\newlabel{eq:latent_dim_ae}{{6}{4}{Bottleneck e riduzione della dimensionalità}{equation.2.6}{}}
-\newlabel{eq:latent_dim_ae@cref}{{[equation][6][]6}{[1][4][]4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Introduzione di vincoli}{5}{subsubsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Relazioni con la PCA}{6}{subsubsection.2.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces L'immagine mostra Davide Mononcello in uno stato di sonno\relax }}{7}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:skipgram_structure}{{2}{7}{L'immagine mostra Davide Mononcello in uno stato di sonno\relax }{figure.caption.3}{}}
-\newlabel{fig:skipgram_structure@cref}{{[figure][2][]2}{[1][7][]7}}
-\@writefile{toc}{\contentsline {paragraph}{Caso di un autoencoder lineare}{8}{section*.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Caso di un autoencoder non lineare}{10}{section*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Interpretabilità delle feature latenti}{10}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Rappresentazioni latenti disentangled}{12}{subsubsection.2.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Sparse Autoencoders}{12}{subsection.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.\relax }}{13}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:sparse_autoencoder}{{3}{13}{La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.\relax }{figure.caption.6}{}}
-\newlabel{fig:sparse_autoencoder@cref}{{[figure][3][]3}{[1][13][]13}}
+\newlabel{fig:noisy_images}{{1}{2}{Esempi di immagini MNIST $28 \times 28$. Nella riga superiore sono mostrate immagini originali, mentre nella riga inferiore sono riportate versioni contaminate da rumore. La maggior parte delle possibili configurazioni pixel-wise non corrisponde a immagini semanticamente significative.\relax }{figure.caption.2}{}}
+\newlabel{fig:noisy_images@cref}{{[figure][1][]1}{[1][2][]2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Architettura di un autoencoder classico. Il bottleneck forza una compressione informativa che induce l’apprendimento di una rappresentazione latente compatta.\relax }}{3}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:autoencoder_arch}{{2}{3}{Architettura di un autoencoder classico. Il bottleneck forza una compressione informativa che induce l’apprendimento di una rappresentazione latente compatta.\relax }{figure.caption.3}{}}
+\newlabel{fig:autoencoder_arch@cref}{{[figure][2][]2}{[1][2][]3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Confronto tra immagini originali (riga superiore) e ricostruzioni prodotte dall’autoencoder (riga inferiore). Il modello preserva le strutture principali nonostante la compressione informativa.\relax }}{3}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:reconstructions}{{3}{3}{Confronto tra immagini originali (riga superiore) e ricostruzioni prodotte dall’autoencoder (riga inferiore). Il modello preserva le strutture principali nonostante la compressione informativa.\relax }{figure.caption.4}{}}
+\newlabel{fig:reconstructions@cref}{{[figure][3][]3}{[1][2][]3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Proiezione bidimensionale dello spazio latente appreso dall’autoencoder. I punti sono colorati in base alla classe MNIST, evidenziando la presenza di cluster semanticamente coerenti.\relax }}{4}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:latent_space}{{4}{4}{Proiezione bidimensionale dello spazio latente appreso dall’autoencoder. I punti sono colorati in base alla classe MNIST, evidenziando la presenza di cluster semanticamente coerenti.\relax }{figure.caption.5}{}}
+\newlabel{fig:latent_space@cref}{{[figure][4][]4}{[1][2][]4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Campionamento del decoder su una griglia bidimensionale nello spazio latente. Solo una regione ristretta dello spazio genera immagini semanticamente significative, mentre le restanti producono rumore.\relax }}{5}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:latent_manifold}{{5}{5}{Campionamento del decoder su una griglia bidimensionale nello spazio latente. Solo una regione ristretta dello spazio genera immagini semanticamente significative, mentre le restanti producono rumore.\relax }{figure.caption.6}{}}
+\newlabel{fig:latent_manifold@cref}{{[figure][5][]5}{[1][2][]5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.0.1}Apprendimento non supervisionato}{6}{subsubsection.2.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.0.2}Encoder, decoder e spazio latente}{6}{subsubsection.2.0.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Schema di funzionamento di un autoencoder \blx@tocontentsinit {0}\parencite {michelucci2022introductionautoencoders}\relax }}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:autoencoder}{{6}{7}{Schema di funzionamento di un autoencoder \parencite {michelucci2022introductionautoencoders}\relax }{figure.caption.7}{}}
+\newlabel{fig:autoencoder@cref}{{[figure][6][]6}{[1][6][]7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.0.3}Funzione obiettivo e errore di ricostruzione}{7}{subsubsection.2.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Il problema dell’identità e la necessità di vincoli}{8}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Bottleneck e riduzione della dimensionalità}{8}{subsubsection.2.1.1}\protected@file@percent }
+\newlabel{eq:latent_dim_ae}{{7}{8}{Bottleneck e riduzione della dimensionalità}{equation.2.7}{}}
+\newlabel{eq:latent_dim_ae@cref}{{[equation][7][]7}{[1][8][]8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Introduzione di vincoli}{9}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Relazioni con la PCA}{10}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Caso di un autoencoder lineare}{12}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Caso di un autoencoder non lineare}{13}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Interpretabilità delle feature latenti}{14}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Rappresentazioni latenti disentangled}{15}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Sparse Autoencoders}{16}{subsection.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.\relax }}{16}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:sparse_autoencoder}{{7}{16}{La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.\relax }{figure.caption.10}{}}
+\newlabel{fig:sparse_autoencoder@cref}{{[figure][7][]7}{[1][16][]16}}
 \@setckpt{chapters/02_autoencoders_e_sparse_autoencoders}{
-\setcounter{page}{15}
-\setcounter{equation}{19}
+\setcounter{page}{18}
+\setcounter{equation}{20}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -37,11 +50,11 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{section}{2}
-\setcounter{subsection}{4}
+\setcounter{subsection}{3}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{3}
+\setcounter{figure}{7}
 \setcounter{table}{0}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
@@ -172,7 +185,7 @@
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{13}
+\setcounter{bookmark@seq@number}{12}
 \setcounter{FancyVerbLine}{0}
 \setcounter{caption@flags}{0}
 \setcounter{continuedfloat}{0}

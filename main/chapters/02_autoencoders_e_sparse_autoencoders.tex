@@ -1,27 +1,66 @@
-%https://arxiv.org/pdf/2201.03898 
 \section{Autoencoders e Sparse Autoencoders}
+\label{sec:autoencoders}
 
+Per comprendere il funzionamento di \textit{Prisma} e l’intero lavoro di tesi è fondamentale introdurre una particolare famiglia di reti neurali: gli \textbf{autoencoder}. Dietro questa architettura si celano numerosi concetti che risultano centrali per l’interpretazione delle rappresentazioni interne apprese dal modello.
+Gli autoencoder sono modelli di apprendimento non supervisionato progettati per apprendere una funzione di ricostruzione dell’input. Essi sono caratterizzati dalla presenza di una strozzatura informativa (\textit{bottleneck}) che costringe il modello a comprimere i dati in una rappresentazione a dimensionalità inferiore, detta \textbf{rappresentazione latente}. L’idea alla base è quella di indurre il modello a catturare esclusivamente le caratteristiche più rilevanti dei dati, scartando ridondanze e rumore.
+Si può immaginare un autoencoder come un’autostrada su cui transitano numerosi veicoli che trasportano informazione. In corrispondenza del casello, che rappresenta il bottleneck, solo una parte di questi veicoli viene lasciata passare. In modo analogo, l’autoencoder impara a selezionare e comprimere l’informazione necessaria alla ricostruzione dell’input.
+Un esempio concreto è fornito da immagini in bianco e nero di dimensione $28 \times 28$, come quelle del dataset MNIST. Ogni immagine è rappresentabile come un vettore di 784 pixel, e lo spazio delle possibili configurazioni è quindi estremamente vasto. La maggior parte di tali configurazioni non possiede alcun significato semantico ed è assimilabile a rumore. In Figura~\ref{fig:noisy_images} sono mostrati esempi di immagini MNIST e delle corrispondenti versioni contaminate da rumore, che evidenziano come il rumore occupi una porzione rilevante dello spazio delle possibili immagini.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap2/noisy_examples.png}
+    \caption{Esempi di immagini MNIST $28 \times 28$. Nella riga superiore sono mostrate immagini originali, mentre nella riga inferiore sono riportate versioni contaminate da rumore. La maggior parte delle possibili configurazioni pixel-wise non corrisponde a immagini semanticamente significative.}
+    \label{fig:noisy_images}
+\end{figure}
+Addestrando un autoencoder esclusivamente su immagini dotate di struttura, il modello è incentivato ad apprendere una rappresentazione compatta che separi le componenti informative dal rumore. Questo processo è di natura \textbf{induttiva}: a partire da esempi specifici, il modello costruisce una rappresentazione generale del concetto di cifra.
+Dal punto di vista architetturale, un autoencoder è composto da due moduli principali: un \textbf{encoder}, che mappa l’input nello spazio latente, e un \textbf{decoder}, che ricostruisce l’input a partire dalla rappresentazione latente. La Figura~\ref{fig:autoencoder_arch} illustra schematicamente questa struttura.
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        scale=0.65,
+        transform shape,
+        node distance=1.2cm,
+        every node/.style={font=\small}
+    ]
+        \node[draw, rectangle, minimum height=3cm, minimum width=0.8cm, fill=gray!20] (input) {Input $x$};
+        \node[draw, trapezium, trapezium angle=70, shape border rotate=270, minimum height=1.6cm, fill=blue!10, right=of input] (enc) {Encoder};
+        \node[draw, rectangle, minimum height=1cm, minimum width=0.8cm, fill=red!20, right=of enc] (latent) {$z \ll x$};
+        \node[draw, trapezium, trapezium angle=70, shape border rotate=90, minimum height=1.6cm, fill=blue!10, right=of latent] (dec) {Decoder};
+        \node[draw, rectangle, minimum height=3cm, minimum width=0.8cm, fill=gray!20, right=of dec] (output) {Output $\hat{x}$};
 
-In questo capitolo vengono introdotti gli \textit{autoencoders}, una classe di
-modelli di apprendimento non supervisionato ampiamente utilizzata per
-l’apprendimento di rappresentazioni latenti dei dati. Dopo averne presentato
-la formulazione generale e i principi di funzionamento, verranno discussi i
-principali limiti degli autoencoders classici, in particolare in termini di
-capacità di apprendere rappresentazioni interpretabili. Successivamente, il capitolo introduce gli \textit{Sparse Autoencoders}, una
-estensione degli autoencoders tradizionali che impone vincoli di sparsità
-sullo spazio latente, favorendo il disentanglement delle feature e
-l’interpretabilità delle rappresentazioni apprese. Questi modelli
-costituiscono il fondamento teorico delle metodologie utilizzate nel resto del
-lavoro di tesi.
-
-
-\subsection{Autoencoders: definizione e formulazione generale}
-
+        \draw[->, thick] (input) -- (enc);
+        \draw[->, thick] (enc) -- (latent);
+        \draw[->, thick] (latent) -- (dec);
+        \draw[->, thick] (dec) -- (output);
+    \end{tikzpicture}
+    \caption{Architettura di un autoencoder classico. Il bottleneck forza una compressione informativa che induce l’apprendimento di una rappresentazione latente compatta.}
+    \label{fig:autoencoder_arch}
+\end{figure}
+Una volta addestrato, l’autoencoder è in grado di ricostruire fedelmente le immagini di input, pur operando una forte riduzione dimensionale. In Figura~\ref{fig:reconstructions} è mostrato un confronto tra immagini originali e ricostruzioni prodotte dal modello.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap2/reconstructions.png}
+    \caption{Confronto tra immagini originali (riga superiore) e ricostruzioni prodotte dall’autoencoder (riga inferiore). Il modello preserva le strutture principali nonostante la compressione informativa.}
+    \label{fig:reconstructions}
+\end{figure}
+Un aspetto cruciale degli autoencoder è la struttura dello spazio latente appreso. Proiettando le rappresentazioni latenti in uno spazio bidimensionale, come mostrato in Figura~\ref{fig:latent_space}, è possibile osservare l’emergere spontaneo di cluster associati alle diverse classi di cifre, pur in assenza di supervisione esplicita.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap2/latent_scatter.png}
+    \caption{Proiezione bidimensionale dello spazio latente appreso dall’autoencoder. I punti sono colorati in base alla classe MNIST, evidenziando la presenza di cluster semanticamente coerenti.}
+    \label{fig:latent_space}
+\end{figure}
+Un ulteriore modo per analizzare la rappresentazione latente consiste nel campionare sistematicamente lo spazio $z$ e osservare le immagini generate dal decoder. In Figura~\ref{fig:latent_manifold} è mostrato il risultato di tale campionamento. come solo una regione limitata dello spazio latente produca immagini riconoscibili, mentre ampie porzioni generano strutture prive di significato.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap2/manifold_grid.png}
+    \caption{Campionamento del decoder su una griglia bidimensionale nello spazio latente. Solo una regione ristretta dello spazio genera immagini semanticamente significative, mentre le restanti producono rumore.}
+    \label{fig:latent_manifold}
+\end{figure}
+Questa osservazione suggerisce che lo spazio latente appreso dall’autoencoder non sia densamente popolato da rappresentazioni valide, ma presenti una struttura complessa con regioni semanticamente rilevanti e regioni di vuoto. Si invita già ora il lettore a tenere a mente questo fatto, ovvero che non tutto lo spazio latente delle variabili latenti è sondato, ma solo alcune di queste esprimono un significato.
 \subsubsection{Apprendimento non supervisionato}
-
 Gli autoencoders sono modelli di apprendimento non supervisionato, in quanto
 non richiedono etichette associate ai dati di input durante la fase di
-addestramento. Si consideri un dataset di addestramento
+addestramento. Consideriamo un dataset di addestramento
 $S_T$ costituito da $M$ osservazioni non etichettate $\mathbf{x}_i$, con
 $i = 1, \dots, M$:
 \begin{equation}
@@ -99,7 +138,10 @@ ottimizzazione può essere espresso come
 \end{equation}
 dove $\Delta$ indica una funzione di perdita che quantifica la differenza tra
 l’input e l’output dell’autoencoder, mentre $\langle \cdot \rangle$ denota la
-media su tutte le osservazioni del dataset di addestramento.
+media su tutte le osservazioni del dataset di addestramento. Scelta quindi l'architettura dell'autoencoder, il problema di training sarà quello di minimarre un errore di ricostruzione tramite la minimizzazione della funzione di costo
+\begin{equation}
+    L = ||\mathbf{x}_i-\hat{\mathbf{x}_i}|| = ||\mathbf{x}_i-f(\mathbf{h}_i)||
+\end{equation}
 
 \subsection{Il problema dell’identità e la necessità di vincoli}
 
@@ -275,12 +317,7 @@ matriciale si ottiene
 \end{equation*}
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.7\textwidth]{pictures/meno.jpeg}
-    \caption{L'immagine mostra Davide Mononcello in uno stato di sonno}
-    \label{fig:skipgram_structure}
-\end{figure}
+
 
 
 Il problema della ricerca della direzione di massima varianza può quindi essere
