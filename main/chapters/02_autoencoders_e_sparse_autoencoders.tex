@@ -1,4 +1,4 @@
-\section{Autoencoders e Sparse Autoencoders}
+\section{Autoencoders}
 \label{sec:autoencoders}
 
 Per comprendere il funzionamento di \textit{Prisma} e l’intero lavoro di tesi è fondamentale introdurre una particolare famiglia di reti neurali: gli \textbf{autoencoder}. Dietro questa architettura si celano numerosi concetti che risultano centrali per l’interpretazione delle rappresentazioni interne apprese dal modello.
@@ -96,7 +96,6 @@ Figura~\ref{fig:autoencoder}.
     \caption{Schema di funzionamento di un autoencoder \parencite{michelucci2022introductionautoencoders}}
     \label{fig:autoencoder}
 \end{figure}
-
 Nella maggior parte dei casi, l’encoder e il decoder sono implementati come
 reti neurali. Seguendo l’impostazione descritta in
 \parencite{michelucci2022introductionautoencoders}, l’encoder può essere
@@ -113,7 +112,6 @@ l’encoder realizza una mappatura del tipo
 \begin{equation}
     g : \mathbb{R}^n \rightarrow \mathbb{R}^q.
 \end{equation}
-
 Il decoder ha il compito di ricostruire il dato originale a partire dalla
 rappresentazione latente. L’output della rete, indicato con
 $\hat{\mathbf{x}}_i$, può essere espresso tramite una seconda funzione
@@ -125,7 +123,6 @@ dove $\hat{\mathbf{x}}_i \in \mathbb{R}^n$ rappresenta la ricostruzione
 dell’input $\mathbf{x}_i$.
 
 \subsubsection{Funzione obiettivo e errore di ricostruzione}
-
 L’addestramento di un autoencoder consiste nel determinare le funzioni
 $g(\cdot)$ e $f(\cdot)$ tali da minimizzare una misura della discrepanza tra i
 dati di input e le rispettive ricostruzioni. Formalmente, il problema di
@@ -144,7 +141,6 @@ media su tutte le osservazioni del dataset di addestramento. Scelta quindi l'arc
 \end{equation}
 
 \subsection{Il problema dell’identità e la necessità di vincoli}
-
 In assenza di vincoli sull’architettura o sulla funzione obiettivo, un
 autoencoder dotato di capacità sufficiente può apprendere una semplice
 funzione identità, ottenendo una ricostruzione perfetta ma priva di utilità
@@ -152,7 +148,6 @@ pratica. Per evitare questo comportamento degenerato, è comune introdurre
 specifiche strategie di regolarizzazione, come la presenza di una
 strozzatura dimensionale nello spazio latente oppure l’aggiunta di termini di
 regolarizzazione alla funzione di costo.
-
 \begin{notebox}
 \textbf{Nota.} Un autoencoder efficace deve bilanciare due obiettivi
 contrastanti: da un lato una ricostruzione sufficientemente accurata
@@ -195,9 +190,7 @@ nell’introduzione di vincoli aggiuntivi nella funzione obiettivo, tipicamente
 sotto forma di termini di regolarizzazione. Tali vincoli agiscono limitando la
 capacità espressiva del modello o penalizzando soluzioni considerate
 indesiderabili, favorendo l’apprendimento di rappresentazioni latenti più
-strutturate e informative.
-
-In questo contesto, la funzione di costo dell’autoencoder non si limita più a
+strutturate e informative. In questo contesto, la funzione di costo dell’autoencoder non si limita più a
 misurare esclusivamente l’errore di ricostruzione, ma include uno o più termini
 addizionali che impongono specifiche proprietà alla rappresentazione latente o
 ai parametri del modello. In forma generale, il problema di ottimizzazione può
@@ -218,9 +211,7 @@ generalizzazione, mentre vincoli applicati direttamente allo spazio latente
 possono favorire caratteristiche quali la \textbf{sparsità}, la robustezza al
 rumore o la separazione delle feature. In particolare, l’introduzione di
 vincoli di sparsità sulle attivazioni latenti costituisce il principio alla
-base degli \textit{Sparse Autoencoders}, che verranno discussi nel seguito.
-
-Un esempio comune di regolarizzazione consiste nell’introdurre un vincolo
+base degli \textit{Sparse Autoencoders}, che verranno discussi nel seguito. Un esempio comune di regolarizzazione consiste nell’introdurre un vincolo
 direttamente sulle attivazioni dello spazio latente. In questo caso, la
 funzione obiettivo dell’autoencoder assume la forma
 \begin{equation}
@@ -233,9 +224,7 @@ funzione obiettivo dell’autoencoder assume la forma
 dove $\mathbf{h}_i = g(\mathbf{x}_i)$ denota il vettore delle attivazioni
 latenti associate all’osservazione $\mathbf{x}_i$. Tale penalizzazione di tipo
 $\ell_2$ scoraggia rappresentazioni latenti di grande norma, favorendo
-codifiche più compatte e contribuendo alla stabilità del modello.
-
-Un’alternativa è rappresentata dalla regolarizzazione di tipo $\ell_1$
+codifiche più compatte e contribuendo alla stabilità del modello. Un’alternativa è rappresentata dalla regolarizzazione di tipo $\ell_1$
 applicata allo spazio latente:
 \begin{equation}
     \arg \min_{f,g}
@@ -249,9 +238,7 @@ rappresentazioni sparse, in cui solo un numero limitato di componenti del
 vettore latente risulta attivo per ciascun input. Questo comportamento
 favorisce una decomposizione più interpretabile delle feature e costituisce il
 principio alla base degli \textit{Sparse Autoencoders}, che verranno analizzati
-nel seguito.
-
-L’aggiunta di vincoli nella funzione obiettivo consente quindi di superare i
+nel seguito. L’aggiunta di vincoli nella funzione obiettivo consente quindi di superare i
 limiti degli autoencoders classici, guidando l’apprendimento verso soluzioni
 non banali e semanticamente più significative, anche in assenza di una
 riduzione esplicita della dimensionalità dello spazio latente.
@@ -264,9 +251,7 @@ della dimensionalità dei dati, è di interesse evidenziare la loro relazione co
 il metodo delle \textit{Principal Component Analysis} (PCA). La PCA è una
 tecnica di analisi statistica che consente di ridurre la dimensionalità di un
 dataset preservando la maggior parte della varianza presente nei dati
-originali, mediante una trasformazione lineare delle variabili.
-
-Sia dato un dataset di $M$ osservazioni centrate
+originali, mediante una trasformazione lineare delle variabili. Sia dato un dataset di $M$ osservazioni centrate
 \begin{equation*}
     \mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_M \in \mathbb{R}^n,
     \qquad
@@ -287,9 +272,6 @@ la matrice di covarianza empirica è data da
 \begin{equation*}
     C = \frac{1}{M} X^\top X \in \mathbb{R}^{n \times n}.
 \end{equation*}
-
-
-
 L’obiettivo della PCA consiste nell’individuare una direzione unitaria
 $\mathbf{w}_1 \in \mathbb{R}^n$ lungo la quale la proiezione dei dati presenti la
 massima varianza. Indicando con $y_i = \mathbf{w}_1^\top \mathbf{x}_i$ la
@@ -315,18 +297,12 @@ matriciale si ottiene
     =
     \mathbf{w}_1^\top C \mathbf{w}_1.
 \end{equation*}
-
-
-
-
-
 Il problema della ricerca della direzione di massima varianza può quindi essere
 formulato come il seguente problema di ottimizzazione vincolata:
 \begin{equation}
     \max_{\|\mathbf{w}_1\|_2 = 1}
     \mathbf{w}_1^\top C \mathbf{w}_1.
 \end{equation}
-
 Tale problema può essere risolto mediante il metodo dei moltiplicatori di
 Lagrange, introducendo la lagrangiana
 \begin{equation*}
@@ -348,7 +324,6 @@ da cui segue il problema agli autovalori
 \begin{equation}
     C \mathbf{w} = \lambda \mathbf{w}.
 \end{equation}
-
 Le soluzioni ammissibili sono pertanto gli autovettori di $C$, mentre i
 moltiplicatori di Lagrange coincidono con i corrispondenti autovalori. La
 derivata della lagrangiana rispetto a $\lambda$ restituisce inoltre il vincolo
@@ -356,7 +331,6 @@ di normalizzazione
 \begin{equation*}
     \mathbf{w}^\top \mathbf{w} = 1.
 \end{equation*}
-
 Sia $\mathbf{v}_k$ un autovettore unitario di $C$ associato all’autovalore
 $\lambda_k$. Per tali vettori vale
 \begin{equation*}
@@ -367,9 +341,7 @@ $\lambda_k$. Per tali vettori vale
     \lambda_k,
 \end{equation*}
 ossia ciascun autovalore rappresenta la varianza dei dati lungo la
-corrispondente direzione $\mathbf{v}_k$.
-
-Ordinando gli autovalori in ordine decrescente
+corrispondente direzione $\mathbf{v}_k$. Ordinando gli autovalori in ordine decrescente
 \begin{equation*}
     \lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_n \ge 0,
 \end{equation*}
@@ -379,9 +351,7 @@ $\mathbf{v}_1$ è la direzione di massima varianza, mentre le componenti
 successive massimizzano la varianza residua sotto il vincolo di ortogonalità
 rispetto alle precedenti.
 
-
-\paragraph{Caso di un autoencoder lineare}
-
+\subsubsection{Caso di un autoencoder lineare}
 Si consideri un autoencoder costituito da un encoder e un decoder entrambi
 lineari, addestrato su dati centrati. L’encoder realizza una mappatura del tipo
 \begin{equation*}
@@ -448,9 +418,7 @@ Pertanto, il problema di addestramento dell’autoencoder lineare equivale alla
 ricerca di $q$ direzioni ortonormali che massimizzino la varianza totale dei
 dati proiettati. Questo coincide esattamente con il problema risolto dalla PCA,
 la cui soluzione è fornita dagli autovettori della matrice di covarianza
-associati ai $q$ maggiori autovalori.
-
-In particolare, il minimo della funzione di costo è ottenuto quando le righe di
+associati ai $q$ maggiori autovalori. In particolare, il minimo della funzione di costo è ottenuto quando le righe di
 $W$ coincidono (a meno di una trasformazione ortogonale) con gli autovettori
 $\mathbf{v}_1, \dots, \mathbf{v}_q$ associati agli autovalori
 $\lambda_1 \ge \dots \ge \lambda_q$. In tal caso vale
@@ -458,16 +426,14 @@ $\lambda_1 \ge \dots \ge \lambda_q$. In tal caso vale
     W^\top W = P_q,
 \end{equation*}
 dove $P_q$ denota il proiettore ortogonale sul sottospazio generato dalle prime
-$q$ componenti principali.
-
-Ne consegue che un autoencoder lineare, addestrato mediante minimizzazione
+$q$ componenti principali. Ne consegue che un autoencoder lineare, addestrato mediante minimizzazione
 dell’errore quadratico medio, apprende lo stesso sottospazio individuato dalla
 PCA. Le coordinate latenti possono differire da quelle ottenute tramite PCA per
 una trasformazione ortogonale, ma lo spazio latente appreso coincide con lo
 span delle prime $q$ componenti principali, mostrando come la PCA possa essere
-interpretata come un caso particolare di autoencoder lineare.
+interpretata come un caso particolare di autoencoder lineare. \parencite{Goodfellow2016DeepLearning}
 
-\paragraph{Caso di un autoencoder non lineare}
+\subsubsection{Caso di un autoencoder non lineare}
 
 Si consideri ora un autoencoder in cui almeno uno tra encoder e decoder è una
 funzione non lineare. In particolare, si assuma un encoder del tipo
@@ -491,16 +457,13 @@ dell’errore quadratico medio di ricostruzione:
         \mathbf{x}_i - f(g(\mathbf{x}_i))
     \right\|_2^2.
 \end{equation}
-
 A differenza del caso lineare, la mappatura complessiva
 $\mathbf{x} \mapsto \hat{\mathbf{x}}$ non è più una proiezione lineare su un
 sottospazio di dimensione ridotta. Di conseguenza, la funzione di costo non può
 essere riscritta in termini di varianza proiettata, né ricondotta a un problema
 agli autovalori della matrice di covarianza. In particolare, non è più possibile
 esprimere l’errore di ricostruzione come differenza tra una quantità costante e
-la varianza dei dati proiettati lungo un insieme di direzioni fisse.
-
-L’autoencoder non lineare è quindi in grado di catturare strutture complesse e
+la varianza dei dati proiettati lungo un insieme di direzioni fisse. L’autoencoder non lineare è quindi in grado di catturare strutture complesse e
 non lineari presenti nel dataset, che non possono essere rappresentate in modo
 efficace mediante una combinazione lineare di componenti principali rendendo possibile
 l’apprendimento di rappresentazioni latenti più flessibili e adatte a dati che
@@ -515,9 +478,6 @@ ma anche interpretabili dal punto di vista umano. Nel contesto degli
 autoencoders, tale interpretabilità è strettamente legata alla capacità del
 modello di catturare e separare i fattori di variazione che governano la
 generazione dei dati osservati.
-
-
-
 \begin{notebox}
 \textbf{Definizione (Fattori di variazione).}
 Si definiscono \textit{fattori di variazione} le variabili latenti, generalmente
@@ -527,64 +487,161 @@ corrisponde a una dimensione semantica distinta secondo cui le osservazioni
 possono variare, come ad esempio la forma, la posizione, l’orientamento, il
 colore o la presenza di specifici oggetti. \parencite{wang2024disentangledrepresentationlearning}
 \end{notebox}
-
-
-
 L’introduzione di una strozzatura nello spazio latente o di vincoli di
 regolarizzazione nella funzione obiettivo costringe l’autoencoder a comprimere
 l’informazione contenuta nei dati di input, preservando principalmente gli
 aspetti rilevanti ai fini della ricostruzione. In linea di principio, questo
 processo può favorire l’apprendimento di rappresentazioni latenti che riflettono
 i fattori di variazione sottostanti ai dati, anziché limitarsi a una
-memorizzazione non strutturata delle osservazioni.
-
-In uno scenario ideale, le componenti dello spazio latente risultano
+memorizzazione non strutturata delle osservazioni. In uno scenario ideale, le componenti dello spazio latente risultano
 semanticamente interpretabili: la variazione di una singola variabile latente
 corrisponde a una modifica controllata e riconoscibile di un attributo
 specifico dell’osservazione ricostruita. In tal caso, i valori quantitativi
 assunti dalle feature latenti possono essere ricondotti a descrizioni
 qualitative comprensibili, rendendo lo spazio latente non solo compatto, ma
-anche concettualmente significativo.
-
-Tuttavia, nella pratica, l’interpretabilità delle feature latenti non è
+anche concettualmente significativo. Tuttavia, nella pratica, l’interpretabilità delle feature latenti non è
 garantita. Gli autoencoders standard sono addestrati esclusivamente per
 minimizzare l’errore di ricostruzione e tendono pertanto a organizzare lo spazio
 latente in modo funzionale a tale obiettivo, senza alcuna esplicita pressione a
 separare o strutturare semanticamente l’informazione. Di conseguenza, le
 rappresentazioni apprese risultano spesso difficili da interpretare e
 caratterizzate da una forte mescolanza dei fattori di variazione.
+\subsection{Rappresentazioni latenti disentangled}
+\label{sec:disentangled_latent}
 
-\subsubsection{Rappresentazioni latenti disentangled}
-
-Una rappresentazione latente si dice \textit{disentangled} quando i diversi
+Come si possono rendere le \textit{feature} latenti davvero interpretabili, cioè
+far sì che ciascuna dimensione dello spazio latente corrisponda a un attributo
+umanamente riconoscibile? In un caso ideale, muoversi lungo una direzione dello
+spazio latente dovrebbe produrre una variazione controllata di un singolo
+\textit{fattore di variazione} (ad esempio rotazione, spessore del tratto,
+posizione), lasciando invariati gli altri. Osservando però i risultati degli
+autoencoder classici (Figura~\ref{fig:latent_manifold} e Figura~\ref{fig:latent_space}),
+questa dinamica raramente emerge: lo spazio latente risulta spesso poco
+\textit{organizzato} e non permette un controllo semantico diretto tramite la
+variazione di singole coordinate. Una rappresentazione latente si dice \textit{disentangled} quando i diversi
 fattori di variazione che descrivono i dati sono codificati in componenti
 latenti distinte e, idealmente, statisticamente indipendenti. In una tale
 rappresentazione, ciascuna variabile latente controlla un singolo fattore di
-variazione, mentre risulta invariata rispetto agli altri.
+variazione e rimane (approssimativamente) invariata rispetto agli altri.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{pictures/cap2/mnist_disenangled_info_gan.png}
+    \caption{Immagini MNIST generate da InfoGAN con variazioni controllate di cifra, spessore e rotazione. \parencite{chen2016infoganinterpretablerepresentationlearning}}
+    \label{fig:mnist_disenangled_info_gan}
+\end{figure}
+Operativamente, questa proprietà si manifesta nel fatto che la manipolazione di
+una singola dimensione dello spazio latente produce una variazione interpretabile
+e localizzata nell’output ricostruito o generato (\textit{latent traversal}),
+senza influenzare gli altri attributi dell’osservazione. Le rappresentazioni
+disentangled sono quindi desiderabili per l’analisi esplorativa, il controllo
+generativo, la robustezza a variazioni spurie e il trasferimento di conoscenza
+tra domini. Tuttavia, le rappresentazioni disentangled non emergono spontaneamente negli
+autoencoder standard. Poiché l’obiettivo è esclusivamente la minimizzazione
+dell’errore di ricostruzione, l’organizzazione dello spazio latente tende a
+essere funzionale a tale scopo, senza alcuna pressione esplicita a separare
+semanticamente l’informazione. Di conseguenza, è comune osservare rappresentazioni
+\textit{entangled}, in cui più fattori di variazione risultano mescolati sulle
+stesse dimensioni. Un esempio intuitivo può essere costruito su MNIST: oltre
+all’identità della cifra, i dati variano per posizione, scala, rotazione e
+spessore del tratto. In una rappresentazione davvero disentangled, fissata
+l’identità della cifra, la variazione controllata di una sola componente latente
+dovrebbe modificare, ad esempio, esclusivamente la rotazione, lasciando invariati
+posizione, scala e stile. Un’illustrazione di questo comportamento (in un modello
+generativo che introduce variabili latenti interpretabili) è mostrata in
+Figura~\ref{fig:mnist_disenangled_info_gan}. Per ottenere disentanglement, in generale, è necessario introdurre \textbf{vincoli}
+(\textit{constraints}) o \textbf{regolarizzazioni} sullo spazio latente, in modo da
+guidare l’apprendimento verso codifiche più strutturate. Una motivazione pratica
+riguarda anche la geometria dello spazio latente: negli autoencoder standard la
+distribuzione delle codifiche può assumere forme e orientamenti diversi tra training,
+rendendo difficile sia il campionamento sia l’interpretazione; nei VAE, invece,
+l’imposizione di un prior (tipicamente una gaussiana isotropa) regolarizza lo
+spazio latente rendendolo più campionabile e più stabile
+\parencite{chen2016infoganinterpretablerepresentationlearning}. Questa differenza
+qualitativa è illustrata in Figura~\ref{fig:ae_vs_vae_latent}.
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{pictures/cap2/latent_ae.png}
+        \caption{Spazio latente appreso da un autoencoder classico: geometria
+        irregolare e sensibile al training.}
+        \label{fig:ae_latent_instability}
+    \end{subfigure}
 
-In presenza di una rappresentazione disentangled, la manipolazione di una
-singola dimensione dello spazio latente produce una variazione interpretabile e
-localizzata nell’output ricostruito, senza influenzare gli altri attributi
-dell’osservazione. Questa proprietà rende le rappresentazioni disentangled
-particolarmente desiderabili in applicazioni quali l’analisi esplorativa dei
-dati, il controllo generativo, la robustezza a variazioni spurie e il
-trasferimento di conoscenza tra domini.
+    \vspace{0.8em}
 
-Nonostante il loro interesse teorico e pratico, le rappresentazioni
-disentangled non emergono spontaneamente nell’addestramento di autoencoders
-classici. La sola presenza di una strozzatura dimensionale non è sufficiente a
-garantire la separazione dei fattori di variazione, e in molti casi il modello
-apprende combinazioni complesse e non interpretabili di tali fattori, dando
-luogo a rappresentazioni \textit{entangled}.
+    \begin{subfigure}{\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{pictures/cap2/latent_vae.png}
+        \caption{Spazio latente appreso da un Variational Autoencoder: la
+        regolarizzazione verso un prior noto induce una distribuzione più compatta
+        e campionabile.}
+        \label{fig:vae_latent_stability}
+    \end{subfigure}
 
-Per favorire l’apprendimento di rappresentazioni disentangled è quindi
-necessario introdurre vincoli aggiuntivi o specifiche scelte architetturali e
-di regolarizzazione. Tra queste rientrano l’imposizione di sparsità nello spazio
-latente, la promozione dell’indipendenza statistica tra le feature, o
-l’introduzione di termini di penalizzazione che incoraggino una separazione
-esplicita dei fattori di variazione. Tali strategie costituiscono la base di
-numerosi modelli avanzati, tra cui gli \textit{Sparse Autoencoders}, che verranno
-analizzati nel seguito.
+    \caption{Confronto tra spazi latenti appresi su MNIST.
+    (\subref{fig:ae_latent_instability}) Autoencoder classico.
+    (\subref{fig:vae_latent_stability}) Variational Autoencoder.
+    Figure da \parencite{gordon2020machine}.}
+    \label{fig:ae_vs_vae_latent}
+\end{figure}
+Una delle formulazioni più note che esplicita l’idea di ``più vincolo sul latente''
+è la \textbf{$\beta$-VAE}, che modifica l’obiettivo variazionale introducendo un
+peso $\beta$ sul termine di regolarizzazione. Indicato con $q_\phi(\mathbf{z}|\mathbf{x})$
+l’encoder variazionale (approssimazione del posteriore), con $p_\theta(\mathbf{x}|\mathbf{z})$
+il decoder generativo e con $p(\mathbf{z})$ il prior, l’ELBO standard è:
+\begin{equation}
+\mathcal{L}_{\text{VAE}}(\theta,\phi;\mathbf{x})
+=
+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}\!\left[\log p_\theta(\mathbf{x}|\mathbf{z})\right]
+-
+D_{\mathrm{KL}}\!\left(q_\phi(\mathbf{z}|\mathbf{x}) \,\|\, p(\mathbf{z})\right).
+\end{equation}
+Nella $\beta$-VAE si introduce:
+\begin{equation}
+\mathcal{L}_{\beta\text{-VAE}}(\theta,\phi;\mathbf{x})
+=
+\mathbb{E}_{q_\phi(\mathbf{z}|\mathbf{x})}\!\left[\log p_\theta(\mathbf{x}|\mathbf{z})\right]
+-
+\beta \, D_{\mathrm{KL}}\!\left(q_\phi(\mathbf{z}|\mathbf{x}) \,\|\, p(\mathbf{z})\right),
+\qquad \beta \ge 1.
+\label{eq:beta_vae}
+\end{equation}
+Aumentare $\beta$ rafforza la pressione affinché le codifiche latenti rispettino
+il prior (tipicamente fattorizzato), favorendo una maggiore indipendenza tra
+componenti e quindi \textit{potenzialmente} un migliore disentanglement.
+Questo beneficio viene però pagato con un trade-off: una regolarizzazione troppo
+forte può peggiorare la qualità della ricostruzione, poiché riduce la capacità
+informativa del latente. In pratica, la scelta di $\beta$ bilancia quindi
+\textit{fedeltà di ricostruzione} e \textit{struttura/interpretabilità} del latente.
+In sintesi, per ottenere rappresentazioni disentangled è necessario introdurre
+vincoli che \textbf{regolarizzino} lo spazio latente e riducano la codifica
+diffusa dell’informazione, promuovendo separazione e (almeno approssimativamente)
+indipendenza tra fattori. Questa idea si collega naturalmente a quanto discusso
+nel seguito: l’imposizione di \textbf{sparsità} (Sparse Autoencoders) rappresenta
+un’ulteriore forma di vincolo strutturale che può favorire l’emergere di feature
+più selettive e spesso più interpretabili.
+
+% BibTeX consigliato (se usi biblatex):
+% @inproceedings{higgins2017betaVAE,
+%   title     = {$\beta$-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework},
+%   author    = {Higgins, Irina and Matthey, Loic and Pal, Arka and Burgess, Christopher and Glorot, Xavier and Botvinick, Matthew and Mohamed, Shakir and Lerchner, Alexander},
+%   booktitle = {International Conference on Learning Representations (ICLR)},
+%   year      = {2017}
+% }
+%
+% @misc{rajaa2022featuredisentanglement,
+%   author       = {Shangeth Rajaa},
+%   title        = {Feature Disentanglement - I},
+%   howpublished = {Skit Tech Blog},
+%   year         = {2022},
+%   url          = {https://tech.skit.ai/feature-disentanglement1/},
+%   note         = {Ultimo accesso: YYYY-MM-DD}
+% }
+
+
+
+
 
 \subsection{Sparse Autoencoders}
 
@@ -605,9 +662,36 @@ realizza una mappatura del tipo
 richiedendo tuttavia che, per ciascun input, solo una frazione limitata delle
 unità latenti risulti significativamente attiva.
 
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[scale=0.6, transform shape, node distance=1cm]
+        % Nodes
+        \node[draw, rectangle, minimum height=2cm, minimum width=0.5cm, fill=gray!20] (input) at (0,0) {$x \in \mathbb{R}^{d}$};
+        
+        % Trapezium for Expansion
+        \node[draw, trapezium, trapezium angle=70, shape border rotate=90, minimum height=1.5cm, fill=green!10] (enc) at (3.0,0) {Encoder};
+        
+        % Sparse Latent
+        \node[draw, rectangle, minimum height=4cm, minimum width=0.5cm, fill=red!20, label=above: spazio latente $\mathbf{h}$] (latent) at (6,0) {$h \in \mathbb{R}^{n}$};
+        \node at (6, -2.5) {\footnotesize $n > d$};
+
+        % Trapezium for Compression
+        \node[draw, trapezium, trapezium angle=70, shape border rotate=270, minimum height=1.5cm, fill=green!10] (dec) at (9.0,0) {Decoder};
+        
+        \node[draw, rectangle, minimum height=2cm, minimum width=0.5cm, fill=gray!20] (output) at (11.5,0) {$\hat{x} \approx x$};
+
+        % Arrows
+        \draw[->, thick] (input) -- (enc);
+        \draw[->, thick] (enc) -- (latent);
+        \draw[->, thick] (latent) -- (dec);
+        \draw[->, thick] (dec) -- (output);
+    \end{tikzpicture}
+    \caption{Sparse Autoencoder: spazio latente overcomplete con attivazioni sparse.}
+\end{figure}
+
 \begin{figure}[htbp] 
     \centering 
-    \includegraphics[width=0.5\linewidth]{pictures/SAE_diagram.png} 
+    \includegraphics[width=\linewidth]{pictures/SAE_diagram.png} 
     \caption{La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.} 
     \label{fig:sparse_autoencoder} 
 \end{figure}

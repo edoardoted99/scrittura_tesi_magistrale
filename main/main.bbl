@@ -131,6 +131,145 @@
       \endverb
       \keyw{Natural language processing,Deep learning,Language model,Biomedical text mining,Transformer}
     \endentry
+    \entry{chen2016infoganinterpretablerepresentationlearning}{misc}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=c6649d02b24225ca4c9012cee6c790de}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Xi},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=beba2607fa3b01b069f484075d0b9cf2}{%
+           family={Duan},
+           familyi={D\bibinitperiod},
+           given={Yan},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e23f0ac49ac141b77498859055147f0b}{%
+           family={Houthooft},
+           familyi={H\bibinitperiod},
+           given={Rein},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3e09bd2a25d237ebdaed560a07c0451e}{%
+           family={Schulman},
+           familyi={S\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e28d4ee199593959d8c29980a64f1974}{%
+           family={Abbeel},
+           familyi={A\bibinitperiod},
+           given={Pieter},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fcec9bb019a48f994cf390066d6aa604}
+      \strng{fullhash}{3c7906d2a3696419bef52675b5acd260}
+      \strng{bibnamehash}{3c7906d2a3696419bef52675b5acd260}
+      \strng{authorbibnamehash}{3c7906d2a3696419bef52675b5acd260}
+      \strng{authornamehash}{fcec9bb019a48f994cf390066d6aa604}
+      \strng{authorfullhash}{3c7906d2a3696419bef52675b5acd260}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets}
+      \field{year}{2016}
+      \verb{eprint}
+      \verb 1606.03657
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1606.03657
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1606.03657
+      \endverb
+    \endentry
+    \entry{Goodfellow2016DeepLearning}{book}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=5d2585c11210cf1d4512e6e0a03ec315}{%
+           family={Goodfellow},
+           familyi={G\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ccec1ccd2e1aa86960eb2e872c6b7020}{%
+           family={Courville},
+           familyi={C\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, MA}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{fullhash}{3ae53fe582e8a815b118d26947eaa326}
+      \strng{bibnamehash}{3ae53fe582e8a815b118d26947eaa326}
+      \strng{authorbibnamehash}{3ae53fe582e8a815b118d26947eaa326}
+      \strng{authornamehash}{d17e6557c5836d2d978179999ea1037f}
+      \strng{authorfullhash}{3ae53fe582e8a815b118d26947eaa326}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Deep Learning}
+      \field{year}{2016}
+      \verb{urlraw}
+      \verb https://www.deeplearningbook.org
+      \endverb
+      \verb{url}
+      \verb https://www.deeplearningbook.org
+      \endverb
+    \endentry
+    \entry{gordon2020machine}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=394726f37fbe77d819e2346e9abf5757}{%
+           family={Gordon},
+           familyi={G\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {YouTube}%
+      }
+      \strng{namehash}{394726f37fbe77d819e2346e9abf5757}
+      \strng{fullhash}{394726f37fbe77d819e2346e9abf5757}
+      \strng{bibnamehash}{394726f37fbe77d819e2346e9abf5757}
+      \strng{authorbibnamehash}{394726f37fbe77d819e2346e9abf5757}
+      \strng{authornamehash}{394726f37fbe77d819e2346e9abf5757}
+      \strng{authorfullhash}{394726f37fbe77d819e2346e9abf5757}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.youtube.com/watch?v=itOlzH9FHkI}}
+      \field{note}{Pubblicato dal canale YouTube CodeplaySoftware il 26 febbraio 2020. Evento organizzato presso l'Università di Edimburgo.}
+      \field{title}{Machine Learning Edinburgh: Disentangled Representations}
+      \field{year}{2020}
+    \endentry
     \entry{jm3}{book}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=bd33d7a70284b5ead9c7985cb5c9929c}{%
@@ -265,6 +404,7 @@
     \endentry
   \enddatalist
   \missing{jurafsky2024speech}
+  \missing{rajaa2022featuredisentanglement}
 \endrefsection
 \endinput
 
