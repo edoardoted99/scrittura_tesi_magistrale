@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  24 JAN 2026 12:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  24 JAN 2026 18:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1357,7 +1357,7 @@ LaTeX Info: Redefining \nameref on input line 98.
 \openout2 = `style/abstract.aux'.
 
  (./style/abstract.tex
-<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=533, 398.4486pt x 156.585pt>
+<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=549, 398.4486pt x 156.585pt>
 File: pictures/tesiSCIENZE_TECNOLOGIE.jpg Graphic file (type jpg)
 <use pictures/tesiSCIENZE_TECNOLOGIE.jpg>
 Package pdftex.def Info: pictures/tesiSCIENZE_TECNOLOGIE.jpg  used on input lin
@@ -1381,12 +1381,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ...egative Sampling}{31}{subsubsection.3.8.2}
+l.29 ...unzione sigmoide}{32}{subsubsection.3.9.1}
                                                   % [1
 
 
 ] [2]
-Overfull \hbox (5.97417pt too wide) in paragraph at lines 65--65
+Overfull \hbox (5.97417pt too wide) in paragraph at lines 69--69
  [][] [][]\T1/cmr/m/n/12 L'attenzione co-me ^^Pmo-vi-men-to^^Q di in-for-ma-zio
 -ne tra stream[] [][]  
  []
@@ -1406,25 +1406,25 @@ Overfull \hbox (5.97417pt too wide) in paragraph at lines 65--65
 
 
 (./chapters/02_autoencoders_e_sparse_autoencoders.tex
-<pictures/cap2/noisy_examples.png, id=716, 867.24pt x 252.945pt>
+<pictures/cap2/noisy_examples.png, id=738, 867.24pt x 252.945pt>
 File: pictures/cap2/noisy_examples.png Graphic file (type png)
 <use pictures/cap2/noisy_examples.png>
 Package pdftex.def Info: pictures/cap2/noisy_examples.png  used on input line 1
 0.
 (pdftex.def)             Requested size: 390.0pt x 113.75085pt.
-<pictures/cap2/reconstructions.png, id=720, 1084.05pt x 252.945pt>
+<pictures/cap2/reconstructions.png, id=742, 1084.05pt x 252.945pt>
 File: pictures/cap2/reconstructions.png Graphic file (type png)
 <use pictures/cap2/reconstructions.png>
 Package pdftex.def Info: pictures/cap2/reconstructions.png  used on input line 
 41.
 (pdftex.def)             Requested size: 390.0pt x 90.99837pt.
-<pictures/cap2/latent_scatter.png, id=722, 433.62pt x 433.62pt>
+<pictures/cap2/latent_scatter.png, id=744, 433.62pt x 433.62pt>
 File: pictures/cap2/latent_scatter.png Graphic file (type png)
 <use pictures/cap2/latent_scatter.png>
 Package pdftex.def Info: pictures/cap2/latent_scatter.png  used on input line 4
 8.
 (pdftex.def)             Requested size: 390.0pt x 390.0162pt.
-<pictures/cap2/manifold_grid.png, id=724, 578.16pt x 578.16pt>
+<pictures/cap2/manifold_grid.png, id=746, 578.16pt x 578.16pt>
 File: pictures/cap2/manifold_grid.png Graphic file (type png)
 <use pictures/cap2/manifold_grid.png>
 Package pdftex.def Info: pictures/cap2/manifold_grid.png  used on input line 55
@@ -1441,7 +1441,7 @@ g>]
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 60.
 
-<pictures/autoencoder.png, id=757, 535.2497pt x 145.29282pt>
+<pictures/autoencoder.png, id=779, 535.2497pt x 145.29282pt>
 File: pictures/autoencoder.png Graphic file (type png)
 <use pictures/autoencoder.png>
 Package pdftex.def Info: pictures/autoencoder.png  used on input line 95.
@@ -1451,33 +1451,34 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6] [7 <./pictures/autoencoder.png (PNG copy)>] [8] [9] [10] [11] [12] [13]
 [14]
-<pictures/cap2/mnist_disenangled_info_gan.png, id=834, 1110.1475pt x 668.4975pt
+<pictures/cap2/mnist_disenangled_info_gan.png, id=856, 1110.1475pt x 668.4975pt
 >
 File: pictures/cap2/mnist_disenangled_info_gan.png Graphic file (type png)
 <use pictures/cap2/mnist_disenangled_info_gan.png>
 Package pdftex.def Info: pictures/cap2/mnist_disenangled_info_gan.png  used on 
 input line 528.
 (pdftex.def)             Requested size: 390.0pt x 234.84467pt.
-<pictures/cap2/latent_ae.png, id=840, 1016.79875pt x 323.2075pt>
+<pictures/cap2/latent_ae.png, id=862, 1016.79875pt x 323.2075pt>
 File: pictures/cap2/latent_ae.png Graphic file (type png)
 <use pictures/cap2/latent_ae.png>
 Package pdftex.def Info: pictures/cap2/latent_ae.png  used on input line 565.
 (pdftex.def)             Requested size: 390.0pt x 123.96922pt.
-<pictures/cap2/latent_vae.png, id=841, 990.70125pt x 319.1925pt>
+<pictures/cap2/latent_vae.png, id=863, 990.70125pt x 319.1925pt>
 File: pictures/cap2/latent_vae.png Graphic file (type png)
 <use pictures/cap2/latent_vae.png>
 Package pdftex.def Info: pictures/cap2/latent_vae.png  used on input line 575.
 (pdftex.def)             Requested size: 390.0pt x 125.65347pt.
  [15] [16 <./pictures/cap2/mnist_disenangled_info_gan.png>] [17 <./pictures/cap
 2/latent_ae.png> <./pictures/cap2/latent_vae.png>]
+<pictures/SAE_diagram.png, id=891, 534.99875pt x 409.53pt>
+File: pictures/SAE_diagram.png Graphic file (type png)
+<use pictures/SAE_diagram.png>
+Package pdftex.def Info: pictures/SAE_diagram.png  used on input line 690.
+(pdftex.def)             Requested size: 390.0pt x 298.54823pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<pictures/SAE_diagram.png, id=869, 534.99875pt x 409.53pt>
-File: pictures/SAE_diagram.png Graphic file (type png)
-<use pictures/SAE_diagram.png>
-Package pdftex.def Info: pictures/SAE_diagram.png  used on input line 692.
-(pdftex.def)             Requested size: 390.0pt x 298.54823pt.
 [18]) [19] [20 <./pictures/SAE_diagram.png>]
 \openout2 = `chapters/03_embeddings.aux'.
 
@@ -1486,329 +1487,366 @@ Package pdftex.def Info: pictures/SAE_diagram.png  used on input line 692.
 
 
 
-] [22] [23]
-Overfull \hbox (20.73492pt too wide) in paragraph at lines 131--132
+]
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 7
+8.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [22] [23]
+
+LaTeX Warning: Citation 'Osgood1957Measurement' on page 24 undefined on input l
+ine 119.
+
+[24] [25]
+Overfull \hbox (20.73492pt too wide) in paragraph at lines 202--203
  [][] 
  []
 
-[24]
-Overfull \hbox (0.59558pt too wide) in paragraph at lines 158--170
+[26]
+Overfull \hbox (0.59558pt too wide) in paragraph at lines 229--241
  [][] 
  []
 
+[27]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[25] [26] [27] [28] [29] [30]
+[28] [29] [30]
+
+LaTeX Warning: Citation 'mikolov2013efficientestimationwordrepresentations' on 
+page 31 undefined on input line 403.
+
+
+Overfull \hbox (110.11096pt too wide) in paragraph at lines 402--404
+\T1/cmr/m/n/12 cri-ti-ci-tà, han-no in-tro-dot-to \T1/cmr/m/it/12 Word2Vec \T1/
+cmr/m/n/12 ([]),
+ []
+
+[31]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 373.
+(hyperref)                removing `math shift' on input line 427.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 373.
+(hyperref)                removing `math shift' on input line 427.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 373.
+(hyperref)                removing `math shift' on input line 427.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 373.
+(hyperref)                removing `math shift' on input line 427.
 
-<pictures/embeddings_w2vec.png, id=961, 1294.8375pt x 630.355pt>
+[32]
+<pictures/embeddings_w2vec.png, id=997, 1294.8375pt x 630.355pt>
 File: pictures/embeddings_w2vec.png Graphic file (type png)
 <use pictures/embeddings_w2vec.png>
-Package pdftex.def Info: pictures/embeddings_w2vec.png  used on input line 379.
+Package pdftex.def Info: pictures/embeddings_w2vec.png  used on input line 433.
 
 (pdftex.def)             Requested size: 272.99881pt x 132.89784pt.
-[31 <./pictures/embeddings_w2vec.png>] [32] [33] [34] [35]
-<pictures/rnn.png, id=989, 1487.5575pt x 586.19pt>
+ [33 <./pictures/embeddings_w2vec.png>]
+Overfull \hbox (17.20184pt too wide) in paragraph at lines 466--466
+[]\T1/cmr/bx/n/12 La fi-ne-stra di con-te-sto co-me ma-no-po-la se-man-ti-ca in
+ Word2Vec 
+ []
+
+[34]
+Underfull \hbox (badness 1742) in paragraph at lines 517--519
+\T1/cmr/m/n/12 Nel no-stro ca-so, in in-fe-ren-za $\OML/cmm/m/it/12 f[]$ \T1/cm
+r/m/n/12 pro-du-ce rap-pre-sen-ta-zio-ni (e/o
+ []
+
+[35] [36] [37] [38] [39]
+<pictures/rnn.png, id=1034, 1487.5575pt x 586.19pt>
 File: pictures/rnn.png Graphic file (type png)
 <use pictures/rnn.png>
-Package pdftex.def Info: pictures/rnn.png  used on input line 465.
+Package pdftex.def Info: pictures/rnn.png  used on input line 584.
 (pdftex.def)             Requested size: 390.0pt x 153.68486pt.
-<pictures/rnn_unrolled.png, id=990, 1578.89874pt x 909.3975pt>
+ [40 <./pictures/rnn.png>]
+<pictures/rnn_unrolled.png, id=1043, 1578.89874pt x 909.3975pt>
 File: pictures/rnn_unrolled.png Graphic file (type png)
 <use pictures/rnn_unrolled.png>
-Package pdftex.def Info: pictures/rnn_unrolled.png  used on input line 491.
+Package pdftex.def Info: pictures/rnn_unrolled.png  used on input line 609.
 (pdftex.def)             Requested size: 390.0pt x 224.62907pt.
- [36 <./pictures/rnn.png>] [37 <./pictures/rnn_unrolled.png>] [38] [39]
-<pictures/lstm.png, id=1023, 1264.725pt x 791.95876pt>
+ [41 <./pictures/rnn_unrolled.png>] [42] [43]
+<pictures/lstm.png, id=1067, 1264.725pt x 791.95876pt>
 File: pictures/lstm.png Graphic file (type png)
 <use pictures/lstm.png>
-Package pdftex.def Info: pictures/lstm.png  used on input line 570.
+Package pdftex.def Info: pictures/lstm.png  used on input line 673.
 (pdftex.def)             Requested size: 390.0pt x 244.21165pt.
- [40] [41 <./pictures/lstm.png>] [42]
+ [44] [45 <./pictures/lstm.png>] [46]
 
-LaTeX Warning: Reference `fig:fig:seq2seq_formal' on page 43 undefined on input
- line 653.
+LaTeX Warning: Reference `fig:fig:seq2seq_formal' on page 47 undefined on input
+ line 756.
 
-<pictures/seq2seq_formal.png, id=1055, 1716.4125pt x 683.55376pt>
+<pictures/seq2seq_formal.png, id=1102, 1716.4125pt x 683.55376pt>
 File: pictures/seq2seq_formal.png Graphic file (type png)
 <use pictures/seq2seq_formal.png>
-Package pdftex.def Info: pictures/seq2seq_formal.png  used on input line 656.
+Package pdftex.def Info: pictures/seq2seq_formal.png  used on input line 759.
 (pdftex.def)             Requested size: 390.0pt x 155.31577pt.
-[43]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6
-78.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+[47 <./pictures/seq2seq_formal.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 7
+81.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [44 <./pictures/seq2seq_formal.png>]
-<pictures/bottleneck.png, id=1082, 1720.4275pt x 298.11375pt>
+)
+<pictures/bottleneck.png, id=1115, 1720.4275pt x 298.11375pt>
 File: pictures/bottleneck.png Graphic file (type png)
 <use pictures/bottleneck.png>
-Package pdftex.def Info: pictures/bottleneck.png  used on input line 709.
+Package pdftex.def Info: pictures/bottleneck.png  used on input line 812.
 (pdftex.def)             Requested size: 390.0pt x 67.57762pt.
+ [48]
 
+LaTeX Warning: Citation 'jurafsky2024speech' on page 49 undefined on input line
+ 837.
 
-LaTeX Warning: Citation 'jurafsky2024speech' on page 45 undefined on input line
- 734.
-
-[45 <./pictures/bottleneck.png>]
-<pictures/attention_dynamic_context.png, id=1096, 1055.945pt x 345.29pt>
+[49 <./pictures/bottleneck.png>]
+<pictures/attention_dynamic_context.png, id=1143, 1055.945pt x 345.29pt>
 File: pictures/attention_dynamic_context.png Graphic file (type png)
 <use pictures/attention_dynamic_context.png>
 Package pdftex.def Info: pictures/attention_dynamic_context.png  used on input 
-line 748.
+line 851.
 (pdftex.def)             Requested size: 390.0pt x 127.52873pt.
-<pictures/attention_ci_computation.png, id=1101, 1714.405pt x 776.9025pt>
+<pictures/attention_ci_computation.png, id=1148, 1714.405pt x 776.9025pt>
 File: pictures/attention_ci_computation.png Graphic file (type png)
 <use pictures/attention_ci_computation.png>
 Package pdftex.def Info: pictures/attention_ci_computation.png  used on input l
-ine 759.
+ine 862.
 (pdftex.def)             Requested size: 390.0pt x 176.7278pt.
- [46 <./pictures/attention_dynamic_context.png>] [47 <./pictures/attention_ci_c
+ [50 <./pictures/attention_dynamic_context.png>] [51 <./pictures/attention_ci_c
 omputation.png>]
-Overfull \hbox (186.04929pt too wide) detected at line 809
+Overfull \hbox (186.04929pt too wide) detected at line 912
 []  \OMS/cmsy/m/n/12 !  []  !  []  !  []  !  []\OML/cmm/m/it/12 :
  []
 
-[48]
-<pictures/transformer_overview.png, id=1128, 1515.6625pt x 968.61874pt>
+[52]
+<pictures/transformer_overview.png, id=1174, 1515.6625pt x 968.61874pt>
 File: pictures/transformer_overview.png Graphic file (type png)
 <use pictures/transformer_overview.png>
 Package pdftex.def Info: pictures/transformer_overview.png  used on input line 
-824.
+927.
 (pdftex.def)             Requested size: 390.0pt x 249.23366pt.
- [49 <./pictures/transformer_overview.png>]
+ [53 <./pictures/transformer_overview.png>]
 
-LaTeX Warning: Reference `sec:self_attention' on page 50 undefined on input lin
-e 835.
+LaTeX Warning: Reference `sec:self_attention' on page 54 undefined on input lin
+e 938.
 
-[50]
-<pictures/selfattn_alpha.png.png, id=1148, 1720.4275pt x 850.17625pt>
+[54]
+<pictures/selfattn_alpha.png.png, id=1194, 1720.4275pt x 850.17625pt>
 File: pictures/selfattn_alpha.png.png Graphic file (type png)
 <use pictures/selfattn_alpha.png.png>
-Package pdftex.def Info: pictures/selfattn_alpha.png.png  used on input line 84
-2.
+Package pdftex.def Info: pictures/selfattn_alpha.png.png  used on input line 94
+5.
 (pdftex.def)             Requested size: 390.0pt x 192.72136pt.
-<pictures/selfattn_flow.png, id=1149, 1725.44624pt x 369.38pt>
+<pictures/selfattn_flow.png, id=1195, 1725.44624pt x 369.38pt>
 File: pictures/selfattn_flow.png Graphic file (type png)
 <use pictures/selfattn_flow.png>
-Package pdftex.def Info: pictures/selfattn_flow.png  used on input line 849.
+Package pdftex.def Info: pictures/selfattn_flow.png  used on input line 952.
 (pdftex.def)             Requested size: 390.0pt x 83.49017pt.
- [51 <./pictures/selfattn_alpha.png.png>] [52 <./pictures/selfattn_flow.png>]
-Overfull \hbox (0.57535pt too wide) in paragraph at lines 879--879
+ [55 <./pictures/selfattn_alpha.png.png>] [56 <./pictures/selfattn_flow.png>]
+Overfull \hbox (0.57535pt too wide) in paragraph at lines 982--982
 []\T1/cmr/bx/n/12 Intuizione: self-attention co-me com-bi-na-zio-ne pe-sa-ta de
 l con-
  []
 
 
-Overfull \hbox (0.29636pt too wide) in paragraph at lines 880--881
+Overfull \hbox (0.29636pt too wide) in paragraph at lines 983--984
 \T1/cmr/m/n/12 Per fis-sa-re l'i-dea, è uti-le in-tro-dur-re una for-ma sem-pli
 -fi-ca-ta del-la self-attention:
  []
 
-[53]
-Overfull \hbox (20.02695pt too wide) in paragraph at lines 914--915
+[57]
+Overfull \hbox (20.02695pt too wide) in paragraph at lines 1017--1018
  []\T1/cmr/bx/n/12 Normalizzazione tra-mi-te soft-max e vin-co-lo cau-sa-le.[] 
 \T1/cmr/m/n/12 I pun-teg-gi $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 i; j\OT1/cmr/m
 /n/12 )$
  []
 
-[54]
-<pictures/selfattn_head.png, id=1181, 1191.45125pt x 918.43124pt>
+[58]
+<pictures/selfattn_head.png, id=1227, 1191.45125pt x 918.43124pt>
 File: pictures/selfattn_head.png Graphic file (type png)
 <use pictures/selfattn_head.png>
-Package pdftex.def Info: pictures/selfattn_head.png  used on input line 931.
+Package pdftex.def Info: pictures/selfattn_head.png  used on input line 1034.
 (pdftex.def)             Requested size: 390.0pt x 300.63077pt.
- [55] [56 <./pictures/selfattn_head.png>]
-<pictures/multihead.png, id=1201, 1423.3175pt x 642.4pt>
+ [59] [60 <./pictures/selfattn_head.png>]
+<pictures/multihead.png, id=1247, 1423.3175pt x 642.4pt>
 File: pictures/multihead.png Graphic file (type png)
 <use pictures/multihead.png>
-Package pdftex.def Info: pictures/multihead.png  used on input line 966.
+Package pdftex.def Info: pictures/multihead.png  used on input line 1069.
 (pdftex.def)             Requested size: 390.0pt x 176.0185pt.
- [57] [58 <./pictures/multihead.png>]
-<pictures/transformer_block.png, id=1217, 1199.48125pt x 915.42pt>
+ [61] [62 <./pictures/multihead.png>]
+<pictures/transformer_block.png, id=1263, 1199.48125pt x 915.42pt>
 File: pictures/transformer_block.png Graphic file (type png)
 <use pictures/transformer_block.png>
-Package pdftex.def Info: pictures/transformer_block.png  used on input line 100
-2.
+Package pdftex.def Info: pictures/transformer_block.png  used on input line 110
+5.
 (pdftex.def)             Requested size: 350.99762pt x 267.86752pt.
- [59] [60 <./pictures/transformer_block.png>] [61]
-<pictures/token_stream.png, id=1250, 1711.39375pt x 616.3025pt>
+ [63] [64 <./pictures/transformer_block.png>] [65]
+<pictures/token_stream.png, id=1295, 1711.39375pt x 616.3025pt>
 File: pictures/token_stream.png Graphic file (type png)
 <use pictures/token_stream.png>
-Package pdftex.def Info: pictures/token_stream.png  used on input line 1097.
+Package pdftex.def Info: pictures/token_stream.png  used on input line 1200.
 (pdftex.def)             Requested size: 350.99762pt x 126.39925pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1115.
+(hyperref)                removing `math shift' on input line 1218.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1115.
+(hyperref)                removing `math shift' on input line 1218.
 
-[62] [63 <./pictures/token_stream.png>]
-<pictures/qkt_full.png, id=1272, 1724.4425pt x 549.05125pt>
+[66] [67 <./pictures/token_stream.png>]
+<pictures/qkt_full.png, id=1319, 1724.4425pt x 549.05125pt>
 File: pictures/qkt_full.png Graphic file (type png)
 <use pictures/qkt_full.png>
-Package pdftex.def Info: pictures/qkt_full.png  used on input line 1164.
+Package pdftex.def Info: pictures/qkt_full.png  used on input line 1267.
 (pdftex.def)             Requested size: 350.99762pt x 111.75195pt.
-<pictures/qkt_masked.png, id=1278, 1723.43875pt x 538.01pt>
+<pictures/qkt_masked.png, id=1325, 1723.43875pt x 538.01pt>
 File: pictures/qkt_masked.png Graphic file (type png)
 <use pictures/qkt_masked.png>
-Package pdftex.def Info: pictures/qkt_masked.png  used on input line 1198.
+Package pdftex.def Info: pictures/qkt_masked.png  used on input line 1301.
 (pdftex.def)             Requested size: 350.99762pt x 109.57033pt.
- [64 <./pictures/qkt_full.png>]
-<pictures/single_head_parallel.png, id=1290, 1716.4125pt x 975.645pt>
+ [68 <./pictures/qkt_full.png>]
+<pictures/single_head_parallel.png, id=1337, 1716.4125pt x 975.645pt>
 File: pictures/single_head_parallel.png Graphic file (type png)
 <use pictures/single_head_parallel.png>
 Package pdftex.def Info: pictures/single_head_parallel.png  used on input line 
-1211.
+1314.
 (pdftex.def)             Requested size: 382.19833pt x 217.2478pt.
- [65 <./pictures/qkt_masked.png>] [66 <./pictures/single_head_parallel.png>] [6
-7]
-<pictures/select_single_embedding.png, id=1327, 1729.46124pt x 376.40625pt>
+ [69 <./pictures/qkt_masked.png>] [70 <./pictures/single_head_parallel.png>] [7
+1]
+<pictures/select_single_embedding.png, id=1372, 1729.46124pt x 376.40625pt>
 File: pictures/select_single_embedding.png Graphic file (type png)
 <use pictures/select_single_embedding.png>
 Package pdftex.def Info: pictures/select_single_embedding.png  used on input li
-ne 1313.
+ne 1416.
 (pdftex.def)             Requested size: 343.2019pt x 74.69408pt.
-<pictures/select_sequence_embedding.png, id=1332, 1726.45pt x 411.5375pt>
+<pictures/select_sequence_embedding.png, id=1377, 1726.45pt x 411.5375pt>
 File: pictures/select_sequence_embedding.png Graphic file (type png)
 <use pictures/select_sequence_embedding.png>
 Package pdftex.def Info: pictures/select_sequence_embedding.png  used on input 
-line 1333.
+line 1436.
 (pdftex.def)             Requested size: 343.2019pt x 81.80995pt.
 
-[68 <./pictures/select_single_embedding.png> <./pictures/select_sequence_embedd
+[72 <./pictures/select_single_embedding.png> <./pictures/select_sequence_embedd
 ing.png>]
-<pictures/token_plus_position.png, id=1347, 1724.4425pt x 684.5575pt>
+<pictures/token_plus_position.png, id=1393, 1724.4425pt x 684.5575pt>
 File: pictures/token_plus_position.png Graphic file (type png)
 <use pictures/token_plus_position.png>
 Package pdftex.def Info: pictures/token_plus_position.png  used on input line 1
-376.
+479.
 (pdftex.def)             Requested size: 358.79929pt x 142.42429pt.
- [69] [70 <./pictures/token_plus_position.png>]
+ [73] [74 <./pictures/token_plus_position.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1451.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1451.
+(hyperref)                removing `math shift' on input line 1554.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1451.
+(hyperref)                removing `subscript' on input line 1554.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1451.
+(hyperref)                removing `superscript' on input line 1554.
 
-<pictures/lm_head_overview.png, id=1369, 1721.43124pt x 743.77875pt>
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1554.
+
+<pictures/lm_head_overview.png, id=1415, 1721.43124pt x 743.77875pt>
 File: pictures/lm_head_overview.png Graphic file (type png)
 <use pictures/lm_head_overview.png>
-Package pdftex.def Info: pictures/lm_head_overview.png  used on input line 1470
+Package pdftex.def Info: pictures/lm_head_overview.png  used on input line 1573
 .
 (pdftex.def)             Requested size: 370.49881pt x 160.07954pt.
-[71] [72 <./pictures/lm_head_overview.png>]
-<pictures/decoder_only_stack.png, id=1390, 992.70876pt x 1000.73875pt>
+[75] [76 <./pictures/lm_head_overview.png>]
+<pictures/decoder_only_stack.png, id=1436, 992.70876pt x 1000.73875pt>
 File: pictures/decoder_only_stack.png Graphic file (type png)
 <use pictures/decoder_only_stack.png>
-Package pdftex.def Info: pictures/decoder_only_stack.png  used on input line 15
-42.
+Package pdftex.def Info: pictures/decoder_only_stack.png  used on input line 16
+45.
 (pdftex.def)             Requested size: 319.80286pt x 322.38075pt.
- [73] [74 <./pictures/decoder_only_stack.png>] [75]
-<pictures/llm_completion.png, id=1411, 1719.42375pt x 947.54pt>
+ [77] [78 <./pictures/decoder_only_stack.png>] [79]
+<pictures/llm_completion.png, id=1458, 1719.42375pt x 947.54pt>
 File: pictures/llm_completion.png Graphic file (type png)
 <use pictures/llm_completion.png>
-Package pdftex.def Info: pictures/llm_completion.png  used on input line 1637.
+Package pdftex.def Info: pictures/llm_completion.png  used on input line 1740.
 (pdftex.def)             Requested size: 390.0pt x 214.92229pt.
- [76]
-<pictures/summarization_example.png, id=1418, 1722.435pt x 928.46875pt>
+ [80]
+<pictures/summarization_example.png, id=1465, 1722.435pt x 928.46875pt>
 File: pictures/summarization_example.png Graphic file (type png)
 <use pictures/summarization_example.png>
 Package pdftex.def Info: pictures/summarization_example.png  used on input line
- 1662.
+ 1765.
 (pdftex.def)             Requested size: 390.0pt x 210.22818pt.
-<pictures/tldr_summarization.png, id=1419, 1716.4125pt x 915.42pt>
+<pictures/tldr_summarization.png, id=1466, 1716.4125pt x 915.42pt>
 File: pictures/tldr_summarization.png Graphic file (type png)
 <use pictures/tldr_summarization.png>
-Package pdftex.def Info: pictures/tldr_summarization.png  used on input line 16
-70.
+Package pdftex.def Info: pictures/tldr_summarization.png  used on input line 17
+73.
 (pdftex.def)             Requested size: 390.0pt x 207.99997pt.
- [77 <./pictures/llm_completion.png>] [78 <./pictures/summarization_example.png
-> <./pictures/tldr_summarization.png>] [79]
+ [81 <./pictures/llm_completion.png>] [82 <./pictures/summarization_example.png
+> <./pictures/tldr_summarization.png>] [83]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1730.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1730.
+(hyperref)                removing `math shift' on input line 1833.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1749.
+(hyperref)                removing `math shift' on input line 1833.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1749.
+(hyperref)                removing `math shift' on input line 1852.
 
-[80] [81] [82]
-<pictures/transformer_llm_training.png, id=1454, 1712.3975pt x 946.53625pt>
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1852.
+
+[84] [85] [86]
+<pictures/transformer_llm_training.png, id=1500, 1712.3975pt x 946.53625pt>
 File: pictures/transformer_llm_training.png Graphic file (type png)
 <use pictures/transformer_llm_training.png>
 Package pdftex.def Info: pictures/transformer_llm_training.png  used on input l
-ine 1858.
+ine 1961.
 (pdftex.def)             Requested size: 390.0pt x 215.57564pt.
- [83] [84 <./pictures/transformer_llm_training.png>]
-<pictures/corpus.png, id=1468, 1187.43625pt x 654.445pt>
+ [87] [88 <./pictures/transformer_llm_training.png>]
+<pictures/corpus.png, id=1513, 1187.43625pt x 654.445pt>
 File: pictures/corpus.png Graphic file (type png)
 <use pictures/corpus.png>
-Package pdftex.def Info: pictures/corpus.png  used on input line 1915.
+Package pdftex.def Info: pictures/corpus.png  used on input line 2018.
 (pdftex.def)             Requested size: 390.0pt x 214.94894pt.
- [85 <./pictures/corpus.png>]
-<pictures/training_llm.png, id=1475, 1434.35875pt x 543.02875pt>
+ [89 <./pictures/corpus.png>]
+<pictures/training_llm.png, id=1520, 1434.35875pt x 543.02875pt>
 File: pictures/training_llm.png Graphic file (type png)
 <use pictures/training_llm.png>
-Package pdftex.def Info: pictures/training_llm.png  used on input line 1946.
+Package pdftex.def Info: pictures/training_llm.png  used on input line 2049.
 (pdftex.def)             Requested size: 390.0pt x 147.64717pt.
 
-Overfull \hbox (0.74042pt too wide) in paragraph at lines 1959--1961
+Overfull \hbox (0.74042pt too wide) in paragraph at lines 2062--2064
 []\T1/cmr/bx/n/12 Adattamenti su-per-vi-sio-na-ti\T1/cmr/m/n/12 : in al-cu-ne i
 m-po-sta-zio-ni di post-training
  []
 
-[86])
-Overfull \hbox (13.3014pt too wide) in paragraph at lines 1964--117
+[90])
+Overfull \hbox (13.3014pt too wide) in paragraph at lines 2067--117
  []\T1/cmr/bx/n/12 Collegamento al-le se-zio-ni suc-ces-si-ve.[] \T1/cmr/m/n/12
  Una vol-ta com-ple-ta-to (pre-)training
  []
 
-[87 <./pictures/training_llm.png>]
+[91 <./pictures/training_llm.png>]
 \openout2 = `chapters/04_superposition.aux'.
 
- (./chapters/04_superposition.tex [88
+ (./chapters/04_superposition.tex [92
 
 
 
 ]
-[89]) [90]
+[93]) [94]
 \openout2 = `chapters/04_disentangling_dense_embeddings_with_sparse_autoencoder
 s.aux'.
 
@@ -1818,32 +1856,26 @@ s.aux'.
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\\' on input line 1.
 
-[91
+[95
 
 
 
-] [92] [93] [94] [95] [96]) [97]
+] [96] [97] [98] [99] [100]) [101]
 \openout2 = `chapters/05_prisma.aux'.
 
  (./chapters/05_prisma.tex
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 2
-6.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
-File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
 Overfull \hbox (3.7292pt too wide) in paragraph at lines 32--32
  [][]\T1/cmss/bx/n/10.95 Interpretazione 
  []
 
-[98
+[102
 
 
 
-] [99] [100] [101] [102] [103]) [104]
+] [103] [104] [105] [106] [107]) [108]
 \openout2 = `chapters/06_analisi.aux'.
 
- (./chapters/06_analisi.tex) [105
+ (./chapters/06_analisi.tex) [109
 
 
 
@@ -1858,7 +1890,7 @@ Overfull \hbox (32.15178pt too wide) in paragraph at lines 130--130
  adap-ta-tion of transformer-
  []
 
-[106
+[110
 
 
 
@@ -1876,14 +1908,8 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 0BC4A779672065B76A13DFEAC81020E9;30036
-(rerunfilecheck)             After:  0038A5FDE08963A3F62BA91BB1E2E59B;29793.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: DB44172F0460C2E509FA951B1B4878F4;31602.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1894,56 +1920,54 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 52725 strings out of 480122
- 1153039 string characters out of 5893077
- 1801504 words of memory out of 5000000
- 69496 multiletter control sequences out of 15000+600000
- 504571 words of font info for 116 fonts, out of 8000000 for 9000
+ 52881 strings out of 480122
+ 1155620 string characters out of 5893077
+ 1801610 words of memory out of 5000000
+ 69637 multiletter control sequences out of 15000+600000
+ 505342 words of font info for 117 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
  127i,15n,122p,1765b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsubsection.3.8.3} has been referenced but does
- not exist, replaced by a fixed one
-
- </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> 
-</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> <
-/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </
-home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </h
-ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </ho
-me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </hom
-e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1440.600pk> </home
-/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1728.600pk> </home/
-edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/e
-do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ed
-o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/edo
-/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/edo/
-.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo/.
-texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/.t
-exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk> </home/edo/.te
-xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.tex
-live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.texl
-ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.texli
-ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texliv
-e2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texlive
-2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (113 pages, 6566029 bytes).
+ </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk
+> </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk>
+ </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> 
+</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> <
+/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1440.600pk> </
+home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1728.600pk> </h
+ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </ho
+me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </hom
+e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home
+/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </home/
+edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/e
+do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/ed
+o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/edo
+/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo/
+.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/.
+texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk> </home/edo/.t
+exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.te
+xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.tex
+live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.texl
+ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texli
+ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texliv
+e2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (117 pages, 6593584 bytes).
 PDF statistics:
- 2518 PDF objects out of 2984 (max. 8388607)
- 1579 compressed objects within 16 object streams
- 445 named destinations out of 1000 (max. 500000)
- 1304 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2614 PDF objects out of 2984 (max. 8388607)
+ 1625 compressed objects within 17 object streams
+ 459 named destinations out of 1000 (max. 500000)
+ 1336 words of extra memory for PDF output out of 10000 (max. 10000000)
 

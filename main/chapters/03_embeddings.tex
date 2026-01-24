@@ -7,15 +7,87 @@
 
 \newpage
 
-\subsection{Introduzione}
-Quando leggiamo un testo, noi esseri umani siamo dotati della capacità di coglierne un aspetto di significato. Questo implica che dietro alle parole che leggiamo si cela una rappresentazione semantica che vorremmo potenzialmente far apprendere anche alle macchine.  
-Dal momento che le macchine parlano con la lingua dei numeri e, non come noi, con quella delle parole è stato necessario introdurre degli strumenti che vorrebbero in linea di principio assegnare ad ogni parola un numero rappresentatitivo di un singificato. Tale strumenti sono chiamati \emph{embeddings} e in questo capitolo, basandoci sul libro Speech and Language Processing di Stanford \cite{jm3}, si vedrà come vengono costruiti ed implementati per processare il testo.
+\subsection{Simboli e significati}
+Il punto di partenza per comprendere gli \textit{embeddings} risiede nella distinzione tra \textbf{significante} e \textbf{significato}. In linguistica, il significante è la forma fisica del segno (il suono della parola o la stringa di caratteri ``mela"), mentre il significato è il concetto mentale a cui esso rimanda. Le macchine operano nativamente nel dominio dei significanti: esse manipolano simboli discreti che, per loro natura, sono arbitrari. Non vi è nulla nella stringa ``cane" che richiami le proprietà biologiche dell'animale. La sfida dell'Intelligenza Artificiale è costruire una relazione, o funzione di mapping, che proietti l'insieme dei simboli in uno spazio semantico dove i concetti sono rappresentati numericamente.
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+    % Insieme dei Significanti (Simboli)
+    \draw[thick, fill=blue!5] (-4,0) ellipse (2cm and 3cm);
+    \node[anchor=south] at (-4,3) {\textbf{Significanti} ($\mathcal{S}$)};
+    \node (s1) at (-4,1.5) {``cane"};
+    \node (s2) at (-4,0.5) {``dog"};
+    \node (s3) at (-4,-1) {``medico"};
+    \node (s4) at (-4,-2) {``dottore"};
+
+    % Insieme dei Significati (Spazio Semantico)
+    \draw[thick, fill=green!5] (4,0) ellipse (2cm and 3cm);
+    \node[anchor=south] at (4,3) {\textbf{Significati} ($\mathbb{R}^d$)};
+    
+    % Punti nello spazio semantico
+    \filldraw (3.5,1) circle (2pt) node[anchor=west] (v1) {$\vec{v}_{canine}$};
+    \filldraw (3.5,-1.5) circle (2pt) node[anchor=west] (v2) {$\vec{v}_{medical}$};
+
+    % Frecce di Mapping
+    \draw[->, >=stealth, thick, gray!80] (s1) to [bend left=10] (v1);
+    \draw[->, >=stealth, thick, gray!80] (s2) to [bend right=10] (v1);
+    \draw[->, >=stealth, thick, gray!80] (s3) to [bend left=10] (v2);
+    \draw[->, >=stealth, thick, gray!80] (s4) to [bend right=10] (v2);
+
+    \node at (0,1) {$f: \mathcal{S} \to \mathbb{R}^d$};
+
+\end{tikzpicture}
+\caption{Rappresentazione del mapping tra lo spazio discreto dei simboli (Significanti) e lo spazio continuo dei vettori (Significati). 
+L'obiettivo è apprendere una funzione $f$ tale che simboli diversi con significati simili vengano proiettati in vettori vicini nello spazio matematico.}
+\end{figure}
+
+Apprendere questa relazione è la \textit{conditio sine qua non} per permettere alle macchine di manipolare i simboli non solo come sequenze di bit, ma come entità portatrici di senso. Senza questo passaggio, il ragionamento logico e la coerenza semantica rimarrebbero preclusi.
+\subsection{Gli assi del linguaggio}
+Per addestrare questi modelli a catturare i significati dai significanti, li si pone nella condizione di analizzare enormi corpora di testo attraverso le due dimensioni fondamentali lungo le quali si articola ogni lingua: gli \textbf{assi saussuriani}.
+\begin{figure}[htbp]
+    \centering
+    \tikzset{
+        mainword/.style={font=\large\bfseries, text=black},
+        altword/.style={font=\small\itshape, text=gray},
+        axislabel/.style={font=\sffamily\bfseries\small},
+        question/.style={font=\scriptsize\itshape, text=black!70, align=center}
+    }
+    \begin{tikzpicture}[>=LaTeX, node distance=1.5cm]
+        % Assi
+        \draw[->, thick, black!50] (-4, 0) -- (6, 0);
+        \draw[->, thick, black!50] (0, -3.5) -- (0, 3.5);
+
+        % Centro (Parola Target)
+        \node[draw=black, thick, fill=white, inner sep=5pt] (target) at (0,0) {\textbf{mangia}};
+
+        % Asse Sintagmatico (Orizzontale)
+        \node[mainword] (w_prev2) at (-3, 0) {Il};
+        \node[mainword] (w_prev1) at (-1.5, 0) {gatto};
+        \node[mainword] (w_next1) at (1.5, 0) {la};
+        \node[mainword] (w_next2) at (3, 0) {mela};
+
+        % Asse Paradigmatico (Verticale)
+        \node[altword] at (0, 1.2) {osserva};
+        \node[altword] at (0, 2.0) {rincorre};
+        \node[altword] at (0, 2.8) {annusa};
+        \node[altword] at (0, -1.2) {divora};
+        \node[altword] at (0, -2.0) {gusta};
+
+        % Etichette
+        \node[axislabel, anchor=north east] at (6, -0.2) {Asse Sintagmatico};
+        \node[question, anchor=north east] at (6, -0.7) {«Quale parola segue?»\\(Combinazione)};
+        \node[axislabel, anchor=south] at (0, 3.6) {Asse Paradigmatico};
+        \node[question, anchor=south] at (0, 4.0) {«Cosa potrei mettere al posto di...?»\\(Selezione)};
+    \end{tikzpicture}
+    \caption{Rappresentazione degli assi del linguaggio. L'asse orizzontale mostra la sequenza lineare (sintagma), quello verticale le alternative possibili (paradigma).}
+\end{figure}
+L'\textbf{asse sintagmatico} riguarda la \textbf{combinazione}: risponde alla domanda \textit{«Quale parola segue?»} e governa la creazione di catene lineari (frasi). Al contrario, l'\textbf{asse paradigmatico} riguarda la \textbf{selezione}: risponde alla domanda \textit{«Cosa potrei mettere al posto di questa parola?»}. 
+Gli algoritmi di embedding estraggono valore proprio all'intersezione di questi assi: analizzano le catene \textbf{sintagmatiche} osservabili nel testo per ricostruire lo spazio \textbf{paradigmatico} delle somiglianze. In fase di addestramento, il modello valuta quali termini siano intercambiabili in un dato contesto, mentre in fase di generazione opera sulla catena sintagmatica costruendo una sequenza coerente. È questa danza tra selezione e combinazione che permette l'emergere della coerenza semantica nei modelli moderni.
 
 
 \subsection{L'ipotesi distribuzionale}
-
-Supponiamo di non conoscere il significato della parola \textit{ongchoi}, ma di 
+Per costruire queste relazioni di singificato è necessario partire da un'ipotesi fondamentale. Supponiamo di non conoscere il significato della parola \textit{ongchoi}, ma di 
 incontrarla nei seguenti contesti:
 
 \begin{enumerate}
@@ -35,7 +107,7 @@ come:
 \end{enumerate} Il fatto che \textit{ongchoi} compaia insieme a parole come \textit{riso}, 
 \textit{aglio}, \textit{deliziosa} e \textit{salata}, proprio come \textit{spinaci}, 
 \textit{coste} o \textit{cavolo riccio}, suggerisce che l'ongchoi sia una 
-\textbf{verdura a foglia} simile a queste altre verdure.
+verdura a foglia simile a queste altre verdure.
 Questo è il principio dell'ipotesi distribuzionale per il quale la parola \textit{doctor-eye} o \textit{oculist} è probabile che la troviamo nello stesso contesto. 
 \begin{notebox}
 \textbf{Ipotesi Distribuzionale}
@@ -44,10 +116,9 @@ Si definisce ipotesi distribuzionale quella ipotesi per la quale parole simili c
 Tale ipotesi suggerisce che il signficato delle parole venga appreso sulla base del contesto di dove queste appaiono. Se questa intuizione viene seguita allora può divenire possibile trovare una soluzione per assegnare dei numeri a delle parole sulla base della loro occorrenza dentro contesti. Prima di arrivare però a capire come costurire gli emebddings è necessario introdurre una ulteriore intuizione attibuita ad Osgood nel 1957.
 \subsection{Ipotesi di Osgood}
 Un contributo fondamentale alla rappresentazione del significato proviene dal 
-lavoro di Osgood et al.\ (1957), che studiarono la componente affettiva delle parole. 
+lavoro di Osgood \parencite{Osgood1957Measurement}, che studiarono la componente affettiva delle parole. 
 Osgood mostrò che i giudizi emotivi associati a una parola possono essere descritti 
 lungo tre dimensioni principali:
-
 \begin{enumerate}
     \item \textbf{Valenza}: quanto la parola è percepita come positiva o negativa.
     \item \textbf{Arousal}: quanto la parola induce attivazione emotiva.
@@ -329,28 +400,20 @@ introdurre i modelli predittivi come Word2Vec e discendenti.
 
 \subsection{Word2Vec: un approccio predittivo}
 Sebbene i metodi basati su conteggi e la riduzione dimensionale tramite SVD permettano di ottenere rappresentazioni semanticamente dense, essi presentano limiti strutturali non trascurabili. Il calcolo della decomposizione ai valori singolari su matrici di co-occorrenza è computazionalmente oneroso, con una complessità che cresce sensibilmente rispetto alla dimensione del vocabolario, rendendo difficile la scalabilità su corpora massicci. 
-Per superare queste criticità, Mikolov et al. (2013) hanno introdotto \textit{Word2Vec}, un framework basato su un paradigma radicalmente diverso: la \textbf{predizione}. Invece di riassumere statistiche globali, Word2Vec apprende gli embeddings processando il testo localmente. Lo spostamento di paradigma risiede nel fatto che, anziché contare le occorrenze totali, addestriamo un classificatore su un compito di \textbf{classificazione binaria}. Il modello deve rispondere alla domanda:
-
+Per superare queste criticità, hanno introdotto \textit{Word2Vec} \parencite{mikolov2013efficientestimationwordrepresentations}, un framework basato su un paradigma radicalmente diverso: la \textbf{predizione}. Invece di riassumere statistiche globali, Word2Vec apprende gli embeddings processando il testo localmente. Lo spostamento di paradigma risiede nel fatto che, anziché contare le occorrenze totali, addestriamo un classificatore su un compito di \textbf{classificazione binaria}. Il modello deve rispondere alla domanda:
 \begin{center}
 \textit{``Data la parola target $w$ (es. \textit{albicocca}), qual è la probabilità che la parola candidata $c$ (es. \textit{marmellata}) compaia nel suo contesto?''}
 \end{center}
-
 In questo approccio, noto come \textbf{self-supervision}, il testo stesso fornisce le etichette: ogni parola $c$ che appare effettivamente vicino a $w$ nel corpus fornisce un esempio positivo (etichetta $1$). Al contrario, per addestrare il classificatore, il modello genera artificialmente degli esempi negativi campionando parole casuali dal vocabolario che non compaiono nel contesto di $w$.
-
 \subsubsection{Il classificatore e la funzione sigmoide}
-
 L'intuizione alla base del classificatore è che due parole siano semanticamente vicine se i loro vettori di embedding sono simili. Per misurare questa affinità, utilizziamo il \textbf{prodotto scalare} tra il vettore della parola target $\mathbf{w}$ e il vettore della parola di contesto $\mathbf{c}$:
-
 \[
 \text{Similarity}(w,c) \approx \mathbf{w} \cdot \mathbf{c}
 \]
-
 Poiché il prodotto scalare può assumere qualsiasi valore reale, utilizziamo la funzione \textbf{sigmoide} $\sigma(x)$ per mappare il risultato in una probabilità compresa tra $0$ e $1$:
-
 \begin{equation}
 \sigma(x) = \frac{1}{1 + e^{-x}}
 \end{equation}
-
 Il modello stima quindi la probabilità che la coppia $(w, c)$ sia un esempio positivo ($+$) come:
 \begin{equation}
 P(+ \mid w, c) = \sigma(\mathbf{w} \cdot \mathbf{c}) = \frac{1}{1 + e^{-\mathbf{w} \cdot \mathbf{c}}}
@@ -373,65 +436,130 @@ Una caratteristica distintiva di Word2Vec è il mantenimento di \textbf{due rapp
 \end{figure}
 Sdoppiando le matrici, il modello garantisce la \textbf{stabilità dell'ottimizzazione}. Se usassimo un unico vettore $\mathbf{v}$, il modello cercherebbe di massimizzare il prodotto scalare $\mathbf{v} \cdot \mathbf{v}$ (auto-similarità), portando i valori a crescere all'infinito. Con due matrici, il modello apprende relazioni distribuzionali senza questo vincolo. Al termine, si utilizzano solitamente i vettori di $W$ o la media $W+C$.
 
-\subsection{Proprietà semantiche degli embeddings}
-L’apprendimento di questi vettori tramite il processo di ottimizzazione descritto non produce semplici sequenze numeriche prive di struttura, ma genera uno spazio geometrico capace di riflettere profonde relazioni linguistiche. La natura delle informazioni catturate da tali rappresentazioni dipende, in prima istanza, dalla configurazione della finestra di contesto, indicata come $L = 2m$, dove $m$ rappresenta il raggio d'azione a destra e a sinistra della parola target. Una finestra ristretta (con $m$ pari a 1 o 2) tende a privilegiare una similarità di tipo \textbf{sintattico}, raggruppando termini che condividono lo stesso ruolo grammaticale, come nel caso di verbi che occorrono in strutture frasali analoghe (ad esempio \textit{scrive}, \textit{dice} o \textit{risponde}). Al contrario, l’adozione di una finestra più ampia (con $m$ pari a 5 o più) sposta l’enfasi verso una similarità di tipo \textbf{topico} o tematico, associando parole che appartengono allo stesso ambito semantico, come \textit{ospedale}, \textit{ambulanza} e \textit{infermiere}, indipendentemente dalla loro funzione sintattica immediata. Questa capacità di astrazione permette agli embeddings densi di catturare efficacemente la similarità di secondo ordine.
+%%%
+
+\subsection{Dal sintagma al paradigma: finestra di contesto e precisione semantica}
+L’apprendimento degli embeddings non produce semplici liste di numeri, ma uno \textbf{spazio latente}: un costrutto geometrico in cui le parole sono punti e la vicinanza tra punti approssima una vicinanza di significato. L’idea chiave è che questo spazio non viene imposto a priori, ma \emph{emerge} dai dati testuali: il modello osserva la catena \textbf{sintagmatica} (le combinazioni effettive di parole nel testo) e, da essa, ricostruisce un ordine \textbf{paradigmatico} (somiglianza e sostituibilità). In altri termini, il sintagma fornisce l’evidenza empirica; il paradigma è la struttura semantica che ne risulta.
+
+\subsubsection{Il sintagma come architetto del paradigma}
+La tesi che guiderà questa sezione può essere formulata in modo semplice:
+
+\begin{center}
+\emph{Sintagma più ricco} $\;\Rightarrow\;$ \emph{Paradigma più ristretto} $\;\Rightarrow\;$ \emph{Rappresentazione più precisa}.
+\end{center}
+
+In linguistica, più informazioni possediamo sulle parole che circondano un termine, più si restringe l’insieme di alternative plausibili che potrebbero sostituirlo senza rompere la coerenza della frase. Consideriamo una parola ignota $X$ in due contesti con diverso grado di informazione:
+
+\begin{enumerate}
+    \item \textit{Il [X] mangia.}
+    \item \textit{Il [X] fedele mangia l'osso in giardino.}
+\end{enumerate}
+
+Nel primo caso, il sintagma è povero: la posizione $[X]$ può essere riempita da un insieme vastissimo di candidati (\textit{cane}, \textit{gatto}, \textit{bambino}, \textit{uomo}, \textit{animale}, \dots). Nel secondo caso, il sintagma diventa informativo: aggettivi come \textit{fedele} e oggetti come \textit{osso}, insieme allo scenario \textit{in giardino}, restringono drasticamente le sostituzioni plausibili, facendo emergere un candidato paradigmatico molto più specifico (in modo prototipico, \textit{cane}). 
+La conseguenza concettuale è diretta: \textbf{arricchire il sintagma} significa fornire più vincoli che \textbf{raffinano il paradigma}. Ed è esattamente questo che un modello di embedding cerca di fare: trasformare regolarità sintagmatiche osservabili in una geometria paradigmatica latente.
+
 \begin{notebox}
-\textbf{Associazione paradigmatica (Similarità di secondo ordine)}\\
-Due parole risultano vicine nello spazio vettoriale non perché compaiono necessariamente insieme nel testo (associazione sintagmatica di primo ordine), ma perché sono circondate da contesti simili.
+\textbf{Associazione paradigmatica}\\
+Si definisce associazione paradigmatica il legame tra parole interscambiabili nello stesso contesto. Negli embeddings, questo legame diventa geometrico: parole che condividono contesti (e quindi vincoli sintagmatici simili) tendono ad occupare coordinate prossime nello spazio latente.
 \end{notebox}
-Mentre l'ipotesi distribuzionale fornisce la base metodologica per inferire il significato, l'associazione paradigmatica ne rappresenta il successo fenomenologico più rilevante negli embeddings densi: la capacità di mappare vicini due termini che, pur non incontrandosi mai direttamente, svolgono la medesima funzione semantica nel discorso. 
-Una delle manifestazioni più celebri di questa proprietà è la facoltà di supportare il ragionamento analogico attraverso il cosiddetto modello del parallelogramma. 
+
+\subsubsection{La finestra di contesto come manopola semantica in Word2Vec}
+Nel caso di Word2Vec (in particolare Skip-gram), il ``pezzo'' di sintagma che il modello osserva è controllato da un iperparametro: l’ampiezza della finestra di contesto $m$. Variando $m$, decidiamo quanta informazione sintagmatica il modello può usare per inferire il paradigma.
+
+\begin{itemize}
+    \item \textbf{Finestra stretta} ($m \le 2$): il contesto è locale e cattura soprattutto regolarità \textbf{funzionali e sintattiche}. Tendono a risultare vicine parole che svolgono ruoli grammaticali simili (ad es.\ verbi transitivi tra loro, aggettivi tra loro), perché compaiono in cornici sintagmatiche analoghe.
+    \item \textbf{Finestra ampia} ($m \ge 5$): il contesto include indizi più distanti e ricchi, catturando affinità \textbf{semantiche e tematiche}. Ad esempio, parole come \textit{ospedale} e \textit{medico} non sono intercambiabili sintatticamente, ma co-occorrono in ambienti discorsivi simili: una finestra più ampia rende più facile apprendere questo tipo di legami.
+\end{itemize}
+
+In questa prospettiva, aumentare $m$ equivale ad aumentare la porzione di sintagma osservabile e quindi, in media, a rendere più informativa la stima delle somiglianze paradigmatiche: \textbf{più vincoli contestuali} permettono al modello di posizionare le parole in modo più discriminante nello spazio latente, distinguendo meglio campi semantici, topic e associazioni.
+
+\subsubsection{Geometria dell'analogia: il modello del parallelogramma}
+Quando lo spazio latente è coerente, non si limita a raggruppare parole simili: tende anche a codificare \textbf{relazioni} come direzioni stabili. Questo si manifesta nel ragionamento analogico, spesso descritto tramite il cosiddetto modello del parallelogramma.
+
 \begin{notebox}
 \textbf{Modello del parallelogramma}\\
-Il modello del parallelogramma postula che le relazioni semantiche tra coppie di parole siano codificate come differenze vettoriali costanti nello spazio degli embeddings. Data un'analogia del tipo ``$a$ sta ad $a^*$ come $b$ sta ad $b^*$'' (es. \textit{uomo} : \textit{donna} = \textit{re} : \textit{regina}), il termine incognito $b^*$ può essere approssimato tramite l'operazione algebrica:
+Le relazioni semantiche possono essere codificate come differenze vettoriali approssimativamente costanti. Data l'analogia «$a$ sta ad $a^*$ come $b$ sta ad $b^*$» (es.\ \textit{uomo}:\textit{donna} = \textit{re}:\textit{regina}), il termine incognito $b^*$ è approssimabile come:
 \[ b^* \approx b - a + a^* \]
-Geometricamente, ciò implica che il vettore che collega $a$ ad $a^*$ sia approssimativamente parallelo e di uguale lunghezza a quello che collega $b$ a $b^*$, formando idealmente i lati di un parallelogramma nello spazio vettoriale.
 \end{notebox}
-Tale regolarità permette di catturare relazioni grammaticali e semantiche complesse, dai passaggi di genere, come nella nota equazione $\text{king} - \text{man} + \text{woman} \approx \text{queen}$, fino ai rapporti geopolitici come $\text{Paris} - \text{France} + \text{Italy} \approx \text{Rome}$.
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=1.5, >=stealth]
-    % Coordinate dei punti
     \coordinate (man) at (0,0);
     \coordinate (woman) at (1,1.5);
     \coordinate (king) at (3,0.5);
     \coordinate (queen) at (4,2);
 
-    % Vettori
     \draw[->, thick, blue] (man) -- (woman) node[midway, left] {$\vec{v}_{gender}$};
     \draw[->, thick, blue] (king) -- (queen) node[midway, right] {$\vec{v}_{gender}$};
-    \draw[->, thick, gray] (man) -- (king) node[midway, below] {};
-    \draw[->, thick, gray] (woman) -- (queen) node[midway, above] {};
+    \draw[->, thick, gray!60] (man) -- (king);
+    \draw[->, thick, gray!60] (woman) -- (queen);
 
-    % Nodi (testo)
-    \node[below left] at (man) {\small man ($a$)};
-    \node[above left] at (woman) {\small woman ($a^*$)};
-    \node[below right] at (king) {\small king ($b$)};
-    \node[above right] at (queen) {\small queen ($b^*$)};
+    \node[below left] at (man) {\small uomo ($a$)};
+    \node[above left] at (woman) {\small donna ($a^*$)};
+    \node[below right] at (king) {\small re ($b$)};
+    \node[above right] at (queen) {\small regina ($b^*$)};
 
-    % Linee tratteggiate per il parallelogramma
     \draw[dashed, gray] (man) -- (king) -- (queen) -- (woman) -- cycle;
 \end{tikzpicture}
-\caption{Rappresentazione geometrica del modello del parallelogramma applicato all'analogia di genere.}
+\caption{Rappresentazione geometrica del modello del parallelogramma nello spazio latente.}
 \label{fig:parallelogramma}
 \end{figure}
-Da un punto di vista puramente geometrico, lo spazio degli embeddings è caratterizzato da proprietà di \textbf{parallelismo} e \textbf{ortogonalità}: mentre vettori paralleli indicano relazioni analoghe che si ripetono tra coppie diverse di parole, l’ortogonalità segnala l’indipendenza concettuale tra i termini. In sintesi, queste rappresentazioni apprese in modalità \textit{self-supervised} incorporano automaticamente una vasta gamma di informazioni sintattiche e semantiche, rendendo la scelta della dimensione del vettore e dell’ampiezza della finestra i parametri critici per determinare la qualità del risultato finale. Tuttavia, nonostante la loro straordinaria efficacia, questi modelli presentano un limite intrinseco dovuto alla loro natura \textbf{statica}: ogni parola del vocabolario è associata a un unico vettore che deve condensare in sé tutti i possibili sensi del termine, rendendo difficile la gestione della polisemia. Per superare questa rigidità e permettere alla rappresentazione di adattarsi dinamicamente al contesto specifico di ogni singola frase, la ricerca si è evoluta verso lo sviluppo degli embeddings dinamici.
 
+\subsubsection{Limiti dei modelli statici e l'esigenza di dinamismo}
+\begin{notebox}
+\textbf{Training vs inferenza}\\
+Per \textbf{inferenza} si intende l’uso del modello \emph{dopo} l’addestramento: dati nuovi input, i parametri appresi $\theta$ restano fissi e il modello calcola solo le sue uscite. In forma compatta:
+\[
+\text{training:}\quad \theta^\star=\arg\min_{\theta}\, \mathcal{L}(\theta)
+\qquad\qquad
+\text{inferenza:}\quad \hat{y}=f_{\theta^\star}(x).
+\]
+Nel nostro caso, in inferenza $f_{\theta^\star}$ produce rappresentazioni (e/o predizioni) a partire da una frase, senza aggiornare i vettori appresi.
+\end{notebox}
+La logica ``più sintagma $\Rightarrow$ paradigma più preciso'' evidenzia però un limite intrinseco di Word2Vec: anche se durante l’addestramento sfrutta il contesto, il risultato finale è un \textbf{embedding statico}. Una volta appresi i vettori, ogni parola è associata a un’unica rappresentazione, indipendente dall’uso concreto in frase. Questo comporta almeno due criticità fondamentali:
+\begin{enumerate}
+    \item \textbf{Polisemia:} una parola con più sensi (es.\ \textit{pesca} come frutto o come attività) viene compressa in un unico vettore che media usi diversi, riducendo la precisione semantica proprio dove il contesto dovrebbe aiutare.
+    \item \textbf{Contesto ``dimenticato'' in inferenza:} Word2Vec usa la finestra sintagmatica per \emph{apprendere} i vettori, ma in \textbf{inferenza} l’embedding di una parola è recuperato come valore fisso dal dizionario del modello e non viene ricalcolato in funzione della frase specifica. Di conseguenza, la stessa parola mantiene lo stesso vettore anche in contesti diversi, e il contesto non può più agire da meccanismo di disambiguazione.
+\end{enumerate}
+Se il significato di una parola dipende sistematicamente dalla ricchezza del sintagma che la circonda, allora la rappresentazione dovrebbe essere una \textbf{funzione del contesto}, non una costante. Questa osservazione motiva il passaggio agli \textbf{embeddings dinamici (contestuali)}: invece di limitarsi a una finestra fissa e a un vettore unico per parola, essi mirano a incorporare informazione proveniente dall’intera sequenza, generando un vettore diverso per ogni occorrenza. Per ottenere questo comportamento servono architetture in grado di modellare il linguaggio come flusso e memoria, a partire dalle reti neurali ricorrenti.
 
 \subsection{Embeddings dinamici}
-Nelle sezioni precedenti abbiamo analizzato gli embeddings statici, i quali associano a ogni termine del vocabolario un unico vettore numerico invariante. Come evidenziato dai modelli classici come Word2Vec e GloVe, tale approccio permette di catturare relazioni semantiche globali, ma presenta un limite intrinseco: l'incapacità di gestire la polisemia e l'omonimia. In una rappresentazione statica, parole come \textit{spesso} (che può indicare una frequenza o uno spessore) o \textit{capo} (che può riferirsi a un indumento o a un superiore) sono costrette in un unico punto dello spazio vettoriale, che risulta essere una "media" forzata dei diversi sensi della parola.
-Il passaggio verso gli \textbf{embeddings dinamici}, o contestuali, segna un cambiamento di paradigma fondamentale nel Natural Language Processing. In questo approccio, la rappresentazione di una parola non è più estratta da una tabella di ricerca (\textit{lookup table}) fissa, ma viene generata dinamicamente come funzione dell'intera sequenza di input. Ciò implica che la stessa parola riceverà vettori numerici differenti a seconda del contesto sintattico e semantico in cui appare.
+La sezione precedente ha chiarito un punto chiave: se \textbf{un sintagma più ricco} rende \textbf{più preciso il paradigma}, allora una rappresentazione che \emph{non} può sfruttare il contesto quando viene applicata a una frase concreta è inevitabilmente limitata. Gli embeddings statici (come quelli appresi da Word2Vec) usano il contesto in \textbf{addestramento} per stimare i vettori, ma poi restituiscono un dizionario di rappresentazioni \textbf{inermi}: in \textbf{inferenza}, l’embedding di una parola è sempre lo stesso, indipendentemente dalle parole che la circondano.
+
+Questo limite diventa evidente nei casi di \textbf{polisemia} e \textbf{omonimia}. Parole come \textit{spesso} (frequenza vs spessore) o \textit{capo} (indumento vs superiore) vengono collassate in un unico punto dello spazio vettoriale, che finisce per rappresentare una ``media'' tra sensi diversi. Ma la tesi sintagma--paradigma suggerisce l’opposto: il senso corretto non è una proprietà isolata del token, bensì emerge dall’interazione con la catena sintagmatica in cui quel token è inserito.
+
+Gli \textbf{embeddings dinamici} (o \textbf{contestuali}) rispondono esattamente a questa esigenza: invece di associare un vettore a un \emph{tipo} di parola (\textit{word type}), associano un vettore a una sua \emph{occorrenza} concreta (\textit{word instance}), calcolandolo come funzione del contesto in cui appare. In questo approccio, la rappresentazione non è più un parametro statico recuperato da una tabella di lookup, ma un \textbf{risultato computazionale} prodotto dal modello mentre elabora l’intera sequenza.
+
 \begin{notebox}
 \textbf{Embeddings contestuali}\\
-Data una sequenza di token $x_1, \dots, x_n$, un embedding contestuale è una rappresentazione vettoriale $h_i$ per il token $x_i$ tale che $h_i = f(x_i, C)$, dove $C$ rappresenta l'intera sequenza circostante (contesto). A differenza degli embeddings statici, $h_i$ rappresenta un'istanza specifica della parola (\textit{word instance}) e non la sua categoria astratta nel vocabolario (\textit{word type}).
+Data una sequenza di token $x_1,\dots,x_n$, un embedding contestuale è una rappresentazione vettoriale $h_i$ per il token $x_i$ tale che
+\[
+h_i = f(x_i, x_{1:n}),
+\]
+dove $x_{1:n}$ rappresenta l’intera sequenza (contesto). A differenza degli embeddings statici, $h_i$ descrive un’istanza specifica della parola nel suo uso concreto (\textit{word instance}) e non la sua categoria astratta nel vocabolario (\textit{word type}).
 \end{notebox}
-Nella pratica, queste rappresentazioni emergono dagli stati interni di modelli di linguaggio neurali profondi. Mentre un embedding statico è un parametro del modello appreso durante l'addestramento e poi congelato, un embedding dinamico è il risultato computazionale dell'attivazione della rete durante la fase di inferenza. Per ottenere una rappresentazione robusta, è comune non limitarsi all'output dell'ultimo strato della rete neurale, ma combinare (ad esempio tramite media o concatenazione) le attivazioni provenienti da diversi livelli intermedi del modello, i quali catturano informazioni a diversi gradi di astrazione, dalla morfologia alla semantica complessa.
-Questa flessibilità permette di risolvere il problema della polisemia: il modello "osserva" le parole circostanti e adatta il vettore della parola target per rifletterne il senso specifico in quel momento. Per comprendere come sia possibile trasformare una sequenza di parole in una sequenza di vettori così precisi, è necessario analizzare l'evoluzione delle architetture neurali, partendo dalle strutture progettate per gestire il tempo e la sequenzialità: le reti neurali ricorrenti.
+
+In pratica, queste rappresentazioni emergono dagli \textbf{stati interni} di modelli neurali che processano sequenze. Un embedding statico è un parametro appreso e poi fissato; un embedding dinamico, invece, è l’\textbf{attivazione} della rete in \textbf{inferenza}: cambia se cambia il contesto. Per questo motivo, la stessa parola può corrispondere a vettori diversi in frasi diverse, perché il modello integra informazione sintattica e semantica dalle parole circostanti e disambigua il senso in modo implicito.
+
+A questo punto la domanda diventa strutturale: se aumentare il contesto rende gli embeddings più informativi, \textbf{come si cattura contesto su larga scala senza perdere informazione lungo la sequenza?} La storia recente delle architetture neurali per il linguaggio può essere letta come una sequenza di risposte progressive a questo vincolo.
+
+Le prime \textbf{Reti Neurali Ricorrenti} offrono un meccanismo naturale: elaborare i token in ordine e mantenere uno stato nascosto che trasporta informazione dal passato. In linea di principio, questo stato dovrebbe accumulare contesto man mano che la sequenza avanza; in pratica, però, l’addestramento tramite \textit{backpropagation through time} rende difficile preservare segnali lontani a causa del \textbf{vanishing gradient}. All’aumentare della distanza temporale, i gradienti tendono ad attenuarsi e le dipendenze a lungo raggio risultano difficili da apprendere: l’obiettivo di ``allargare la finestra'' si scontra con un limite di ottimizzazione.
+
+Le \textbf{LSTM} (e più in generale le architetture \textit{gated}) nascono come tentativo di stabilizzare questa memoria: separano il flusso informativo in canali (stato nascosto e cell state) e introducono gate che decidono cosa mantenere e cosa dimenticare. In questo modo, il modello può preservare meglio informazioni cruciali e ridurre la degradazione del segnale su sequenze lunghe, ma il contesto resta comunque mediato da una dinamica sequenziale, e la propagazione di informazione a grande distanza rimane onerosa.
+
+Quando si passa a compiti \textit{sequence-to-sequence} (traduzione, riassunto, ecc.), l’architettura \textbf{Encoder--Decoder} prova a comprimere un’intera sequenza in un vettore di contesto. Qui il problema non è solo l’ottimizzazione: è anche \textbf{rappresentazionale}. Un singolo vettore deve contenere ``tutto'', introducendo un collo di bottiglia che penalizza soprattutto sequenze lunghe. Il passo successivo, il \textbf{meccanismo di attenzione}, affronta direttamente questo limite: invece di obbligare il decoder a usare un riassunto statico, consente di recuperare dinamicamente informazione da \emph{tutti} gli stati dell’encoder, costruendo un contesto diverso a ogni passo.
+
+Il \textbf{Transformer} estremizza questa idea: sostituisce la ricorrenza con self-attention, cioè con un meccanismo che collega direttamente posizioni anche molto distanti e rende la computazione parallelizzabile. In questo quadro, aumentare il contesto non significa più “trasportare” informazione attraverso una catena temporale (con tutti i problemi di gradiente), ma \textbf{mettere in comunicazione} token lontani tramite pesi di attenzione appresi. È questo passaggio che rende finalmente praticabile l’obiettivo iniziale: produrre embeddings contestuali che incorporano ampie porzioni di sintagma in modo stabile.
+
+Su questa base si collocano i modelli bidirezionali \textbf{BERT}: adottano la stessa architettura Transformer ma rinunciano al vincolo causale dell’autoregressione per costruire rappresentazioni che vedono \textbf{sia sinistra sia destra} del token. In altre parole, BERT spinge l’idea di embedding dinamico al suo estremo naturale: la rappresentazione di una parola non dipende da una finestra locale, né solo dal passato, ma dall’intera frase. In questo senso, l’evoluzione RNN $\rightarrow$ LSTM $\rightarrow$ attenzione $\rightarrow$ Transformer $\rightarrow$ BERT può essere letta come un’unica traiettoria: l’ampliamento progressivo del contesto utilizzabile e il tentativo di renderlo \emph{apprendibile} senza che la sequenza stessa diventi un ostacolo (vanishing gradient, bottleneck, vincoli di accesso all’informazione).
+
+
+
 
 \section{Reti Neurali Ricorrenti}
 Il linguaggio è un fenomeno intrinsecamente temporale: la comprensione di una parola o di una frase dipende dalla sequenza di eventi acustici o testuali che l'hanno preceduta. I modelli precedentemente analizzati, come le reti feedforward a finestra fissa o gli embeddings statici, trattano l'input in modo simultaneo o limitato localmente, fallendo nel catturare dipendenze a lungo raggio.
 Le Reti Neurali Ricorrenti (RNN), e in particolare le reti di Elman, introducono un meccanismo per gestire sequenze di lunghezza arbitraria tramite connessioni cicliche, permettendo al modello di mantenere una "memoria" del passato.
-
 \begin{notebox}
 \textbf{Rete Neurale Ricorrente}\\
 Una RNN è una rete neurale in cui l'output di un neurone al tempo $t$ viene reimmesso come input allo stesso neurone al tempo $t+1$. Questo ciclo permette di modellare sistemi dinamici in cui l'output corrente dipende dall'intera storia degli input precedenti.
@@ -476,7 +604,6 @@ L'output della rete al tempo $t$, denotato con $\hat{\mathbf{y}}_t$, è una dist
 
 \noindent
 Dove $\mathbf{V} \in \mathbb{R}^{|V| \times d}$ proietta lo stato nascosto nuovamente nello spazio del vocabolario per generare i punteggi (logits) per ogni parola.
-
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{pictures/rnn_unrolled.png}
@@ -490,16 +617,11 @@ I modelli di linguaggio hanno il compito di assegnare una probabilità a una seq
 \begin{equation}
 P(w_{1:n}) = \prod_{i=1}^{n} P(w_i \mid w_{1:i-1})
 \end{equation}
-
-
 Utilizzando una RNN, modelliamo questa probabilità condizionata assumendo che la dimensione dell'embedding $d_e$ e quella dello stato nascosto $d_h$ siano le stesse (dimensione del modello $d$). La probabilità che la parola successiva al tempo $t+1$ sia l'elemento $k$ del vocabolario è rappresentata dalla $k$-esima componente del vettore $\hat{\mathbf{y}}_t$:
-
 \begin{equation}
 P(w_{t+1} = k \mid w_1, \dots, w_t) = \hat{\mathbf{y}}_t[k]
 \end{equation}
-
 Di conseguenza, la probabilità dell'intera sequenza è definita come il prodotto delle probabilità dei termini corretti effettivamente osservati ad ogni passo temporale:
-
 \begin{equation}
 P(w_{1:n}) = \prod_{i=1}^{n} \hat{\mathbf{y}}_i[w_i]
 \end{equation}
@@ -511,8 +633,6 @@ Questa architettura si presta a generare rappresentazioni delle parole, gli emeb
 In una RNN, il vettore $\mathbf{h}_t$ costituisce l'embedding contestuale della parola $w_t$. A differenza dell'embedding statico $\mathbf{e}_t$ (che è una semplice riga della matrice $\mathbf{E}$), il vettore $\mathbf{h}_t$ è dinamico: esso integra informazioni riguardanti l'intera storia della frase fino a quel momento.
 \end{notebox}
 Per estrarre questi embeddings da una RNN addestrata, si preleva lo stato $\mathbf{h}_t$ dal layer ricorrente. Questo vettore cattura sia la semantica intrinseca della parola corrente sia l'influenza sintattico-semantica del contesto precedente, risolvendo (in parte) i limiti degli embeddings statici nella gestione della polisemia.
-
-
 \subsubsection{RNN Bidirezionali (Bi-RNN)}
 Un limite intrinseco delle RNN analizzate finora è che lo stato nascosto $\mathbf{h}_t$ cattura esclusivamente le informazioni provenienti dal passato (contesto sinistro). Tuttavia, nel linguaggio naturale, il significato di una parola spesso dipende anche dalle parole che la seguono (contesto destro). 
 Per ovviare a questo limite si utilizzano le RNN bidirezionali (Bi-RNN). L'idea alla base è quella di addestrare due reti distinte:
@@ -520,18 +640,15 @@ Per ovviare a questo limite si utilizzano le RNN bidirezionali (Bi-RNN). L'idea 
     \item Una RNN forward ($\overrightarrow{RNN}$) che processa la sequenza da sinistra a destra, generando una sequenza di stati $\overrightarrow{\mathbf{h}}_1, \dots, \overrightarrow{\mathbf{h}}_n$.
     \item Una RNN backward ($\overleftarrow{RNN}$) che processa la sequenza da destra a sinistra (dalla fine all'inizio), generando una sequenza di stati $\overleftarrow{\mathbf{h}}_n, \dots, \overleftarrow{\mathbf{h}}_1$.
 \end{enumerate}
-
 \begin{notebox}
 \textbf{Embedding Contestuale Bidirezionale}\\
 L'embedding contestuale finale per una parola $w_t$ si ottiene concatenando lo stato nascosto della rete forward con quello della rete backward:
-\begin{equation}
-\mathbf{h}_t^{bi} = [\overrightarrow{\mathbf{h}}_t \oplus \overleftarrow{\mathbf{h}}_t]
-\end{equation}
+    \begin{equation}
+    \mathbf{h}_t^{bi} = [\overrightarrow{\mathbf{h}}_t \oplus \overleftarrow{\mathbf{h}}_t]
+    \end{equation}
 In questo modo, il vettore risultante $\mathbf{h}_t^{bi}$ di dimensione $2d$ rappresenta la parola $w_t$ tenendo conto dell'intera frase circostante.
 \end{notebox}
-
 Questa rappresentazione è estremamente potente perché permette al modello di "sapere" cosa succederà in futuro mentre interpreta il presente, rendendo l'embedding molto più ricco per compiti come la traduzione automatica o il riconoscimento di entità nominate (NER).
-
 \subsubsection{Il problema del Gradiente Svanente}
 Nonostante la loro eleganza teorica, le RNN presentano dei limiti pratici significativi quando devono gestire sequenze molto lunghe. Il problema principale è noto come Vanishing Gradient.
 Durante l'addestramento tramite l'algoritmo di \textit{Backpropagation Through Time} (BPTT), i gradienti vengono propagati all'indietro attraverso ogni passo temporale. Poiché il calcolo coinvolge moltiplicazioni ripetute della stessa matrice di pesi $\mathbf{U}$, se i valori di questa matrice sono piccoli, il segnale del gradiente tende a ridursi esponenzialmente man mano che ci si allontana nel passato.
@@ -540,12 +657,7 @@ Durante l'addestramento tramite l'algoritmo di \textit{Backpropagation Through T
     \item \textit{Instabilità:} Al contrario, se i pesi sono molto grandi, il gradiente può crescere a dismisura (\textit{Exploding Gradient}), rendendo l'addestramento instabile.
 \end{enumerate}
 Per risolvere l'incapacità delle RNN classiche di mantenere una memoria a lungo termine stabile, sono state introdotte architetture più sofisticate basate sul concetto di meccanismi di gating, come le LSTM (Long Short-Term Memory) che analizzeremo nella prossima sezione.
-
-
-
-
 \subsection{LSTM: Long Short-Term Memory}
-
 Nonostante l'accesso all'intera sequenza precedente, le RNN classiche faticano a gestire informazioni distanti dal punto corrente di elaborazione. Come osservato in \cite{jm3}, in una frase come:
 \begin{quote}
     \textit{"The flights the airline was canceling were full."}
