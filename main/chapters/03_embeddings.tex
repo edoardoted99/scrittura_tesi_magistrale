@@ -1,4 +1,4 @@
-\section{Embeddings}
+\section{Word Embeddings}
 
 \epigraph{
     Nets are for fish; once you get the fish you can forget the net.\\
@@ -7,13 +7,13 @@
 
 \newpage
 
-\section{Introduzione}
+\subsection{Introduzione}
 Quando leggiamo un testo, noi esseri umani siamo dotati della capacità di coglierne un aspetto di significato. Questo implica che dietro alle parole che leggiamo si cela una rappresentazione semantica che vorremmo potenzialmente far apprendere anche alle macchine.  
 Dal momento che le macchine parlano con la lingua dei numeri e, non come noi, con quella delle parole è stato necessario introdurre degli strumenti che vorrebbero in linea di principio assegnare ad ogni parola un numero rappresentatitivo di un singificato. Tale strumenti sono chiamati \emph{embeddings} e in questo capitolo, basandoci sul libro Speech and Language Processing di Stanford \cite{jm3}, si vedrà come vengono costruiti ed implementati per processare il testo.
 
 
 
-\section{L'ipotesi distribuzionale}
+\subsection{L'ipotesi distribuzionale}
 
 Supponiamo di non conoscere il significato della parola \textit{ongchoi}, ma di 
 incontrarla nei seguenti contesti:
@@ -42,7 +42,7 @@ Questo è il principio dell'ipotesi distribuzionale per il quale la parola \text
 Si definisce ipotesi distribuzionale quella ipotesi per la quale parole simili compaiono in contesti simili.
 \end{notebox}
 Tale ipotesi suggerisce che il signficato delle parole venga appreso sulla base del contesto di dove queste appaiono. Se questa intuizione viene seguita allora può divenire possibile trovare una soluzione per assegnare dei numeri a delle parole sulla base della loro occorrenza dentro contesti. Prima di arrivare però a capire come costurire gli emebddings è necessario introdurre una ulteriore intuizione attibuita ad Osgood nel 1957.
-\section{Ipotesi di Osgood}
+\subsection{Ipotesi di Osgood}
 Un contributo fondamentale alla rappresentazione del significato proviene dal 
 lavoro di Osgood et al.\ (1957), che studiarono la componente affettiva delle parole. 
 Osgood mostrò che i giudizi emotivi associati a una parola possono essere descritti 
@@ -73,7 +73,7 @@ rappresentato come un vettore in uno spazio semantico.
 Questa idea è stata la prima ad anticipare direttamente i moderni modelli di \textit{word embeddings}, in cui ogni 
 parola è descritta come un punto in uno spazio multidimensionale corrispondente ad un singificato. 
 
-\section{Embeddings}
+\subsection{Verso i word embeddings}
 
 L’unione dell’ipotesi distribuzionale e dell’ipotesi di Osgood ha aperto la strada
 agli embeddings come modello fondamentale per la rappresentazione computazionale
@@ -360,15 +360,6 @@ Nel caso generale, data una parola target $w$ e un'intera finestra di $L$ parole
 \log P(+ \mid w, c_{1:L}) = \sum_{i=1}^L \log \sigma(\mathbf{w} \cdot \mathbf{c}_i)
 \end{equation}
 
-\subsubsection{Apprendimento e Negative Sampling}
-
-L'addestramento consiste nello spostare iterativamente i vettori nello spazio semantico affinché il prodotto scalare tra parole che compaiono realmente insieme sia massimizzato, mentre quello tra parole prive di relazione sia minimizzato. Per rendere questo processo efficiente, si utilizza il \textbf{Negative Sampling}. Per ogni esempio positivo $(w, c_{pos})$ osservato nel testo, il modello genera $k$ esempi negativi selezionando parole casuali dal vocabolario. Queste parole di ``rumore'' vengono scelte secondo una distribuzione unigramma pesata $P_\alpha(w)$:
-
-\begin{equation}
-P_\alpha(w) = \frac{\text{count}(w)^\alpha}{\sum_{w' \in V} \text{count}(w')^\alpha}
-\end{equation}
-dove $\text{count}(w)$ indica la frequenza assoluta della parola $w$ nel corpus, il simbolo $w'$ al denominatore,  che serve a calcolare il valore totale di normalizzazione, rappresenta l'indice della sommatoria che scorre su tutte le parole del vocabolario $V$  e $\alpha$ è un parametro di smoothing (solitamente $0.75$). Elevando le frequenze a questa potenza, si riduce la probabilità di campionare troppo spesso parole estremamente comuni e si aumenta quella delle parole più rare.
-
 
 \subsubsection{Perché due matrici? Il ruolo di $W$ e $C$}
 Una caratteristica distintiva di Word2Vec è il mantenimento di \textbf{due rappresentazioni distinte} per ogni parola, organizzate in due matrici di pesi separate (Figura \ref{fig:skipgram_structure}). Una matrice $W$ relativa alle parole target che contiene i vettori utilizzati quando la parola è il centro della finestra, e una matrice $C$ che contiene i vettori utilizzati quando la parola appare nel contesto di un'altra o viene estratta come esempio negativo.
@@ -427,7 +418,7 @@ Tale regolarità permette di catturare relazioni grammaticali e semantiche compl
 Da un punto di vista puramente geometrico, lo spazio degli embeddings è caratterizzato da proprietà di \textbf{parallelismo} e \textbf{ortogonalità}: mentre vettori paralleli indicano relazioni analoghe che si ripetono tra coppie diverse di parole, l’ortogonalità segnala l’indipendenza concettuale tra i termini. In sintesi, queste rappresentazioni apprese in modalità \textit{self-supervised} incorporano automaticamente una vasta gamma di informazioni sintattiche e semantiche, rendendo la scelta della dimensione del vettore e dell’ampiezza della finestra i parametri critici per determinare la qualità del risultato finale. Tuttavia, nonostante la loro straordinaria efficacia, questi modelli presentano un limite intrinseco dovuto alla loro natura \textbf{statica}: ogni parola del vocabolario è associata a un unico vettore che deve condensare in sé tutti i possibili sensi del termine, rendendo difficile la gestione della polisemia. Per superare questa rigidità e permettere alla rappresentazione di adattarsi dinamicamente al contesto specifico di ogni singola frase, la ricerca si è evoluta verso lo sviluppo degli embeddings dinamici.
 
 
-\section{Embeddings dinamici}
+\subsection{Embeddings dinamici}
 Nelle sezioni precedenti abbiamo analizzato gli embeddings statici, i quali associano a ogni termine del vocabolario un unico vettore numerico invariante. Come evidenziato dai modelli classici come Word2Vec e GloVe, tale approccio permette di catturare relazioni semantiche globali, ma presenta un limite intrinseco: l'incapacità di gestire la polisemia e l'omonimia. In una rappresentazione statica, parole come \textit{spesso} (che può indicare una frequenza o uno spessore) o \textit{capo} (che può riferirsi a un indumento o a un superiore) sono costrette in un unico punto dello spazio vettoriale, che risulta essere una "media" forzata dei diversi sensi della parola.
 Il passaggio verso gli \textbf{embeddings dinamici}, o contestuali, segna un cambiamento di paradigma fondamentale nel Natural Language Processing. In questo approccio, la rappresentazione di una parola non è più estratta da una tabella di ricerca (\textit{lookup table}) fissa, ma viene generata dinamicamente come funzione dell'intera sequenza di input. Ciò implica che la stessa parola riceverà vettori numerici differenti a seconda del contesto sintattico e semantico in cui appare.
 \begin{notebox}
@@ -513,7 +504,7 @@ Di conseguenza, la probabilità dell'intera sequenza è definita come il prodott
 P(w_{1:n}) = \prod_{i=1}^{n} \hat{\mathbf{y}}_i[w_i]
 \end{equation}
 
-\subsection{Generaizone di Embeddings tramite RNN}
+\subsubsection{Generaizone di Embeddings tramite RNN}
 Questa architettura si presta a generare rappresentazioni delle parole, gli emebddings, capaci di adattarsi al contesto nel quale compaiono.
 \begin{notebox}
 \textbf{Embedding Contestuale nelle RNN}\\
@@ -522,7 +513,7 @@ In una RNN, il vettore $\mathbf{h}_t$ costituisce l'embedding contestuale della 
 Per estrarre questi embeddings da una RNN addestrata, si preleva lo stato $\mathbf{h}_t$ dal layer ricorrente. Questo vettore cattura sia la semantica intrinseca della parola corrente sia l'influenza sintattico-semantica del contesto precedente, risolvendo (in parte) i limiti degli embeddings statici nella gestione della polisemia.
 
 
-\subsection{RNN Bidirezionali (Bi-RNN)}
+\subsubsection{RNN Bidirezionali (Bi-RNN)}
 Un limite intrinseco delle RNN analizzate finora è che lo stato nascosto $\mathbf{h}_t$ cattura esclusivamente le informazioni provenienti dal passato (contesto sinistro). Tuttavia, nel linguaggio naturale, il significato di una parola spesso dipende anche dalle parole che la seguono (contesto destro). 
 Per ovviare a questo limite si utilizzano le RNN bidirezionali (Bi-RNN). L'idea alla base è quella di addestrare due reti distinte:
 \begin{enumerate}
@@ -541,7 +532,7 @@ In questo modo, il vettore risultante $\mathbf{h}_t^{bi}$ di dimensione $2d$ rap
 
 Questa rappresentazione è estremamente potente perché permette al modello di "sapere" cosa succederà in futuro mentre interpreta il presente, rendendo l'embedding molto più ricco per compiti come la traduzione automatica o il riconoscimento di entità nominate (NER).
 
-\subsection{Il problema del Gradiente Svanente}
+\subsubsection{Il problema del Gradiente Svanente}
 Nonostante la loro eleganza teorica, le RNN presentano dei limiti pratici significativi quando devono gestire sequenze molto lunghe. Il problema principale è noto come Vanishing Gradient.
 Durante l'addestramento tramite l'algoritmo di \textit{Backpropagation Through Time} (BPTT), i gradienti vengono propagati all'indietro attraverso ogni passo temporale. Poiché il calcolo coinvolge moltiplicazioni ripetute della stessa matrice di pesi $\mathbf{U}$, se i valori di questa matrice sono piccoli, il segnale del gradiente tende a ridursi esponenzialmente man mano che ci si allontana nel passato.
 \begin{enumerate}
@@ -553,7 +544,7 @@ Per risolvere l'incapacità delle RNN classiche di mantenere una memoria a lungo
 
 
 
-\section{LSTM: Long Short-Term Memory}
+\subsection{LSTM: Long Short-Term Memory}
 
 Nonostante l'accesso all'intera sequenza precedente, le RNN classiche faticano a gestire informazioni distanti dal punto corrente di elaborazione. Come osservato in \cite{jm3}, in una frase come:
 \begin{quote}
@@ -614,7 +605,7 @@ Seguendo fedelmente la formulazione di Jurafsky \& Martin \cite{jm3}, il calcolo
 
 
 
-\subsection{Modularità ed Embeddings}
+\subsubsection{Modularità ed Embeddings}
 Lo stato nascosto $h_t$ fornisce l'output della LSTM a ogni passo temporale. Questo vettore costituisce l'embedding contestuale della parola, capace di integrare memorie a lungo termine. La complessità dell'unità è incapsulata, mantenendo una modularità che permette di sostituire le RNN con le LSTM in qualsiasi architettura complessa.
 
 
@@ -698,7 +689,7 @@ fattorizzazione in \eqref{eq:seq2seq_chain_rule}.
 \end{enumerate}
 
 
-\subsection{Il limite del \textit{bottleneck} informativo}
+\subsubsection{Il limite del \textit{bottleneck} informativo}
 Il punto critico dell'architettura è evidente dalla definizione in \eqref{eq:context_vector}:
 l'intera frase (potenzialmente lunga e ricca di dipendenze) viene compressa in un unico
 vettore $c\in\mathbb{R}^d$. 
@@ -740,7 +731,7 @@ a dimensione fissa. Se $c$ non riesce a preservare le informazioni necessarie, i
 a generare una sequenza basandosi su una rappresentazione incompleta: questo è il \textit{bottleneck}.
 \end{notebox}
 
-\subsection{Soluzione al bottleneck: Meccanismo dell'attenzione}
+\subsubsection{Soluzione al bottleneck: Meccanismo dell'attenzione}
 \label{subsec:attention}
 Il bottleneck dell'encoder--decoder ricorrente deriva dal vincolo \eqref{eq:context_vector}: l'unica informazione sull'input $X$ disponibile al decoder è un singolo vettore $c$, spesso identificato con lo stato finale dell'encoder. Questo implica che $c$ debba contenere tutta la semantica della frase sorgente e, per sequenze lunghe, le informazioni distanti (in particolare quelle all'inizio) possono risultare meno accessibili \cite{jm3}.
 \begin{figure}[htbp]
@@ -793,7 +784,7 @@ c_i=\sum_{j=1}^{n}\alpha_{ij}\,h^{(e)}_{j}.
 In questo modo, pur mantenendo un vettore $c_i\in\mathbb{R}^d$ a dimensionalità fissa, il modello evita la compressione in un unico riassunto globale: l'informazione viene invece recuperata in modo selettivo dall'intera memoria dell'encoder e aggiornata passo per passo secondo le necessità del decoder \cite{jm3}.
 
 
-\subsection{Verso i Transformer}
+\subsubsection{Verso i Transformer}
 Una volta introdotta l'attenzione come accesso diretto a una memoria di stati, il passo successivo
 (diventato centrale nella storia recente del NLP) è chiedersi se la ricorrenza sia ancora necessaria.
 Se un modello può collegare direttamente, tramite pesi di attenzione, posizioni lontane della sequenza,
@@ -812,7 +803,7 @@ in modo differenziabile, un allineamento tra posizioni dell'input e token genera
 
 
 
-\section{Il Transformer}
+\subsection{Il Transformer}
 \label{sec:transformer}
 
 \epigraph{

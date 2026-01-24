@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  23 JAN 2026 18:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  24 JAN 2026 12:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1381,7 +1381,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 ... approccio predittivo}{30}{subsection.7.4}
+l.29 ...egative Sampling}{31}{subsubsection.3.8.2}
                                                   % [1
 
 
@@ -1476,7 +1476,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <pictures/SAE_diagram.png, id=869, 534.99875pt x 409.53pt>
 File: pictures/SAE_diagram.png Graphic file (type png)
 <use pictures/SAE_diagram.png>
-Package pdftex.def Info: pictures/SAE_diagram.png  used on input line 694.
+Package pdftex.def Info: pictures/SAE_diagram.png  used on input line 692.
 (pdftex.def)             Requested size: 390.0pt x 298.54823pt.
 [18]) [19] [20 <./pictures/SAE_diagram.png>]
 \openout2 = `chapters/03_embeddings.aux'.
@@ -1516,26 +1516,24 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 373.
 
-[31]
-<pictures/embeddings_w2vec.png, id=970, 1294.8375pt x 630.355pt>
+<pictures/embeddings_w2vec.png, id=961, 1294.8375pt x 630.355pt>
 File: pictures/embeddings_w2vec.png Graphic file (type png)
 <use pictures/embeddings_w2vec.png>
 Package pdftex.def Info: pictures/embeddings_w2vec.png  used on input line 379.
 
 (pdftex.def)             Requested size: 272.99881pt x 132.89784pt.
- [32 <./pictures/embeddings_w2vec.png>] [33] [34] [35]
-<pictures/rnn.png, id=990, 1487.5575pt x 586.19pt>
+[31 <./pictures/embeddings_w2vec.png>] [32] [33] [34] [35]
+<pictures/rnn.png, id=989, 1487.5575pt x 586.19pt>
 File: pictures/rnn.png Graphic file (type png)
 <use pictures/rnn.png>
 Package pdftex.def Info: pictures/rnn.png  used on input line 465.
 (pdftex.def)             Requested size: 390.0pt x 153.68486pt.
- [36 <./pictures/rnn.png>]
-<pictures/rnn_unrolled.png, id=1000, 1578.89874pt x 909.3975pt>
+<pictures/rnn_unrolled.png, id=990, 1578.89874pt x 909.3975pt>
 File: pictures/rnn_unrolled.png Graphic file (type png)
 <use pictures/rnn_unrolled.png>
 Package pdftex.def Info: pictures/rnn_unrolled.png  used on input line 491.
 (pdftex.def)             Requested size: 390.0pt x 224.62907pt.
- [37 <./pictures/rnn_unrolled.png>] [38] [39]
+ [36 <./pictures/rnn.png>] [37 <./pictures/rnn_unrolled.png>] [38] [39]
 <pictures/lstm.png, id=1023, 1264.725pt x 791.95876pt>
 File: pictures/lstm.png Graphic file (type png)
 <use pictures/lstm.png>
@@ -1546,17 +1544,18 @@ Package pdftex.def Info: pictures/lstm.png  used on input line 570.
 LaTeX Warning: Reference `fig:fig:seq2seq_formal' on page 43 undefined on input
  line 653.
 
-<pictures/seq2seq_formal.png, id=1057, 1716.4125pt x 683.55376pt>
+<pictures/seq2seq_formal.png, id=1055, 1716.4125pt x 683.55376pt>
 File: pictures/seq2seq_formal.png Graphic file (type png)
 <use pictures/seq2seq_formal.png>
 Package pdftex.def Info: pictures/seq2seq_formal.png  used on input line 656.
 (pdftex.def)             Requested size: 390.0pt x 155.31577pt.
+[43]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 6
 78.
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [43] [44 <./pictures/seq2seq_formal.png>]
-<pictures/bottleneck.png, id=1084, 1720.4275pt x 298.11375pt>
+) [44 <./pictures/seq2seq_formal.png>]
+<pictures/bottleneck.png, id=1082, 1720.4275pt x 298.11375pt>
 File: pictures/bottleneck.png Graphic file (type png)
 <use pictures/bottleneck.png>
 Package pdftex.def Info: pictures/bottleneck.png  used on input line 709.
@@ -1567,13 +1566,13 @@ LaTeX Warning: Citation 'jurafsky2024speech' on page 45 undefined on input line
  734.
 
 [45 <./pictures/bottleneck.png>]
-<pictures/attention_dynamic_context.png, id=1098, 1055.945pt x 345.29pt>
+<pictures/attention_dynamic_context.png, id=1096, 1055.945pt x 345.29pt>
 File: pictures/attention_dynamic_context.png Graphic file (type png)
 <use pictures/attention_dynamic_context.png>
 Package pdftex.def Info: pictures/attention_dynamic_context.png  used on input 
 line 748.
 (pdftex.def)             Requested size: 390.0pt x 127.52873pt.
-<pictures/attention_ci_computation.png, id=1103, 1714.405pt x 776.9025pt>
+<pictures/attention_ci_computation.png, id=1101, 1714.405pt x 776.9025pt>
 File: pictures/attention_ci_computation.png Graphic file (type png)
 <use pictures/attention_ci_computation.png>
 Package pdftex.def Info: pictures/attention_ci_computation.png  used on input l
@@ -1586,7 +1585,7 @@ Overfull \hbox (186.04929pt too wide) detected at line 809
  []
 
 [48]
-<pictures/transformer_overview.png, id=1130, 1515.6625pt x 968.61874pt>
+<pictures/transformer_overview.png, id=1128, 1515.6625pt x 968.61874pt>
 File: pictures/transformer_overview.png Graphic file (type png)
 <use pictures/transformer_overview.png>
 Package pdftex.def Info: pictures/transformer_overview.png  used on input line 
@@ -1598,18 +1597,24 @@ LaTeX Warning: Reference `sec:self_attention' on page 50 undefined on input lin
 e 835.
 
 [50]
-<pictures/selfattn_alpha.png.png, id=1150, 1720.4275pt x 850.17625pt>
+<pictures/selfattn_alpha.png.png, id=1148, 1720.4275pt x 850.17625pt>
 File: pictures/selfattn_alpha.png.png Graphic file (type png)
 <use pictures/selfattn_alpha.png.png>
 Package pdftex.def Info: pictures/selfattn_alpha.png.png  used on input line 84
 2.
 (pdftex.def)             Requested size: 390.0pt x 192.72136pt.
-<pictures/selfattn_flow.png, id=1151, 1725.44624pt x 369.38pt>
+<pictures/selfattn_flow.png, id=1149, 1725.44624pt x 369.38pt>
 File: pictures/selfattn_flow.png Graphic file (type png)
 <use pictures/selfattn_flow.png>
 Package pdftex.def Info: pictures/selfattn_flow.png  used on input line 849.
 (pdftex.def)             Requested size: 390.0pt x 83.49017pt.
  [51 <./pictures/selfattn_alpha.png.png>] [52 <./pictures/selfattn_flow.png>]
+Overfull \hbox (0.57535pt too wide) in paragraph at lines 879--879
+[]\T1/cmr/bx/n/12 Intuizione: self-attention co-me com-bi-na-zio-ne pe-sa-ta de
+l con-
+ []
+
+
 Overfull \hbox (0.29636pt too wide) in paragraph at lines 880--881
 \T1/cmr/m/n/12 Per fis-sa-re l'i-dea, è uti-le in-tro-dur-re una for-ma sem-pli
 -fi-ca-ta del-la self-attention:
@@ -1623,26 +1628,26 @@ Overfull \hbox (20.02695pt too wide) in paragraph at lines 914--915
  []
 
 [54]
-<pictures/selfattn_head.png, id=1183, 1191.45125pt x 918.43124pt>
+<pictures/selfattn_head.png, id=1181, 1191.45125pt x 918.43124pt>
 File: pictures/selfattn_head.png Graphic file (type png)
 <use pictures/selfattn_head.png>
 Package pdftex.def Info: pictures/selfattn_head.png  used on input line 931.
 (pdftex.def)             Requested size: 390.0pt x 300.63077pt.
  [55] [56 <./pictures/selfattn_head.png>]
-<pictures/multihead.png, id=1202, 1423.3175pt x 642.4pt>
+<pictures/multihead.png, id=1201, 1423.3175pt x 642.4pt>
 File: pictures/multihead.png Graphic file (type png)
 <use pictures/multihead.png>
 Package pdftex.def Info: pictures/multihead.png  used on input line 966.
 (pdftex.def)             Requested size: 390.0pt x 176.0185pt.
  [57] [58 <./pictures/multihead.png>]
-<pictures/transformer_block.png, id=1218, 1199.48125pt x 915.42pt>
+<pictures/transformer_block.png, id=1217, 1199.48125pt x 915.42pt>
 File: pictures/transformer_block.png Graphic file (type png)
 <use pictures/transformer_block.png>
 Package pdftex.def Info: pictures/transformer_block.png  used on input line 100
 2.
 (pdftex.def)             Requested size: 350.99762pt x 267.86752pt.
  [59] [60 <./pictures/transformer_block.png>] [61]
-<pictures/token_stream.png, id=1251, 1711.39375pt x 616.3025pt>
+<pictures/token_stream.png, id=1250, 1711.39375pt x 616.3025pt>
 File: pictures/token_stream.png Graphic file (type png)
 <use pictures/token_stream.png>
 Package pdftex.def Info: pictures/token_stream.png  used on input line 1097.
@@ -1657,18 +1662,18 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1115.
 
 [62] [63 <./pictures/token_stream.png>]
-<pictures/qkt_full.png, id=1273, 1724.4425pt x 549.05125pt>
+<pictures/qkt_full.png, id=1272, 1724.4425pt x 549.05125pt>
 File: pictures/qkt_full.png Graphic file (type png)
 <use pictures/qkt_full.png>
 Package pdftex.def Info: pictures/qkt_full.png  used on input line 1164.
 (pdftex.def)             Requested size: 350.99762pt x 111.75195pt.
-<pictures/qkt_masked.png, id=1279, 1723.43875pt x 538.01pt>
+<pictures/qkt_masked.png, id=1278, 1723.43875pt x 538.01pt>
 File: pictures/qkt_masked.png Graphic file (type png)
 <use pictures/qkt_masked.png>
 Package pdftex.def Info: pictures/qkt_masked.png  used on input line 1198.
 (pdftex.def)             Requested size: 350.99762pt x 109.57033pt.
  [64 <./pictures/qkt_full.png>]
-<pictures/single_head_parallel.png, id=1291, 1716.4125pt x 975.645pt>
+<pictures/single_head_parallel.png, id=1290, 1716.4125pt x 975.645pt>
 File: pictures/single_head_parallel.png Graphic file (type png)
 <use pictures/single_head_parallel.png>
 Package pdftex.def Info: pictures/single_head_parallel.png  used on input line 
@@ -1676,13 +1681,13 @@ Package pdftex.def Info: pictures/single_head_parallel.png  used on input line
 (pdftex.def)             Requested size: 382.19833pt x 217.2478pt.
  [65 <./pictures/qkt_masked.png>] [66 <./pictures/single_head_parallel.png>] [6
 7]
-<pictures/select_single_embedding.png, id=1328, 1729.46124pt x 376.40625pt>
+<pictures/select_single_embedding.png, id=1327, 1729.46124pt x 376.40625pt>
 File: pictures/select_single_embedding.png Graphic file (type png)
 <use pictures/select_single_embedding.png>
 Package pdftex.def Info: pictures/select_single_embedding.png  used on input li
 ne 1313.
 (pdftex.def)             Requested size: 343.2019pt x 74.69408pt.
-<pictures/select_sequence_embedding.png, id=1333, 1726.45pt x 411.5375pt>
+<pictures/select_sequence_embedding.png, id=1332, 1726.45pt x 411.5375pt>
 File: pictures/select_sequence_embedding.png Graphic file (type png)
 <use pictures/select_sequence_embedding.png>
 Package pdftex.def Info: pictures/select_sequence_embedding.png  used on input 
@@ -1691,7 +1696,7 @@ line 1333.
 
 [68 <./pictures/select_single_embedding.png> <./pictures/select_sequence_embedd
 ing.png>]
-<pictures/token_plus_position.png, id=1348, 1724.4425pt x 684.5575pt>
+<pictures/token_plus_position.png, id=1347, 1724.4425pt x 684.5575pt>
 File: pictures/token_plus_position.png Graphic file (type png)
 <use pictures/token_plus_position.png>
 Package pdftex.def Info: pictures/token_plus_position.png  used on input line 1
@@ -1714,33 +1719,33 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1451.
 
-<pictures/lm_head_overview.png, id=1370, 1721.43124pt x 743.77875pt>
+<pictures/lm_head_overview.png, id=1369, 1721.43124pt x 743.77875pt>
 File: pictures/lm_head_overview.png Graphic file (type png)
 <use pictures/lm_head_overview.png>
 Package pdftex.def Info: pictures/lm_head_overview.png  used on input line 1470
 .
 (pdftex.def)             Requested size: 370.49881pt x 160.07954pt.
 [71] [72 <./pictures/lm_head_overview.png>]
-<pictures/decoder_only_stack.png, id=1391, 992.70876pt x 1000.73875pt>
+<pictures/decoder_only_stack.png, id=1390, 992.70876pt x 1000.73875pt>
 File: pictures/decoder_only_stack.png Graphic file (type png)
 <use pictures/decoder_only_stack.png>
 Package pdftex.def Info: pictures/decoder_only_stack.png  used on input line 15
 42.
 (pdftex.def)             Requested size: 319.80286pt x 322.38075pt.
  [73] [74 <./pictures/decoder_only_stack.png>] [75]
-<pictures/llm_completion.png, id=1412, 1719.42375pt x 947.54pt>
+<pictures/llm_completion.png, id=1411, 1719.42375pt x 947.54pt>
 File: pictures/llm_completion.png Graphic file (type png)
 <use pictures/llm_completion.png>
 Package pdftex.def Info: pictures/llm_completion.png  used on input line 1637.
 (pdftex.def)             Requested size: 390.0pt x 214.92229pt.
  [76]
-<pictures/summarization_example.png, id=1419, 1722.435pt x 928.46875pt>
+<pictures/summarization_example.png, id=1418, 1722.435pt x 928.46875pt>
 File: pictures/summarization_example.png Graphic file (type png)
 <use pictures/summarization_example.png>
 Package pdftex.def Info: pictures/summarization_example.png  used on input line
  1662.
 (pdftex.def)             Requested size: 390.0pt x 210.22818pt.
-<pictures/tldr_summarization.png, id=1420, 1716.4125pt x 915.42pt>
+<pictures/tldr_summarization.png, id=1419, 1716.4125pt x 915.42pt>
 File: pictures/tldr_summarization.png Graphic file (type png)
 <use pictures/tldr_summarization.png>
 Package pdftex.def Info: pictures/tldr_summarization.png  used on input line 16
@@ -1765,20 +1770,20 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1749.
 
 [80] [81] [82]
-<pictures/transformer_llm_training.png, id=1455, 1712.3975pt x 946.53625pt>
+<pictures/transformer_llm_training.png, id=1454, 1712.3975pt x 946.53625pt>
 File: pictures/transformer_llm_training.png Graphic file (type png)
 <use pictures/transformer_llm_training.png>
 Package pdftex.def Info: pictures/transformer_llm_training.png  used on input l
 ine 1858.
 (pdftex.def)             Requested size: 390.0pt x 215.57564pt.
  [83] [84 <./pictures/transformer_llm_training.png>]
-<pictures/corpus.png, id=1469, 1187.43625pt x 654.445pt>
+<pictures/corpus.png, id=1468, 1187.43625pt x 654.445pt>
 File: pictures/corpus.png Graphic file (type png)
 <use pictures/corpus.png>
 Package pdftex.def Info: pictures/corpus.png  used on input line 1915.
 (pdftex.def)             Requested size: 390.0pt x 214.94894pt.
  [85 <./pictures/corpus.png>]
-<pictures/training_llm.png, id=1476, 1434.35875pt x 543.02875pt>
+<pictures/training_llm.png, id=1475, 1434.35875pt x 543.02875pt>
 File: pictures/training_llm.png Graphic file (type png)
 <use pictures/training_llm.png>
 Package pdftex.def Info: pictures/training_llm.png  used on input line 1946.
@@ -1871,8 +1876,14 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D9849898CC0582F39A70BF0F93BBD157;29878.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 0BC4A779672065B76A13DFEAC81020E9;30036
+(rerunfilecheck)             After:  0038A5FDE08963A3F62BA91BB1E2E59B;29793.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1883,53 +1894,56 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 52726 strings out of 480122
- 1153077 string characters out of 5893077
- 1801602 words of memory out of 5000000
+ 52725 strings out of 480122
+ 1153039 string characters out of 5893077
+ 1801504 words of memory out of 5000000
  69496 multiletter control sequences out of 15000+600000
  504571 words of font info for 116 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
  127i,15n,122p,1765b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk
-> </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk>
- </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> 
-</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> <
-/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </
-home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </h
-ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1440.600pk> </ho
-me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1728.600pk> </hom
-e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home
-/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/
-edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/e
-do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ed
-o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo
-/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/
-.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk> </home/edo/.
-texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.t
-exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.te
-xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.tex
-live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texl
-ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texli
-ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (113 pages, 6567944 bytes).
+pdfTeX warning (dest): name{subsubsection.3.8.3} has been referenced but does
+ not exist, replaced by a fixed one
+
+ </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> 
+</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> <
+/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </
+home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </h
+ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </ho
+me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </hom
+e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1440.600pk> </home
+/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1728.600pk> </home/
+edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/e
+do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ed
+o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/edo
+/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/edo/
+.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo/.
+texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/.t
+exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk> </home/edo/.te
+xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.tex
+live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.texl
+ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.texli
+ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texliv
+e2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texlive
+2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (113 pages, 6566029 bytes).
 PDF statistics:
- 2521 PDF objects out of 2984 (max. 8388607)
- 1580 compressed objects within 16 object streams
- 446 named destinations out of 1000 (max. 500000)
+ 2518 PDF objects out of 2984 (max. 8388607)
+ 1579 compressed objects within 16 object streams
+ 445 named destinations out of 1000 (max. 500000)
  1304 words of extra memory for PDF output out of 10000 (max. 10000000)
 

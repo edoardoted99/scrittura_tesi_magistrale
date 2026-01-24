@@ -648,9 +648,7 @@ più selettive e spesso più interpretabili.
 Una possibile strategia per favorire l’apprendimento di rappresentazioni latenti
 astratte, disentangled e interpretabili consiste nell’introdurre esplicitamente
 vincoli di sparsità sulle attivazioni dello spazio latente. I modelli che adottano
-questa impostazione prendono il nome di \textbf{Sparse Autoencoders}.
-
-A differenza degli autoencoder classici con strozzatura (bottleneck), nei quali la
+questa impostazione prendono il nome di \textbf{Sparse Autoencoders}. A differenza degli autoencoder classici con strozzatura (bottleneck), nei quali la
 capacità di rappresentazione è limitata riducendo la dimensionalità dello spazio
 latente, negli Sparse Autoencoders si abbandona tale vincolo architetturale a
 favore di un vincolo di sparsità sulle attivazioni. In questo caso, lo spazio
@@ -666,13 +664,13 @@ unità latenti risulti significativamente attiva.
     \centering
     \begin{tikzpicture}[scale=0.6, transform shape, node distance=1cm]
         % Nodes
-        \node[draw, rectangle, minimum height=2cm, minimum width=0.5cm, fill=gray!20] (input) at (0,0) {$x \in \mathbb{R}^{d}$};
+        \node[draw, rectangle, minimum height=2cm, minimum width=0.5cm, fill=gray!20] (input) at (0,0) {$x \in \mathbb{R}^{n}$};
         
         % Trapezium for Expansion
         \node[draw, trapezium, trapezium angle=70, shape border rotate=90, minimum height=1.5cm, fill=green!10] (enc) at (3.0,0) {Encoder};
         
         % Sparse Latent
-        \node[draw, rectangle, minimum height=4cm, minimum width=0.5cm, fill=red!20, label=above: spazio latente $\mathbf{h}$] (latent) at (6,0) {$h \in \mathbb{R}^{n}$};
+        \node[draw, rectangle, minimum height=4cm, minimum width=0.5cm, fill=red!20, label=above: spazio latente $\mathbf{h}$] (latent) at (6,0) {$h \in \mathbb{R}^{q}$};
         \node at (6, -2.5) {\footnotesize $n > d$};
 
         % Trapezium for Compression
@@ -686,7 +684,7 @@ unità latenti risulti significativamente attiva.
         \draw[->, thick] (latent) -- (dec);
         \draw[->, thick] (dec) -- (output);
     \end{tikzpicture}
-    \caption{Sparse Autoencoder: spazio latente overcomplete con attivazioni sparse.}
+    \caption{Architettura di un autoencoder con dimensionalitàl latente $q \leq n$ }
 \end{figure}
 
 \begin{figure}[htbp] 
@@ -695,15 +693,12 @@ unità latenti risulti significativamente attiva.
     \caption{La figura mostra l'architettura di uno Sparse Autoencoder nel quale la dimensione dello stato latente è maggiore di quella di input.} 
     \label{fig:sparse_autoencoder} 
 \end{figure}
-
 L’idea centrale è che, pur disponendo di uno spazio latente ad alta dimensionalità,
 il modello sia costretto a rappresentare ogni osservazione utilizzando un numero
 ridotto di componenti. Questo comportamento induce una codifica selettiva, nella
 quale le singole unità latenti tendono a rispondere a pattern o attributi
 specifici dei dati, favorendo rappresentazioni più strutturate e potenzialmente
-interpretabili.
-
-Formalmente, dati un encoder $g_\theta$ e un decoder $f_\phi$, la funzione obiettivo
+interpretabili. Formalmente, dati un encoder $g_\theta$ e un decoder $f_\phi$, la funzione obiettivo
 di uno Sparse Autoencoder può essere espressa come
 \begin{equation}
     \mathcal{L}(f_\phi, g_\theta)
@@ -715,9 +710,7 @@ di uno Sparse Autoencoder può essere espressa come
     \lambda \, \mathcal{R}_\text{sparse}\big(g_\theta(\mathbf{x}_i)\big),
 \end{equation}
 dove $\mathcal{R}_\text{sparse}(\cdot)$ è un termine di regolarizzazione che impone
-vincoli di sparsità sulle attivazioni latenti.
-
-Una delle scelte più comuni consiste nell’applicare una penalizzazione di tipo
+vincoli di sparsità sulle attivazioni latenti. Una delle scelte più comuni consiste nell’applicare una penalizzazione di tipo
 $\ell_1$ alle attivazioni latenti,
 \begin{equation}
     \mathcal{R}_\text{sparse}(\mathbf{h}_i) = \lVert \mathbf{h}_i \rVert_1,
@@ -727,9 +720,7 @@ prossime allo zero. In alternativa, è possibile imporre vincoli di tipo
 \textit{top-$k$} (o $k$–sparsity), nei quali, per ciascun input, solo le $k$
 attivazioni di maggiore ampiezza vengono mantenute, mentre tutte le altre sono
 forzate a zero. Questo approccio impone una sparsità esplicita e controllata,
-indipendente dalla scala delle attivazioni.
-
-Sebbene la sparsità non garantisca in senso rigoroso una completa separazione
+indipendente dalla scala delle attivazioni. Sebbene la sparsità non garantisca in senso rigoroso una completa separazione
 statistica dei fattori di variazione, essa introduce una forte pressione
 strutturale sulla rappresentazione latente, riducendo la codifica diffusa
 dell’informazione e favorendo l’emergere di feature più selettive e spesso
