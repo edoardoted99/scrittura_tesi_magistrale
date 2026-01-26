@@ -2,151 +2,168 @@
 \babel@toc {italian}{}\relax 
 \contentsline {section}{\numberline {1}Introduzione}{1}{section.1}%
 \contentsline {section}{\numberline {2}Autoencoders}{2}{section.2}%
-\contentsline {subsubsection}{\numberline {2.0.1}Apprendimento non supervisionato}{6}{subsubsection.2.0.1}%
-\contentsline {subsubsection}{\numberline {2.0.2}Encoder, decoder e spazio latente}{6}{subsubsection.2.0.2}%
-\contentsline {subsubsection}{\numberline {2.0.3}Funzione obiettivo e errore di ricostruzione}{7}{subsubsection.2.0.3}%
-\contentsline {subsection}{\numberline {2.1}Il problema dell’identità e la necessità di vincoli}{8}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Bottleneck e riduzione della dimensionalità}{8}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Introduzione di vincoli}{9}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Relazioni con la PCA}{10}{subsubsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.4}Caso di un autoencoder lineare}{12}{subsubsection.2.1.4}%
-\contentsline {subsubsection}{\numberline {2.1.5}Caso di un autoencoder non lineare}{13}{subsubsection.2.1.5}%
-\contentsline {subsection}{\numberline {2.2}Interpretabilità delle feature latenti}{14}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Rappresentazioni latenti disentangled}{15}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Sparse Autoencoders}{18}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Word Embeddings}{21}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Simboli e significati}{22}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Gli assi del linguaggio}{22}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}L'ipotesi distribuzionale}{23}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Ipotesi di Osgood}{24}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Verso i word embeddings}{25}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Embeddings count-based}{27}{subsection.3.6}%
-\contentsline {subsubsection}{\numberline {3.6.1}Matrice termine-documento}{27}{subsubsection.3.6.1}%
-\contentsline {subsubsection}{\numberline {3.6.2}Matrice termine-termine}{28}{subsubsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.7}Riduzione dimensionale tramite SVD}{30}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Cosine Similarity}{30}{subsection.3.8}%
-\contentsline {subsection}{\numberline {3.9}Word2Vec: un approccio predittivo}{31}{subsection.3.9}%
-\contentsline {subsubsection}{\numberline {3.9.1}Il classificatore e la funzione sigmoide}{32}{subsubsection.3.9.1}%
-\contentsline {subsubsection}{\numberline {3.9.2}Perché due matrici? Il ruolo di $W$ e $C$}{32}{subsubsection.3.9.2}%
-\contentsline {subsection}{\numberline {3.10}Dal sintagma al paradigma: finestra di contesto e precisione semantica}{33}{subsection.3.10}%
-\contentsline {subsubsection}{\numberline {3.10.1}Il sintagma come architetto del paradigma}{34}{subsubsection.3.10.1}%
-\contentsline {subsubsection}{\numberline {3.10.2}La finestra di contesto come manopola semantica in Word2Vec}{34}{subsubsection.3.10.2}%
-\contentsline {subsubsection}{\numberline {3.10.3}Geometria dell'analogia: il modello del parallelogramma}{35}{subsubsection.3.10.3}%
-\contentsline {subsubsection}{\numberline {3.10.4}Limiti dei modelli statici e l'esigenza di dinamismo}{36}{subsubsection.3.10.4}%
-\contentsline {subsection}{\numberline {3.11}Embeddings dinamici}{37}{subsection.3.11}%
-\contentsline {section}{\numberline {4}Reti Neurali Ricorrenti}{39}{section.4}%
-\contentsline {subsection}{\numberline {4.1}RNN come Language Models}{42}{subsection.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.1}Generaizone di Embeddings tramite RNN}{42}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}RNN Bidirezionali (Bi-RNN)}{43}{subsubsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.3}Il problema del Gradiente Svanente}{43}{subsubsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.2}LSTM: Long Short-Term Memory}{44}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Meccanismi di Gating}{45}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Le equazioni del modello}{45}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Modularità ed Embeddings}{46}{subsubsection.4.4.1}%
-\contentsline {section}{\numberline {5}Architettura Encoder-Decoder e limite del \textit {bottleneck}}{46}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Il problema \textit {sequence-to-sequence}}{47}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Il limite del \textit {bottleneck} informativo}{48}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Soluzione al bottleneck: Meccanismo dell'attenzione}{50}{subsubsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.3}Verso i Transformer}{52}{subsubsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.2}Il Transformer}{53}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Self-attention}{55}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Motivazione: dalle rappresentazioni statiche alle rappresentazioni contestuali}{55}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Self-attention causale: dominio informativo e vincolo di autoregressione}{57}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Intuizione: self-attention come combinazione pesata del contesto}{57}{subsubsection.5.3.3}%
-\contentsline {subsubsection}{\numberline {5.3.4}Scaled dot-product attention: ruoli di query, key e value}{58}{subsubsection.5.3.4}%
-\contentsline {paragraph}{Punteggi di compatibilità (scores).}{58}{section*.29}%
-\contentsline {paragraph}{Normalizzazione tramite softmax e vincolo causale.}{59}{section*.30}%
-\contentsline {paragraph}{Aggregazione dei value e proiezione in output.}{59}{section*.31}%
-\contentsline {subsubsection}{\numberline {5.3.5}Forma matriciale e dimensioni (utile per l’implementazione)}{59}{subsubsection.5.3.5}%
-\contentsline {subsubsection}{\numberline {5.3.6}Multi-head attention: pluralità di criteri di selezione}{61}{subsubsection.5.3.6}%
-\contentsline {subsubsection}{\numberline {5.3.7}Osservazione conclusiva: self-attention e contestualizzazione progressiva}{61}{subsubsection.5.3.7}%
-\contentsline {subsection}{\numberline {5.4}Blocco Transformer}{62}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Input del blocco e informazione di posizione}{63}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Residual stream: il flusso informativo del token}{63}{subsubsection.5.4.2}%
-\contentsline {subsubsection}{\numberline {5.4.3}Perché la LayerNorm (motivazione)}{65}{subsubsection.5.4.3}%
-\contentsline {subsubsection}{\numberline {5.4.4}Feedforward network (ruolo)}{65}{subsubsection.5.4.4}%
-\contentsline {subsubsection}{\numberline {5.4.5}Equazioni del blocco (variante \emph {prenorm})}{66}{subsubsection.5.4.5}%
-\contentsline {subsubsection}{\numberline {5.4.6}L’attenzione come “movimento” di informazione tra stream}{66}{subsubsection.5.4.6}%
-\contentsline {subsection}{\numberline {5.5}Parallelizzazione del calcolo con una singola matrice $X$}{66}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Impacchettare la sequenza in una matrice}{67}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Self-attention in forma matriciale (una testa)}{67}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Mascheramento causale: eliminare il futuro}{68}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Schema completo per una testa (in parallelo)}{69}{subsubsection.5.5.4}%
-\contentsline {subsubsection}{\numberline {5.5.5}Costo computazionale e dipendenza quadratica}{69}{subsubsection.5.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.6}Multi-head attention in parallelo}{69}{subsubsection.5.5.6}%
-\contentsline {subsubsection}{\numberline {5.5.7}Il blocco Transformer in forma parallela}{70}{subsubsection.5.5.7}%
-\contentsline {subsection}{\numberline {5.6}L'input del Transformer: embeddings di token e di posizione}{71}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Token embeddings e matrice di embedding}{71}{subsubsection.5.6.1}%
-\contentsline {paragraph}{Selezione via one-hot (interpretazione equivalente).}{71}{section*.39}%
-\contentsline {paragraph}{Dalla sequenza alla matrice.}{72}{section*.41}%
-\contentsline {subsubsection}{\numberline {5.6.2}Perché servono gli embeddings posizionali}{72}{subsubsection.5.6.2}%
-\contentsline {subsubsection}{\numberline {5.6.3}Posizione assoluta e composizione dell’input}{73}{subsubsection.5.6.3}%
-\contentsline {subsection}{\numberline {5.7}Limiti della posizione assoluta e alternative: sinusoidale e posizione relativa}{73}{subsection.5.7}%
-\contentsline {paragraph}{Embeddings posizionali sinusoidali.}{74}{section*.44}%
-\contentsline {paragraph}{Posizione relativa.}{74}{section*.45}%
-\contentsline {subsection}{\numberline {5.8}La \textit {language modeling head}}{75}{subsection.5.8}%
-\contentsline {subsubsection}{\numberline {5.8.1}Cosa entra e cosa esce: dal vettore $h_N^L$ alle probabilità sul vocabolario}{75}{subsubsection.5.8.1}%
-\contentsline {subsubsection}{\numberline {5.8.2}Logits e livello di \textit {unembedding}}{75}{subsubsection.5.8.2}%
-\contentsline {paragraph}{Weight tying: perché spesso $U=E^\top $.}{76}{section*.47}%
-\contentsline {subsubsection}{\numberline {5.8.3}Softmax: da logits a probabilità}{77}{subsubsection.5.8.3}%
-\contentsline {subsubsection}{\numberline {5.8.4}Dal modello alla generazione: scegliere il prossimo token}{77}{subsubsection.5.8.4}%
-\contentsline {subsubsection}{\numberline {5.8.5}Visione d’insieme: un \textit {decoder-only} che impila blocchi}{77}{subsubsection.5.8.5}%
-\contentsline {subsection}{\numberline {5.9}Nota: \textit {logit lens} e terminologia \textit {decoder-only}}{77}{subsection.5.9}%
-\contentsline {paragraph}{Nota terminologica: \textit {decoder-only}.}{79}{section*.49}%
-\contentsline {section}{\numberline {6}Large Language Models}{79}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Large Language Models con Transformer: generazione condizionata}{80}{subsection.6.1}%
-\contentsline {paragraph}{Perché “predire parole” è utile per tanti task.}{80}{section*.51}%
-\contentsline {paragraph}{Esempio: riassunto come generazione condizionata.}{81}{section*.52}%
-\contentsline {paragraph}{Nota sul passo successivo (ponte verso BERT).}{81}{section*.55}%
-\contentsline {section}{\numberline {7}Sampling per la generazione con LLM}{83}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Perché non basta il campionamento ``puro''}{83}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Top-$k$ sampling}{84}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Top-$p$ (nucleus) sampling}{84}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Temperature sampling}{85}{subsection.7.4}%
-\contentsline {section}{\numberline {8}Pretraining dei Large Language Models}{85}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Setup, notazione e obiettivo di language modeling}{86}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Self-supervision e funzione obiettivo}{86}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Teacher forcing}{87}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Efficienza computazionale: parallelismo nei transformer}{88}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Dati di pretraining: fonti e filtraggio}{89}{subsection.8.5}%
-\contentsline {paragraph}{Filtri di qualità e sicurezza.}{90}{section*.58}%
-\contentsline {paragraph}{Aspetti etici e legali (panoramica).}{90}{section*.59}%
-\contentsline {subsection}{\numberline {8.6}Dal pretraining all'adattamento: finetuning}{90}{subsection.8.6}%
-\contentsline {paragraph}{Tipi di adattamento (senza anticipare modelli specifici).}{90}{section*.61}%
-\contentsline {paragraph}{Collegamento alle sezioni successive.}{91}{section*.62}%
-\contentsline {section}{\numberline {9}Il problema del disentanglement}{92}{section.9}%
-\contentsline {section}{\numberline {10}Introduzione}{92}{section.10}%
-\contentsline {section}{\numberline {11}Il fenomeno della Superposizione}{92}{section.11}%
-\contentsline {subsection}{\numberline {11.1}Formalismo matematico}{93}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Il ruolo della sparsità}{93}{subsection.11.2}%
-\contentsline {section}{\numberline {12}Disentangling Dense Embeddings \\with Sparse Autoencoders}{95}{section.12}%
-\contentsline {section}{\numberline {13}Introduzione}{95}{section.13}%
-\contentsline {section}{\numberline {14}Ipotesi della superposizione}{95}{section.14}%
-\contentsline {section}{\numberline {15}Metodologia e Architettura}{95}{section.15}%
-\contentsline {subsection}{\numberline {15.1}Definizione del Modello}{96}{subsection.15.1}%
-\contentsline {subsection}{\numberline {15.2}Vincolo di Sparsità \textit {k-Sparse}}{96}{subsection.15.2}%
-\contentsline {subsection}{\numberline {15.3}Funzione di Costo e Addestramento}{97}{subsection.15.3}%
-\contentsline {section}{\numberline {16}Interpretazione Automatizzata delle Feature}{97}{section.16}%
-\contentsline {section}{\numberline {17}Feature Families e Struttura Gerarchica}{98}{section.17}%
-\contentsline {section}{\numberline {18}Feature Families e Struttura Gerarchica}{98}{section.18}%
-\contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{99}{section*.63}%
-\contentsline {subsection}{\numberline {18.1}Costruzione del Grafo di Co-occorrenza}{99}{subsection.18.1}%
-\contentsline {subsection}{\numberline {18.2}Identificazione delle Feature Families}{100}{subsection.18.2}%
-\contentsline {section}{\numberline {19}Prisma}{102}{section.19}%
-\contentsline {section}{\numberline {20}Introduzione}{102}{section.20}%
-\contentsline {section}{\numberline {21}Architettura}{102}{section.21}%
-\contentsline {section}{\numberline {22}Generazione Embeddings}{102}{section.22}%
-\contentsline {subsection}{\numberline {22.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{103}{subsection.22.1}%
-\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{103}{section*.65}%
-\contentsline {paragraph}{Segmentazione in chunk contigui}{104}{section*.66}%
-\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{104}{section*.67}%
-\contentsline {paragraph}{Aggregazione a livello documento}{105}{section*.68}%
-\contentsline {section}{\numberline {23}Training SAE}{105}{section.23}%
-\contentsline {section}{\numberline {24}Interpretazione}{106}{section.24}%
-\contentsline {section}{\numberline {25}Esperimenti}{106}{section.25}%
-\contentsline {section}{\numberline {26}Pedianet}{106}{section.26}%
-\contentsline {subsection}{\numberline {26.1}Scelta del modello di embedding}{107}{subsection.26.1}%
-\contentsline {subsection}{\numberline {26.2}Esperimento}{107}{subsection.26.2}%
-\contentsline {section}{\numberline {27}Abstracts}{108}{section.27}%
-\contentsline {section}{\numberline {28}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{109}{section.28}%
-\contentsline {section}{\numberline {29}PubMed}{109}{section.29}%
+\contentsline {subsection}{\numberline {2.1}Definizione e formulazione generale}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Il problema dell'identità e la necessità di vincoli}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Introduzione dei vincoli: architettura e regolarizzazione}{4}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Vincoli architetturali: bottleneck e riduzione della dimensionalità}{4}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Vincoli nella funzione obiettivo: regolarizzazione dello spazio latente}{8}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}La semantica emerge dai vincoli}{9}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Il manifold dei dati e le regioni vuote}{9}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Analogia fisica: lo spazio delle fasi}{10}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Implicazioni per il design di autoencoder}{11}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Interpretabilità e Disentanglement}{11}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Fattori di variazione e rappresentazioni entangled}{13}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Definizione di Disentanglement}{14}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}Esempio: InfoGAN su MNIST}{14}{subsubsection.2.5.3}%
+\contentsline {subsubsection}{\numberline {2.5.4}Perché il disentanglement non emerge spontaneamente}{16}{subsubsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.6}Regolarizzare lo spazio latente: i $\beta $-VAE}{17}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Dai vincoli architetturali ai vincoli probabilistici}{17}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Formulazione matematica}{17}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Effetto geometrico del vincolo probabilistico}{18}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Il trade-off tra ricostruzione e regolarizzazione}{18}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}$\beta $-VAE e disentanglement}{20}{subsubsection.2.6.5}%
+\contentsline {subsubsection}{\numberline {2.6.6}Limiti dei vincoli probabilistici}{20}{subsubsection.2.6.6}%
+\contentsline {subsection}{\numberline {2.7}Sparse Autoencoders}{21}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Dall'undercomplete all'overcomplete: inversione del paradigma}{21}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}Formulazione matematica}{22}{subsubsection.2.7.2}%
+\contentsline {paragraph}{Regolarizzazione $\ell _1$.}{22}{section*.11}%
+\contentsline {paragraph}{Vincolo top-$k$.}{22}{section*.12}%
+\contentsline {subsubsection}{\numberline {2.7.3}Interpretazione geometrica e confronto con i vincoli probabilistici}{23}{subsubsection.2.7.3}%
+\contentsline {subsubsection}{\numberline {2.7.4}Perché la sparsità favorisce l'interpretabilità}{23}{subsubsection.2.7.4}%
+\contentsline {subsubsection}{\numberline {2.7.5}Conclusioni e prospettive}{23}{subsubsection.2.7.5}%
+\contentsline {section}{\numberline {3}Word Embeddings}{25}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Simboli e significati}{26}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Gli assi del linguaggio}{26}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}L'ipotesi distribuzionale}{27}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Ipotesi di Osgood}{28}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Verso i word embeddings}{29}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Embeddings count-based}{31}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Matrice termine-documento}{31}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\numberline {3.6.2}Matrice termine-termine}{32}{subsubsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.7}Riduzione dimensionale tramite SVD}{34}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Cosine Similarity}{34}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}Word2Vec: un approccio predittivo}{35}{subsection.3.9}%
+\contentsline {subsubsection}{\numberline {3.9.1}Il classificatore e la funzione sigmoide}{36}{subsubsection.3.9.1}%
+\contentsline {subsubsection}{\numberline {3.9.2}Perché due matrici? Il ruolo di $W$ e $C$}{36}{subsubsection.3.9.2}%
+\contentsline {subsection}{\numberline {3.10}Dal sintagma al paradigma: finestra di contesto e precisione semantica}{37}{subsection.3.10}%
+\contentsline {subsubsection}{\numberline {3.10.1}Il sintagma come architetto del paradigma}{38}{subsubsection.3.10.1}%
+\contentsline {subsubsection}{\numberline {3.10.2}La finestra di contesto come manopola semantica in Word2Vec}{38}{subsubsection.3.10.2}%
+\contentsline {subsubsection}{\numberline {3.10.3}Geometria dell'analogia: il modello del parallelogramma}{39}{subsubsection.3.10.3}%
+\contentsline {subsubsection}{\numberline {3.10.4}Limiti dei modelli statici e l'esigenza di dinamismo}{40}{subsubsection.3.10.4}%
+\contentsline {subsection}{\numberline {3.11}Embeddings dinamici}{41}{subsection.3.11}%
+\contentsline {section}{\numberline {4}Reti Neurali Ricorrenti}{43}{section.4}%
+\contentsline {subsection}{\numberline {4.1}RNN come Language Models}{46}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Generaizone di Embeddings tramite RNN}{46}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}RNN Bidirezionali (Bi-RNN)}{47}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Il problema del Gradiente Svanente}{47}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}LSTM: Long Short-Term Memory}{48}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Meccanismi di Gating}{49}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Le equazioni del modello}{49}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Modularità ed Embeddings}{50}{subsubsection.4.4.1}%
+\contentsline {section}{\numberline {5}Architettura Encoder-Decoder e limite del \textit {bottleneck}}{50}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Il problema \textit {sequence-to-sequence}}{51}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Il limite del \textit {bottleneck} informativo}{52}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Soluzione al bottleneck: Meccanismo dell'attenzione}{54}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Verso i Transformer}{56}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}Il Transformer}{57}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Self-attention}{59}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Motivazione: dalle rappresentazioni statiche alle rappresentazioni contestuali}{59}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Self-attention causale: dominio informativo e vincolo di autoregressione}{61}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Intuizione: self-attention come combinazione pesata del contesto}{61}{subsubsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.4}Scaled dot-product attention: ruoli di query, key e value}{62}{subsubsection.5.3.4}%
+\contentsline {paragraph}{Punteggi di compatibilità (scores).}{62}{section*.30}%
+\contentsline {paragraph}{Normalizzazione tramite softmax e vincolo causale.}{63}{section*.31}%
+\contentsline {paragraph}{Aggregazione dei value e proiezione in output.}{63}{section*.32}%
+\contentsline {subsubsection}{\numberline {5.3.5}Forma matriciale e dimensioni (utile per l’implementazione)}{63}{subsubsection.5.3.5}%
+\contentsline {subsubsection}{\numberline {5.3.6}Multi-head attention: pluralità di criteri di selezione}{65}{subsubsection.5.3.6}%
+\contentsline {subsubsection}{\numberline {5.3.7}Osservazione conclusiva: self-attention e contestualizzazione progressiva}{65}{subsubsection.5.3.7}%
+\contentsline {subsection}{\numberline {5.4}Blocco Transformer}{66}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Input del blocco e informazione di posizione}{67}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Residual stream: il flusso informativo del token}{67}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Perché la LayerNorm (motivazione)}{69}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}Feedforward network (ruolo)}{69}{subsubsection.5.4.4}%
+\contentsline {subsubsection}{\numberline {5.4.5}Equazioni del blocco (variante \emph {prenorm})}{70}{subsubsection.5.4.5}%
+\contentsline {subsubsection}{\numberline {5.4.6}L’attenzione come “movimento” di informazione tra stream}{70}{subsubsection.5.4.6}%
+\contentsline {subsection}{\numberline {5.5}Parallelizzazione del calcolo con una singola matrice $X$}{70}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Impacchettare la sequenza in una matrice}{71}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Self-attention in forma matriciale (una testa)}{71}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Mascheramento causale: eliminare il futuro}{72}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Schema completo per una testa (in parallelo)}{73}{subsubsection.5.5.4}%
+\contentsline {subsubsection}{\numberline {5.5.5}Costo computazionale e dipendenza quadratica}{73}{subsubsection.5.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.6}Multi-head attention in parallelo}{73}{subsubsection.5.5.6}%
+\contentsline {subsubsection}{\numberline {5.5.7}Il blocco Transformer in forma parallela}{74}{subsubsection.5.5.7}%
+\contentsline {subsection}{\numberline {5.6}L'input del Transformer: embeddings di token e di posizione}{75}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Token embeddings e matrice di embedding}{75}{subsubsection.5.6.1}%
+\contentsline {paragraph}{Selezione via one-hot (interpretazione equivalente).}{75}{section*.40}%
+\contentsline {paragraph}{Dalla sequenza alla matrice.}{76}{section*.42}%
+\contentsline {subsubsection}{\numberline {5.6.2}Perché servono gli embeddings posizionali}{76}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.3}Posizione assoluta e composizione dell’input}{77}{subsubsection.5.6.3}%
+\contentsline {subsection}{\numberline {5.7}Limiti della posizione assoluta e alternative: sinusoidale e posizione relativa}{77}{subsection.5.7}%
+\contentsline {paragraph}{Embeddings posizionali sinusoidali.}{78}{section*.45}%
+\contentsline {paragraph}{Posizione relativa.}{78}{section*.46}%
+\contentsline {subsection}{\numberline {5.8}La \textit {language modeling head}}{79}{subsection.5.8}%
+\contentsline {subsubsection}{\numberline {5.8.1}Cosa entra e cosa esce: dal vettore $h_N^L$ alle probabilità sul vocabolario}{79}{subsubsection.5.8.1}%
+\contentsline {subsubsection}{\numberline {5.8.2}Logits e livello di \textit {unembedding}}{79}{subsubsection.5.8.2}%
+\contentsline {paragraph}{Weight tying: perché spesso $U=E^\top $.}{80}{section*.48}%
+\contentsline {subsubsection}{\numberline {5.8.3}Softmax: da logits a probabilità}{81}{subsubsection.5.8.3}%
+\contentsline {subsubsection}{\numberline {5.8.4}Dal modello alla generazione: scegliere il prossimo token}{81}{subsubsection.5.8.4}%
+\contentsline {subsubsection}{\numberline {5.8.5}Visione d’insieme: un \textit {decoder-only} che impila blocchi}{81}{subsubsection.5.8.5}%
+\contentsline {subsection}{\numberline {5.9}Nota: \textit {logit lens} e terminologia \textit {decoder-only}}{81}{subsection.5.9}%
+\contentsline {paragraph}{Nota terminologica: \textit {decoder-only}.}{83}{section*.50}%
+\contentsline {section}{\numberline {6}Large Language Models}{83}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Large Language Models con Transformer: generazione condizionata}{84}{subsection.6.1}%
+\contentsline {paragraph}{Perché “predire parole” è utile per tanti task.}{84}{section*.52}%
+\contentsline {paragraph}{Esempio: riassunto come generazione condizionata.}{85}{section*.53}%
+\contentsline {paragraph}{Nota sul passo successivo (ponte verso BERT).}{85}{section*.56}%
+\contentsline {section}{\numberline {7}Sampling per la generazione con LLM}{87}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Perché non basta il campionamento ``puro''}{87}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Top-$k$ sampling}{88}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Top-$p$ (nucleus) sampling}{88}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Temperature sampling}{89}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Pretraining dei Large Language Models}{89}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Setup, notazione e obiettivo di language modeling}{90}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Self-supervision e funzione obiettivo}{90}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Teacher forcing}{91}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Efficienza computazionale: parallelismo nei transformer}{92}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Dati di pretraining: fonti e filtraggio}{93}{subsection.8.5}%
+\contentsline {paragraph}{Filtri di qualità e sicurezza.}{94}{section*.59}%
+\contentsline {paragraph}{Aspetti etici e legali (panoramica).}{94}{section*.60}%
+\contentsline {subsection}{\numberline {8.6}Dal pretraining all'adattamento: finetuning}{94}{subsection.8.6}%
+\contentsline {paragraph}{Tipi di adattamento (senza anticipare modelli specifici).}{94}{section*.62}%
+\contentsline {paragraph}{Collegamento alle sezioni successive.}{95}{section*.63}%
+\contentsline {section}{\numberline {9}Disentangling Dense Embeddings \\with Sparse Autoencoders}{96}{section.9}%
+\contentsline {section}{\numberline {10}Introduzione}{96}{section.10}%
+\contentsline {section}{\numberline {11}Ipotesi della superposizione}{96}{section.11}%
+\contentsline {section}{\numberline {12}Metodologia e Architettura}{96}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Definizione del Modello}{97}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Vincolo di Sparsità \textit {k-Sparse}}{97}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Funzione di Costo e Addestramento}{98}{subsection.12.3}%
+\contentsline {section}{\numberline {13}Interpretazione Automatizzata delle Feature}{98}{section.13}%
+\contentsline {section}{\numberline {14}Feature Families e Struttura Gerarchica}{99}{section.14}%
+\contentsline {section}{\numberline {15}Feature Families e Struttura Gerarchica}{99}{section.15}%
+\contentsline {paragraph}{Criterio di identificazione delle feature genitore e figlie}{100}{section*.64}%
+\contentsline {subsection}{\numberline {15.1}Costruzione del Grafo di Co-occorrenza}{100}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Identificazione delle Feature Families}{101}{subsection.15.2}%
+\contentsline {section}{\numberline {16}Il problema del disentanglement}{102}{section.16}%
+\contentsline {section}{\numberline {17}Introduzione}{102}{section.17}%
+\contentsline {section}{\numberline {18}Il fenomeno della Superposizione}{103}{section.18}%
+\contentsline {subsection}{\numberline {18.1}Formalismo matematico}{103}{subsection.18.1}%
+\contentsline {subsection}{\numberline {18.2}Il ruolo della sparsità}{104}{subsection.18.2}%
+\contentsline {section}{\numberline {19}Prisma}{105}{section.19}%
+\contentsline {section}{\numberline {20}Introduzione}{105}{section.20}%
+\contentsline {section}{\numberline {21}Architettura}{105}{section.21}%
+\contentsline {section}{\numberline {22}Generazione Embeddings}{105}{section.22}%
+\contentsline {subsection}{\numberline {22.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{106}{subsection.22.1}%
+\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{106}{section*.66}%
+\contentsline {paragraph}{Segmentazione in chunk contigui}{107}{section*.67}%
+\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{107}{section*.68}%
+\contentsline {paragraph}{Aggregazione a livello documento}{108}{section*.69}%
+\contentsline {section}{\numberline {23}Training SAE}{108}{section.23}%
+\contentsline {section}{\numberline {24}Interpretazione}{109}{section.24}%
+\contentsline {section}{\numberline {25}Esperimenti}{109}{section.25}%
+\contentsline {section}{\numberline {26}Pedianet}{109}{section.26}%
+\contentsline {subsection}{\numberline {26.1}Scelta del modello di embedding}{110}{subsection.26.1}%
+\contentsline {subsection}{\numberline {26.2}Esperimento}{110}{subsection.26.2}%
+\contentsline {section}{\numberline {27}Abstracts}{111}{section.27}%
+\contentsline {section}{\numberline {28}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{112}{section.28}%
+\contentsline {section}{\numberline {29}PubMed}{112}{section.29}%

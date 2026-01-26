@@ -2346,17 +2346,18 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">autoencodersbank2020autoencoders</bcf:citekey>
-    <bcf:citekey order="2">michelucci2022introductionautoencoders</bcf:citekey>
+    <bcf:citekey order="1">feynman_wikipedia</bcf:citekey>
+    <bcf:citekey order="2">feynman_wikipedia</bcf:citekey>
+    <bcf:citekey order="3">autoencodersbank2020autoencoders</bcf:citekey>
     <bcf:citekey order="3">michelucci2022introductionautoencoders</bcf:citekey>
-    <bcf:citekey order="4">michelucci2022introductionautoencoders</bcf:citekey>
-    <bcf:citekey order="5">Goodfellow2016DeepLearning</bcf:citekey>
-    <bcf:citekey order="6">wang2024disentangledrepresentationlearning</bcf:citekey>
+    <bcf:citekey order="4">wang2024disentangledrepresentationlearning</bcf:citekey>
+    <bcf:citekey order="5">chen2016infoganinterpretablerepresentationlearning</bcf:citekey>
+    <bcf:citekey order="6">chen2016infoganinterpretablerepresentationlearning</bcf:citekey>
     <bcf:citekey order="7">chen2016infoganinterpretablerepresentationlearning</bcf:citekey>
-    <bcf:citekey order="8">chen2016infoganinterpretablerepresentationlearning</bcf:citekey>
-    <bcf:citekey order="9">chen2016infoganinterpretablerepresentationlearning</bcf:citekey>
-    <bcf:citekey order="10">gordon2020machine</bcf:citekey>
-    <bcf:citekey order="11">gordon2020machine</bcf:citekey>
+    <bcf:citekey order="8">gordon2020machine</bcf:citekey>
+    <bcf:citekey order="9">gordon2020machine</bcf:citekey>
+    <bcf:citekey order="10">burgess2018understandingdisentanglingbetavae</bcf:citekey>
+    <bcf:citekey order="11">wang2024disentangledrepresentationlearning</bcf:citekey>
     <bcf:citekey order="12">Osgood1957Measurement</bcf:citekey>
     <bcf:citekey order="13">wang2024disentangledrepresentationlearning</bcf:citekey>
     <bcf:citekey order="14">wang2024disentangledrepresentationlearning</bcf:citekey>
@@ -2445,17 +2446,18 @@
     <bcf:citekey order="96">jm3</bcf:citekey>
     <bcf:citekey order="97">wang2024disentangledrepresentationlearning</bcf:citekey>
     <bcf:citekey order="98">BUONOCORE2023104431</bcf:citekey>
-    <bcf:citekey order="99">autoencodersbank2020autoencoders</bcf:citekey>
-    <bcf:citekey order="100">michelucci2022introductionautoencoders</bcf:citekey>
-    <bcf:citekey order="101">Goodfellow2016DeepLearning</bcf:citekey>
+    <bcf:citekey order="99">feynman_wikipedia</bcf:citekey>
+    <bcf:citekey order="100">autoencodersbank2020autoencoders</bcf:citekey>
+    <bcf:citekey order="101">michelucci2022introductionautoencoders</bcf:citekey>
     <bcf:citekey order="102">wang2024disentangledrepresentationlearning</bcf:citekey>
     <bcf:citekey order="103">chen2016infoganinterpretablerepresentationlearning</bcf:citekey>
     <bcf:citekey order="104">gordon2020machine</bcf:citekey>
-    <bcf:citekey order="105">Osgood1957Measurement</bcf:citekey>
-    <bcf:citekey order="106">mikolov2013efficientestimationwordrepresentations</bcf:citekey>
-    <bcf:citekey order="107">jm3</bcf:citekey>
-    <bcf:citekey order="108">jurafsky2024speech</bcf:citekey>
-    <bcf:citekey order="109">BUONOCORE2023104431</bcf:citekey>
+    <bcf:citekey order="105">burgess2018understandingdisentanglingbetavae</bcf:citekey>
+    <bcf:citekey order="106">Osgood1957Measurement</bcf:citekey>
+    <bcf:citekey order="107">mikolov2013efficientestimationwordrepresentations</bcf:citekey>
+    <bcf:citekey order="108">jm3</bcf:citekey>
+    <bcf:citekey order="109">jurafsky2024speech</bcf:citekey>
+    <bcf:citekey order="110">BUONOCORE2023104431</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

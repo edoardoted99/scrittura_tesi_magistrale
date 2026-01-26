@@ -1,319 +1,319 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Word Embeddings}{21}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Simboli e significati}{22}{subsection.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Rappresentazione del mapping tra lo spazio discreto dei simboli (Significanti) e lo spazio continuo dei vettori (Significati). L'obiettivo è apprendere una funzione $f$ tale che simboli diversi con significati simili vengano proiettati in vettori vicini nello spazio matematico.\relax }}{22}{figure.caption.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Gli assi del linguaggio}{22}{subsection.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Rappresentazione degli assi del linguaggio. L'asse orizzontale mostra la sequenza lineare (sintagma), quello verticale le alternative possibili (paradigma).\relax }}{23}{figure.caption.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}L'ipotesi distribuzionale}{23}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Ipotesi di Osgood}{24}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Verso i word embeddings}{25}{subsection.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Classificazione delle principali tipologie di embeddings trattate nel capitolo.\relax }}{26}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:classificazione_embeddings}{{13}{26}{Classificazione delle principali tipologie di embeddings trattate nel capitolo.\relax }{figure.caption.14}{}}
-\newlabel{fig:classificazione_embeddings@cref}{{[figure][13][]13}{[1][26][]26}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Embeddings count-based}{27}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Matrice termine-documento}{27}{subsubsection.3.6.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Term-document matrix per quattro parole in quattro opere di Shakespeare. Ogni cella contiene il numero di occorrenze della parola (riga) nel documento (colonna). \blx@tocontentsinit {0}\cite {wang2024disentangledrepresentationlearning}\relax }}{27}{table.caption.15}\protected@file@percent }
-\newlabel{tab:term_document_shakespeare}{{1}{27}{Term-document matrix per quattro parole in quattro opere di Shakespeare. Ogni cella contiene il numero di occorrenze della parola (riga) nel documento (colonna). \cite {wang2024disentangledrepresentationlearning}\relax }{table.caption.15}{}}
-\newlabel{tab:term_document_shakespeare@cref}{{[table][1][]1}{[1][27][]27}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Matrice termine-termine}{28}{subsubsection.3.6.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Estratto di una matrice termine--termine calcolata sul corpus Wikipedia. Ogni cella contiene il numero di co-occorrenze tra la parola target (riga) e la parola di contesto (colonna) all’interno di una finestra di contesto locale \blx@tocontentsinit {0}\cite {wang2024disentangledrepresentationlearning}.\relax }}{29}{table.caption.16}\protected@file@percent }
-\newlabel{tab:term_term_wikipedia}{{2}{29}{Estratto di una matrice termine--termine calcolata sul corpus Wikipedia. Ogni cella contiene il numero di co-occorrenze tra la parola target (riga) e la parola di contesto (colonna) all’interno di una finestra di contesto locale \cite {wang2024disentangledrepresentationlearning}.\relax }{table.caption.16}{}}
-\newlabel{tab:term_term_wikipedia@cref}{{[table][2][]2}{[1][28][]29}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Riduzione dimensionale tramite SVD}{30}{subsection.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Cosine Similarity}{30}{subsection.3.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Word2Vec: un approccio predittivo}{31}{subsection.3.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.1}Il classificatore e la funzione sigmoide}{32}{subsubsection.3.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.2}Perché due matrici? Il ruolo di $W$ e $C$}{32}{subsubsection.3.9.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Lo skip-gram apprende in totale due insiemi di embedding, uno per i target ($W$) e uno per i contesti ($C$), per un totale di $2|V|$ vettori. L’addestramento mira a massimizzare la probabilità che parole vicine nel testo abbiano vettori simili.\relax }}{33}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:skipgram_structure}{{14}{33}{Lo skip-gram apprende in totale due insiemi di embedding, uno per i target ($W$) e uno per i contesti ($C$), per un totale di $2|V|$ vettori. L’addestramento mira a massimizzare la probabilità che parole vicine nel testo abbiano vettori simili.\relax }{figure.caption.17}{}}
-\newlabel{fig:skipgram_structure@cref}{{[figure][14][]14}{[1][33][]33}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10}Dal sintagma al paradigma: finestra di contesto e precisione semantica}{33}{subsection.3.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1}Il sintagma come architetto del paradigma}{34}{subsubsection.3.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.2}La finestra di contesto come manopola semantica in Word2Vec}{34}{subsubsection.3.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.3}Geometria dell'analogia: il modello del parallelogramma}{35}{subsubsection.3.10.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Rappresentazione geometrica del modello del parallelogramma nello spazio latente.\relax }}{36}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:parallelogramma}{{15}{36}{Rappresentazione geometrica del modello del parallelogramma nello spazio latente.\relax }{figure.caption.18}{}}
-\newlabel{fig:parallelogramma@cref}{{[figure][15][]15}{[1][35][]36}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.4}Limiti dei modelli statici e l'esigenza di dinamismo}{36}{subsubsection.3.10.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.11}Embeddings dinamici}{37}{subsection.3.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Reti Neurali Ricorrenti}{39}{section.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Illustrazione del funzionamento di una RNN. Ad ogni passo l'informazione contestuale viene consegnata a quello successivo.\relax }}{40}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:rnn_flow}{{16}{40}{Illustrazione del funzionamento di una RNN. Ad ogni passo l'informazione contestuale viene consegnata a quello successivo.\relax }{figure.caption.19}{}}
-\newlabel{fig:rnn_flow@cref}{{[figure][16][]16}{[1][40][]40}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Rappresentazione srotolata (unrolled) di una RNN. Le frecce orizzontali mostrano il passaggio dello stato nascosto attraverso il tempo (pesi $\mathbf  {U}$), mentre quelle verticali indicano l'elaborazione dell'input ($\mathbf  {W}$) e la generazione dell'output ($\mathbf  {V}$).\relax }}{41}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:rnn_unrolled}{{17}{41}{Rappresentazione srotolata (unrolled) di una RNN. Le frecce orizzontali mostrano il passaggio dello stato nascosto attraverso il tempo (pesi $\mathbf {U}$), mentre quelle verticali indicano l'elaborazione dell'input ($\mathbf {W}$) e la generazione dell'output ($\mathbf {V}$).\relax }{figure.caption.20}{}}
-\newlabel{fig:rnn_unrolled@cref}{{[figure][17][]17}{[1][41][]41}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}RNN come Language Models}{42}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Generaizone di Embeddings tramite RNN}{42}{subsubsection.4.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}RNN Bidirezionali (Bi-RNN)}{43}{subsubsection.4.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Il problema del Gradiente Svanente}{43}{subsubsection.4.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}LSTM: Long Short-Term Memory}{44}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Meccanismi di Gating}{45}{subsection.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Rappresentazione di una singola unità LSTM come grafo computazionale. Gli input consistono nell'input attuale $x_t$, lo stato nascosto precedente $h_{t-1}$ e il contesto precedente $c_{t-1}$. Gli output sono il nuovo stato nascosto $h_t$ e il contesto aggiornato $c_t$ \blx@tocontentsinit {0}\cite {jm3}.\relax }}{45}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:lstm_unit}{{18}{45}{Rappresentazione di una singola unità LSTM come grafo computazionale. Gli input consistono nell'input attuale $x_t$, lo stato nascosto precedente $h_{t-1}$ e il contesto precedente $c_{t-1}$. Gli output sono il nuovo stato nascosto $h_t$ e il contesto aggiornato $c_t$ \cite {jm3}.\relax }{figure.caption.21}{}}
-\newlabel{fig:lstm_unit@cref}{{[figure][18][]18}{[1][44][]45}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Le equazioni del modello}{45}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Modularità ed Embeddings}{46}{subsubsection.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Architettura Encoder-Decoder e limite del \textit  {bottleneck}}{46}{section.5}\protected@file@percent }
-\newlabel{sec:encoder_decoder_rnn}{{5}{46}{Architettura Encoder-Decoder e limite del \textit {bottleneck}}{section.5}{}}
-\newlabel{sec:encoder_decoder_rnn@cref}{{[section][5][]5}{[1][46][]46}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Il problema \textit  {sequence-to-sequence}}{47}{subsection.5.1}\protected@file@percent }
-\newlabel{eq:seq2seq_chain_rule}{{42}{47}{Il problema \textit {sequence-to-sequence}}{equation.5.42}{}}
-\newlabel{eq:seq2seq_chain_rule@cref}{{[equation][42][]42}{[1][47][]47}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Schema formale dell'encoder--decoder ricorrente: l'encoder produce una sequenza di stati $h^{(e)}_1,\dots  ,h^{(e)}_n$ e il suo stato finale $h^{(e)}_n$ viene identificato con il vettore di contesto $c$, usato per inizializzare il decoder ($h^{(d)}_0$) e, nella variante mostrata, reso disponibile a ogni passo di decodifica. Questa dipendenza da un unico vettore di contesto anticipa il problema del \textit  {bottleneck} discusso in seguito. Adattata da \blx@tocontentsinit {0}\cite {jm3}.\relax }}{47}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:seq2seq_formal}{{19}{47}{Schema formale dell'encoder--decoder ricorrente: l'encoder produce una sequenza di stati $h^{(e)}_1,\dots ,h^{(e)}_n$ e il suo stato finale $h^{(e)}_n$ viene identificato con il vettore di contesto $c$, usato per inizializzare il decoder ($h^{(d)}_0$) e, nella variante mostrata, reso disponibile a ogni passo di decodifica. Questa dipendenza da un unico vettore di contesto anticipa il problema del \textit {bottleneck} discusso in seguito. Adattata da \cite {jm3}.\relax }{figure.caption.22}{}}
-\newlabel{fig:seq2seq_formal@cref}{{[figure][19][]19}{[1][47][]47}}
-\newlabel{eq:encoder_recurrence}{{43}{48}{Il problema \textit {sequence-to-sequence}}{equation.5.43}{}}
-\newlabel{eq:encoder_recurrence@cref}{{[equation][43][]43}{[1][47][]48}}
-\newlabel{eq:context_vector}{{44}{48}{Il problema \textit {sequence-to-sequence}}{equation.5.44}{}}
-\newlabel{eq:context_vector@cref}{{[equation][44][]44}{[1][48][]48}}
-\newlabel{eq:decoder_recurrence}{{45}{48}{Il problema \textit {sequence-to-sequence}}{equation.5.45}{}}
-\newlabel{eq:decoder_recurrence@cref}{{[equation][45][]45}{[1][48][]48}}
-\newlabel{eq:decoder_softmax}{{46}{48}{Il problema \textit {sequence-to-sequence}}{equation.5.46}{}}
-\newlabel{eq:decoder_softmax@cref}{{[equation][46][]46}{[1][48][]48}}
-\newlabel{eq:decoder_init}{{47}{48}{Il problema \textit {sequence-to-sequence}}{equation.5.47}{}}
-\newlabel{eq:decoder_init@cref}{{[equation][47][]47}{[1][48][]48}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Il limite del \textit  {bottleneck} informativo}{48}{subsubsection.5.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Schema Encoder--Decoder: quando il contesto $c$ coincide con il solo stato nascosto finale dell'encoder, tutta l'informazione della sequenza sorgente deve attraversare un \emph  {collo di bottiglia} rappresentazionale prima di essere utilizzata dal decoder.\relax }}{49}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:encoder_decoder_bottleneck}{{20}{49}{Schema Encoder--Decoder: quando il contesto $c$ coincide con il solo stato nascosto finale dell'encoder, tutta l'informazione della sequenza sorgente deve attraversare un \emph {collo di bottiglia} rappresentazionale prima di essere utilizzata dal decoder.\relax }{figure.caption.23}{}}
-\newlabel{fig:encoder_decoder_bottleneck@cref}{{[figure][20][]20}{[1][48][]49}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Soluzione al bottleneck: Meccanismo dell'attenzione}{50}{subsubsection.5.1.2}\protected@file@percent }
-\newlabel{subsec:attention}{{5.1.2}{50}{Soluzione al bottleneck: Meccanismo dell'attenzione}{subsubsection.5.1.2}{}}
-\newlabel{subsec:attention@cref}{{[subsubsection][2][5,1]5.1.2}{[1][50][]50}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Nel meccanismo di attenzione, a ciascun passo di decodifica $i$ il decoder utilizza un contesto \emph  {dinamico} $c_i$ (diverso per ogni token generato), calcolato come funzione di tutti gli stati nascosti dell'encoder. Adattata da \blx@tocontentsinit {0}\cite {jm3}.\relax }}{50}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:attention_dynamic_context}{{21}{50}{Nel meccanismo di attenzione, a ciascun passo di decodifica $i$ il decoder utilizza un contesto \emph {dinamico} $c_i$ (diverso per ogni token generato), calcolato come funzione di tutti gli stati nascosti dell'encoder. Adattata da \cite {jm3}.\relax }{figure.caption.24}{}}
-\newlabel{fig:attention_dynamic_context@cref}{{[figure][21][]21}{[1][50][]50}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Schema encoder--decoder con attenzione, focalizzato sul calcolo di $c_i$. Per ogni stato precedente del decoder $h^{(d)}_{i-1}$ si calcola un punteggio di rilevanza rispetto a ciascuno stato dell'encoder $h^{(e)}_j$; i punteggi vengono normalizzati in pesi $\alpha _{ij}$ e usati per ottenere $c_i$ come somma pesata degli stati dell'encoder. Adattata da \blx@tocontentsinit {0}\cite {jm3}.\relax }}{51}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:attention_ci_computation}{{22}{51}{Schema encoder--decoder con attenzione, focalizzato sul calcolo di $c_i$. Per ogni stato precedente del decoder $h^{(d)}_{i-1}$ si calcola un punteggio di rilevanza rispetto a ciascuno stato dell'encoder $h^{(e)}_j$; i punteggi vengono normalizzati in pesi $\alpha _{ij}$ e usati per ottenere $c_i$ come somma pesata degli stati dell'encoder. Adattata da \cite {jm3}.\relax }{figure.caption.25}{}}
-\newlabel{fig:attention_ci_computation@cref}{{[figure][22][]22}{[1][50][]51}}
-\newlabel{eq:decoder_with_attention_jm}{{48}{51}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.48}{}}
-\newlabel{eq:decoder_with_attention_jm@cref}{{[equation][48][]48}{[1][51][]51}}
-\newlabel{eq:attention_score_general}{{49}{52}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.49}{}}
-\newlabel{eq:attention_score_general@cref}{{[equation][49][]49}{[1][51][]52}}
-\newlabel{eq:attention_dot_score}{{50}{52}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.50}{}}
-\newlabel{eq:attention_dot_score@cref}{{[equation][50][]50}{[1][52][]52}}
-\newlabel{eq:attention_weights_softmax}{{51}{52}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.51}{}}
-\newlabel{eq:attention_weights_softmax@cref}{{[equation][51][]51}{[1][52][]52}}
-\newlabel{eq:attention_context_weighted_sum}{{52}{52}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.52}{}}
-\newlabel{eq:attention_context_weighted_sum@cref}{{[equation][52][]52}{[1][52][]52}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Verso i Transformer}{52}{subsubsection.5.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Il Transformer}{53}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:transformer}{{5.2}{53}{Il Transformer}{subsection.5.2}{}}
-\newlabel{sec:transformer@cref}{{[subsection][2][5]5.2}{[1][53][]53}}
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Schema di un Transformer causale (left-to-right) per language modeling. Ogni token in input viene codificato (embedding del token e della posizione), processato da una pila di blocchi Transformer, e infine proiettato tramite una testa di language modeling per predire il token successivo.\relax }}{53}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:transformer_overview}{{23}{53}{Schema di un Transformer causale (left-to-right) per language modeling. Ogni token in input viene codificato (embedding del token e della posizione), processato da una pila di blocchi Transformer, e infine proiettato tramite una testa di language modeling per predire il token successivo.\relax }{figure.caption.26}{}}
-\newlabel{fig:transformer_overview@cref}{{[figure][23][]23}{[1][53][]53}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Self-attention}{55}{subsection.5.3}\protected@file@percent }
-\newlabel{subsec:self_attention}{{5.3}{55}{Self-attention}{subsection.5.3}{}}
-\newlabel{subsec:self_attention@cref}{{[subsection][3][5]5.3}{[1][55][]55}}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Esempio di distribuzione dei pesi di self-attention $\alpha $: per costruire una rappresentazione contestuale del token \emph  {it} in uno strato superiore, il modello attribuisce peso maggiore ad alcuni token precedenti particolarmente informativi (ad es.\ \emph  {chicken} e \emph  {road}). In quel punto della sequenza, infatti, la coreferenza del pronome non è ancora disambiguata; è quindi plausibile che la rappresentazione di \emph  {it} debba incorporare evidenza proveniente da entrambe le possibili entità.\relax }}{55}{figure.caption.27}\protected@file@percent }
-\newlabel{fig:selfattn_alpha}{{24}{55}{Esempio di distribuzione dei pesi di self-attention $\alpha $: per costruire una rappresentazione contestuale del token \emph {it} in uno strato superiore, il modello attribuisce peso maggiore ad alcuni token precedenti particolarmente informativi (ad es.\ \emph {chicken} e \emph {road}). In quel punto della sequenza, infatti, la coreferenza del pronome non è ancora disambiguata; è quindi plausibile che la rappresentazione di \emph {it} debba incorporare evidenza proveniente da entrambe le possibili entità.\relax }{figure.caption.27}{}}
-\newlabel{fig:selfattn_alpha@cref}{{[figure][24][]24}{[1][55][]55}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Motivazione: dalle rappresentazioni statiche alle rappresentazioni contestuali}{55}{subsubsection.5.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Self-attention causale (left-to-right): in posizione $i$ il modello combina esclusivamente i token nelle posizioni $j\le i$ e, tramite mascheramento, non può incorporare informazione proveniente da posizioni future.\relax }}{56}{figure.caption.28}\protected@file@percent }
-\newlabel{fig:selfattn_flow}{{25}{56}{Self-attention causale (left-to-right): in posizione $i$ il modello combina esclusivamente i token nelle posizioni $j\le i$ e, tramite mascheramento, non può incorporare informazione proveniente da posizioni future.\relax }{figure.caption.28}{}}
-\newlabel{fig:selfattn_flow@cref}{{[figure][25][]25}{[1][55][]56}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Self-attention causale: dominio informativo e vincolo di autoregressione}{57}{subsubsection.5.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Intuizione: self-attention come combinazione pesata del contesto}{57}{subsubsection.5.3.3}\protected@file@percent }
-\newlabel{eq:selfattn_weighted_sum}{{53}{57}{Intuizione: self-attention come combinazione pesata del contesto}{equation.5.53}{}}
-\newlabel{eq:selfattn_weighted_sum@cref}{{[equation][53][]53}{[1][57][]57}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Scaled dot-product attention: ruoli di query, key e value}{58}{subsubsection.5.3.4}\protected@file@percent }
-\newlabel{eq:qkv}{{54}{58}{Scaled dot-product attention: ruoli di query, key e value}{equation.5.54}{}}
-\newlabel{eq:qkv@cref}{{[equation][54][]54}{[1][58][]58}}
-\@writefile{toc}{\contentsline {paragraph}{Punteggi di compatibilità (scores).}{58}{section*.29}\protected@file@percent }
-\newlabel{eq:score_scaled}{{55}{58}{Punteggi di compatibilità (scores)}{equation.5.55}{}}
-\newlabel{eq:score_scaled@cref}{{[equation][55][]55}{[1][58][]58}}
-\@writefile{toc}{\contentsline {paragraph}{Normalizzazione tramite softmax e vincolo causale.}{59}{section*.30}\protected@file@percent }
-\newlabel{eq:alpha_softmax}{{56}{59}{Normalizzazione tramite softmax e vincolo causale}{equation.5.56}{}}
-\newlabel{eq:alpha_softmax@cref}{{[equation][56][]56}{[1][58][]59}}
-\@writefile{toc}{\contentsline {paragraph}{Aggregazione dei value e proiezione in output.}{59}{section*.31}\protected@file@percent }
-\newlabel{eq:head_output}{{57}{59}{Aggregazione dei value e proiezione in output}{equation.5.57}{}}
-\newlabel{eq:head_output@cref}{{[equation][57][]57}{[1][59][]59}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.5}Forma matriciale e dimensioni (utile per l’implementazione)}{59}{subsubsection.5.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Calcolo di una singola testa di self-attention causale: (i) proiezioni in query/key/value; (ii) punteggi di compatibilità via dot-product scalato; (iii) normalizzazione in pesi $\alpha _{ij}$; (iv) somma pesata dei value per ottenere $\mathrm  {head}_i$; (v) proiezione finale per ottenere $a_i$ in dimensione del modello.\relax }}{60}{figure.caption.32}\protected@file@percent }
-\newlabel{fig:selfattn_head}{{26}{60}{Calcolo di una singola testa di self-attention causale: (i) proiezioni in query/key/value; (ii) punteggi di compatibilità via dot-product scalato; (iii) normalizzazione in pesi $\alpha _{ij}$; (iv) somma pesata dei value per ottenere $\mathrm {head}_i$; (v) proiezione finale per ottenere $a_i$ in dimensione del modello.\relax }{figure.caption.32}{}}
-\newlabel{fig:selfattn_head@cref}{{[figure][26][]26}{[1][59][]60}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.6}Multi-head attention: pluralità di criteri di selezione}{61}{subsubsection.5.3.6}\protected@file@percent }
-\newlabel{eq:qkv_multihead}{{58}{61}{Multi-head attention: pluralità di criteri di selezione}{equation.5.58}{}}
-\newlabel{eq:qkv_multihead@cref}{{[equation][58][]58}{[1][61][]61}}
-\newlabel{eq:multihead_concat}{{59}{61}{Multi-head attention: pluralità di criteri di selezione}{equation.5.59}{}}
-\newlabel{eq:multihead_concat@cref}{{[equation][59][]59}{[1][61][]61}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.7}Osservazione conclusiva: self-attention e contestualizzazione progressiva}{61}{subsubsection.5.3.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Multi-head attention: più teste calcolano in parallelo combinazioni pesate del contesto con parametri indipendenti; gli output vengono concatenati e proiettati per ottenere un vettore finale nella stessa dimensionalità dell’input.\relax }}{62}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:multihead}{{27}{62}{Multi-head attention: più teste calcolano in parallelo combinazioni pesate del contesto con parametri indipendenti; gli output vengono concatenati e proiettati per ottenere un vettore finale nella stessa dimensionalità dell’input.\relax }{figure.caption.33}{}}
-\newlabel{fig:multihead@cref}{{[figure][27][]27}{[1][61][]62}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Blocco Transformer}{62}{subsection.5.4}\protected@file@percent }
-\newlabel{subsec:transformer_block}{{5.4}{62}{Blocco Transformer}{subsection.5.4}{}}
-\newlabel{subsec:transformer_block@cref}{{[subsection][4][5]5.4}{[1][62][]62}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Input del blocco e informazione di posizione}{63}{subsubsection.5.4.1}\protected@file@percent }
-\newlabel{eq:token_plus_positional}{{60}{63}{Input del blocco e informazione di posizione}{equation.5.60}{}}
-\newlabel{eq:token_plus_positional@cref}{{[equation][60][]60}{[1][63][]63}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Residual stream: il flusso informativo del token}{63}{subsubsection.5.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Architettura di un blocco Transformer nella variante \emph  {prenorm} e interpretazione tramite \emph  {residual stream}: ciascun modulo legge dallo stream del token e aggiunge il proprio output allo stesso stream tramite una somma residua \blx@tocontentsinit {0}\cite {jm3}.\relax }}{64}{figure.caption.34}\protected@file@percent }
-\newlabel{fig:transformer_block_residual_stream}{{28}{64}{Architettura di un blocco Transformer nella variante \emph {prenorm} e interpretazione tramite \emph {residual stream}: ciascun modulo legge dallo stream del token e aggiunge il proprio output allo stesso stream tramite una somma residua \cite {jm3}.\relax }{figure.caption.34}{}}
-\newlabel{fig:transformer_block_residual_stream@cref}{{[figure][28][]28}{[1][63][]64}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}Perché la LayerNorm (motivazione)}{65}{subsubsection.5.4.3}\protected@file@percent }
-\newlabel{eq:layernorm}{{62}{65}{Perché la LayerNorm (motivazione)}{equation.5.62}{}}
-\newlabel{eq:layernorm@cref}{{[equation][62][]62}{[1][65][]65}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}Feedforward network (ruolo)}{65}{subsubsection.5.4.4}\protected@file@percent }
-\newlabel{eq:ffn}{{63}{65}{Feedforward network (ruolo)}{equation.5.63}{}}
-\newlabel{eq:ffn@cref}{{[equation][63][]63}{[1][65][]65}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.5}Equazioni del blocco (variante \emph  {prenorm})}{66}{subsubsection.5.4.5}\protected@file@percent }
-\newlabel{eq:transformer_block_prenorm}{{69}{66}{Equazioni del blocco (variante \emph {prenorm})}{equation.5.69}{}}
-\newlabel{eq:transformer_block_prenorm@cref}{{[equation][69][]69}{[1][66][]66}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.6}L’attenzione come “movimento” di informazione tra stream}{66}{subsubsection.5.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Parallelizzazione del calcolo con una singola matrice $X$}{66}{subsection.5.5}\protected@file@percent }
-\newlabel{subsec:parallelizing_with_X}{{5.5}{66}{Parallelizzazione del calcolo con una singola matrice $X$}{subsection.5.5}{}}
-\newlabel{subsec:parallelizing_with_X@cref}{{[subsection][5][5]5.5}{[1][66][]66}}
-\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Interpretazione della self-attention: una testa può spostare informazione dal residual stream del token $A$ a quello del token $B$, integrando in $B$ contenuto recuperato da altre posizioni \blx@tocontentsinit {0}\cite {jm3}.\relax }}{67}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:attention_moves_info}{{29}{67}{Interpretazione della self-attention: una testa può spostare informazione dal residual stream del token $A$ a quello del token $B$, integrando in $B$ contenuto recuperato da altre posizioni \cite {jm3}.\relax }{figure.caption.35}{}}
-\newlabel{fig:attention_moves_info@cref}{{[figure][29][]29}{[1][66][]67}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Impacchettare la sequenza in una matrice}{67}{subsubsection.5.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Self-attention in forma matriciale (una testa)}{67}{subsubsection.5.5.2}\protected@file@percent }
-\newlabel{eq:QKV_matrix}{{70}{67}{Self-attention in forma matriciale (una testa)}{equation.5.70}{}}
-\newlabel{eq:QKV_matrix@cref}{{[equation][70][]70}{[1][67][]67}}
-\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces La matrice $N\times N$ $QK^\top $: ogni cella contiene un confronto $q_i\cdot k_j$, calcolato simultaneamente con una singola moltiplicazione tra matrici \blx@tocontentsinit {0}\cite {jm3}.\relax }}{68}{figure.caption.36}\protected@file@percent }
-\newlabel{fig:qkt_full}{{30}{68}{La matrice $N\times N$ $QK^\top $: ogni cella contiene un confronto $q_i\cdot k_j$, calcolato simultaneamente con una singola moltiplicazione tra matrici \cite {jm3}.\relax }{figure.caption.36}{}}
-\newlabel{fig:qkt_full@cref}{{[figure][30][]30}{[1][68][]68}}
-\newlabel{eq:head_matrix}{{71}{68}{Self-attention in forma matriciale (una testa)}{equation.5.71}{}}
-\newlabel{eq:head_matrix@cref}{{[equation][71][]71}{[1][68][]68}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}Mascheramento causale: eliminare il futuro}{68}{subsubsection.5.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Mascheramento causale di $QK^\top $: la parte triangolare superiore (con $j>i$) è impostata a $-\infty $, così la softmax annulla i contributi dei token futuri \blx@tocontentsinit {0}\cite {jm3}.\relax }}{69}{figure.caption.37}\protected@file@percent }
-\newlabel{fig:qkt_masked}{{31}{69}{Mascheramento causale di $QK^\top $: la parte triangolare superiore (con $j>i$) è impostata a $-\infty $, così la softmax annulla i contributi dei token futuri \cite {jm3}.\relax }{figure.caption.37}{}}
-\newlabel{fig:qkt_masked@cref}{{[figure][31][]31}{[1][68][]69}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}Schema completo per una testa (in parallelo)}{69}{subsubsection.5.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.5}Costo computazionale e dipendenza quadratica}{69}{subsubsection.5.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.6}Multi-head attention in parallelo}{69}{subsubsection.5.5.6}\protected@file@percent }
-\newlabel{eq:QKV_per_head}{{72}{69}{Multi-head attention in parallelo}{equation.5.72}{}}
-\newlabel{eq:QKV_per_head@cref}{{[equation][72][]72}{[1][69][]69}}
-\newlabel{eq:multihead_parallel}{{73}{69}{Multi-head attention in parallelo}{equation.5.73}{}}
-\newlabel{eq:multihead_parallel@cref}{{[equation][73][]73}{[1][69][]69}}
-\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Computazione parallela di una singola testa di self-attention: (i) proiezioni $Q,K,V$ da $X$; (ii) calcolo di $QK^\top $; (iii) maschera causale; (iv) (softmax non mostrata nello schema); (v) somma pesata tramite $V$ per ottenere l’output della testa \blx@tocontentsinit {0}\cite {jm3}.\relax }}{70}{figure.caption.38}\protected@file@percent }
-\newlabel{fig:single_head_parallel}{{32}{70}{Computazione parallela di una singola testa di self-attention: (i) proiezioni $Q,K,V$ da $X$; (ii) calcolo di $QK^\top $; (iii) maschera causale; (iv) (softmax non mostrata nello schema); (v) somma pesata tramite $V$ per ottenere l’output della testa \cite {jm3}.\relax }{figure.caption.38}{}}
-\newlabel{fig:single_head_parallel@cref}{{[figure][32][]32}{[1][69][]70}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.7}Il blocco Transformer in forma parallela}{70}{subsubsection.5.5.7}\protected@file@percent }
-\newlabel{eq:block_parallel_O}{{74}{70}{Il blocco Transformer in forma parallela}{equation.5.74}{}}
-\newlabel{eq:block_parallel_O@cref}{{[equation][74][]74}{[1][70][]70}}
-\newlabel{eq:block_parallel_H}{{75}{70}{Il blocco Transformer in forma parallela}{equation.5.75}{}}
-\newlabel{eq:block_parallel_H@cref}{{[equation][75][]75}{[1][70][]70}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}L'input del Transformer: embeddings di token e di posizione}{71}{subsection.5.6}\protected@file@percent }
-\newlabel{subsec:input_token_position_embeddings}{{5.6}{71}{L'input del Transformer: embeddings di token e di posizione}{subsection.5.6}{}}
-\newlabel{subsec:input_token_position_embeddings@cref}{{[subsection][6][5]5.6}{[1][70][]71}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}Token embeddings e matrice di embedding}{71}{subsubsection.5.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Selezione via one-hot (interpretazione equivalente).}{71}{section*.39}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Selezione dell’embedding del token $w_i$ a partire dalla matrice $E$ mediante un vettore one-hot: il prodotto \(\mathbf  {o}(w_i)^\top E\) restituisce la riga \(E[w_i]\) \blx@tocontentsinit {0}\cite {jm3}.\relax }}{72}{figure.caption.40}\protected@file@percent }
-\newlabel{fig:select_single_embedding}{{33}{72}{Selezione dell’embedding del token $w_i$ a partire dalla matrice $E$ mediante un vettore one-hot: il prodotto \(\mathbf {o}(w_i)^\top E\) restituisce la riga \(E[w_i]\) \cite {jm3}.\relax }{figure.caption.40}{}}
-\newlabel{fig:select_single_embedding@cref}{{[figure][33][]33}{[1][72][]72}}
-\@writefile{toc}{\contentsline {paragraph}{Dalla sequenza alla matrice.}{72}{section*.41}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Selezione degli embeddings per un’intera sequenza: una matrice di one-hot \(O\) moltiplicata per \(E\) produce una matrice \(N\times d\) contenente gli embeddings lessicali della finestra di contesto \blx@tocontentsinit {0}\cite {jm3}.\relax }}{72}{figure.caption.42}\protected@file@percent }
-\newlabel{fig:select_sequence_embedding}{{34}{72}{Selezione degli embeddings per un’intera sequenza: una matrice di one-hot \(O\) moltiplicata per \(E\) produce una matrice \(N\times d\) contenente gli embeddings lessicali della finestra di contesto \cite {jm3}.\relax }{figure.caption.42}{}}
-\newlabel{fig:select_sequence_embedding@cref}{{[figure][34][]34}{[1][72][]72}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Perché servono gli embeddings posizionali}{72}{subsubsection.5.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Posizione assoluta e composizione dell’input}{73}{subsubsection.5.6.3}\protected@file@percent }
-\newlabel{eq:composite_embedding}{{76}{73}{Posizione assoluta e composizione dell’input}{equation.5.76}{}}
-\newlabel{eq:composite_embedding@cref}{{[equation][76][]76}{[1][73][]73}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Limiti della posizione assoluta e alternative: sinusoidale e posizione relativa}{73}{subsection.5.7}\protected@file@percent }
-\newlabel{subsec:positional_alternatives}{{5.7}{73}{Limiti della posizione assoluta e alternative: sinusoidale e posizione relativa}{subsection.5.7}{}}
-\newlabel{subsec:positional_alternatives@cref}{{[subsection][7][5]5.7}{[1][73][]73}}
-\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Composizione dell’input: l’embedding del token viene sommato all’embedding della posizione assoluta, producendo un vettore di input \(x_i\) in \(\mathbb  {R}^d\). L’insieme dei vettori forma la matrice \(X \in \mathbb  {R}^{N\times d}\) \blx@tocontentsinit {0}\cite {jm3}.\relax }}{74}{figure.caption.43}\protected@file@percent }
-\newlabel{fig:token_plus_position}{{35}{74}{Composizione dell’input: l’embedding del token viene sommato all’embedding della posizione assoluta, producendo un vettore di input \(x_i\) in \(\mathbb {R}^d\). L’insieme dei vettori forma la matrice \(X \in \mathbb {R}^{N\times d}\) \cite {jm3}.\relax }{figure.caption.43}{}}
-\newlabel{fig:token_plus_position@cref}{{[figure][35][]35}{[1][73][]74}}
-\@writefile{toc}{\contentsline {paragraph}{Embeddings posizionali sinusoidali.}{74}{section*.44}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Posizione relativa.}{74}{section*.45}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}La \textit  {language modeling head}}{75}{subsection.5.8}\protected@file@percent }
-\newlabel{subsec:lm_head}{{5.8}{75}{La \textit {language modeling head}}{subsection.5.8}{}}
-\newlabel{subsec:lm_head@cref}{{[subsection][8][5]5.8}{[1][75][]75}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.1}Cosa entra e cosa esce: dal vettore $h_N^L$ alle probabilità sul vocabolario}{75}{subsubsection.5.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.2}Logits e livello di \textit  {unembedding}}{75}{subsubsection.5.8.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces La \textit  {language modeling head}: mappa l’output dell’ultimo token all’ultimo strato ($h_N^L$) in una distribuzione sul vocabolario tramite (i) un livello lineare (\emph  {unembedding}) e (ii) una softmax \blx@tocontentsinit {0}\cite {jm3}.\relax }}{76}{figure.caption.46}\protected@file@percent }
-\newlabel{fig:lm_head_overview}{{36}{76}{La \textit {language modeling head}: mappa l’output dell’ultimo token all’ultimo strato ($h_N^L$) in una distribuzione sul vocabolario tramite (i) un livello lineare (\emph {unembedding}) e (ii) una softmax \cite {jm3}.\relax }{figure.caption.46}{}}
-\newlabel{fig:lm_head_overview@cref}{{[figure][36][]36}{[1][75][]76}}
-\newlabel{eq:logits_unembedding_general}{{77}{76}{Logits e livello di \textit {unembedding}}{equation.5.77}{}}
-\newlabel{eq:logits_unembedding_general@cref}{{[equation][77][]77}{[1][76][]76}}
-\@writefile{toc}{\contentsline {paragraph}{Weight tying: perché spesso $U=E^\top $.}{76}{section*.47}\protected@file@percent }
-\newlabel{eq:logits_weight_tying}{{78}{76}{Weight tying: perché spesso $U=E^\top $}{equation.5.78}{}}
-\newlabel{eq:logits_weight_tying@cref}{{[equation][78][]78}{[1][76][]76}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.3}Softmax: da logits a probabilità}{77}{subsubsection.5.8.3}\protected@file@percent }
-\newlabel{eq:softmax_probs}{{79}{77}{Softmax: da logits a probabilità}{equation.5.79}{}}
-\newlabel{eq:softmax_probs@cref}{{[equation][79][]79}{[1][76][]77}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.4}Dal modello alla generazione: scegliere il prossimo token}{77}{subsubsection.5.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.5}Visione d’insieme: un \textit  {decoder-only} che impila blocchi}{77}{subsubsection.5.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Nota: \textit  {logit lens} e terminologia \textit  {decoder-only}}{77}{subsection.5.9}\protected@file@percent }
-\newlabel{subsec:logit_lens_decoder_only}{{5.9}{77}{Nota: \textit {logit lens} e terminologia \textit {decoder-only}}{subsection.5.9}{}}
-\newlabel{subsec:logit_lens_decoder_only@cref}{{[subsection][9][5]5.9}{[1][77][]77}}
-\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Un Transformer per language modeling (\textit  {decoder-only}): impila blocchi Transformer e usa la language modeling head per mappare \(h_i^L\) in una distribuzione sul prossimo token \(w_{i+1}\) \blx@tocontentsinit {0}\cite {jm3}.\relax }}{78}{figure.caption.48}\protected@file@percent }
-\newlabel{fig:decoder_only_stack}{{37}{78}{Un Transformer per language modeling (\textit {decoder-only}): impila blocchi Transformer e usa la language modeling head per mappare \(h_i^L\) in una distribuzione sul prossimo token \(w_{i+1}\) \cite {jm3}.\relax }{figure.caption.48}{}}
-\newlabel{fig:decoder_only_stack@cref}{{[figure][37][]37}{[1][77][]78}}
-\@writefile{toc}{\contentsline {paragraph}{Nota terminologica: \textit  {decoder-only}.}{79}{section*.49}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Large Language Models}{79}{section.6}\protected@file@percent }
-\newlabel{sec:llm}{{6}{79}{Large Language Models}{section.6}{}}
-\newlabel{sec:llm@cref}{{[section][6][]6}{[1][79][]79}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Large Language Models con Transformer: generazione condizionata}{80}{subsection.6.1}\protected@file@percent }
-\newlabel{subsec:llm_with_transformers}{{6.1}{80}{Large Language Models con Transformer: generazione condizionata}{subsection.6.1}{}}
-\newlabel{subsec:llm_with_transformers@cref}{{[subsection][1][6]6.1}{[1][80][]80}}
-\@writefile{toc}{\contentsline {paragraph}{Perché “predire parole” è utile per tanti task.}{80}{section*.51}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Completamento autoregressivo left-to-right: i token generati vengono riaggiunti al contesto e diventano parte del prefisso per la predizione successiva.\relax }}{81}{figure.caption.50}\protected@file@percent }
-\newlabel{fig:llm_completion}{{38}{81}{Completamento autoregressivo left-to-right: i token generati vengono riaggiunti al contesto e diventano parte del prefisso per la predizione successiva.\relax }{figure.caption.50}{}}
-\newlabel{fig:llm_completion@cref}{{[figure][38][]38}{[1][80][]81}}
-\@writefile{toc}{\contentsline {paragraph}{Esempio: riassunto come generazione condizionata.}{81}{section*.52}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Nota sul passo successivo (ponte verso BERT).}{81}{section*.55}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces Esempio di testo e relativo riassunto (scenario tipico di summarization). Il compito può essere visto come generazione condizionata sul documento.\relax }}{82}{figure.caption.53}\protected@file@percent }
-\newlabel{fig:summarization_example}{{39}{82}{Esempio di testo e relativo riassunto (scenario tipico di summarization). Il compito può essere visto come generazione condizionata sul documento.\relax }{figure.caption.53}{}}
-\newlabel{fig:summarization_example@cref}{{[figure][39][]39}{[1][81][]82}}
-\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Riassunto tramite prompting: il token (o stringa) \texttt  {tl;dr} agisce da segnale che innesca la generazione di una sintesi, sfruttando la lunga finestra di contesto del Transformer.\relax }}{82}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:tldr_summarization}{{40}{82}{Riassunto tramite prompting: il token (o stringa) \texttt {tl;dr} agisce da segnale che innesca la generazione di una sintesi, sfruttando la lunga finestra di contesto del Transformer.\relax }{figure.caption.54}{}}
-\newlabel{fig:tldr_summarization@cref}{{[figure][40][]40}{[1][81][]82}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Sampling per la generazione con LLM}{83}{section.7}\protected@file@percent }
-\newlabel{sec:llm-sampling}{{7}{83}{Sampling per la generazione con LLM}{section.7}{}}
-\newlabel{sec:llm-sampling@cref}{{[section][7][]7}{[1][83][]83}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Perché non basta il campionamento ``puro''}{83}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Top-$k$ sampling}{84}{subsection.7.2}\protected@file@percent }
-\newlabel{subsec:topk}{{7.2}{84}{Top-$k$ sampling}{subsection.7.2}{}}
-\newlabel{subsec:topk@cref}{{[subsection][2][7]7.2}{[1][84][]84}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Top-$p$ (nucleus) sampling}{84}{subsection.7.3}\protected@file@percent }
-\newlabel{subsec:topp}{{7.3}{84}{Top-$p$ (nucleus) sampling}{subsection.7.3}{}}
-\newlabel{subsec:topp@cref}{{[subsection][3][7]7.3}{[1][84][]84}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Temperature sampling}{85}{subsection.7.4}\protected@file@percent }
-\newlabel{subsec:temperature}{{7.4}{85}{Temperature sampling}{subsection.7.4}{}}
-\newlabel{subsec:temperature@cref}{{[subsection][4][7]7.4}{[1][85][]85}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Pretraining dei Large Language Models}{85}{section.8}\protected@file@percent }
-\newlabel{sec:llm-pretraining}{{8}{85}{Pretraining dei Large Language Models}{section.8}{}}
-\newlabel{sec:llm-pretraining@cref}{{[section][8][]8}{[1][85][]85}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Setup, notazione e obiettivo di language modeling}{86}{subsection.8.1}\protected@file@percent }
-\newlabel{subsec:llm-setup}{{8.1}{86}{Setup, notazione e obiettivo di language modeling}{subsection.8.1}{}}
-\newlabel{subsec:llm-setup@cref}{{[subsection][1][8]8.1}{[1][86][]86}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Self-supervision e funzione obiettivo}{86}{subsection.8.2}\protected@file@percent }
-\newlabel{subsec:self-supervision-obj}{{8.2}{86}{Self-supervision e funzione obiettivo}{subsection.8.2}{}}
-\newlabel{subsec:self-supervision-obj@cref}{{[subsection][2][8]8.2}{[1][86][]86}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Teacher forcing}{87}{subsection.8.3}\protected@file@percent }
-\newlabel{subsec:teacher-forcing}{{8.3}{87}{Teacher forcing}{subsection.8.3}{}}
-\newlabel{subsec:teacher-forcing@cref}{{[subsection][3][8]8.3}{[1][87][]87}}
-\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces Addestramento di un transformer come language model: per ogni posizione si predice il token successivo e si calcola una loss di cross-entropy; la loss totale è la media (o somma) sulle posizioni.\relax }}{88}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:train-lm}{{41}{88}{Addestramento di un transformer come language model: per ogni posizione si predice il token successivo e si calcola una loss di cross-entropy; la loss totale è la media (o somma) sulle posizioni.\relax }{figure.caption.56}{}}
-\newlabel{fig:train-lm@cref}{{[figure][41][]41}{[1][87][]88}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Efficienza computazionale: parallelismo nei transformer}{88}{subsection.8.4}\protected@file@percent }
-\newlabel{subsec:parallelism}{{8.4}{88}{Efficienza computazionale: parallelismo nei transformer}{subsection.8.4}{}}
-\newlabel{subsec:parallelism@cref}{{[subsection][4][8]8.4}{[1][88][]88}}
-\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces Esempio di composizione di un grande corpus di pretraining (treemap): diverse sorgenti contribuiscono con proporzioni differenti.\relax }}{89}{figure.caption.57}\protected@file@percent }
-\newlabel{fig:pile}{{42}{89}{Esempio di composizione di un grande corpus di pretraining (treemap): diverse sorgenti contribuiscono con proporzioni differenti.\relax }{figure.caption.57}{}}
-\newlabel{fig:pile@cref}{{[figure][42][]42}{[1][89][]89}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Dati di pretraining: fonti e filtraggio}{89}{subsection.8.5}\protected@file@percent }
-\newlabel{subsec:data}{{8.5}{89}{Dati di pretraining: fonti e filtraggio}{subsection.8.5}{}}
-\newlabel{subsec:data@cref}{{[subsection][5][8]8.5}{[1][89][]89}}
-\@writefile{toc}{\contentsline {paragraph}{Filtri di qualità e sicurezza.}{90}{section*.58}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Aspetti etici e legali (panoramica).}{90}{section*.59}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}Dal pretraining all'adattamento: finetuning}{90}{subsection.8.6}\protected@file@percent }
-\newlabel{subsec:finetune}{{8.6}{90}{Dal pretraining all'adattamento: finetuning}{subsection.8.6}{}}
-\newlabel{subsec:finetune@cref}{{[subsection][6][8]8.6}{[1][90][]90}}
-\@writefile{toc}{\contentsline {paragraph}{Tipi di adattamento (senza anticipare modelli specifici).}{90}{section*.61}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces Schema concettuale: pretraining su grandi corpora $\rightarrow $ modello generale $\rightarrow $ adattamento su dati specifici (finetuning) $\rightarrow $ modello specializzato.\relax }}{91}{figure.caption.60}\protected@file@percent }
-\newlabel{fig:pretrain-finetune}{{43}{91}{Schema concettuale: pretraining su grandi corpora $\rightarrow $ modello generale $\rightarrow $ adattamento su dati specifici (finetuning) $\rightarrow $ modello specializzato.\relax }{figure.caption.60}{}}
-\newlabel{fig:pretrain-finetune@cref}{{[figure][43][]43}{[1][90][]91}}
-\@writefile{toc}{\contentsline {paragraph}{Collegamento alle sezioni successive.}{91}{section*.62}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Word Embeddings}{25}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Simboli e significati}{26}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Rappresentazione del mapping tra lo spazio discreto dei simboli (Significanti) e lo spazio continuo dei vettori (Significati). L'obiettivo è apprendere una funzione $f$ tale che simboli diversi con significati simili vengano proiettati in vettori vicini nello spazio matematico.\relax }}{26}{figure.caption.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Gli assi del linguaggio}{26}{subsection.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Rappresentazione degli assi del linguaggio. L'asse orizzontale mostra la sequenza lineare (sintagma), quello verticale le alternative possibili (paradigma).\relax }}{27}{figure.caption.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}L'ipotesi distribuzionale}{27}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Ipotesi di Osgood}{28}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Verso i word embeddings}{29}{subsection.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Classificazione delle principali tipologie di embeddings trattate nel capitolo.\relax }}{30}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:classificazione_embeddings}{{12}{30}{Classificazione delle principali tipologie di embeddings trattate nel capitolo.\relax }{figure.caption.15}{}}
+\newlabel{fig:classificazione_embeddings@cref}{{[figure][12][]12}{[1][30][]30}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Embeddings count-based}{31}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Matrice termine-documento}{31}{subsubsection.3.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Term-document matrix per quattro parole in quattro opere di Shakespeare. Ogni cella contiene il numero di occorrenze della parola (riga) nel documento (colonna). \blx@tocontentsinit {0}\cite {wang2024disentangledrepresentationlearning}\relax }}{31}{table.caption.16}\protected@file@percent }
+\newlabel{tab:term_document_shakespeare}{{1}{31}{Term-document matrix per quattro parole in quattro opere di Shakespeare. Ogni cella contiene il numero di occorrenze della parola (riga) nel documento (colonna). \cite {wang2024disentangledrepresentationlearning}\relax }{table.caption.16}{}}
+\newlabel{tab:term_document_shakespeare@cref}{{[table][1][]1}{[1][31][]31}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Matrice termine-termine}{32}{subsubsection.3.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Estratto di una matrice termine--termine calcolata sul corpus Wikipedia. Ogni cella contiene il numero di co-occorrenze tra la parola target (riga) e la parola di contesto (colonna) all’interno di una finestra di contesto locale \blx@tocontentsinit {0}\cite {wang2024disentangledrepresentationlearning}.\relax }}{33}{table.caption.17}\protected@file@percent }
+\newlabel{tab:term_term_wikipedia}{{2}{33}{Estratto di una matrice termine--termine calcolata sul corpus Wikipedia. Ogni cella contiene il numero di co-occorrenze tra la parola target (riga) e la parola di contesto (colonna) all’interno di una finestra di contesto locale \cite {wang2024disentangledrepresentationlearning}.\relax }{table.caption.17}{}}
+\newlabel{tab:term_term_wikipedia@cref}{{[table][2][]2}{[1][32][]33}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Riduzione dimensionale tramite SVD}{34}{subsection.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Cosine Similarity}{34}{subsection.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Word2Vec: un approccio predittivo}{35}{subsection.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.1}Il classificatore e la funzione sigmoide}{36}{subsubsection.3.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.9.2}Perché due matrici? Il ruolo di $W$ e $C$}{36}{subsubsection.3.9.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Lo skip-gram apprende in totale due insiemi di embedding, uno per i target ($W$) e uno per i contesti ($C$), per un totale di $2|V|$ vettori. L’addestramento mira a massimizzare la probabilità che parole vicine nel testo abbiano vettori simili.\relax }}{37}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:skipgram_structure}{{13}{37}{Lo skip-gram apprende in totale due insiemi di embedding, uno per i target ($W$) e uno per i contesti ($C$), per un totale di $2|V|$ vettori. L’addestramento mira a massimizzare la probabilità che parole vicine nel testo abbiano vettori simili.\relax }{figure.caption.18}{}}
+\newlabel{fig:skipgram_structure@cref}{{[figure][13][]13}{[1][37][]37}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10}Dal sintagma al paradigma: finestra di contesto e precisione semantica}{37}{subsection.3.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1}Il sintagma come architetto del paradigma}{38}{subsubsection.3.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.2}La finestra di contesto come manopola semantica in Word2Vec}{38}{subsubsection.3.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.3}Geometria dell'analogia: il modello del parallelogramma}{39}{subsubsection.3.10.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Rappresentazione geometrica del modello del parallelogramma nello spazio latente.\relax }}{40}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:parallelogramma}{{14}{40}{Rappresentazione geometrica del modello del parallelogramma nello spazio latente.\relax }{figure.caption.19}{}}
+\newlabel{fig:parallelogramma@cref}{{[figure][14][]14}{[1][39][]40}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.4}Limiti dei modelli statici e l'esigenza di dinamismo}{40}{subsubsection.3.10.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.11}Embeddings dinamici}{41}{subsection.3.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Reti Neurali Ricorrenti}{43}{section.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Illustrazione del funzionamento di una RNN. Ad ogni passo l'informazione contestuale viene consegnata a quello successivo.\relax }}{44}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:rnn_flow}{{15}{44}{Illustrazione del funzionamento di una RNN. Ad ogni passo l'informazione contestuale viene consegnata a quello successivo.\relax }{figure.caption.20}{}}
+\newlabel{fig:rnn_flow@cref}{{[figure][15][]15}{[1][44][]44}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Rappresentazione srotolata (unrolled) di una RNN. Le frecce orizzontali mostrano il passaggio dello stato nascosto attraverso il tempo (pesi $\mathbf  {U}$), mentre quelle verticali indicano l'elaborazione dell'input ($\mathbf  {W}$) e la generazione dell'output ($\mathbf  {V}$).\relax }}{45}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:rnn_unrolled}{{16}{45}{Rappresentazione srotolata (unrolled) di una RNN. Le frecce orizzontali mostrano il passaggio dello stato nascosto attraverso il tempo (pesi $\mathbf {U}$), mentre quelle verticali indicano l'elaborazione dell'input ($\mathbf {W}$) e la generazione dell'output ($\mathbf {V}$).\relax }{figure.caption.21}{}}
+\newlabel{fig:rnn_unrolled@cref}{{[figure][16][]16}{[1][45][]45}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}RNN come Language Models}{46}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Generaizone di Embeddings tramite RNN}{46}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}RNN Bidirezionali (Bi-RNN)}{47}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Il problema del Gradiente Svanente}{47}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}LSTM: Long Short-Term Memory}{48}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Meccanismi di Gating}{49}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Rappresentazione di una singola unità LSTM come grafo computazionale. Gli input consistono nell'input attuale $x_t$, lo stato nascosto precedente $h_{t-1}$ e il contesto precedente $c_{t-1}$. Gli output sono il nuovo stato nascosto $h_t$ e il contesto aggiornato $c_t$ \blx@tocontentsinit {0}\cite {jm3}.\relax }}{49}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:lstm_unit}{{17}{49}{Rappresentazione di una singola unità LSTM come grafo computazionale. Gli input consistono nell'input attuale $x_t$, lo stato nascosto precedente $h_{t-1}$ e il contesto precedente $c_{t-1}$. Gli output sono il nuovo stato nascosto $h_t$ e il contesto aggiornato $c_t$ \cite {jm3}.\relax }{figure.caption.22}{}}
+\newlabel{fig:lstm_unit@cref}{{[figure][17][]17}{[1][48][]49}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Le equazioni del modello}{49}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Modularità ed Embeddings}{50}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Architettura Encoder-Decoder e limite del \textit  {bottleneck}}{50}{section.5}\protected@file@percent }
+\newlabel{sec:encoder_decoder_rnn}{{5}{50}{Architettura Encoder-Decoder e limite del \textit {bottleneck}}{section.5}{}}
+\newlabel{sec:encoder_decoder_rnn@cref}{{[section][5][]5}{[1][50][]50}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Il problema \textit  {sequence-to-sequence}}{51}{subsection.5.1}\protected@file@percent }
+\newlabel{eq:seq2seq_chain_rule}{{37}{51}{Il problema \textit {sequence-to-sequence}}{equation.5.37}{}}
+\newlabel{eq:seq2seq_chain_rule@cref}{{[equation][37][]37}{[1][51][]51}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Schema formale dell'encoder--decoder ricorrente: l'encoder produce una sequenza di stati $h^{(e)}_1,\dots  ,h^{(e)}_n$ e il suo stato finale $h^{(e)}_n$ viene identificato con il vettore di contesto $c$, usato per inizializzare il decoder ($h^{(d)}_0$) e, nella variante mostrata, reso disponibile a ogni passo di decodifica. Questa dipendenza da un unico vettore di contesto anticipa il problema del \textit  {bottleneck} discusso in seguito. Adattata da \blx@tocontentsinit {0}\cite {jm3}.\relax }}{51}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:seq2seq_formal}{{18}{51}{Schema formale dell'encoder--decoder ricorrente: l'encoder produce una sequenza di stati $h^{(e)}_1,\dots ,h^{(e)}_n$ e il suo stato finale $h^{(e)}_n$ viene identificato con il vettore di contesto $c$, usato per inizializzare il decoder ($h^{(d)}_0$) e, nella variante mostrata, reso disponibile a ogni passo di decodifica. Questa dipendenza da un unico vettore di contesto anticipa il problema del \textit {bottleneck} discusso in seguito. Adattata da \cite {jm3}.\relax }{figure.caption.23}{}}
+\newlabel{fig:seq2seq_formal@cref}{{[figure][18][]18}{[1][51][]51}}
+\newlabel{eq:encoder_recurrence}{{38}{52}{Il problema \textit {sequence-to-sequence}}{equation.5.38}{}}
+\newlabel{eq:encoder_recurrence@cref}{{[equation][38][]38}{[1][51][]52}}
+\newlabel{eq:context_vector}{{39}{52}{Il problema \textit {sequence-to-sequence}}{equation.5.39}{}}
+\newlabel{eq:context_vector@cref}{{[equation][39][]39}{[1][52][]52}}
+\newlabel{eq:decoder_recurrence}{{40}{52}{Il problema \textit {sequence-to-sequence}}{equation.5.40}{}}
+\newlabel{eq:decoder_recurrence@cref}{{[equation][40][]40}{[1][52][]52}}
+\newlabel{eq:decoder_softmax}{{41}{52}{Il problema \textit {sequence-to-sequence}}{equation.5.41}{}}
+\newlabel{eq:decoder_softmax@cref}{{[equation][41][]41}{[1][52][]52}}
+\newlabel{eq:decoder_init}{{42}{52}{Il problema \textit {sequence-to-sequence}}{equation.5.42}{}}
+\newlabel{eq:decoder_init@cref}{{[equation][42][]42}{[1][52][]52}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Il limite del \textit  {bottleneck} informativo}{52}{subsubsection.5.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Schema Encoder--Decoder: quando il contesto $c$ coincide con il solo stato nascosto finale dell'encoder, tutta l'informazione della sequenza sorgente deve attraversare un \emph  {collo di bottiglia} rappresentazionale prima di essere utilizzata dal decoder.\relax }}{53}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:encoder_decoder_bottleneck}{{19}{53}{Schema Encoder--Decoder: quando il contesto $c$ coincide con il solo stato nascosto finale dell'encoder, tutta l'informazione della sequenza sorgente deve attraversare un \emph {collo di bottiglia} rappresentazionale prima di essere utilizzata dal decoder.\relax }{figure.caption.24}{}}
+\newlabel{fig:encoder_decoder_bottleneck@cref}{{[figure][19][]19}{[1][52][]53}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Soluzione al bottleneck: Meccanismo dell'attenzione}{54}{subsubsection.5.1.2}\protected@file@percent }
+\newlabel{subsec:attention}{{5.1.2}{54}{Soluzione al bottleneck: Meccanismo dell'attenzione}{subsubsection.5.1.2}{}}
+\newlabel{subsec:attention@cref}{{[subsubsection][2][5,1]5.1.2}{[1][54][]54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Nel meccanismo di attenzione, a ciascun passo di decodifica $i$ il decoder utilizza un contesto \emph  {dinamico} $c_i$ (diverso per ogni token generato), calcolato come funzione di tutti gli stati nascosti dell'encoder. Adattata da \blx@tocontentsinit {0}\cite {jm3}.\relax }}{54}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:attention_dynamic_context}{{20}{54}{Nel meccanismo di attenzione, a ciascun passo di decodifica $i$ il decoder utilizza un contesto \emph {dinamico} $c_i$ (diverso per ogni token generato), calcolato come funzione di tutti gli stati nascosti dell'encoder. Adattata da \cite {jm3}.\relax }{figure.caption.25}{}}
+\newlabel{fig:attention_dynamic_context@cref}{{[figure][20][]20}{[1][54][]54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Schema encoder--decoder con attenzione, focalizzato sul calcolo di $c_i$. Per ogni stato precedente del decoder $h^{(d)}_{i-1}$ si calcola un punteggio di rilevanza rispetto a ciascuno stato dell'encoder $h^{(e)}_j$; i punteggi vengono normalizzati in pesi $\alpha _{ij}$ e usati per ottenere $c_i$ come somma pesata degli stati dell'encoder. Adattata da \blx@tocontentsinit {0}\cite {jm3}.\relax }}{55}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:attention_ci_computation}{{21}{55}{Schema encoder--decoder con attenzione, focalizzato sul calcolo di $c_i$. Per ogni stato precedente del decoder $h^{(d)}_{i-1}$ si calcola un punteggio di rilevanza rispetto a ciascuno stato dell'encoder $h^{(e)}_j$; i punteggi vengono normalizzati in pesi $\alpha _{ij}$ e usati per ottenere $c_i$ come somma pesata degli stati dell'encoder. Adattata da \cite {jm3}.\relax }{figure.caption.26}{}}
+\newlabel{fig:attention_ci_computation@cref}{{[figure][21][]21}{[1][54][]55}}
+\newlabel{eq:decoder_with_attention_jm}{{43}{55}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.43}{}}
+\newlabel{eq:decoder_with_attention_jm@cref}{{[equation][43][]43}{[1][55][]55}}
+\newlabel{eq:attention_score_general}{{44}{56}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.44}{}}
+\newlabel{eq:attention_score_general@cref}{{[equation][44][]44}{[1][55][]56}}
+\newlabel{eq:attention_dot_score}{{45}{56}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.45}{}}
+\newlabel{eq:attention_dot_score@cref}{{[equation][45][]45}{[1][56][]56}}
+\newlabel{eq:attention_weights_softmax}{{46}{56}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.46}{}}
+\newlabel{eq:attention_weights_softmax@cref}{{[equation][46][]46}{[1][56][]56}}
+\newlabel{eq:attention_context_weighted_sum}{{47}{56}{Soluzione al bottleneck: Meccanismo dell'attenzione}{equation.5.47}{}}
+\newlabel{eq:attention_context_weighted_sum@cref}{{[equation][47][]47}{[1][56][]56}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Verso i Transformer}{56}{subsubsection.5.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Il Transformer}{57}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:transformer}{{5.2}{57}{Il Transformer}{subsection.5.2}{}}
+\newlabel{sec:transformer@cref}{{[subsection][2][5]5.2}{[1][57][]57}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Schema di un Transformer causale (left-to-right) per language modeling. Ogni token in input viene codificato (embedding del token e della posizione), processato da una pila di blocchi Transformer, e infine proiettato tramite una testa di language modeling per predire il token successivo.\relax }}{57}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:transformer_overview}{{22}{57}{Schema di un Transformer causale (left-to-right) per language modeling. Ogni token in input viene codificato (embedding del token e della posizione), processato da una pila di blocchi Transformer, e infine proiettato tramite una testa di language modeling per predire il token successivo.\relax }{figure.caption.27}{}}
+\newlabel{fig:transformer_overview@cref}{{[figure][22][]22}{[1][57][]57}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Self-attention}{59}{subsection.5.3}\protected@file@percent }
+\newlabel{subsec:self_attention}{{5.3}{59}{Self-attention}{subsection.5.3}{}}
+\newlabel{subsec:self_attention@cref}{{[subsection][3][5]5.3}{[1][59][]59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Esempio di distribuzione dei pesi di self-attention $\alpha $: per costruire una rappresentazione contestuale del token \emph  {it} in uno strato superiore, il modello attribuisce peso maggiore ad alcuni token precedenti particolarmente informativi (ad es.\ \emph  {chicken} e \emph  {road}). In quel punto della sequenza, infatti, la coreferenza del pronome non è ancora disambiguata; è quindi plausibile che la rappresentazione di \emph  {it} debba incorporare evidenza proveniente da entrambe le possibili entità.\relax }}{59}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:selfattn_alpha}{{23}{59}{Esempio di distribuzione dei pesi di self-attention $\alpha $: per costruire una rappresentazione contestuale del token \emph {it} in uno strato superiore, il modello attribuisce peso maggiore ad alcuni token precedenti particolarmente informativi (ad es.\ \emph {chicken} e \emph {road}). In quel punto della sequenza, infatti, la coreferenza del pronome non è ancora disambiguata; è quindi plausibile che la rappresentazione di \emph {it} debba incorporare evidenza proveniente da entrambe le possibili entità.\relax }{figure.caption.28}{}}
+\newlabel{fig:selfattn_alpha@cref}{{[figure][23][]23}{[1][59][]59}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Motivazione: dalle rappresentazioni statiche alle rappresentazioni contestuali}{59}{subsubsection.5.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Self-attention causale (left-to-right): in posizione $i$ il modello combina esclusivamente i token nelle posizioni $j\le i$ e, tramite mascheramento, non può incorporare informazione proveniente da posizioni future.\relax }}{60}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:selfattn_flow}{{24}{60}{Self-attention causale (left-to-right): in posizione $i$ il modello combina esclusivamente i token nelle posizioni $j\le i$ e, tramite mascheramento, non può incorporare informazione proveniente da posizioni future.\relax }{figure.caption.29}{}}
+\newlabel{fig:selfattn_flow@cref}{{[figure][24][]24}{[1][59][]60}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Self-attention causale: dominio informativo e vincolo di autoregressione}{61}{subsubsection.5.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Intuizione: self-attention come combinazione pesata del contesto}{61}{subsubsection.5.3.3}\protected@file@percent }
+\newlabel{eq:selfattn_weighted_sum}{{48}{61}{Intuizione: self-attention come combinazione pesata del contesto}{equation.5.48}{}}
+\newlabel{eq:selfattn_weighted_sum@cref}{{[equation][48][]48}{[1][61][]61}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Scaled dot-product attention: ruoli di query, key e value}{62}{subsubsection.5.3.4}\protected@file@percent }
+\newlabel{eq:qkv}{{49}{62}{Scaled dot-product attention: ruoli di query, key e value}{equation.5.49}{}}
+\newlabel{eq:qkv@cref}{{[equation][49][]49}{[1][62][]62}}
+\@writefile{toc}{\contentsline {paragraph}{Punteggi di compatibilità (scores).}{62}{section*.30}\protected@file@percent }
+\newlabel{eq:score_scaled}{{50}{62}{Punteggi di compatibilità (scores)}{equation.5.50}{}}
+\newlabel{eq:score_scaled@cref}{{[equation][50][]50}{[1][62][]62}}
+\@writefile{toc}{\contentsline {paragraph}{Normalizzazione tramite softmax e vincolo causale.}{63}{section*.31}\protected@file@percent }
+\newlabel{eq:alpha_softmax}{{51}{63}{Normalizzazione tramite softmax e vincolo causale}{equation.5.51}{}}
+\newlabel{eq:alpha_softmax@cref}{{[equation][51][]51}{[1][62][]63}}
+\@writefile{toc}{\contentsline {paragraph}{Aggregazione dei value e proiezione in output.}{63}{section*.32}\protected@file@percent }
+\newlabel{eq:head_output}{{52}{63}{Aggregazione dei value e proiezione in output}{equation.5.52}{}}
+\newlabel{eq:head_output@cref}{{[equation][52][]52}{[1][63][]63}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.5}Forma matriciale e dimensioni (utile per l’implementazione)}{63}{subsubsection.5.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Calcolo di una singola testa di self-attention causale: (i) proiezioni in query/key/value; (ii) punteggi di compatibilità via dot-product scalato; (iii) normalizzazione in pesi $\alpha _{ij}$; (iv) somma pesata dei value per ottenere $\mathrm  {head}_i$; (v) proiezione finale per ottenere $a_i$ in dimensione del modello.\relax }}{64}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:selfattn_head}{{25}{64}{Calcolo di una singola testa di self-attention causale: (i) proiezioni in query/key/value; (ii) punteggi di compatibilità via dot-product scalato; (iii) normalizzazione in pesi $\alpha _{ij}$; (iv) somma pesata dei value per ottenere $\mathrm {head}_i$; (v) proiezione finale per ottenere $a_i$ in dimensione del modello.\relax }{figure.caption.33}{}}
+\newlabel{fig:selfattn_head@cref}{{[figure][25][]25}{[1][63][]64}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.6}Multi-head attention: pluralità di criteri di selezione}{65}{subsubsection.5.3.6}\protected@file@percent }
+\newlabel{eq:qkv_multihead}{{53}{65}{Multi-head attention: pluralità di criteri di selezione}{equation.5.53}{}}
+\newlabel{eq:qkv_multihead@cref}{{[equation][53][]53}{[1][65][]65}}
+\newlabel{eq:multihead_concat}{{54}{65}{Multi-head attention: pluralità di criteri di selezione}{equation.5.54}{}}
+\newlabel{eq:multihead_concat@cref}{{[equation][54][]54}{[1][65][]65}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.7}Osservazione conclusiva: self-attention e contestualizzazione progressiva}{65}{subsubsection.5.3.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Multi-head attention: più teste calcolano in parallelo combinazioni pesate del contesto con parametri indipendenti; gli output vengono concatenati e proiettati per ottenere un vettore finale nella stessa dimensionalità dell’input.\relax }}{66}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:multihead}{{26}{66}{Multi-head attention: più teste calcolano in parallelo combinazioni pesate del contesto con parametri indipendenti; gli output vengono concatenati e proiettati per ottenere un vettore finale nella stessa dimensionalità dell’input.\relax }{figure.caption.34}{}}
+\newlabel{fig:multihead@cref}{{[figure][26][]26}{[1][65][]66}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Blocco Transformer}{66}{subsection.5.4}\protected@file@percent }
+\newlabel{subsec:transformer_block}{{5.4}{66}{Blocco Transformer}{subsection.5.4}{}}
+\newlabel{subsec:transformer_block@cref}{{[subsection][4][5]5.4}{[1][66][]66}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Input del blocco e informazione di posizione}{67}{subsubsection.5.4.1}\protected@file@percent }
+\newlabel{eq:token_plus_positional}{{55}{67}{Input del blocco e informazione di posizione}{equation.5.55}{}}
+\newlabel{eq:token_plus_positional@cref}{{[equation][55][]55}{[1][67][]67}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Residual stream: il flusso informativo del token}{67}{subsubsection.5.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Architettura di un blocco Transformer nella variante \emph  {prenorm} e interpretazione tramite \emph  {residual stream}: ciascun modulo legge dallo stream del token e aggiunge il proprio output allo stesso stream tramite una somma residua \blx@tocontentsinit {0}\cite {jm3}.\relax }}{68}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:transformer_block_residual_stream}{{27}{68}{Architettura di un blocco Transformer nella variante \emph {prenorm} e interpretazione tramite \emph {residual stream}: ciascun modulo legge dallo stream del token e aggiunge il proprio output allo stesso stream tramite una somma residua \cite {jm3}.\relax }{figure.caption.35}{}}
+\newlabel{fig:transformer_block_residual_stream@cref}{{[figure][27][]27}{[1][67][]68}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}Perché la LayerNorm (motivazione)}{69}{subsubsection.5.4.3}\protected@file@percent }
+\newlabel{eq:layernorm}{{57}{69}{Perché la LayerNorm (motivazione)}{equation.5.57}{}}
+\newlabel{eq:layernorm@cref}{{[equation][57][]57}{[1][69][]69}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.4}Feedforward network (ruolo)}{69}{subsubsection.5.4.4}\protected@file@percent }
+\newlabel{eq:ffn}{{58}{69}{Feedforward network (ruolo)}{equation.5.58}{}}
+\newlabel{eq:ffn@cref}{{[equation][58][]58}{[1][69][]69}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.5}Equazioni del blocco (variante \emph  {prenorm})}{70}{subsubsection.5.4.5}\protected@file@percent }
+\newlabel{eq:transformer_block_prenorm}{{64}{70}{Equazioni del blocco (variante \emph {prenorm})}{equation.5.64}{}}
+\newlabel{eq:transformer_block_prenorm@cref}{{[equation][64][]64}{[1][70][]70}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.6}L’attenzione come “movimento” di informazione tra stream}{70}{subsubsection.5.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Parallelizzazione del calcolo con una singola matrice $X$}{70}{subsection.5.5}\protected@file@percent }
+\newlabel{subsec:parallelizing_with_X}{{5.5}{70}{Parallelizzazione del calcolo con una singola matrice $X$}{subsection.5.5}{}}
+\newlabel{subsec:parallelizing_with_X@cref}{{[subsection][5][5]5.5}{[1][70][]70}}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Interpretazione della self-attention: una testa può spostare informazione dal residual stream del token $A$ a quello del token $B$, integrando in $B$ contenuto recuperato da altre posizioni \blx@tocontentsinit {0}\cite {jm3}.\relax }}{71}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:attention_moves_info}{{28}{71}{Interpretazione della self-attention: una testa può spostare informazione dal residual stream del token $A$ a quello del token $B$, integrando in $B$ contenuto recuperato da altre posizioni \cite {jm3}.\relax }{figure.caption.36}{}}
+\newlabel{fig:attention_moves_info@cref}{{[figure][28][]28}{[1][70][]71}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Impacchettare la sequenza in una matrice}{71}{subsubsection.5.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Self-attention in forma matriciale (una testa)}{71}{subsubsection.5.5.2}\protected@file@percent }
+\newlabel{eq:QKV_matrix}{{65}{71}{Self-attention in forma matriciale (una testa)}{equation.5.65}{}}
+\newlabel{eq:QKV_matrix@cref}{{[equation][65][]65}{[1][71][]71}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces La matrice $N\times N$ $QK^\top $: ogni cella contiene un confronto $q_i\cdot k_j$, calcolato simultaneamente con una singola moltiplicazione tra matrici \blx@tocontentsinit {0}\cite {jm3}.\relax }}{72}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:qkt_full}{{29}{72}{La matrice $N\times N$ $QK^\top $: ogni cella contiene un confronto $q_i\cdot k_j$, calcolato simultaneamente con una singola moltiplicazione tra matrici \cite {jm3}.\relax }{figure.caption.37}{}}
+\newlabel{fig:qkt_full@cref}{{[figure][29][]29}{[1][72][]72}}
+\newlabel{eq:head_matrix}{{66}{72}{Self-attention in forma matriciale (una testa)}{equation.5.66}{}}
+\newlabel{eq:head_matrix@cref}{{[equation][66][]66}{[1][72][]72}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}Mascheramento causale: eliminare il futuro}{72}{subsubsection.5.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Mascheramento causale di $QK^\top $: la parte triangolare superiore (con $j>i$) è impostata a $-\infty $, così la softmax annulla i contributi dei token futuri \blx@tocontentsinit {0}\cite {jm3}.\relax }}{73}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:qkt_masked}{{30}{73}{Mascheramento causale di $QK^\top $: la parte triangolare superiore (con $j>i$) è impostata a $-\infty $, così la softmax annulla i contributi dei token futuri \cite {jm3}.\relax }{figure.caption.38}{}}
+\newlabel{fig:qkt_masked@cref}{{[figure][30][]30}{[1][72][]73}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}Schema completo per una testa (in parallelo)}{73}{subsubsection.5.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.5}Costo computazionale e dipendenza quadratica}{73}{subsubsection.5.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.6}Multi-head attention in parallelo}{73}{subsubsection.5.5.6}\protected@file@percent }
+\newlabel{eq:QKV_per_head}{{67}{73}{Multi-head attention in parallelo}{equation.5.67}{}}
+\newlabel{eq:QKV_per_head@cref}{{[equation][67][]67}{[1][73][]73}}
+\newlabel{eq:multihead_parallel}{{68}{73}{Multi-head attention in parallelo}{equation.5.68}{}}
+\newlabel{eq:multihead_parallel@cref}{{[equation][68][]68}{[1][73][]73}}
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Computazione parallela di una singola testa di self-attention: (i) proiezioni $Q,K,V$ da $X$; (ii) calcolo di $QK^\top $; (iii) maschera causale; (iv) (softmax non mostrata nello schema); (v) somma pesata tramite $V$ per ottenere l’output della testa \blx@tocontentsinit {0}\cite {jm3}.\relax }}{74}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:single_head_parallel}{{31}{74}{Computazione parallela di una singola testa di self-attention: (i) proiezioni $Q,K,V$ da $X$; (ii) calcolo di $QK^\top $; (iii) maschera causale; (iv) (softmax non mostrata nello schema); (v) somma pesata tramite $V$ per ottenere l’output della testa \cite {jm3}.\relax }{figure.caption.39}{}}
+\newlabel{fig:single_head_parallel@cref}{{[figure][31][]31}{[1][73][]74}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.7}Il blocco Transformer in forma parallela}{74}{subsubsection.5.5.7}\protected@file@percent }
+\newlabel{eq:block_parallel_O}{{69}{74}{Il blocco Transformer in forma parallela}{equation.5.69}{}}
+\newlabel{eq:block_parallel_O@cref}{{[equation][69][]69}{[1][74][]74}}
+\newlabel{eq:block_parallel_H}{{70}{74}{Il blocco Transformer in forma parallela}{equation.5.70}{}}
+\newlabel{eq:block_parallel_H@cref}{{[equation][70][]70}{[1][74][]74}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}L'input del Transformer: embeddings di token e di posizione}{75}{subsection.5.6}\protected@file@percent }
+\newlabel{subsec:input_token_position_embeddings}{{5.6}{75}{L'input del Transformer: embeddings di token e di posizione}{subsection.5.6}{}}
+\newlabel{subsec:input_token_position_embeddings@cref}{{[subsection][6][5]5.6}{[1][74][]75}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}Token embeddings e matrice di embedding}{75}{subsubsection.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selezione via one-hot (interpretazione equivalente).}{75}{section*.40}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Selezione dell’embedding del token $w_i$ a partire dalla matrice $E$ mediante un vettore one-hot: il prodotto \(\mathbf  {o}(w_i)^\top E\) restituisce la riga \(E[w_i]\) \blx@tocontentsinit {0}\cite {jm3}.\relax }}{76}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:select_single_embedding}{{32}{76}{Selezione dell’embedding del token $w_i$ a partire dalla matrice $E$ mediante un vettore one-hot: il prodotto \(\mathbf {o}(w_i)^\top E\) restituisce la riga \(E[w_i]\) \cite {jm3}.\relax }{figure.caption.41}{}}
+\newlabel{fig:select_single_embedding@cref}{{[figure][32][]32}{[1][76][]76}}
+\@writefile{toc}{\contentsline {paragraph}{Dalla sequenza alla matrice.}{76}{section*.42}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Selezione degli embeddings per un’intera sequenza: una matrice di one-hot \(O\) moltiplicata per \(E\) produce una matrice \(N\times d\) contenente gli embeddings lessicali della finestra di contesto \blx@tocontentsinit {0}\cite {jm3}.\relax }}{76}{figure.caption.43}\protected@file@percent }
+\newlabel{fig:select_sequence_embedding}{{33}{76}{Selezione degli embeddings per un’intera sequenza: una matrice di one-hot \(O\) moltiplicata per \(E\) produce una matrice \(N\times d\) contenente gli embeddings lessicali della finestra di contesto \cite {jm3}.\relax }{figure.caption.43}{}}
+\newlabel{fig:select_sequence_embedding@cref}{{[figure][33][]33}{[1][76][]76}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Perché servono gli embeddings posizionali}{76}{subsubsection.5.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Posizione assoluta e composizione dell’input}{77}{subsubsection.5.6.3}\protected@file@percent }
+\newlabel{eq:composite_embedding}{{71}{77}{Posizione assoluta e composizione dell’input}{equation.5.71}{}}
+\newlabel{eq:composite_embedding@cref}{{[equation][71][]71}{[1][77][]77}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Limiti della posizione assoluta e alternative: sinusoidale e posizione relativa}{77}{subsection.5.7}\protected@file@percent }
+\newlabel{subsec:positional_alternatives}{{5.7}{77}{Limiti della posizione assoluta e alternative: sinusoidale e posizione relativa}{subsection.5.7}{}}
+\newlabel{subsec:positional_alternatives@cref}{{[subsection][7][5]5.7}{[1][77][]77}}
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Composizione dell’input: l’embedding del token viene sommato all’embedding della posizione assoluta, producendo un vettore di input \(x_i\) in \(\mathbb  {R}^d\). L’insieme dei vettori forma la matrice \(X \in \mathbb  {R}^{N\times d}\) \blx@tocontentsinit {0}\cite {jm3}.\relax }}{78}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:token_plus_position}{{34}{78}{Composizione dell’input: l’embedding del token viene sommato all’embedding della posizione assoluta, producendo un vettore di input \(x_i\) in \(\mathbb {R}^d\). L’insieme dei vettori forma la matrice \(X \in \mathbb {R}^{N\times d}\) \cite {jm3}.\relax }{figure.caption.44}{}}
+\newlabel{fig:token_plus_position@cref}{{[figure][34][]34}{[1][77][]78}}
+\@writefile{toc}{\contentsline {paragraph}{Embeddings posizionali sinusoidali.}{78}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Posizione relativa.}{78}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}La \textit  {language modeling head}}{79}{subsection.5.8}\protected@file@percent }
+\newlabel{subsec:lm_head}{{5.8}{79}{La \textit {language modeling head}}{subsection.5.8}{}}
+\newlabel{subsec:lm_head@cref}{{[subsection][8][5]5.8}{[1][79][]79}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.1}Cosa entra e cosa esce: dal vettore $h_N^L$ alle probabilità sul vocabolario}{79}{subsubsection.5.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.2}Logits e livello di \textit  {unembedding}}{79}{subsubsection.5.8.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces La \textit  {language modeling head}: mappa l’output dell’ultimo token all’ultimo strato ($h_N^L$) in una distribuzione sul vocabolario tramite (i) un livello lineare (\emph  {unembedding}) e (ii) una softmax \blx@tocontentsinit {0}\cite {jm3}.\relax }}{80}{figure.caption.47}\protected@file@percent }
+\newlabel{fig:lm_head_overview}{{35}{80}{La \textit {language modeling head}: mappa l’output dell’ultimo token all’ultimo strato ($h_N^L$) in una distribuzione sul vocabolario tramite (i) un livello lineare (\emph {unembedding}) e (ii) una softmax \cite {jm3}.\relax }{figure.caption.47}{}}
+\newlabel{fig:lm_head_overview@cref}{{[figure][35][]35}{[1][79][]80}}
+\newlabel{eq:logits_unembedding_general}{{72}{80}{Logits e livello di \textit {unembedding}}{equation.5.72}{}}
+\newlabel{eq:logits_unembedding_general@cref}{{[equation][72][]72}{[1][80][]80}}
+\@writefile{toc}{\contentsline {paragraph}{Weight tying: perché spesso $U=E^\top $.}{80}{section*.48}\protected@file@percent }
+\newlabel{eq:logits_weight_tying}{{73}{80}{Weight tying: perché spesso $U=E^\top $}{equation.5.73}{}}
+\newlabel{eq:logits_weight_tying@cref}{{[equation][73][]73}{[1][80][]80}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.3}Softmax: da logits a probabilità}{81}{subsubsection.5.8.3}\protected@file@percent }
+\newlabel{eq:softmax_probs}{{74}{81}{Softmax: da logits a probabilità}{equation.5.74}{}}
+\newlabel{eq:softmax_probs@cref}{{[equation][74][]74}{[1][80][]81}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.4}Dal modello alla generazione: scegliere il prossimo token}{81}{subsubsection.5.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.5}Visione d’insieme: un \textit  {decoder-only} che impila blocchi}{81}{subsubsection.5.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Nota: \textit  {logit lens} e terminologia \textit  {decoder-only}}{81}{subsection.5.9}\protected@file@percent }
+\newlabel{subsec:logit_lens_decoder_only}{{5.9}{81}{Nota: \textit {logit lens} e terminologia \textit {decoder-only}}{subsection.5.9}{}}
+\newlabel{subsec:logit_lens_decoder_only@cref}{{[subsection][9][5]5.9}{[1][81][]81}}
+\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces Un Transformer per language modeling (\textit  {decoder-only}): impila blocchi Transformer e usa la language modeling head per mappare \(h_i^L\) in una distribuzione sul prossimo token \(w_{i+1}\) \blx@tocontentsinit {0}\cite {jm3}.\relax }}{82}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:decoder_only_stack}{{36}{82}{Un Transformer per language modeling (\textit {decoder-only}): impila blocchi Transformer e usa la language modeling head per mappare \(h_i^L\) in una distribuzione sul prossimo token \(w_{i+1}\) \cite {jm3}.\relax }{figure.caption.49}{}}
+\newlabel{fig:decoder_only_stack@cref}{{[figure][36][]36}{[1][81][]82}}
+\@writefile{toc}{\contentsline {paragraph}{Nota terminologica: \textit  {decoder-only}.}{83}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Large Language Models}{83}{section.6}\protected@file@percent }
+\newlabel{sec:llm}{{6}{83}{Large Language Models}{section.6}{}}
+\newlabel{sec:llm@cref}{{[section][6][]6}{[1][83][]83}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Large Language Models con Transformer: generazione condizionata}{84}{subsection.6.1}\protected@file@percent }
+\newlabel{subsec:llm_with_transformers}{{6.1}{84}{Large Language Models con Transformer: generazione condizionata}{subsection.6.1}{}}
+\newlabel{subsec:llm_with_transformers@cref}{{[subsection][1][6]6.1}{[1][84][]84}}
+\@writefile{toc}{\contentsline {paragraph}{Perché “predire parole” è utile per tanti task.}{84}{section*.52}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Completamento autoregressivo left-to-right: i token generati vengono riaggiunti al contesto e diventano parte del prefisso per la predizione successiva.\relax }}{85}{figure.caption.51}\protected@file@percent }
+\newlabel{fig:llm_completion}{{37}{85}{Completamento autoregressivo left-to-right: i token generati vengono riaggiunti al contesto e diventano parte del prefisso per la predizione successiva.\relax }{figure.caption.51}{}}
+\newlabel{fig:llm_completion@cref}{{[figure][37][]37}{[1][84][]85}}
+\@writefile{toc}{\contentsline {paragraph}{Esempio: riassunto come generazione condizionata.}{85}{section*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Nota sul passo successivo (ponte verso BERT).}{85}{section*.56}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Esempio di testo e relativo riassunto (scenario tipico di summarization). Il compito può essere visto come generazione condizionata sul documento.\relax }}{86}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:summarization_example}{{38}{86}{Esempio di testo e relativo riassunto (scenario tipico di summarization). Il compito può essere visto come generazione condizionata sul documento.\relax }{figure.caption.54}{}}
+\newlabel{fig:summarization_example@cref}{{[figure][38][]38}{[1][85][]86}}
+\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces Riassunto tramite prompting: il token (o stringa) \texttt  {tl;dr} agisce da segnale che innesca la generazione di una sintesi, sfruttando la lunga finestra di contesto del Transformer.\relax }}{86}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:tldr_summarization}{{39}{86}{Riassunto tramite prompting: il token (o stringa) \texttt {tl;dr} agisce da segnale che innesca la generazione di una sintesi, sfruttando la lunga finestra di contesto del Transformer.\relax }{figure.caption.55}{}}
+\newlabel{fig:tldr_summarization@cref}{{[figure][39][]39}{[1][85][]86}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Sampling per la generazione con LLM}{87}{section.7}\protected@file@percent }
+\newlabel{sec:llm-sampling}{{7}{87}{Sampling per la generazione con LLM}{section.7}{}}
+\newlabel{sec:llm-sampling@cref}{{[section][7][]7}{[1][87][]87}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Perché non basta il campionamento ``puro''}{87}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Top-$k$ sampling}{88}{subsection.7.2}\protected@file@percent }
+\newlabel{subsec:topk}{{7.2}{88}{Top-$k$ sampling}{subsection.7.2}{}}
+\newlabel{subsec:topk@cref}{{[subsection][2][7]7.2}{[1][88][]88}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Top-$p$ (nucleus) sampling}{88}{subsection.7.3}\protected@file@percent }
+\newlabel{subsec:topp}{{7.3}{88}{Top-$p$ (nucleus) sampling}{subsection.7.3}{}}
+\newlabel{subsec:topp@cref}{{[subsection][3][7]7.3}{[1][88][]88}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Temperature sampling}{89}{subsection.7.4}\protected@file@percent }
+\newlabel{subsec:temperature}{{7.4}{89}{Temperature sampling}{subsection.7.4}{}}
+\newlabel{subsec:temperature@cref}{{[subsection][4][7]7.4}{[1][89][]89}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Pretraining dei Large Language Models}{89}{section.8}\protected@file@percent }
+\newlabel{sec:llm-pretraining}{{8}{89}{Pretraining dei Large Language Models}{section.8}{}}
+\newlabel{sec:llm-pretraining@cref}{{[section][8][]8}{[1][89][]89}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Setup, notazione e obiettivo di language modeling}{90}{subsection.8.1}\protected@file@percent }
+\newlabel{subsec:llm-setup}{{8.1}{90}{Setup, notazione e obiettivo di language modeling}{subsection.8.1}{}}
+\newlabel{subsec:llm-setup@cref}{{[subsection][1][8]8.1}{[1][90][]90}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Self-supervision e funzione obiettivo}{90}{subsection.8.2}\protected@file@percent }
+\newlabel{subsec:self-supervision-obj}{{8.2}{90}{Self-supervision e funzione obiettivo}{subsection.8.2}{}}
+\newlabel{subsec:self-supervision-obj@cref}{{[subsection][2][8]8.2}{[1][90][]90}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Teacher forcing}{91}{subsection.8.3}\protected@file@percent }
+\newlabel{subsec:teacher-forcing}{{8.3}{91}{Teacher forcing}{subsection.8.3}{}}
+\newlabel{subsec:teacher-forcing@cref}{{[subsection][3][8]8.3}{[1][91][]91}}
+\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Addestramento di un transformer come language model: per ogni posizione si predice il token successivo e si calcola una loss di cross-entropy; la loss totale è la media (o somma) sulle posizioni.\relax }}{92}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:train-lm}{{40}{92}{Addestramento di un transformer come language model: per ogni posizione si predice il token successivo e si calcola una loss di cross-entropy; la loss totale è la media (o somma) sulle posizioni.\relax }{figure.caption.57}{}}
+\newlabel{fig:train-lm@cref}{{[figure][40][]40}{[1][91][]92}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Efficienza computazionale: parallelismo nei transformer}{92}{subsection.8.4}\protected@file@percent }
+\newlabel{subsec:parallelism}{{8.4}{92}{Efficienza computazionale: parallelismo nei transformer}{subsection.8.4}{}}
+\newlabel{subsec:parallelism@cref}{{[subsection][4][8]8.4}{[1][92][]92}}
+\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces Esempio di composizione di un grande corpus di pretraining (treemap): diverse sorgenti contribuiscono con proporzioni differenti.\relax }}{93}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:pile}{{41}{93}{Esempio di composizione di un grande corpus di pretraining (treemap): diverse sorgenti contribuiscono con proporzioni differenti.\relax }{figure.caption.58}{}}
+\newlabel{fig:pile@cref}{{[figure][41][]41}{[1][93][]93}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Dati di pretraining: fonti e filtraggio}{93}{subsection.8.5}\protected@file@percent }
+\newlabel{subsec:data}{{8.5}{93}{Dati di pretraining: fonti e filtraggio}{subsection.8.5}{}}
+\newlabel{subsec:data@cref}{{[subsection][5][8]8.5}{[1][93][]93}}
+\@writefile{toc}{\contentsline {paragraph}{Filtri di qualità e sicurezza.}{94}{section*.59}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Aspetti etici e legali (panoramica).}{94}{section*.60}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}Dal pretraining all'adattamento: finetuning}{94}{subsection.8.6}\protected@file@percent }
+\newlabel{subsec:finetune}{{8.6}{94}{Dal pretraining all'adattamento: finetuning}{subsection.8.6}{}}
+\newlabel{subsec:finetune@cref}{{[subsection][6][8]8.6}{[1][94][]94}}
+\@writefile{toc}{\contentsline {paragraph}{Tipi di adattamento (senza anticipare modelli specifici).}{94}{section*.62}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces Schema concettuale: pretraining su grandi corpora $\rightarrow $ modello generale $\rightarrow $ adattamento su dati specifici (finetuning) $\rightarrow $ modello specializzato.\relax }}{95}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:pretrain-finetune}{{42}{95}{Schema concettuale: pretraining su grandi corpora $\rightarrow $ modello generale $\rightarrow $ adattamento su dati specifici (finetuning) $\rightarrow $ modello specializzato.\relax }{figure.caption.61}{}}
+\newlabel{fig:pretrain-finetune@cref}{{[figure][42][]42}{[1][94][]95}}
+\@writefile{toc}{\contentsline {paragraph}{Collegamento alle sezioni successive.}{95}{section*.63}\protected@file@percent }
 \@setckpt{chapters/03_embeddings}{
-\setcounter{page}{92}
-\setcounter{equation}{80}
+\setcounter{page}{96}
+\setcounter{equation}{75}
 \setcounter{enumi}{2}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -326,7 +326,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{43}
+\setcounter{figure}{42}
 \setcounter{table}{2}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
@@ -352,7 +352,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{94}
+\setcounter{instcount}{95}
 \setcounter{maxnames}{1}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -459,13 +459,13 @@
 \setcounter{smartand}{1}
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
-\setcounter{Item}{39}
+\setcounter{Item}{83}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{98}
+\setcounter{bookmark@seq@number}{113}
 \setcounter{FancyVerbLine}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{24}
+\setcounter{tcolorbox@number}{23}
 \setcounter{definition}{0}
 \setcounter{lstlisting}{0}
 \setcounter{section@level}{4}

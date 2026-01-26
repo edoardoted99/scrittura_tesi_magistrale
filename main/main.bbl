@@ -196,54 +196,6 @@
       \verb https://arxiv.org/abs/1606.03657
       \endverb
     \endentry
-    \entry{Goodfellow2016DeepLearning}{book}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=5d2585c11210cf1d4512e6e0a03ec315}{%
-           family={Goodfellow},
-           familyi={G\bibinitperiod},
-           given={Ian},
-           giveni={I\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=40a8e4774982146adc2688546f54efb2}{%
-           family={Bengio},
-           familyi={B\bibinitperiod},
-           given={Yoshua},
-           giveni={Y\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=ccec1ccd2e1aa86960eb2e872c6b7020}{%
-           family={Courville},
-           familyi={C\bibinitperiod},
-           given={Aaron},
-           giveni={A\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{location}{1}{%
-        {Cambridge, MA}%
-      }
-      \list{publisher}{1}{%
-        {MIT Press}%
-      }
-      \strng{namehash}{d17e6557c5836d2d978179999ea1037f}
-      \strng{fullhash}{3ae53fe582e8a815b118d26947eaa326}
-      \strng{bibnamehash}{3ae53fe582e8a815b118d26947eaa326}
-      \strng{authorbibnamehash}{3ae53fe582e8a815b118d26947eaa326}
-      \strng{authornamehash}{d17e6557c5836d2d978179999ea1037f}
-      \strng{authorfullhash}{3ae53fe582e8a815b118d26947eaa326}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Deep Learning}
-      \field{year}{2016}
-      \verb{urlraw}
-      \verb https://www.deeplearningbook.org
-      \endverb
-      \verb{url}
-      \verb https://www.deeplearningbook.org
-      \endverb
-    \endentry
     \entry{gordon2020machine}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=394726f37fbe77d819e2346e9abf5757}{%
@@ -343,6 +295,59 @@
       \verb https://arxiv.org/abs/2201.03898
       \endverb
     \endentry
+    \entry{mikolov2013efficientestimationwordrepresentations}{misc}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=a2d359b12ca2fadf0b40136a73f021bb}{%
+           family={Mikolov},
+           familyi={M\bibinitperiod},
+           given={Tomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ee3f7d7b96add98106db907e189d6c13}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Kai},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3d11e6f2a0d0a1183b2cf62996525afc}{%
+           family={Corrado},
+           familyi={C\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4aecfb0cc2e1e3b7899129fa2a94e2b8}{%
+           family={Dean},
+           familyi={D\bibinitperiod},
+           given={Jeffrey},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d4849f6d57e38d9b9846cfb360e45131}
+      \strng{fullhash}{f24c60896b6daa69474b40efb61f4e88}
+      \strng{bibnamehash}{f24c60896b6daa69474b40efb61f4e88}
+      \strng{authorbibnamehash}{f24c60896b6daa69474b40efb61f4e88}
+      \strng{authornamehash}{d4849f6d57e38d9b9846cfb360e45131}
+      \strng{authorfullhash}{f24c60896b6daa69474b40efb61f4e88}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.CL}
+      \field{eprinttype}{arXiv}
+      \field{title}{Efficient Estimation of Word Representations in Vector Space}
+      \field{year}{2013}
+      \verb{eprint}
+      \verb 1301.3781
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1301.3781
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1301.3781
+      \endverb
+    \endentry
     \entry{wang2024disentangledrepresentationlearning}{misc}{}
       \name{author}{5}{}{%
         {{un=0,uniquepart=base,hash=03d3e23852937fa39b0e34246c4ecd1d}{%
@@ -402,9 +407,33 @@
       \verb https://arxiv.org/abs/2211.11695
       \endverb
     \endentry
+    \entry{feynman_wikipedia}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6aea1a416c89509a7df1cbb69249cb6}{%
+           family={{Wikipedia contributors}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{fullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{bibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorbibnamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authornamehash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \strng{authorfullhash}{b6aea1a416c89509a7df1cbb69249cb6}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://en.wikipedia.org/wiki/Richard_Feynman}}
+      \field{note}{Accessed: 26 January 2026}
+      \field{title}{Richard Feynman}
+      \field{year}{2025}
+    \endentry
   \enddatalist
+  \missing{Osgood1957Measurement}
+  \missing{higgins2017betaVAE}
   \missing{jurafsky2024speech}
-  \missing{rajaa2022featuredisentanglement}
 \endrefsection
 \endinput
 
