@@ -1,300 +1,115 @@
-\section{Disentangling Dense Embeddings \\with Sparse Autoencoders}
+\section{Disentangling Dense Embeddings with Sparse Autoencoders}
 
-\section{Introduzione}
+\subsection{Introduzione}
+I modelli di linguaggio basati su architetture Transformer producono embeddings contestuali estremamente ricchi ed efficaci dal punto di vista empirico. Tuttavia, queste rappresentazioni collocano il testo in spazi vettoriali ad alta dimensionalità le cui dimensioni non risultano direttamente interpretabili dal punto di vista semantico. Il significato è codificato in modo distribuito e fortemente entangled, rendendo difficile analizzare, spiegare o controllare le rappresentazioni interne del modello. Questa mancanza di interpretabilità rappresenta un limite rilevante, in particolare in applicazioni che richiedono trasparenza, analisi qualitativa o manipolazione controllata del significato. Ne deriva l'esigenza di trasformare embeddings densi in rappresentazioni latenti più semplici e strutturate, in cui le componenti corrispondano a fattori semantici coerenti e, per quanto possibile, indipendenti. Questo obiettivo è comunemente indicato come \textit{disentanglement} delle rappresentazioni. In questa sezione analizziamo il metodo proposto nel lavoro \emph{Disentangling Dense Embeddings with Sparse Autoencoders} \cite{wang2024disentangledrepresentationlearning}, che affronta il problema del disentanglement applicando sparse autoencoders agli embeddings prodotti da modelli di linguaggio pre-addestrati. L'idea centrale è che l'introduzione di vincoli di sparsità nello spazio latente favorisca l'emergere di feature interpretabili, consentendo di scomporre rappresentazioni dense ed entangled in componenti semanticamente significative. Di seguito viene illustrata la metodologia proposta.
 
-I modelli di linguaggio basati su architetture Transformer producono embeddings
-contestuali estremamente ricchi ed efficaci dal punto di vista empirico. Tuttavia,
-queste rappresentazioni collocano il testo in spazi vettoriali ad alta dimensionalità
-le cui dimensioni non risultano direttamente interpretabili dal punto di vista
-semantico. Il significato è codificato in modo distribuito e fortemente entangled,
-rendendo difficile analizzare, spiegare o controllare le rappresentazioni interne del
-modello. Questa mancanza di interpretabilità rappresenta un limite rilevante, in particolare
-in applicazioni che richiedono trasparenza, analisi qualitativa o manipolazione
-controllata del significato. Ne deriva l’esigenza di trasformare embeddings densi in
-rappresentazioni latenti più semplici e strutturate, in cui le componenti
-corrispondano a fattori semantici coerenti e, per quanto possibile, indipendenti.
-Questo obiettivo è comunemente indicato come \textit{disentanglement} delle
-rappresentazioni. In questo capitolo analizziamo il metodo proposto nel lavoro
-\emph{Disentangling Dense Embeddings with Sparse Autoencoders}
-\cite{wang2024disentangledrepresentationlearning}, che affronta il problema del
-disentanglement applicando sparse autoencoders agli embeddings prodotti da modelli
-di linguaggio pre-addestrati. L’idea centrale è che l’introduzione di vincoli di
-sparsità nello spazio latente favorisca l’emergere di feature interpretabili,
-consentendo di scomporre rappresentazioni dense ed entangled in componenti
-semanticamente significative. Di seguito viene illustrata la metodologia proposta.
+\subsection{Ipotesi della superposizione}
 
-\section{Ipotesi della superposizione}
+\subsection{Metodologia e Architettura}
+Per ottenere il disentanglement degli embeddings densi, la metodologia adottata si basa sull'utilizzo di \textit{Sparse Autoencoders} (SAE). A differenza degli autoencoder tradizionali, che comprimono l'input in uno spazio latente di dimensione inferiore (\textit{bottleneck}), i SAE proiettano l'input in uno spazio latente sovradimensionato ($n \gg d$), imponendo tuttavia un forte vincolo di sparsità sulle attivazioni. Questa scelta architetturale consente di rappresentare ciascun embedding come combinazione lineare di un numero limitato di feature latenti, favorendo l'emergere di componenti semanticamente interpretabili e riducendo il fenomeno di superposizione delle informazioni.
 
-
-\section{Metodologia e Architettura}
-
-Per ottenere il disentanglement degli embeddings densi, la metodologia adottata si
-basa sull'utilizzo di \textit{Sparse Autoencoders} (SAE). A differenza degli
-autoencoder tradizionali, che comprimono l'input in uno spazio latente di dimensione
-inferiore (\textit{bottleneck}), i SAE proiettano l'input in uno spazio latente
-sovradimensionato ($n \gg d$), imponendo tuttavia un forte vincolo di sparsità sulle
-attivazioni. Questa scelta architetturale consente di rappresentare ciascun embedding
-come combinazione lineare di un numero limitato di feature latenti, favorendo
-l'emergere di componenti semanticamente interpretabili e riducendo il fenomeno di
-superposizione delle informazioni.
-
-\subsection{Definizione del Modello}
-
-Sia $x \in \mathbb{R}^d$ un vettore di embedding in input, prodotto da un modello di
-linguaggio pre-addestrato, e sia $h \in \mathbb{R}^n$ la rappresentazione latente,
-dove $n$ indica il numero totale di feature latenti apprese dal modello. In pratica,
-$n$ viene scelto come multiplo della dimensionalità originale $d$, così da ottenere
-una base latente sovracompleta.
-
-L'architettura del SAE è composta da un encoder e un decoder, definiti come segue:
-
+\subsubsection{Definizione del Modello}
+Sia $x \in \mathbb{R}^d$ un vettore di embedding in input, prodotto da un modello di linguaggio pre-addestrato, e sia $h \in \mathbb{R}^n$ la rappresentazione latente, dove $n$ indica il numero totale di feature latenti apprese dal modello. In pratica, $n$ viene scelto come multiplo della dimensionalità originale $d$, così da ottenere una base latente sovracompleta. L'architettura del SAE è composta da un encoder e un decoder, definiti come segue:
 \begin{equation}
 \text{Encoder:} \quad h = f_{\theta}(x) = \sigma(W_e x + b_e)
 \end{equation}
-
 \begin{equation}
 \text{Decoder:} \quad \hat{x} = g_{\phi}(h) = W_d h + b_d
 \end{equation}
-
 dove:
 \begin{itemize}
-    \item $W_e \in \mathbb{R}^{n \times d}$ e $W_d \in \mathbb{R}^{d \times n}$ sono
-    rispettivamente le matrici dei pesi di codifica e decodifica;
-    \item $b_e \in \mathbb{R}^n$ e $b_d \in \mathbb{R}^d$ sono i vettori di bias;
-    \item $\sigma(\cdot)$ è una funzione di attivazione non lineare, tipicamente una
-    ReLU.
+\item $W_e \in \mathbb{R}^{n \times d}$ e $W_d \in \mathbb{R}^{d \times n}$ sono rispettivamente le matrici dei pesi di codifica e decodifica;
+\item $b_e \in \mathbb{R}^n$ e $b_d \in \mathbb{R}^d$ sono i vettori di bias;
+\item $\sigma(\cdot)$ è una funzione di attivazione non lineare, tipicamente una ReLU.
 \end{itemize}
+Ogni colonna della matrice di decoder $W_d$ può essere interpretata come una \emph{feature latente}, ovvero una direzione nello spazio degli embedding che corrisponde a un concetto semantico appreso dal modello. La ricostruzione di un embedding avviene quindi come combinazione lineare di un piccolo sottoinsieme di queste direzioni.
 
-Ogni colonna della matrice di decoder $W_d$ può essere interpretata come una
-\emph{feature latente}, ovvero una direzione nello spazio degli embedding che
-corrisponde a un concetto semantico appreso dal modello. La ricostruzione di un
-embedding avviene quindi come combinazione lineare di un piccolo sottoinsieme di
-queste direzioni.
+\subsubsection{Vincolo di Sparsità \textit{k-Sparse}}
+Un elemento cruciale della metodologia è il meccanismo con cui viene imposta la sparsità. Invece di adottare una regolarizzazione $L_1$ standard, che può introdurre effetti indesiderati di \textit{shrinkage} (riduzione sistematica dell'ampiezza delle attivazioni), viene utilizzato un vincolo \textit{Top-$k$}. Per ciascun input $x$, solo le $k$ attivazioni più elevate nel vettore latente $h$ vengono mantenute, mentre tutte le altre sono poste a zero. Questo garantisce che ogni embedding venga rappresentato attraverso un numero fisso e limitato di feature attive, rendendo la rappresentazione più interpretabile e favorendo un disentanglement più netto dei fattori semantici.
 
-\subsection{Vincolo di Sparsità \textit{k-Sparse}}
-
-Un elemento cruciale della metodologia è il meccanismo con cui viene imposta la
-sparsità. Invece di adottare una regolarizzazione $L_1$ standard, che può introdurre
-effetti indesiderati di \textit{shrinkage} (riduzione sistematica dell'ampiezza delle
-attivazioni), viene utilizzato un vincolo \textit{Top-$k$}.
-
-Per ciascun input $x$, solo le $k$ attivazioni più elevate nel vettore latente $h$
-vengono mantenute, mentre tutte le altre sono poste a zero. Questo garantisce che
-ogni embedding venga rappresentato attraverso un numero fisso e limitato di feature
-attive, rendendo la rappresentazione più interpretabile e favorendo un
-disentanglement più netto dei fattori semantici.
-
-\subsection{Funzione di Costo e Addestramento}
-
-L'obiettivo dell'addestramento del SAE è minimizzare l'errore di ricostruzione
-preservando al contempo la sparsità delle attivazioni. La funzione di perdita globale
-è definita come:
-
+\subsubsection{Funzione di Costo e Addestramento}
+L'obiettivo dell'addestramento del SAE è minimizzare l'errore di ricostruzione preservando al contempo la sparsità delle attivazioni. La funzione di perdita globale è definita come:
 \begin{equation}
-\mathcal{L}(\theta, \phi) =
-\frac{1}{d} \lVert x - \hat{x} \rVert_2^2
-+ \lambda \mathcal{L}_{\text{sparse}}(h)
-+ \alpha \mathcal{L}_{\text{aux}}(x, \hat{x})
+\mathcal{L}(\theta, \phi) = \frac{1}{d} \lVert x - \hat{x} \rVert_2^2 + \lambda \mathcal{L}_{\text{sparse}}(h) + \alpha \mathcal{L}_{\text{aux}}(x, \hat{x})
 \end{equation}
-
-Oltre al termine di ricostruzione principale, viene introdotta una
-\textit{auxiliary loss} ($\mathcal{L}_{\text{aux}}$), ispirata alla tecnica dei
-\textit{ghost gradients}. Questa componente ha lo scopo di mitigare il problema dei
-\textit{dead latents}, ovvero feature che non si attivano mai durante il processo di
-addestramento.
-
-Dato l'errore di ricostruzione del modello principale $e = x - \hat{x}$, la perdita
-ausiliaria è calcolata modellando l'errore residuo tramite un sottoinsieme di latenti
-inermi:
-
+Oltre al termine di ricostruzione principale, viene introdotta una \textit{auxiliary loss} ($\mathcal{L}_{\text{aux}}$), ispirata alla tecnica dei \textit{ghost gradients}. Questa componente ha lo scopo di mitigare il problema dei \textit{dead latents}, ovvero feature che non si attivano mai durante il processo di addestramento. Dato l'errore di ricostruzione del modello principale $e = x - \hat{x}$, la perdita ausiliaria è calcolata modellando l'errore residuo tramite un sottoinsieme di latenti inermi:
 \begin{equation}
 \mathcal{L}_{\text{aux}}(x, \hat{x}) = \lVert e - \hat{e} \rVert_2^2
 \end{equation}
+dove $\hat{e}$ rappresenta la ricostruzione ottenuta utilizzando esclusivamente tali latenti. Questo meccanismo forza il modello a riutilizzare feature altrimenti inattive, migliorando la copertura dello spazio semantico.
 
-dove $\hat{e}$ rappresenta la ricostruzione ottenuta utilizzando esclusivamente tali
-latenti. Questo meccanismo forza il modello a riutilizzare feature altrimenti
-inattive, migliorando la copertura dello spazio semantico.
-
-\section{Interpretazione Automatizzata delle Feature}
-
-Una volta addestrato il SAE, è necessario assegnare un significato semantico alle
-feature latenti apprese. Poiché il numero di feature può raggiungere decine o
-centinaia di migliaia, un'annotazione manuale risulta impraticabile. Per questo
-motivo viene adottato un approccio di interpretazione automatizzata basato su Large
-Language Models (LLM), utilizzati come \textit{Interpreter}.
-
-Per una data feature $i$, il processo di etichettatura avviene nei seguenti passaggi:
-
+\subsection{Interpretazione Automatizzata delle Feature}
+Una volta addestrato il SAE, è necessario assegnare un significato semantico alle feature latenti apprese. Poiché il numero di feature può raggiungere decine o centinaia di migliaia, un'annotazione manuale risulta impraticabile. Per questo motivo viene adottato un approccio di interpretazione automatizzata basato su Large Language Models (LLM), utilizzati come \textit{Interpreter}. Per una data feature $i$, il processo di etichettatura avviene nei seguenti passaggi:
 \begin{enumerate}
-    \item \textbf{Selezione degli esempi:} vengono individuati i documenti che
-    producono le attivazioni più elevate per la feature $i$
-    (\textit{max activating examples}), insieme a documenti che non attivano la
-    feature.
-    \item \textbf{Generazione dell'interpretazione:} l'LLM analizza entrambi gli
-    insiemi di testi e identifica il concetto comune presente nei testi attivi ma
-    assente negli altri.
-    \item \textbf{Astrazione:} il concetto individuato viene sintetizzato in una
-    breve etichetta testuale, che rappresenta l'interpretazione semantica della
-    feature.
+\item \textbf{Selezione degli esempi:} vengono individuati i documenti che producono le attivazioni più elevate per la feature $i$ (\textit{max activating examples}), insieme a documenti che non attivano la feature.
+\item \textbf{Generazione dell'interpretazione:} l'LLM analizza entrambi gli insiemi di testi e identifica il concetto comune presente nei testi attivi ma assente negli altri.
+\item \textbf{Astrazione:} il concetto individuato viene sintetizzato in una breve etichetta testuale, che rappresenta l'interpretazione semantica della feature.
 \end{enumerate}
+Questo processo consente di collegare le direzioni vettoriali astratte dello spazio latente a concetti comprensibili dall'uomo.
 
-Questo processo consente di collegare le direzioni vettoriali astratte dello spazio
-latente a concetti comprensibili dall'uomo.
-
-\section{Feature Families e Struttura Gerarchica}
-
-Le feature apprese da un SAE non sono indipendenti, ma mostrano relazioni di
-co-occorrenza e organizzazione gerarchica. Per catturare tali relazioni viene
-introdotto il concetto di \textit{Feature Families}, ovvero gruppi di feature
-semanticamente correlate.
-
-Una famiglia di feature è composta da una feature \textit{genitore}, caratterizzata
-da un'elevata densità di attivazione e associata a un concetto più astratto e
-generale, e da più feature \textit{figlie}, più sparse e specializzate, che
-rappresentano sottocategorie o istanze più specifiche del concetto genitore. È
-importante distinguere questo fenomeno dal \textit{feature splitting}, che descrive
-l'evoluzione delle feature al variare della capacità del modello e non relazioni
-interne a un singolo SAE.
-
-\section{Feature Families e Struttura Gerarchica}
-
-Le feature apprese da uno Sparse Autoencoder non sono indipendenti, ma mostrano
-strutture di co-occorrenza e relazioni gerarchiche che riflettono l’organizzazione
-latente dei concetti semantici nello spazio degli embedding. Per analizzare e
-strutturare tali relazioni, viene introdotto il concetto di \textit{Feature Families},
-ovvero insiemi di feature semanticamente correlate che rappresentano uno stesso
-concetto a diversi livelli di astrazione.
-
-Una feature family è composta da una feature \textit{genitore}, associata a un
-concetto più generale e astratto, e da un insieme di feature \textit{figlie}, più
-sparse e specializzate, che catturano sottocategorie o istanze più specifiche del
-concetto genitore. È importante distinguere questa struttura gerarchica interna a un
-singolo SAE dal fenomeno del \textit{feature splitting}, che descrive invece come
-una stessa direzione semantica possa frammentarsi al crescere della capacità del
-modello e non riguarda relazioni tra feature all’interno dello stesso autoencoder.
+\subsection{Feature Families e Struttura Gerarchica}
+Le feature apprese da uno Sparse Autoencoder non sono indipendenti, ma mostrano strutture di co-occorrenza e relazioni gerarchiche che riflettono l'organizzazione latente dei concetti semantici nello spazio degli embedding. Per analizzare e strutturare tali relazioni, viene introdotto il concetto di \textit{Feature Families}, ovvero insiemi di feature semanticamente correlate che rappresentano uno stesso concetto a diversi livelli di astrazione. Una feature family è composta da una feature \textit{genitore}, associata a un concetto più generale e astratto, e da un insieme di feature \textit{figlie}, più sparse e specializzate, che catturano sottocategorie o istanze più specifiche del concetto genitore. È importante distinguere questa struttura gerarchica interna a un singolo SAE dal fenomeno del \textit{feature splitting}, che descrive invece come una stessa direzione semantica possa frammentarsi al crescere della capacità del modello e non riguarda relazioni tra feature all'interno dello stesso autoencoder.
 
 \paragraph{Criterio di identificazione delle feature genitore e figlie}
-
-La distinzione tra feature genitore e feature figlie non è determinata a partire da
-considerazioni semantiche esplicite, ma emerge da una proprietà statistica osservata
-nei dati, ovvero la \emph{densità di attivazione} delle feature. Per ciascuna feature
-$i$ viene definita la frequenza di attivazione
-
+La distinzione tra feature genitore e feature figlie non è determinata a partire da considerazioni semantiche esplicite, ma emerge da una proprietà statistica osservata nei dati, ovvero la \emph{densità di attivazione} delle feature. Per ciascuna feature $i$ viene definita la frequenza di attivazione
 \begin{equation}
 f_i = \sum_k A_{ik},
 \end{equation}
+che misura il numero di esempi del dataset sui quali la feature risulta attiva. Intuitivamente, feature con valori elevati di $f_i$ tendono ad attivarsi in un ampio numero di contesti e quindi a rappresentare concetti più generali, mentre feature con densità inferiore si attivano in contesti più ristretti e catturano concetti più specifici. Questa osservazione viene utilizzata per indurre una gerarchia: date due feature connesse nel grafo di co-occorrenza, la feature con densità di attivazione maggiore viene interpretata come \textit{genitore}, mentre quella con densità minore come \textit{figlia}. In questo modo, il ruolo gerarchico delle feature è determinato in modo automatico e riproducibile a partire dalle statistiche di attivazione, senza ricorrere a supervisione semantica.
 
-che misura il numero di esempi del dataset sui quali la feature risulta attiva.
-Intuitivamente, feature con valori elevati di $f_i$ tendono ad attivarsi in un ampio
-numero di contesti e quindi a rappresentare concetti più generali, mentre feature con
-densità inferiore si attivano in contesti più ristretti e catturano concetti più
-specifici.
-
-Questa osservazione viene utilizzata per indurre una gerarchia: date due feature
-connesse nel grafo di co-occorrenza, la feature con densità di attivazione maggiore
-viene interpretata come \textit{genitore}, mentre quella con densità minore come
-\textit{figlia}. In questo modo, il ruolo gerarchico delle feature è determinato in
-modo automatico e riproducibile a partire dalle statistiche di attivazione, senza
-ricorrere a supervisione semantica.
-
-\subsection{Costruzione del Grafo di Co-occorrenza}
-
-Per identificare le feature families, viene costruito un grafo che cattura i pattern
-di co-attivazione delle feature nel dataset. Per ogni coppia di feature $i$ e $j$
-vengono calcolate le seguenti metriche:
-
+\subsubsection{Costruzione del Grafo di Co-occorrenza}
+Per identificare le feature families, viene costruito un grafo che cattura i pattern di co-attivazione delle feature nel dataset. Per ogni coppia di feature $i$ e $j$ vengono calcolate le seguenti metriche:
 \begin{itemize}
-    \item \textbf{Matrice di co-occorrenza:}
-    \begin{equation}
-    C_{ij} = \sum_{k} A_{ik} A_{jk},
-    \end{equation}
-    dove $A_{ik} = 1$ se la feature $i$ è attiva sull’esempio $k$, e $0$ altrimenti.
-    Questo termine misura quante volte le due feature si attivano congiuntamente.
-
-    \item \textbf{Matrice di similarità delle attivazioni:}
-    \begin{equation}
-    D_{ij} = \sum_{k} B_{ik} B_{jk},
-    \end{equation}
-    dove $B_{ik}$ rappresenta il valore scalare dell’attivazione latente. Questa
-    metrica tiene conto non solo della presenza congiunta delle feature, ma anche
-    dell’intensità delle loro attivazioni.
+\item \textbf{Matrice di co-occorrenza:}
+\begin{equation}
+C_{ij} = \sum_{k} A_{ik} A_{jk},
+\end{equation}
+dove $A_{ik} = 1$ se la feature $i$ è attiva sull'esempio $k$, e $0$ altrimenti. Questo termine misura quante volte le due feature si attivano congiuntamente.
+\item \textbf{Matrice di similarità delle attivazioni:}
+\begin{equation}
+D_{ij} = \sum_{k} B_{ik} B_{jk},
+\end{equation}
+dove $B_{ik}$ rappresenta il valore scalare dell'attivazione latente. Questa metrica tiene conto non solo della presenza congiunta delle feature, ma anche dell'intensità delle loro attivazioni.
 \end{itemize}
-
-Poiché feature molto frequenti tendono a co-attivarsi con molte altre in modo
-spurio, la matrice di co-occorrenza viene normalizzata rispetto alla frequenza
-$f_i$ della feature $i$:
-
+Poiché feature molto frequenti tendono a co-attivarsi con molte altre in modo spurio, la matrice di co-occorrenza viene normalizzata rispetto alla frequenza $f_i$ della feature $i$:
 \begin{equation}
 C_{ij}^{\text{norm}} = \frac{C_{ij}}{f_i + \epsilon},
 \end{equation}
+ottenendo una misura asimmetrica che approssima la probabilità che la feature $j$ sia attiva dato che la feature $i$ è attiva.
 
-ottenendo una misura asimmetrica che approssima la probabilità che la feature $j$
-sia attiva dato che la feature $i$ è attiva.
-
-\subsection{Identificazione delle Feature Families}
-
-Sulla matrice di co-occorrenza normalizzata viene applicata una soglia $\tau$ per
-eliminare relazioni deboli o rumorose. Nel lavoro originale viene utilizzato
-$\tau = 0.1$, valore che rappresenta un compromesso empirico tra robustezza delle
-relazioni individuate e copertura dello spazio semantico.
-
-A partire dalla matrice sogliata, l’identificazione delle feature families avviene
-attraverso i seguenti passaggi:
-
+\subsubsection{Identificazione delle Feature Families}
+Sulla matrice di co-occorrenza normalizzata viene applicata una soglia $\tau$ per eliminare relazioni deboli o rumorose. Nel lavoro originale viene utilizzato $\tau = 0.1$, valore che rappresenta un compromesso empirico tra robustezza delle relazioni individuate e copertura dello spazio semantico. A partire dalla matrice sogliata, l'identificazione delle feature families avviene attraverso i seguenti passaggi:
 \begin{enumerate}
-    \item costruzione di un \textit{Maximum Spanning Tree} (MST) sul grafo di
-    co-occorrenza, al fine di preservare le relazioni più forti evitando cicli;
-    \item orientamento degli archi confrontando la densità di attivazione dei nodi
-    connessi, dirigendo ciascun arco dalla feature più densa (genitore) verso quella
-    meno densa (figlia);
-    \item identificazione delle famiglie tramite una ricerca in profondità (DFS)
-    a partire dai nodi radice, ovvero feature prive di archi entranti;
-    \item rimozione iterativa delle feature genitore e ricostruzione dell’MST per
-    far emergere famiglie più fini o parzialmente sovrapposte.
+\item costruzione di un \textit{Maximum Spanning Tree} (MST) sul grafo di co-occorrenza, al fine di preservare le relazioni più forti evitando cicli;
+\item orientamento degli archi confrontando la densità di attivazione dei nodi connessi, dirigendo ciascun arco dalla feature più densa (genitore) verso quella meno densa (figlia);
+\item identificazione delle famiglie tramite una ricerca in profondità (DFS) a partire dai nodi radice, ovvero feature prive di archi entranti;
+\item rimozione iterativa delle feature genitore e ricostruzione dell'MST per far emergere famiglie più fini o parzialmente sovrapposte.
 \end{enumerate}
+Questo procedimento consente di ricostruire una struttura gerarchica dello spazio semantico latente, nella quale concetti astratti emergono come nodi ad alta connettività che aggregano progressivamente sottocategorie più specifiche, riflettendo l'organizzazione interna degli embeddings densi appresi dal modello.
 
-Questo procedimento consente di ricostruire una struttura gerarchica dello spazio
-semantico latente, nella quale concetti astratti emergono come nodi ad alta
-connettività che aggregano progressivamente sottocategorie più specifiche,
-riflettendo l’organizzazione interna degli embeddings densi appresi dal modello.
+\subsection{Il problema del disentanglement}
 
+\subsubsection{Introduzione al disentanglement}
+Nel capitolo precedente abbiamo esplorato come i modelli di \textit{embedding} siano in grado di mappare i significati latenti del linguaggio all'interno di spazi vettoriali ad alta dimensionalità. Un fenomeno empirico di particolare rilievo, nonché una proprietà estremamente desiderabile, è la tendenza di tali significati a organizzarsi secondo strutture lineari. È noto, come abbiamo visto, che le relazioni semantiche possano riflettersi in precise operazioni geometriche: il vettore che congiunge le rappresentazioni di \textit{re} e \textit{regina} approssima lo stesso spostamento semantico che intercorre tra \textit{uomo} e \textit{donna}. Questa regolarità suggerisce che la semantica possa essere descritta attraverso una rappresentazione strutturata, ordinata e, almeno in linea di principio, interpretabile. Con l'avvento dei grandi modelli di linguaggio (\textit{Large Language Models}), l'estrazione di una struttura leggibile dallo spazio rappresentazionale ha smesso di essere un mero interesse di ricerca teorica per diventare una necessità impellente. Dal momento in cui l'interazione tra esseri umani e modelli generativi è diventata centrale, la capacità di esercitare un controllo puntuale su tali strumenti è diventata prioritaria. Tale controllo presuppone il bisogno fondamentale di interpretare il loro funzionamento interno: il \textit{disentanglement} dei fattori di variazione diventa quindi la chiave per trasformare sistemi opachi in strumenti trasparenti e affidabili. Dal punto di vista della geometria dello spazio rappresentazionale, l'ideale teorico consisterebbe nell'associare ogni singola dimensione a un concetto semantico univoco. In un'ottica ingegneristica, ciò corrisponderebbe alla presenza di "neuroni" specializzati all'interno della rete neurale, la cui attivazione risulti proporzionale all'intensità del concetto espresso. Tuttavia, nella pratica, tale corrispondenza biunivoca è raramente riscontrabile: le rappresentazioni tendono a essere distribuite e i concetti risultano spesso intrecciati tra loro. La sfida di isolare queste componenti semantiche indipendenti costituisce il cuore del problema del \textit{disentanglement}.
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Il problema del disentanglement}
-
-\section{Introduzione}
-
-Nel capitolo precedente abbiamo esplorato come i modelli di \textit{embedding} siano in grado di mappare i significati latenti del linguaggio all'interno di spazi vettoriali ad alta dimensionalità. Un fenomeno empirico di particolare rilievo, nonché una proprietà estremamente desiderabile, è la tendenza di tali significati a organizzarsi secondo strutture lineari.
-È noto, come abbiamo visto, che le relazioni semantiche possano riflettersi in precise operazioni geometriche: il vettore che congiunge le rappresentazioni di \textit{re} e \textit{regina} approssima lo stesso spostamento semantico che intercorre tra \textit{uomo} e \textit{donna}. Questa regolarità suggerisce che la semantica possa essere descritta attraverso una rappresentazione strutturata, ordinata e, almeno in linea di principio, interpretabile.
-Con l'avvento dei grandi modelli di linguaggio (\textit{Large Language Models}), l'estrazione di una struttura leggibile dallo spazio rappresentazionale ha smesso di essere un mero interesse di ricerca teorica per diventare una necessità impellente. Dal momento in cui l'interazione tra esseri umani e modelli generativi è diventata centrale, la capacità di esercitare un controllo puntuale su tali strumenti è diventata prioritaria. Tale controllo presuppone il bisogno fondamentale di interpretare il loro funzionamento interno: il \textit{disentanglement} dei fattori di variazione diventa quindi la chiave per trasformare sistemi opachi in strumenti trasparenti e affidabili.
-Dal punto di vista della geometria dello spazio rappresentazionale, l'ideale teorico consisterebbe nell'associare ogni singola dimensione a un concetto semantico univoco. In un'ottica ingegneristica, ciò corrisponderebbe alla presenza di "neuroni" specializzati all'interno della rete neurale, la cui attivazione risulti proporzionale all'intensità del concetto espresso. Tuttavia, nella pratica, tale corrispondenza biunivoca è raramente riscontrabile: le rappresentazioni tendono a essere distribuite e i concetti risultano spesso intrecciati tra loro. La sfida di isolare queste componenti semantiche indipendenti costituisce il cuore del problema del \textit{disentanglement}.
-
-\section{Il fenomeno della Superposizione}
-
+\subsubsection{Il fenomeno della Superposizione}
 Idealmente, in una rete neurale ``trasparente'', ogni neurone dovrebbe corrispondere a una singola \textit{feature} (caratteristica) dell'input chiaramente interpretabile. In un classificatore di immagini, ad esempio, ci aspetteremmo di trovare un neurone che si attivi esclusivamente per una specifica forma geometrica o un particolare colore; in un modello di linguaggio, per un preciso concetto sintattico o semantico. Questo fenomeno di corrispondenza biunivoca è definito \textbf{monosemanticità}. Tuttavia, l'evidenza empirica mostra che i neuroni sono spesso \textbf{polisemici}: un singolo neurone può attivarsi in risposta a una moltitudine di stimoli tra loro non correlati. Per indagare questo fenomeno, il lavoro di Anthropic, \textit{Toy Models of Superposition}, ha introdotto il concetto di \textbf{superposizione} attraverso l'analisi di modelli semplificati addestrati su dati sintetici.
 
-\subsection{Formalismo matematico}
-Il problema può essere formalizzato considerando un modello lineare che tenta di mappare un numero $m$ di \textit{features} di input in uno spazio latente di dimensione $d$, dove $d$ rappresenta il numero di neuroni fisici della rete, con $m > d$.
-Sia $x \in \mathbb{R}^m$ un vettore che rappresenta le \textit{features} in ingresso. Il modello comprime queste informazioni in un vettore di attivazioni neuronali $h \in \mathbb{R}^d$ tramite una matrice di pesi $W \in \mathbb{R}^{d \times m}$:
+\paragraph{Formalismo matematico}
+Il problema può essere formalizzato considerando un modello lineare che tenta di mappare un numero $m$ di \textit{features} di input in uno spazio latente di dimensione $d$, dove $d$ rappresenta il numero di neuroni fisici della rete, con $m > d$. Sia $x \in \mathbb{R}^m$ un vettore che rappresenta le \textit{features} in ingresso. Il modello comprime queste informazioni in un vettore di attivazioni neuronali $h \in \mathbb{R}^d$ tramite una matrice di pesi $W \in \mathbb{R}^{d \times m}$:
 \begin{equation}
-    h = Wx
+h = Wx
 \end{equation}
 Per ricostruire le \textit{features} originali dalle attivazioni dei neuroni, il modello applica la matrice trasposta, seguita da una non-linearità (solitamente una funzione ReLU) necessaria per filtrare il rumore generato dalle interferenze:
 \begin{equation}
-    \hat{x} = \text{ReLU}(W^T h + b) = \text{ReLU}(W^T W x + b)
+\hat{x} = \text{ReLU}(W^T h + b) = \text{ReLU}(W^T W x + b)
 \end{equation}
 In un regime di non-superposizione, la rete utilizzerebbe una base ortogonale per rappresentare le \textit{features}, limitandosi a codificarne al massimo $d$. Tuttavia, quando $m > d$, il modello è costretto a ``stipare'' più informazioni di quante siano le dimensioni fisiche disponibili.
 
-\subsection{Il ruolo della sparsità}
-La domanda fondamentale è perché il modello scelga di rappresentare più \textit{features} dei neuroni disponibili. La risposta risiede nella \textbf{sparsità} ($\mathcal{S}$) delle \textit{features}. Nei dati reali, la maggior parte dei concetti non è presente simultaneamente: le \textit{features} sono cioè raramente attive allo stesso tempo.
-
-Se le \textit{features} sono sparse, il modello può sfruttare una proprietà geometrica degli spazi ad alta dimensionalità: l'esistenza di un numero esponenziale di vettori \textbf{quasi-ortogonali} (vettori il cui prodotto scalare è prossimo a zero, $\epsilon$). Il modello accetta quindi un compromesso:
+\paragraph{Il ruolo della sparsità}
+La domanda fondamentale è perché il modello scelga di rappresentare più \textit{features} dei neuroni disponibili. La risposta risiede nella \textbf{sparsità} ($\mathcal{S}$) delle \textit{features}. Nei dati reali, la maggior parte dei concetti non è presente simultaneamente: le \textit{features} sono cioè raramente attive allo stesso tempo. Se le \textit{features} sono sparse, il modello può sfruttare una proprietà geometrica degli spazi ad alta dimensionalità: l'esistenza di un numero esponenziale di vettori \textbf{quasi-ortogonali} (vettori il cui prodotto scalare è prossimo a zero, $\epsilon$). Il modello accetta quindi un compromesso:
 \begin{itemize}
-    \item \textbf{Vantaggio:} Può rappresentare un numero di concetti $m \gg d$.
-    \item \textbf{Costo:} Introduce delle interferenze (rumore) tra le \textit{features} a causa della mancata ortogonalità perfetta.
+\item \textbf{Vantaggio:} Può rappresentare un numero di concetti $m \gg d$.
+\item \textbf{Costo:} Introduce delle interferenze (rumore) tra le \textit{features} a causa della mancata ortogonalità perfetta.
 \end{itemize}
-
 Quando la sparsità è elevata, il rumore di interferenza diventa trascurabile rispetto al beneficio computazionale di poter codificare una vasta gamma di concetti. La superposizione emerge quindi come una strategia di compressione ottimale, permettendo alla rete di simulare un'architettura molto più grande utilizzando un numero limitato di neuroni fisici.

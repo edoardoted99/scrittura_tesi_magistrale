@@ -12,13 +12,13 @@ Introduciamo questo capitolo con una frase attribuita a Richard Feynman:
 Nel nostro contesto, l’idea è semplice ma potente: si comprende davvero un
 oggetto complesso quando si è in grado di scomporlo nei suoi meccanismi
 essenziali e ricostruirlo, verificando che il risultato mantenga le proprietà
-fondamentali dell’originale. Gli \textbf{autoencoder} incarnano esattamente questo principio. Sono
+fondamentali dell’originale. Gli autoencoder incarnano esattamente questo principio. Sono
 architetture di apprendimento (tipicamente non supervisionato) progettate per
 \textit{imparare a ricostruire l’input} dopo averlo trasformato in una
 rappresentazione interna. Operativamente, un autoencoder apprende una mappatura
-dall’input a uno \textbf{spazio latente} e, a partire da tale spazio, una seconda
+dall’input a uno spazio latente e, a partire da tale spazio, una seconda
 mappatura che riporta ai dati originali. L’addestramento è guidato
-dall’obiettivo di minimizzare un \textbf{errore di ricostruzione}, cioè la
+dall’obiettivo di minimizzare un errore di ricostruzione, cioè la
 discrepanza tra l’input e la sua ricostruzione. L’interesse degli autoencoder non risiede soltanto nella ricostruzione in sé,
 ma soprattutto nella natura della rappresentazione latente appresa. Ovvero in ciò che loro ``capiscono" decostruendo e ricostruendo i dati. Poiché il
 modello viene sottoposto a dei vincoli da rispettare è costretto comprimere o
@@ -31,7 +31,7 @@ emergere più chiaramente. \textit{Prisma}, l'applicazione che è stata sviluppa
 \subsection{Definizione e formulazione generale}
 \label{subsec:ae_definition}
 
-Un \textbf{autoencoder} è un modello di apprendimento il cui obiettivo è
+Un autoencoder è un modello di apprendimento il cui obiettivo è
 \textit{ricostruire} un’osservazione di input dopo averla codificata in una
 rappresentazione interna a dimensionalità controllata. Sia dato un dataset di
 addestramento costituito da $M$ osservazioni
@@ -42,9 +42,9 @@ addestramento costituito da $M$ osservazioni
 L’addestramento non richiede etichette: l’informazione di supervisione è
 \textit{intrinseca}, poiché il target del modello coincide con l’input stesso
 (\textit{reconstruction learning}). Dal punto di vista architetturale, un autoencoder è composto da due moduli:
-un \textbf{encoder} e un \textbf{decoder}. L’encoder è una funzione
+un encoder e un decoder. L’encoder è una funzione
 parametrica (tipicamente una rete neurale) che mappa l’input in uno
-\textbf{spazio latente}:
+spazio latente:
 \begin{equation}
     \mathbf{h}_i = g_\theta(\mathbf{x}_i),
     \qquad g_\theta : \mathbb{R}^n \rightarrow \mathbb{R}^q,
@@ -85,7 +85,7 @@ funzione identità, ottenendo ricostruzioni quasi perfette senza apprendere una
 rappresentazione interna utile o interpretabile. In questo scenario, lo spazio
 latente non è costretto a comprimere o organizzare l’informazione: può limitarsi
 a \emph{memorizzare} dettagli dell’input necessari alla ricostruzione. Per rendere l’apprendimento non banale è quindi necessario introdurre un
-\textbf{bias induttivo}, ossia un insieme di vincoli che limitino la capacità
+bias induttivo, ossia un insieme di vincoli che limitino la capacità
 di rappresentazione o che penalizzino codifiche indesiderabili. In termini
 pratici, un autoencoder efficace deve bilanciare due obiettivi:
 \begin{enumerate}[label=\roman*.]
@@ -97,10 +97,10 @@ pratici, un autoencoder efficace deve bilanciare due obiettivi:
 \subsection{Introduzione dei vincoli: architettura e regolarizzazione}
 \label{subsec:constraints_overview}
 I vincoli possono essere introdotti secondo due strategie complementari.
-La prima agisce \textbf{sull’architettura}, riducendo il canale informativo tra
+La prima agisce sull’architettura, riducendo il canale informativo tra
 input e latente (ad esempio tramite una strozzatura dimensionale), oppure
 limitando la complessità effettiva del modello. La seconda agisce
-\textbf{sulla funzione obiettivo}, aggiungendo termini di regolarizzazione che
+sulla funzione obiettivo, aggiungendo termini di regolarizzazione che
 impongono proprietà desiderate alle attivazioni latenti o ai parametri. In forma generale, l’addestramento può essere scritto come
 \begin{equation}
     \min_{\theta,\phi}\;
@@ -182,7 +182,7 @@ che i fattori di variazione risultino separati: la compressione forza una
 organizzarsi. Questa osservazione motiva l’introduzione di una seconda classe di vincoli, che
 non agiscono sulla dimensionalità del latente ma sulla sua \emph{struttura}.
 In particolare, i termini di regolarizzazione nella funzione obiettivo possono
-imporre proprietà come norma controllata o \textbf{sparsità} delle attivazioni,
+imporre proprietà come norma controllata o sparsità delle attivazioni,
 preparando il terreno per gli \textit{Sparse Autoencoders}.
 
 \subsubsection{Vincoli nella funzione obiettivo: regolarizzazione dello spazio latente}
@@ -205,7 +205,7 @@ La funzione $\mathcal{R}(\cdot)$ determina il tipo di struttura indotta nello
 spazio latente. Tra le scelte più comuni si considerano:
 
 \begin{enumerate}[label=\roman*.]
-    \item \textbf{Penalizzazione $\ell_2$ (codifiche a norma controllata).}
+    \item Penalizzazione $\ell_2$ (codifiche a norma controllata).
     Una regolarizzazione quadratica
     \begin{equation}
         \mathcal{R}(\mathbf{h}_i) = \|\mathbf{h}_i\|_2^2
@@ -215,7 +215,7 @@ spazio latente. Tra le scelte più comuni si considerano:
     soluzioni ``estreme'' e può migliorare la regolarità della rappresentazione,
     pur senza imporre una vera selettività delle unità latenti.
 
-    \item \textbf{Penalizzazione $\ell_1$ (sparsità).}
+    \item Penalizzazione $\ell_1$ (sparsità).
     Una scelta particolarmente importante nel contesto dell’interpretabilità è la
     regolarizzazione $\ell_1$:
     \begin{equation}
@@ -227,7 +227,7 @@ spazio latente. Tra le scelte più comuni si considerano:
     codifica più \emph{selettiva}, spesso associata a feature più localizzate e più
     facili da interpretare.
 
-    \item \textbf{Vincolo \textit{top-$k$} (sparsità esplicita).}
+    \item Vincolo \textit{top-$k$} (sparsità esplicita).
     Un’alternativa alla penalizzazione $\ell_1$ consiste nell’imporre direttamente
     che, per ogni input, solo le $k$ componenti latenti più grandi (in modulo)
     rimangano attive, mentre tutte le altre vengano azzerate:
@@ -415,7 +415,7 @@ L'osservazione importante è che in un autoencoder standard, ``capire'' il conce
     \item Generalizzazione: capacità di gestire combinazioni non viste durante il training.
 \end{enumerate}
 
-Per ottenere queste proprietà desiderabili, è necessario introdurre \textbf{vincoli espliciti} nella funzione obiettivo o nell'architettura del modello. Questi vincoli agiscono come ``leggi fisiche'' che governano lo spazio latente, forzando l'emergere di una struttura ordinata e interpretabile.
+Per ottenere queste proprietà desiderabili, è necessario introdurre vincoli espliciti nella funzione obiettivo o nell'architettura del modello. Questi vincoli agiscono come ``leggi fisiche'' che governano lo spazio latente, forzando l'emergere di una struttura ordinata e interpretabile.
 La direzione naturale, quindi, è passare da vincoli architetturali passivi (il bottleneck dimensionale) a vincoli attivi sulla struttura delle rappresentazioni—un percorso che porta agli autoencoder con regolarizzazione esplicita dello spazio latente e, in particolare, ai modelli che favoriscono il \textit{disentanglement} dei fattori di variazione.
 
 
@@ -445,7 +445,7 @@ Consideriamo un'immagine di una cifra scritta a mano. I fattori di variazione ch
     \item Lo \textit{stile di scrittura} (calligrafico, stampato, corsivo).
 \end{enumerate}
 
-In un autoencoder standard, questi fattori vengono tipicamente codificati in modo \textbf{entangled}: modificare una singola coordinata latente $z_i$ può simultaneamente alterare l'identità della cifra, la sua inclinazione e lo spessore, rendendo impossibile un controllo selettivo degli attributi.
+In un autoencoder standard, questi fattori vengono tipicamente codificati in modo entangled: modificare una singola coordinata latente $z_i$ può simultaneamente alterare l'identità della cifra, la sua inclinazione e lo spessore, rendendo impossibile un controllo selettivo degli attributi.
 Questo accade perché l'obiettivo di minimizzare l'errore di ricostruzione non impone alcun vincolo sulla \textit{struttura} della rappresentazione: il modello è libero di organizzare lo spazio latente in modo opportunistico, mescolando arbitrariamente i fattori di variazione purché la ricostruzione sia accurata.
 
 \subsubsection{Definizione di Disentanglement}
@@ -466,10 +466,10 @@ In un caso ideale:
 
 Questa proprietà ha conseguenze pratiche immediate:
 \begin{enumerate}[label=\roman*.]
-    \item \textbf{Controllo fine:} è possibile manipolare selettivamente attributi specifici;
-    \item \textbf{Interpretabilità:} ogni dimensione latente ha un significato semantico chiaro;
-    \item \textbf{Trasferibilità:} le feature apprese possono essere riutilizzate in compiti diversi;
-    \item \textbf{Robustezza:} il modello generalizza meglio a combinazioni non viste di attributi.
+    \item Controllo fine: è possibile manipolare selettivamente attributi specifici;
+    \item Interpretabilità: ogni dimensione latente ha un significato semantico chiaro;
+    \item Trasferibilità: le feature apprese possono essere riutilizzate in compiti diversi;
+    \item Robustezza: il modello generalizza meglio a combinazioni non viste di attributi.
 \end{enumerate}
 
 \subsubsection{Esempio: InfoGAN su MNIST}
@@ -497,9 +497,9 @@ Questo comportamento non emerge spontaneamente: InfoGAN utilizza un termine di r
 Come discusso nella Sezione~\ref{sec:semantics_from_constraints}, gli autoencoder classici falliscono nel produrre rappresentazioni disentangled perché:
 
 \begin{enumerate}[label=\roman*.]
-    \item Il solo obiettivo di ricostruzione è \textbf{invariante per trasformazioni} dello spazio latente: qualsiasi permutazione o rotazione delle coordinate latenti che preservi la capacità ricostruttiva è ugualmente valida;
-    \item Il modello tende a \textbf{sfruttare correlazioni spurie} nei dati di training, mescolando fattori che co-occorrono frequentemente (es. cifre sottili tendono a essere inclinate);
-    \item In assenza di vincoli espliciti, il modello converge a soluzioni \textbf{localmente ottime} ma semanticamente opache, dove l'informazione è distribuita in modo denso su tutte le dimensioni.
+    \item Il solo obiettivo di ricostruzione è invariante per trasformazioni dello spazio latente: qualsiasi permutazione o rotazione delle coordinate latenti che preservi la capacità ricostruttiva è ugualmente valida;
+    \item Il modello tende a sfruttare correlazioni spurie nei dati di training, mescolando fattori che co-occorrono frequentemente (es. cifre sottili tendono a essere inclinate);
+    \item In assenza di vincoli espliciti, il modello converge a soluzioni localmente ottime ma semanticamente opache, dove l'informazione è distribuita in modo denso su tutte le dimensioni.
 \end{enumerate}
 
 Per indurre il disentanglement è quindi necessario introdurre vincoli aggiuntivi che penalizzino le rappresentazioni entangled e premino quelle in cui i fattori di variazione risultano separati. Questi vincoli agiscono tipicamente attraverso:
@@ -510,7 +510,7 @@ Per indurre il disentanglement è quindi necessario introdurre vincoli aggiuntiv
     \item Sparsità: forzare rappresentazioni in cui solo poche dimensioni sono attive per ciascun input, favorendo la specializzazione delle unità latenti.
 \end{enumerate}
 
-Quest'ultima strategia—la sparsità—si rivela particolarmente efficace e costituisce la base degli \textit{Sparse Autoencoders}, che verranno discussi in dettaglio nel seguito. Prima, però, è utile esaminare un esempio paradigmatico di come i vincoli probabilistici possano indurre struttura interpretabile: i \textbf{$\beta$-VAE}.
+Quest'ultima strategia—la sparsità—si rivela particolarmente efficace e costituisce la base degli \textit{Sparse Autoencoders}, che verranno discussi in dettaglio nel seguito. Prima, però, è utile esaminare un esempio paradigmatico di come i vincoli probabilistici possano indurre struttura interpretabile: i $\beta$-VAE.
 
 
 % Sezione 2.6: Regolarizzare lo spazio latente: i β-VAE
@@ -518,12 +518,12 @@ Quest'ultima strategia—la sparsità—si rivela particolarmente efficace e cos
 \subsection{Regolarizzare lo spazio latente: i \texorpdfstring{$\beta$}{beta}-VAE}
 \label{sec:beta_vae}
 
-Abbiamo stabilito che il disentanglement richiede vincoli espliciti sulla struttura delle rappresentazioni latenti. In questa sezione esaminiamo un approccio paradigmatico a questo problema: i \textbf{Variational Autoencoders} (VAE) e la loro variante $\beta$-VAE, che implementano vincoli di natura probabilistica per indurre ordine e interpretabilità nello spazio latente.
+Abbiamo stabilito che il disentanglement richiede vincoli espliciti sulla struttura delle rappresentazioni latenti. In questa sezione esaminiamo un approccio paradigmatico a questo problema: i Variational Autoencoders (VAE) e la loro variante $\beta$-VAE, che implementano vincoli di natura probabilistica per indurre ordine e interpretabilità nello spazio latente.
 
 \subsubsection{Dai vincoli architetturali ai vincoli probabilistici}
 
 Gli autoencoder classici, anche dotati di bottleneck dimensionale, non garantiscono che lo spazio latente presenti una struttura continua e ben organizzata. Come osservato nella Sezione~\ref{sec:semantics_from_constraints}, le regioni tra i cluster di dati rimangono spesso indefinite, generando rumore quando decodificate.
-I Variational Autoencoders affrontano questo problema introducendo un vincolo di natura \textbf{probabilistica}: anziché mappare deterministicamente un input $\mathbf{x}$ in un punto $\mathbf{z}$ dello spazio latente, un VAE apprende una \textit{distribuzione} $q_\phi(\mathbf{z}|\mathbf{x})$ da cui campionare la rappresentazione latente. Questa distribuzione è vincolata ad approssimare una distribuzione a priori $p(\mathbf{z})$, tipicamente una gaussiana standard $\mathcal{N}(\mathbf{0}, \mathbf{I})$.
+I Variational Autoencoders affrontano questo problema introducendo un vincolo di natura probabilistica: anziché mappare deterministicamente un input $\mathbf{x}$ in un punto $\mathbf{z}$ dello spazio latente, un VAE apprende una \textit{distribuzione} $q_\phi(\mathbf{z}|\mathbf{x})$ da cui campionare la rappresentazione latente. Questa distribuzione è vincolata ad approssimare una distribuzione a priori $p(\mathbf{z})$, tipicamente una gaussiana standard $\mathcal{N}(\mathbf{0}, \mathbf{I})$.
 
 \subsubsection{Formulazione matematica}
 
@@ -690,7 +690,7 @@ Una scelta comune per il termine di sparsità è la penalizzazione $\ell_1$:
 \end{equation}
 Questa penalizzazione favorisce soluzioni in cui molte componenti di $\mathbf{h}$ sono esattamente zero, inducendo una codifica selettiva. Il coefficiente $\lambda$ determina il livello di sparsità: valori elevati producono rappresentazioni più sparse ma possono degradare la qualità ricostruttiva.
 
-\paragraph{Vincolo top-$k$.} 
+\paragraph{Vincolo top-$k$.}
 Un'alternativa consiste nell'imporre sparsità \textit{esplicita} tramite un vincolo \textit{top-$k$} \parencite{wang2024disentangledrepresentationlearning}:
 \begin{equation}
     \mathbf{h}_{\text{sparse}} = \text{TopK}(\mathbf{h}; k),
@@ -715,4 +715,4 @@ Sebbene la sparsità non garantisca formalmente una completa separazione statist
 \subsubsection{Conclusioni e prospettive}
 
 Gli Sparse Autoencoders offrono un paradigma complementare ai vincoli probabilistici per indurre interpretabilità attraverso la sparsità delle attivazioni. La loro architettura overcomplete, combinata con vincoli di sparsità espliciti, consente di apprendere rappresentazioni in cui le singole unità latenti acquisiscono significati semantici distinti.
-Nel prossimo capitolo introdurremo gli \textbf{embeddings testuali}, rappresentazioni dense prodotte da modelli linguistici che codificano informazione semantica complessa in spazi ad alta dimensionalità. Come vedremo, gli Sparse Autoencoders costituiscono uno strumento naturale per analizzare e interpretare queste rappresentazioni, permettendo di estrarre feature monosemantiche da spazi latenti apparentemente opachi—un approccio che costituirà la base teorica del lavoro sviluppato in questa tesi.
+Nel prossimo capitolo introdurremo gli embeddings testuali, rappresentazioni dense prodotte da modelli linguistici che codificano informazione semantica complessa in spazi ad alta dimensionalità. Come vedremo, gli Sparse Autoencoders costituiscono uno strumento naturale per analizzare e interpretare queste rappresentazioni, permettendo di estrarre feature monosemantiche da spazi latenti apparentemente opachi—un approccio che costituirà la base teorica del lavoro sviluppato in questa tesi.
