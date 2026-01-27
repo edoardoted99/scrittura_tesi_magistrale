@@ -12,11 +12,10 @@
 \label{sec:semantics_to_vectors}
 
 Questo capitolo introduce il concetto di \textbf{embedding testuale}: una rappresentazione matematica che mappa simboli linguistici discreti (parole, token) in vettori continui capaci di catturare relazioni semantiche. Gli embeddings costituiscono il ponte tra il linguaggio naturale e l'elaborazione computazionale, permettendo alle macchine di manipolare il significato anziché limitarsi a confrontare stringhe di caratteri.
-Come vedremo, la capacità di rappresentare efficacemente il significato linguistico in forma vettoriale è fondamentale per il lavoro sviluppato in questa tesi: gli \textbf{Sparse Autoencoders} (Capitolo~\ref{sec:autoencoders}) verranno applicati proprio a questi embeddings densi per estrarne strutture interpretabili. Prima di arrivare a tale applicazione, è necessario comprendere come si costruiscono gli embeddings, quali proprietà possiedono e come si sono evoluti dai modelli statici a quelli contestuali.
+Come vedremo, la capacità di rappresentare efficacemente il significato linguistico in forma vettoriale è fondamentale per il lavoro sviluppato in questa tesi: gli sparse autoencoders (Capitolo~\ref{sec:autoencoders}) verranno applicati proprio a questi embeddings densi per estrarne strutture interpretabili. Prima di arrivare a tale applicazione, è necessario comprendere come si costruiscono gli embeddings, quali proprietà possiedono e come si sono evoluti dai modelli statici a quelli contestuali.
 
 \subsubsection{Simboli e significati}
 \label{subsubsec:symbols_meanings}
-
 Il punto di partenza per comprendere gli \textit{embeddings} risiede nella distinzione tra \textbf{significante} e \textbf{significato}. In linguistica, il significante è la forma fisica del segno (il suono della parola o la stringa di caratteri ``mela''), mentre il significato è il concetto mentale a cui esso rimanda. Le macchine operano nativamente nel dominio dei significanti: esse manipolano simboli discreti che, per loro natura, sono arbitrari. Non vi è nulla nella stringa ``cane'' che richiami le proprietà biologiche dell'animale. 
 La sfida dell'Intelligenza Artificiale è costruire una relazione, o funzione di mapping, che proietti l'insieme dei simboli in uno spazio semantico dove i concetti sono rappresentati numericamente.
 
@@ -51,14 +50,16 @@ La sfida dell'Intelligenza Artificiale è costruire una relazione, o funzione di
 \caption{Rappresentazione del mapping tra lo spazio discreto dei simboli (Significanti) e lo spazio continuo dei vettori (Significati). L'obiettivo è apprendere una funzione $f$ tale che simboli diversi con significati simili vengano proiettati in vettori vicini nello spazio matematico.}
 \label{fig:signifier_signified_mapping}
 \end{figure}
-
 Apprendere questa relazione è la \textit{conditio sine qua non} per permettere alle macchine di manipolare i simboli non solo come sequenze di bit, ma come entità portatrici di senso. Senza questo passaggio, il ragionamento logico e la coerenza semantica rimarrebbero preclusi.
-
 \subsubsection{Gli assi del linguaggio}
 \label{subsubsec:linguistic_axes}
-
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png}
+    \caption{Ferdinand de Saussure, fondatore della linguistica strutturale e teorico dei rapporti sintagmatici e associativi (paradigmatici) del linguaggio \cite{saussure_wikipedia_image}.}
+    \label{fig:saussure}
+\end{figure}
 Per addestrare modelli capaci di catturare i significati dai significanti, li si pone nella condizione di analizzare enormi corpora di testo attraverso le due dimensioni fondamentali lungo le quali si articola ogni lingua: gli \textbf{assi saussuriani}.
-
 \begin{figure}[htbp]
     \centering
     \tikzset{
@@ -124,7 +125,7 @@ Il fatto che \textit{ongchoi} compaia insieme a parole come \textit{riso}, \text
 
 \begin{notebox}
 \textbf{Ipotesi Distribuzionale}\\
-Si definisce ipotesi distribuzionale quella ipotesi per la quale parole simili compaiono in contesti simili. Formulata per la prima volta da linguisti come Firth (1957), questa ipotesi costituisce il fondamento teorico di tutti i modelli di embedding moderni.
+Si definisce ipotesi distribuzionale quella ipotesi per la quale parole simili compaiono in contesti simili. 
 \end{notebox}
 
 Tale ipotesi suggerisce che il significato delle parole venga appreso sulla base del contesto in cui queste appaiono. Se questa intuizione viene seguita, allora diventa possibile assegnare rappresentazioni numeriche alle parole sulla base della loro occorrenza in contesti specifici. Prima di arrivare però a capire come costruire gli embeddings è necessario introdurre una ulteriore intuizione attribuita ad Osgood nel 1957.
@@ -156,21 +157,45 @@ Questa idea è stata la prima ad anticipare direttamente i moderni modelli di \t
 
 \subsubsection{Verso i word embeddings}
 \label{subsubsec:towards_embeddings}
-
 L'unione dell'ipotesi distribuzionale e dell'ipotesi di Osgood ha aperto la strada agli embeddings come modello fondamentale per la rappresentazione computazionale del significato. Da un lato, l'ipotesi distribuzionale fornisce il principio secondo cui il significato delle parole può essere inferito dai contesti in cui esse compaiono; dall'altro, l'ipotesi di Osgood suggerisce che tale significato possa essere rappresentato come un vettore numerico in uno spazio semantico.
 Nelle sezioni successive introdurremo le principali famiglie di embeddings, partendo dai modelli basati su conteggi (count-based) fino ai moderni embeddings contestuali prodotti da architetture Transformer. Per orientare il lettore, è utile chiarire fin da subito le principali tipologie di embeddings che verranno introdotte nel seguito.
 In base alla natura della rappresentazione prodotta, è possibile distinguere due grandi famiglie: embeddings \textbf{statici} ed embeddings \textbf{dinamici}.
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=2cm,
+    box/.style={draw, rectangle, rounded corners, minimum width=3cm, minimum height=1cm, align=center, font=\small, fill=blue!10},
+    result/.style={draw, rectangle, rounded corners, minimum width=4cm, minimum height=1.2cm, align=center, font=\small\bfseries, fill=green!20},
+    arrow/.style={->, >=stealth, thick}
+]
+    % Ipotesi di partenza
+    \node[box] (osgood) at (-3, 2) {Ipotesi di Osgood\\(1957)\\[0.2em]\footnotesize Significato come\\vettore numerico};
+    
+    \node[box] (distributional) at (3, 2) {Ipotesi\\Distribuzionale\\[0.2em]\footnotesize Contesto determina\\significato};
+    
+    % Risultato
+    \node[result] (embeddings) at (0, -1) {Word Embeddings\\[0.2em]\footnotesize Rappresentazioni vettoriali\\apprese dal contesto};
+    
+    % Frecce convergenti
+    \draw[arrow, blue!70] (osgood) -- (embeddings);
+    \draw[arrow, blue!70] (distributional) -- (embeddings);
+    
+    % Etichette sulle frecce
+    \node[font=\scriptsize, text width=2cm, align=center] at (-1.5, 0.5) {Come\\rappresentare};
+    \node[font=\scriptsize, text width=2cm, align=center] at (1.5, 0.5) {Cosa\\rappresentare};
+
+\end{tikzpicture}
+\caption{Convergenza delle due ipotesi fondamentali negli embeddings moderni. L'ipotesi di Osgood fornisce il \emph{formato} della rappresentazione (vettori numerici), mentre l'ipotesi distribuzionale indica \emph{cosa} deve essere catturato (relazioni contestuali tra parole).}
+\label{fig:convergenza_ipotesi}
+\end{figure}
 \begin{notebox}
 \textbf{Embeddings statici}\\
-Si definisce statico un embedding in cui ogni parola del vocabolario è associata a un unico vettore pre-computato. Tale rappresentazione rimane invariata a prescindere dal contesto specifico in cui la parola appare. \\
-\textit{Esempi}: Matrici di co-occorrenza, Word2Vec, GloVe.
+Si definisce statico un embedding in cui ogni parola del vocabolario è associata a un unico vettore pre-computato. Tale rappresentazione rimane invariata a prescindere dal contesto specifico in cui la parola appare.
 \end{notebox}
 Negli embeddings statici, a ciascun tipo di parola del vocabolario è associato un unico vettore, indipendente dal contesto in cui la parola appare. Questa categoria include sia gli embeddings distribuzionali basati su conteggi, come le matrici termine--documento e termine--termine eventualmente ridotte tramite SVD, sia gli embeddings predittivi appresi mediante modelli neurali, come Word2Vec.
 \begin{notebox}
 \textbf{Embeddings dinamici (Contestuali)}\\
-Si definisce dinamico un embedding in cui la rappresentazione vettoriale di una parola viene generata ``al volo'' in funzione dell'intera sequenza di input. La stessa parola riceve quindi vettori diversi a seconda del contesto semantico e sintattico circostante.\\
-\textit{Esempi}: ELMo, BERT, GPT.
-\end{notebox}
+Si definisce dinamico un embedding in cui la rappresentazione vettoriale di una parola viene computata in modo dipendente dal contesto, come funzione dell'intera sequenza di input. La stessa parola riceve quindi vettori diversi a seconda del contesto semantico e sintattico in cui compare.\end{notebox}
 Gli embeddings dinamici, o contestuali, producono invece una rappresentazione dipendente dal contesto: la stessa parola può essere associata a vettori diversi a seconda della frase in cui compare. Tali rappresentazioni sono generate da modelli di linguaggio neurali profondi, a partire da architetture ricorrenti fino ai moderni modelli Transformer, come BERT.
 \begin{figure}[htbp]
 \centering
@@ -199,20 +224,13 @@ Gli embeddings dinamici, o contestuali, producono invece una rappresentazione di
 \caption{Classificazione delle principali tipologie di embeddings trattate nel capitolo.}
 \label{fig:classificazione_embeddings}
 \end{figure}
-
-La Figura~\ref{fig:classificazione_embeddings} riassume questa tassonomia. Nelle sezioni successive analizzeremo in dettaglio ciascuna di queste famiglie, comprendendo come si costruiscono, quali proprietà possiedono e quali limiti presentano. Questo percorso ci condurrà fino agli embeddings densi prodotti da modelli come BERT, che costituiscono l'input degli Sparse Autoencoders discussi nel Capitolo~\ref{sec:disentangling_embeddings}.
-
-
+La Figura~\ref{fig:classificazione_embeddings} riassume questa tassonomia. Nelle sezioni successive analizzeremo in dettaglio ciascuna di queste famiglie, comprendendo come si costruiscono, quali proprietà possiedono e quali limiti presentano. Questo percorso ci condurrà fino agli embeddings densi prodotti da modelli come BERT, che costituiscono l'input degli Sparse Autoencoders discussi nel Capitolo~\ref{sec:04_disentangling_dense_embeddings_with_sparse_autoencoders}.
 \subsection{Embeddings statici}
 \label{sec:static_embeddings}
-
 In questa sezione introduciamo gli embeddings statici, rappresentazioni in cui ogni parola del vocabolario è associata a un unico vettore fisso, indipendente dal contesto in cui compare. Distingueremo tra due approcci fondamentali: i metodi \textbf{count-based}, che costruiscono rappresentazioni a partire da statistiche di co-occorrenza, e i metodi \textbf{predittivi}, che apprendono embeddings tramite reti neurali addestrate a predire parole in contesto.
-
 \subsubsection{Embeddings count-based}
 \label{subsubsec:count_based}
-
 Il modo più semplice per costruire embeddings vettoriali delle parole è basato sulla \textbf{matrice di co-occorrenza}, una struttura che codifica quante volte determinati elementi linguistici compaiono insieme all'interno di un corpus. Esistono diverse varianti di matrici di co-occorrenza; in questa sezione ne introduciamo due fondamentali: la \emph{term-document matrix} e la \emph{term-term matrix}.
-
 \paragraph{Matrice termine-documento.}
 In una matrice termine-documento ogni riga rappresenta una parola del vocabolario e ogni colonna rappresenta un documento appartenente a una collezione di testi. Ogni cella della matrice contiene il numero di volte in cui la parola associata alla riga compare nel documento associato alla colonna. Un esempio di term-document matrix è riportato nella Tabella~\ref{tab:term_document_shakespeare}, che mostra le occorrenze di quattro parole in quattro opere di Shakespeare.
 
@@ -231,25 +249,17 @@ wit    & 20  & 15 & 2  & 3  \\
 \caption{Term-document matrix per quattro parole in quattro opere di Shakespeare. Ogni cella contiene il numero di occorrenze della parola (riga) nel documento (colonna).}
 \label{tab:term_document_shakespeare}
 \end{table}
-
 Questa matrice può essere interpretata in due modi distinti ma complementari. Se si considerano le \textbf{colonne} della matrice, ciascun documento è rappresentato come un vettore in uno spazio di dimensione $|V|$, dove $|V|$ è la dimensione del vocabolario. Tale rappresentazione costituisce il fondamento del \emph{vector space model} per il recupero dell'informazione. 
-
 Alternativamente, se si considerano le \textbf{righe} della matrice, ogni parola può essere interpretata come un vettore in uno spazio di dimensione pari al numero di documenti.
-
 \begin{notebox}
 \textbf{Interpretazione delle righe della matrice termine-documento}\\
 Due parole risultano simili se presentano distribuzioni simili sui documenti, ovvero se tendono a comparire negli stessi testi con frequenze comparabili.
 \end{notebox}
-
 La term-document matrix fornisce quindi una prima, semplice forma di \emph{embedding distribuzionale} delle parole, in cui il significato emerge dalla loro distribuzione nei documenti del corpus.
-
 \paragraph{Matrice termine-termine.}
 Un'alternativa alla matrice termine--documento per la rappresentazione distribuzionale delle parole è la matrice termine-termine, detta anche \emph{word--word matrix} o \emph{term--context matrix}. In questo caso, le colonne della matrice non sono più etichettate da documenti, bensì da parole del vocabolario. La matrice ha quindi dimensionalità $|V| \times |V|$, dove $|V|$ indica la dimensione del vocabolario.
-
 In una matrice termine-termine, ogni riga rappresenta una \textbf{parola target} e ogni colonna rappresenta una \textbf{parola di contesto}. Ciascuna cella contiene il numero di volte in cui la parola di contesto compare nel contesto della parola target all'interno di un corpus di addestramento. Il concetto di \emph{contesto} viene tipicamente definito tramite una \textbf{finestra scorrevole} attorno alla parola target. Ad esempio, fissata una finestra di ampiezza $\pm k$, una parola è considerata di contesto se compare entro $k$ posizioni a sinistra o a destra della parola target nel testo.
-
 La Tabella~\ref{tab:term_term_wikipedia} riporta un estratto reale di una matrice termine--termine calcolata sul corpus Wikipedia.
-
 \begin{table}[h!]
 \centering
 \begin{tabular}{lcccccc}
@@ -265,60 +275,102 @@ information  & 0 & 3325 & 3982 & 378  & 5   & 13 \\
 \caption{Estratto di una matrice termine--termine calcolata sul corpus Wikipedia. Ogni cella contiene il numero di co-occorrenze tra la parola target (riga) e la parola di contesto (colonna) all'interno di una finestra di contesto locale.}
 \label{tab:term_term_wikipedia}
 \end{table}
-
 In questa rappresentazione, ogni parola è associata a un vettore in uno spazio di dimensione $|V|$, in cui ciascuna dimensione corrisponde a una parola di contesto. Parole semanticamente simili tendono ad avere vettori simili, poiché compaiono in contesti linguistici analoghi.
-
 \begin{notebox}
 \textbf{Interpretazione della matrice termine--termine}\\
 Due parole risultano semanticamente simili se presentano vettori di co-occorrenza simili, ovvero se tendono a comparire negli stessi contesti linguistici, anche nel caso in cui non compaiano mai direttamente insieme.
 \end{notebox}
-
 Data $|V|$ la dimensione del vocabolario, tale matrice ha una dimensionalità $|V| \times |V|$. Si hanno tuttavia due problemi:
 \begin{enumerate}
     \item Dal momento che ogni parola co-occorrerà solo con pochissime altre, \textit{la dimensionalità della matrice è enorme}.
     \item La maggior parte delle celle è nulla, e quindi \textit{i vettori sono estremamente sparsi}.
 \end{enumerate}
-
 Per affrontare questi problemi esistono diverse strategie, tra cui la riduzione dimensionale tramite SVD e il passaggio a paradigmi predittivi come Word2Vec.
-
 \paragraph{Riduzione dimensionale tramite SVD.}
 Un metodo per la riduzione della dimensionalità è la Singular Value Decomposition applicata alla word--context matrix. Sia $M \in \mathbb{R}^{|V| \times |V|}$ la word--context matrix, eventualmente pesata tramite tf-idf. La decomposizione ai valori singolari consente di fattorizzare $M$ come prodotto di tre matrici:
 \[
 M = U \Sigma V^\top
 \]
-dove $U$ e $V$ sono matrici ortogonali e $\Sigma$ è una matrice diagonale contenente i valori singolari ordinati in modo decrescente. 
-
-Per ottenere una rappresentazione a dimensionalità ridotta, si considera una versione troncata della decomposizione, mantenendo solo i primi $k$ valori singolari:
+dove $U$ e $V$ sono matrici ortogonali e $\Sigma$ è una matrice diagonale contenente i valori singolari ordinati in modo decrescente. Per ottenere una rappresentazione a dimensionalità ridotta, si considera una versione troncata della decomposizione, mantenendo solo i primi $k$ valori singolari:
 \[
 M \approx U_k \Sigma_k V_k^\top
 \]
 con $k \ll |V|$. Le righe della matrice $U_k \Sigma_k$ costituiscono una rappresentazione densa delle parole target in uno spazio latente di dimensione $k$. In questo nuovo spazio, ogni parola è descritta da un vettore a dimensionalità ridotta, in cui le correlazioni semantiche risultano più evidenti rispetto alla rappresentazione originale sparsa.
-
 \paragraph{Cosine similarity.}
 Una volta ottenuti vettori di embedding (sia da matrici di co-occorrenza sia da riduzione dimensionale), serve una metrica per quantificare la similarità semantica tra parole. La \textbf{cosine similarity} è una misura di similarità tra vettori che valuta il coseno dell'angolo compreso tra essi nello spazio vettoriale. Data la sua indipendenza dalla lunghezza dei vettori, risulta particolarmente adatta a confrontare vettori di frequenze o di pesi.
-
 Dati due vettori $u$ e $v$, la similarità coseno è definita come:
 \begin{equation}
 \text{cosine\_sim}(u, v) = 
 \frac{u \cdot v}{\|u\| \, \|v\|}
 = \frac{\sum_i u_i v_i}{\sqrt{\sum_i u_i^2} \, \sqrt{\sum_i v_i^2}}.
 \end{equation}
-
 Il valore risultante è compreso tra $-1$ e $1$: $1$ indica massima similarità (stessa direzione), $0$ indica ortogonalità (nessuna similarità), e valori negativi indicano direzioni opposte. Nelle applicazioni di NLP la cosine similarity è spesso preferita alla distanza Euclidea, perché ci interessa confrontare il \textit{pattern} delle co-occorrenze piuttosto che le loro magnitudini assolute.
-
 \subsubsection{Word2Vec: un approccio predittivo}
 \label{subsubsec:word2vec}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=0.8cm,
+    theory/.style={draw, ellipse, minimum width=2.5cm, minimum height=1cm, align=center, font=\footnotesize, fill=blue!10},
+    impl/.style={draw, rectangle, rounded corners, minimum width=2.5cm, minimum height=0.8cm, align=center, font=\footnotesize, fill=green!15}
+]
+    % Colonna sinistra: Osgood
+    \node[theory] (osg_theory) at (-3, 3.5) {
+        \textbf{Osgood}\\
+        {\scriptsize Significato $\to$ vettore}
+    };
+    
+    \node[impl] (osg_vectors) at (-3, 2) {
+        Matrici $W$, $C$\\
+        $\mathbf{w}, \mathbf{c} \in \mathbb{R}^d$
+    };
+    
+    \node[impl] (osg_sim) at (-3, 0.8) {
+        Similarità:\\
+        $\mathbf{w} \cdot \mathbf{c}$
+    };
+    
+    % Colonna destra: Distribuzionale
+    \node[theory] (dist_theory) at (3, 3.5) {
+        \textbf{Distribuzionale}\\
+        {\scriptsize Contesto $\to$ significato}
+    };
+    
+    \node[impl] (dist_window) at (3, 2) {
+        Finestra $\pm k$\\
+        Contesto locale
+    };
+    
+    \node[impl] (dist_cooc) at (3, 0.8) {
+        Co-occorrenze\\
+        $P(c \mid w)$
+    };
+    
+    % Frecce
+    \draw[->, thick, blue!60] (osg_theory) -- (osg_vectors);
+    \draw[->, thick, blue!60] (osg_vectors) -- (osg_sim);
+    \draw[->, thick, blue!60] (dist_theory) -- (dist_window);
+    \draw[->, thick, blue!60] (dist_window) -- (dist_cooc);
+    
+    % Word2Vec al centro in basso
+    \node[draw, rectangle, rounded corners, fill=orange!20, minimum width=7cm, minimum height=1cm, align=center, font=\small\bfseries] (w2v) at (0, -0.8) {
+        Word2Vec\\
+        {\footnotesize $\max \sum \log \sigma(\mathbf{w} \cdot \mathbf{c})$ per $(w,c)$ in finestra $k$}
+    };
+    
+    \draw[->, thick, gray] (osg_sim) -- (w2v);
+    \draw[->, thick, gray] (dist_cooc) -- (w2v);
 
+\end{tikzpicture}
+\caption{Word2Vec come fusione tra teoria e implementazione. A sinistra, l'ipotesi di Osgood si traduce nella scelta di vettori continui e nel prodotto scalare come misura di similarità. A destra, l'ipotesi distribuzionale si concretizza nella finestra di contesto e nella modellazione di co-occorrenze. Word2Vec unifica elegantemente queste due linee, apprendendo vettori che massimizzano la predizione di co-occorrenze locali.}
+\label{fig:word2vec_teoria_implementazione}
+\end{figure}
 Sebbene i metodi basati su conteggi e la riduzione dimensionale tramite SVD permettano di ottenere rappresentazioni semanticamente dense, essi presentano limiti strutturali non trascurabili. Il calcolo della decomposizione ai valori singolari su matrici di co-occorrenza è computazionalmente oneroso, con una complessità che cresce sensibilmente rispetto alla dimensione del vocabolario, rendendo difficile la scalabilità su corpora massicci.
-
 Per superare queste criticità, Mikolov et al. hanno introdotto \textit{Word2Vec} \parencite{mikolov2013efficientestimationwordrepresentations}, un framework basato su un paradigma radicalmente diverso: la \textbf{predizione}. Invece di riassumere statistiche globali, Word2Vec apprende gli embeddings processando il testo localmente. Lo spostamento di paradigma risiede nel fatto che, anziché contare le occorrenze totali, addestriamo un classificatore su un compito di \textbf{classificazione binaria}. Il modello deve rispondere alla domanda:
-
 \begin{center}
 \textit{``Data la parola target $w$ (es. \textit{albicocca}), qual è la probabilità che la parola candidata $c$ (es. \textit{marmellata}) compaia nel suo contesto?''}
 \end{center}
-
-In questo approccio, noto come \textbf{self-supervision}, il testo stesso fornisce le etichette: ogni parola $c$ che appare effettivamente vicino a $w$ nel corpus fornisce un esempio positivo (etichetta $1$). Al contrario, per addestrare il classificatore, il modello genera artificialmente degli esempi negativi campionando parole casuali dal vocabolario che non compaiono nel contesto di $w$.
-
+In questo approccio, noto come \textbf{self-supervision}, il testo stesso fornisce le etichette: ogni parola $c$ che appare effettivamente vicino a $w$ nel corpus fornisce un esempio positivo (etichetta $1$), dovo per ``vicino" si intende dentor una finstra di contesto di $k$ parole. Al contrario, per addestrare il classificatore, il modello genera artificialmente degli esempi negativi campionando parole casuali dal vocabolario che non compaiono nel contesto di $w$ (etichetta $1$).
 \paragraph{Il classificatore e la funzione sigmoide.}
 L'intuizione alla base del classificatore è che due parole siano semanticamente vicine se i loro vettori di embedding sono simili. Per misurare questa affinità, utilizziamo il \textbf{prodotto scalare} tra il vettore della parola target $\mathbf{w}$ e il vettore della parola di contesto $\mathbf{c}$:
 \[
@@ -341,7 +393,7 @@ Nel caso generale, data una parola target $w$ e un'intera finestra di $L$ parole
 \end{equation}
 
 \paragraph{Perché due matrici? Il ruolo di $W$ e $C$.}
-Una caratteristica distintiva di Word2Vec è il mantenimento di \textbf{due rappresentazioni distinte} per ogni parola, organizzate in due matrici di pesi separate (Figura~\ref{fig:skipgram_structure}). Una matrice $W$ relativa alle parole target che contiene i vettori utilizzati quando la parola è il centro della finestra, e una matrice $C$ che contiene i vettori utilizzati quando la parola appare nel contesto di un'altra o viene estratta come esempio negativo.
+Una caratteristica distintiva di Word2Vec è il mantenimento di \textit{due rappresentazioni distinte} per ogni parola, organizzate in due matrici di pesi separate (Figura~\ref{fig:skipgram_structure}). Una matrice $W$ relativa alle parole target che contiene i vettori utilizzati quando la parola è il centro della finestra, e una matrice $C$ che contiene i vettori utilizzati quando la parola appare nel contesto di un'altra o viene estratta come esempio negativo.
 
 \begin{figure}[h!]
     \centering
@@ -350,18 +402,16 @@ Una caratteristica distintiva di Word2Vec è il mantenimento di \textbf{due rapp
     \label{fig:skipgram_structure}
 \end{figure}
 
-Sdoppiando le matrici, il modello garantisce la \textbf{stabilità dell'ottimizzazione}. Se usassimo un unico vettore $\mathbf{v}$, il modello cercherebbe di massimizzare il prodotto scalare $\mathbf{v} \cdot \mathbf{v}$ (auto-similarità), portando i valori a crescere all'infinito. Con due matrici, il modello apprende relazioni distribuzionali senza questo vincolo. Al termine, si utilizzano solitamente i vettori di $W$ o la media $W+C$.
-
+Sdoppiando le matrici, il modello garantisce la \textit{stabilità dell'ottimizzazione}. Se usassimo un unico vettore $\mathbf{v}$, il modello cercherebbe di massimizzare il prodotto scalare $\mathbf{v} \cdot \mathbf{v}$ (auto-similarità), portando i valori a crescere all'infinito. Con due matrici, il modello apprende relazioni distribuzionali senza questo vincolo. Al termine, si utilizzano solitamente i vettori di $W$ o la media $W+C$.
 \paragraph{Finestra di contesto e precisione semantica.}
-Nel caso di Word2Vec (in particolare Skip-gram), il ``pezzo'' di sintagma che il modello osserva è controllato da un iperparametro: l'ampiezza della finestra di contesto $m$. Variando $m$, decidiamo quanta informazione sintagmatica il modello può usare per inferire il paradigma.
-
+L'ampiezza della finestra di contesto $k$ controlla quanta informazione sintagmatica il modello può sfruttare per inferire il paradigma semantico. All'aumentare di $k$, il modello osserva un contesto più ampio e cattura relazioni semantiche progressivamente più ricche.
 \begin{itemize}
-    \item \textbf{Finestra stretta} ($m \le 2$): il contesto è locale e cattura soprattutto regolarità \textbf{funzionali e sintattiche}. Tendono a risultare vicine parole che svolgono ruoli grammaticali simili.
-    \item \textbf{Finestra ampia} ($m \ge 5$): il contesto include indizi più distanti e ricchi, catturando affinità \textbf{semantiche e tematiche}. Ad esempio, parole come \textit{ospedale} e \textit{medico} non sono intercambiabili sintatticamente, ma co-occorrono in ambienti discorsivi simili.
+    \item \textit{Finestra stretta} ($k$ piccolo): il contesto è locale e cattura principalmente regolarità \textit{funzionali e sintattiche}. Gli embeddings risultanti tendono a raggruppare parole che svolgono ruoli grammaticali simili.
+    \item \textit{Finestra ampia} ($k$ grande): il contesto include indizi più distanti, catturando affinità \textit{semantiche e tematiche}. Ad esempio, parole come \textit{ospedale} e \textit{medico} non sono intercambiabili sintatticamente, ma co-occorrono in ambienti discorsivi simili e risultano quindi vicine nello spazio vettoriale.
 \end{itemize}
-
+Questa relazione tra ampiezza della finestra e tipo di similarità catturata riflette direttamente il principio degli assi saussuriani: osservando porzioni più ampie della catena sintagmatica, il modello ricostruisce con maggiore precisione lo spazio paradigmatico delle sostituzioni semanticamente plausibili.
 \paragraph{Geometria dell'analogia: il modello del parallelogramma.}
-Quando lo spazio latente è coerente, non si limita a raggruppare parole simili: tende anche a codificare \textbf{relazioni} come direzioni stabili. Questo si manifesta nel ragionamento analogico, spesso descritto tramite il cosiddetto modello del parallelogramma.
+Quando lo spazio latente è coerente, non si limita a raggruppare parole simili: tende anche a codificare \textit{relazioni} come direzioni stabili. Questo si manifesta nel ragionamento analogico, spesso descritto tramite il cosiddetto modello del parallelogramma. 
 
 \begin{notebox}
 \textbf{Modello del parallelogramma}\\
@@ -395,15 +445,11 @@ Le relazioni semantiche possono essere codificate come differenze vettoriali app
 
 \subsubsection{Limiti degli embeddings statici}
 \label{subsubsec:static_limits}
-
 La logica ``più sintagma $\Rightarrow$ paradigma più preciso'' evidenzia però un limite intrinseco di Word2Vec: anche se durante l'addestramento sfrutta il contesto, il risultato finale è un \textbf{embedding statico}. Una volta appresi i vettori, ogni parola è associata a un'unica rappresentazione, indipendente dall'uso concreto in frase. Questo comporta almeno due criticità fondamentali:
-
 \begin{enumerate}
-    \item \textbf{Polisemia:} una parola con più sensi (es.\ \textit{banco} come mobile o come istituzione finanziaria) viene compressa in un unico vettore che media usi diversi, riducendo la precisione semantica proprio dove il contesto dovrebbe aiutare.
-    
-    \item \textbf{Contesto ``dimenticato'' in inferenza:} Word2Vec usa la finestra sintagmatica per \emph{apprendere} i vettori, ma in \textbf{inferenza} l'embedding di una parola è recuperato come valore fisso dal dizionario del modello e non viene ricalcolato in funzione della frase specifica. Di conseguenza, la stessa parola mantiene lo stesso vettore anche in contesti diversi, e il contesto non può più agire da meccanismo di disambiguazione.
+    \item \textit{Polisemia:} una parola con più sensi (es.\ \textit{banco} come mobile o come istituzione finanziaria) viene compressa in un unico vettore che media usi diversi, riducendo la precisione semantica proprio dove il contesto dovrebbe aiutare.
+    \item \textit{Contesto ``dimenticato'' in inferenza:} Word2Vec usa la finestra sintagmatica per \emph{apprendere} i vettori, ma in \textit{inferenza} l'embedding di una parola è recuperato come valore fisso dal dizionario del modello e non viene ricalcolato in funzione della frase specifica. Di conseguenza, la stessa parola mantiene lo stesso vettore anche in contesti diversi, e il contesto non può più agire da meccanismo di disambiguazione.
 \end{enumerate}
-
 \begin{notebox}
 \textbf{Training vs inferenza}\\
 Per \textbf{inferenza} si intende l'uso del modello \emph{dopo} l'addestramento: dati nuovi input, i parametri appresi $\theta$ restano fissi e il modello calcola solo le sue uscite. In Word2Vec, durante l'addestramento il contesto influenza l'apprendimento dei vettori; in inferenza, però, ogni parola ha un embedding fisso indipendente dal contesto in cui compare.
@@ -420,13 +466,9 @@ Per ottenere questo comportamento servono architetture in grado di modellare il 
 
 \subsection{Embeddings dinamici (contestuali)}
 \label{sec:dynamic_embeddings}
-
-La sezione precedente ha chiarito un punto chiave: se \textbf{un sintagma più ricco} rende \textbf{più preciso il paradigma}, allora una rappresentazione che \emph{non} può sfruttare il contesto quando viene applicata a una frase concreta è inevitabilmente limitata. Gli embeddings statici (come quelli appresi da Word2Vec) usano il contesto in \textbf{addestramento} per stimare i vettori, ma poi restituiscono un dizionario di rappresentazioni \textbf{fisse}: in \textbf{inferenza}, l'embedding di una parola è sempre lo stesso, indipendentemente dalle parole che la circondano.
-
-Questo limite diventa evidente nei casi di \textbf{polisemia} e \textbf{omonimia}. Parole come \textit{banco} (mobile vs istituzione finanziaria) o \textit{pesca} (frutto vs attività) vengono collassate in un unico punto dello spazio vettoriale, che finisce per rappresentare una ``media'' tra sensi diversi. Ma la tesi sintagma--paradigma suggerisce l'opposto: il senso corretto non è una proprietà isolata del token, bensì emerge dall'interazione con la catena sintagmatica in cui quel token è inserito.
-
-Gli \textbf{embeddings dinamici} (o \textbf{contestuali}) rispondono esattamente a questa esigenza: invece di associare un vettore a un \emph{tipo} di parola (\textit{word type}), associano un vettore a una sua \emph{occorrenza} concreta (\textit{word instance}), calcolandolo come funzione del contesto in cui appare. In questo approccio, la rappresentazione non è più un parametro statico recuperato da una tabella di lookup, ma un \textbf{risultato computazionale} prodotto dal modello mentre elabora l'intera sequenza.
-
+La sezione precedente ha chiarito un punto chiave: se un sintagma più ricco rende più preciso il paradigma, allora una rappresentazione che \emph{non} può sfruttare il contesto quando viene applicata a una frase concreta è inevitabilmente limitata. Gli embeddings statici (come quelli appresi da Word2Vec) usano il contesto in addestramento per stimare i vettori, ma poi restituiscono un dizionario di rappresentazioni fisse: in inferenza, l'embedding di una parola è sempre lo stesso, indipendentemente dalle parole che la circondano.
+Questo limite diventa evidente nei casi di \textit{polisemia} e \textit{omonimia}. Parole come \textit{banco} (mobile vs istituzione finanziaria) o \textit{pesca} (frutto vs attività) vengono collassate in un unico punto dello spazio vettoriale, che finisce per rappresentare una ``media'' tra sensi diversi. Ma la tesi sintagma--paradigma suggerisce l'opposto: il senso corretto non è una proprietà isolata del token, bensì emerge dall'interazione con la catena sintagmatica in cui quel token è inserito.
+Gli embeddings dinamici (o contestuali) rispondono esattamente a questa esigenza: invece di associare un vettore a un \emph{tipo} di parola (\textit{word type}), associano un vettore a una sua \emph{occorrenza} concreta (\textit{word instance}), calcolandolo come funzione del contesto in cui appare. In questo approccio, la rappresentazione non è più un parametro statico recuperato da una tabella di lookup, ma un risultato computazionale prodotto dal modello mentre elabora l'intera sequenza.
 \begin{notebox}
 \textbf{Embeddings contestuali}\\
 Data una sequenza di token $x_1,\dots,x_n$, un embedding contestuale è una rappresentazione vettoriale $h_i$ per il token $x_i$ tale che
@@ -435,95 +477,69 @@ h_i = f(x_i, x_{1:n}),
 \]
 dove $x_{1:n}$ rappresenta l'intera sequenza (contesto). A differenza degli embeddings statici, $h_i$ descrive un'istanza specifica della parola nel suo uso concreto (\textit{word instance}) e non la sua categoria astratta nel vocabolario (\textit{word type}).
 \end{notebox}
-
 In pratica, queste rappresentazioni emergono dagli \textbf{stati interni} di modelli neurali che processano sequenze. Un embedding statico è un parametro appreso e poi fissato; un embedding dinamico, invece, è l'\textbf{attivazione} della rete in \textbf{inferenza}: cambia se cambia il contesto. Per questo motivo, la stessa parola può corrispondere a vettori diversi in frasi diverse, perché il modello integra informazione sintattica e semantica dalle parole circostanti e disambigua il senso in modo implicito.
-
-A questo punto la domanda diventa: \textbf{come si cattura contesto su larga scala senza perdere informazione lungo la sequenza?} La storia recente delle architetture neurali per il linguaggio può essere letta come una sequenza di risposte progressive a questo vincolo. Nelle prossime sottosezioni introdurremo brevemente le principali tatappe di questa evoluzione: dalle reti ricorrenti al meccanismo di attenzione, fino ai Transformer che costituiscono la base dei moderni modelli linguistici.
-
+A questo punto la domanda diventa: \textit{come si cattura contesto su larga scala senza perdere informazione lungo la sequenza?} La storia recente delle architetture neurali per il linguaggio può essere letta come una sequenza di risposte progressive a questo vincolo. Nelle prossime sottosezioni introdurremo brevemente le principali tatappe di questa evoluzione: dalle reti ricorrenti al meccanismo di attenzione, fino ai Transformer che costituiscono la base dei moderni modelli linguistici.
 \subsubsection{RNN e LSTM: memoria sequenziale}
 \label{subsubsec:rnn_lstm_compendium}
-
-Per produrre embeddings contestuali serve un'architettura che processi sequenze mantenendo ``memoria'' del passato. Le \textbf{Reti Neurali Ricorrenti} (RNN) introducono connessioni cicliche che permettono di aggiornare uno stato nascosto $h_t$ incorporando informazione sia dal token corrente $x_t$ sia dallo stato precedente $h_{t-1}$:
-
+Per produrre embeddings contestuali serve un'architettura che processi sequenze mantenendo ``memoria'' del passato. Le \textit{Reti Neurali Ricorrenti} (RNN) introducono connessioni cicliche che permettono di aggiornare uno stato nascosto $h_t$ incorporando informazione sia dal token corrente $x_t$ sia dallo stato precedente $h_{t-1}$:
 \begin{equation}
 h_t = g(Uh_{t-1} + Wx_t + b)
 \end{equation}
-
 dove $U$ e $W$ sono matrici di pesi, $b$ è un bias, e $g$ è una funzione di attivazione non lineare (tipicamente $\tanh$ o ReLU). In questo modo, lo stato $h_t$ accumula progressivamente informazione da tutti i token precedenti nella sequenza.
-
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{pictures/rnn.png}
 \caption{Illustrazione del funzionamento di una RNN. Ad ogni passo l'informazione contestuale viene passata a quello successivo attraverso lo stato nascosto $h_t$.}
 \label{fig:rnn_flow}
 \end{figure}
-
 Tuttavia, le RNN classiche soffrono del problema del \textbf{vanishing gradient}: durante l'addestramento tramite \textit{backpropagation through time}, i gradienti vengono propagati all'indietro attraverso ogni passo temporale. Poiché il calcolo coinvolge moltiplicazioni ripetute della stessa matrice di pesi $U$, se i valori di questa matrice sono piccoli, il segnale del gradiente tende a ridursi esponenzialmente man mano che ci si allontana nel passato. Questo rende difficile apprendere dipendenze a lungo raggio: se una parola all'inizio della frase è cruciale per predire una parola alla fine, la RNN ``dimentica'' l'informazione iniziale perché il gradiente non riesce a trasportare l'errore così indietro nel tempo.
-
 Le \textbf{LSTM} (Long Short-Term Memory) risolvono parzialmente questo problema tramite una struttura più complessa basata su \textbf{gate} (porte) che controllano esplicitamente quali informazioni mantenere, aggiornare o dimenticare. Senza entrare nei dettagli architetturali (disponibili in Appendice~\ref{app:lstm_details}), l'idea chiave è introdurre:
-
 \begin{itemize}
     \item Un \textbf{forget gate} $f_t$ che decide quali informazioni dello stato precedente $c_{t-1}$ eliminare;
     \item Un \textbf{input gate} $i_t$ che decide quali nuove informazioni aggiungere;
     \item Un \textbf{output gate} $o_t$ che decide quali informazioni dello stato interno esporre come output $h_t$.
 \end{itemize}
-
 Questi meccanismi permettono alle LSTM di preservare meglio informazioni cruciali su sequenze lunghe, riducendo la degradazione del segnale. Lo stato nascosto $h_t$ di una LSTM può essere estratto come embedding contestuale: a differenza dell'embedding statico $e_t$ (che è una riga fissa di una matrice), il vettore $h_t$ integra informazione dall'intera storia fino a quel punto.
-
 \begin{notebox}
 \textbf{Embedding contestuale nelle RNN/LSTM}\\
 In una RNN o LSTM, il vettore $h_t$ costituisce l'embedding contestuale della parola $w_t$. A differenza dell'embedding statico $e_t$ (che è una semplice riga della matrice di embedding), il vettore $h_t$ è dinamico: esso integra informazioni riguardanti l'intera storia della frase fino a quel momento.
 \end{notebox}
-
 Per catturare contesto sia da sinistra sia da destra, si utilizzano \textbf{RNN bidirezionali} (Bi-RNN): si addestrano due reti distinte, una che processa la sequenza da sinistra a destra ($\overrightarrow{h}_t$) e una da destra a sinistra ($\overleftarrow{h}_t$). L'embedding contestuale finale si ottiene concatenando i due stati:
 \begin{equation}
 h_t^{bi} = [\overrightarrow{h}_t \oplus \overleftarrow{h}_t]
 \end{equation}
-
 Nonostante i miglioramenti introdotti dalle LSTM e dalle architetture bidirezionali, questi modelli rimangono \textbf{limitati dalla natura sequenziale del calcolo}: ogni stato dipende dal precedente, rendendo impossibile la parallelizzazione e limitando comunque la capacità di catturare dipendenze molto lunghe. Questo motiva l'introduzione di meccanismi più potenti: l'\textbf{attenzione} e, successivamente, i \textbf{Transformer}.
-
 % Per dettagli architetturali completi su RNN e LSTM, si veda l'Appendice~\ref{app:lstm_details}.
-
 \subsubsection{Encoder-Decoder e il problema del bottleneck}
 \label{subsubsec:encoder_decoder_bottleneck}
-
 Quando il compito richiede di trasformare un'intera sequenza in un'altra sequenza (traduzione automatica, riassunto, question answering), emerge un ulteriore vincolo strutturale. L'architettura \textbf{Encoder-Decoder} affronta questo problema separando comprensione e generazione in due moduli distinti:
-
 \begin{enumerate}
     \item \textbf{Encoder}: una RNN/LSTM che processa l'input $X = (x_1,\dots,x_n)$ e produce una sequenza di stati nascosti $h_1^{(e)},\dots,h_n^{(e)}$. Nel modello classico, l'intera sequenza viene riassunta in un singolo vettore a dimensione fissa, spesso identificato con l'ultimo stato dell'encoder:
     \begin{equation}
     c = h_n^{(e)}
     \end{equation}
-    Questo vettore $c$ è chiamato \textit{context vector}: dovrebbe contenere le informazioni necessarie per ricostruire, tradurre o generare coerentemente l'output.
-    
+    Questo vettore $c$ è chiamato \textit{context vector}: dovrebbe contenere le informazioni necessarie per ricostruire, tradurre o generare coerentemente l'output.    
     \item \textbf{Decoder}: una seconda RNN/LSTM che, condizionata sul vettore di contesto $c$, genera l'output $Y = (y_1,\dots,y_m)$ un token alla volta in modo autoregressivo:
     \begin{equation}
     P(Y\mid X) = \prod_{t=1}^{m} P(y_t \mid y_{<t}, c)
     \end{equation}
 \end{enumerate}
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{pictures/bottleneck.png}
     \caption{Schema Encoder--Decoder: quando il contesto $c$ coincide con il solo stato nascosto finale dell'encoder, tutta l'informazione della sequenza sorgente deve attraversare un \emph{collo di bottiglia} rappresentazionale prima di essere utilizzata dal decoder.}
     \label{fig:encoder_decoder_bottleneck}
 \end{figure}
-
 Il punto critico dell'architettura è evidente: l'intera frase (potenzialmente lunga e ricca di dipendenze) viene compressa in un unico vettore $c \in \mathbb{R}^d$. Questa scelta introduce un vero e proprio \textbf{collo di bottiglia informativo}:
-
 \begin{itemize}
-    \item \textbf{Compressione forzata}: All'aumentare della lunghezza e complessità dell'input, cresce la quantità di informazione che deve essere ``stipata'' in una dimensione fissa $d$.
-    \item \textbf{Sensibilità alla distanza}: Anche con LSTM, la rappresentazione finale tende a privilegiare informazione recente nella sequenza; dettagli importanti all'inizio possono attenuarsi o venire sovrascritti durante la ricorrenza.
-    \item \textbf{Difficoltà di allineamento}: In traduzione serve sapere \emph{quale parte} dell'input è rilevante per generare \emph{quel particolare} token di output. Un vettore unico $c$ non esplicita alcun allineamento fine-grained tra posizioni.
+    \item \textit{Compressione forzata}: All'aumentare della lunghezza e complessità dell'input, cresce la quantità di informazione che deve essere ``stipata'' in una dimensione fissa $d$.
+    \item \textit{Sensibilità alla distanza}: Anche con LSTM, la rappresentazione finale tende a privilegiare informazione recente nella sequenza; dettagli importanti all'inizio possono attenuarsi o venire sovrascritti durante la ricorrenza.
+    \item \textit{Difficoltà di allineamento}: In traduzione serve sapere \emph{quale parte} dell'input è rilevante per generare \emph{quel particolare} token di output. Un vettore unico $c$ non esplicita alcun allineamento fine-grained tra posizioni.
 \end{itemize}
-
 Questo limite è concettualmente analogo a quello discusso nel Capitolo~\ref{sec:autoencoders} sugli autoencoders: anche lì un input complesso viene proiettato in uno spazio latente di dimensione fissa, e il decoder tenta una ricostruzione a partire da tale compressione. Nel caso seq2seq, però, la pressione sullo spazio latente è ancora più marcata, perché la ricostruzione non riguarda ``lo stesso oggetto'' ma una sequenza diversa (es.\ tradotta), che richiede sia contenuto semantico sia informazione strutturale.
-
 \subsubsection{Meccanismo di attenzione: superare il bottleneck}
 \label{subsubsec:attention_mechanism}
-
 Il bottleneck dell'encoder--decoder ricorrente deriva dal vincolo che l'unica informazione sull'input $X$ disponibile al decoder sia un singolo vettore $c$. Il \textbf{meccanismo di attenzione} risolve questo problema permettendo al decoder di accedere direttamente a \emph{tutti} gli stati nascosti dell'encoder, selezionando dinamicamente la parte più rilevante dell'input a ogni passo di generazione.
-
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{pictures/attention_dynamic_context.png}
