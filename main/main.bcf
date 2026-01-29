@@ -2362,12 +2362,12 @@
     <bcf:citekey order="13">saussure_wikipedia_image</bcf:citekey>
     <bcf:citekey order="14">Osgood1957Measurement</bcf:citekey>
     <bcf:citekey order="15">mikolov2013efficientestimationwordrepresentations</bcf:citekey>
-    <bcf:citekey order="16">vaswani2017attention</bcf:citekey>
-    <bcf:citekey order="17">devlin2019bert</bcf:citekey>
-    <bcf:citekey order="18">vapnik1998statistical</bcf:citekey>
-    <bcf:citekey order="19">liu2019roberta</bcf:citekey>
-    <bcf:citekey order="20">lan2019albert</bcf:citekey>
-    <bcf:citekey order="21">sanh2019distilbert</bcf:citekey>
+    <bcf:citekey order="16">hochreiter1997long</bcf:citekey>
+    <bcf:citekey order="17">sutskever2014sequence</bcf:citekey>
+    <bcf:citekey order="18">bahdanau2014neural</bcf:citekey>
+    <bcf:citekey order="19">bahdanau2014neural</bcf:citekey>
+    <bcf:citekey order="20">vaswani2017attention</bcf:citekey>
+    <bcf:citekey order="21">devlin2019bert</bcf:citekey>
     <bcf:citekey order="22">wang2024disentangledrepresentationlearning</bcf:citekey>
     <bcf:citekey order="23">BUONOCORE2023104431</bcf:citekey>
     <bcf:citekey order="24">feynman_wikipedia</bcf:citekey>
@@ -2380,13 +2380,12 @@
     <bcf:citekey order="31">saussure_wikipedia_image</bcf:citekey>
     <bcf:citekey order="32">Osgood1957Measurement</bcf:citekey>
     <bcf:citekey order="33">mikolov2013efficientestimationwordrepresentations</bcf:citekey>
-    <bcf:citekey order="34">vaswani2017attention</bcf:citekey>
-    <bcf:citekey order="35">devlin2019bert</bcf:citekey>
-    <bcf:citekey order="36">vapnik1998statistical</bcf:citekey>
-    <bcf:citekey order="37">liu2019roberta</bcf:citekey>
-    <bcf:citekey order="38">lan2019albert</bcf:citekey>
-    <bcf:citekey order="39">sanh2019distilbert</bcf:citekey>
-    <bcf:citekey order="40">BUONOCORE2023104431</bcf:citekey>
+    <bcf:citekey order="34">hochreiter1997long</bcf:citekey>
+    <bcf:citekey order="35">sutskever2014sequence</bcf:citekey>
+    <bcf:citekey order="36">bahdanau2014neural</bcf:citekey>
+    <bcf:citekey order="37">vaswani2017attention</bcf:citekey>
+    <bcf:citekey order="38">devlin2019bert</bcf:citekey>
+    <bcf:citekey order="39">BUONOCORE2023104431</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
