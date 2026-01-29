@@ -1,115 +1,443 @@
-\section{Disentangling Dense Embeddings with Sparse Autoencoders}
+\subsubsection{Neuroni e feature: una distinzione cruciale}
 
-\subsection{Introduzione}
-I modelli di linguaggio basati su architetture Transformer producono embeddings contestuali estremamente ricchi ed efficaci dal punto di vista empirico. Tuttavia, queste rappresentazioni collocano il testo in spazi vettoriali ad alta dimensionalità le cui dimensioni non risultano direttamente interpretabili dal punto di vista semantico. Il significato è codificato in modo distribuito e fortemente entangled, rendendo difficile analizzare, spiegare o controllare le rappresentazioni interne del modello. Questa mancanza di interpretabilità rappresenta un limite rilevante, in particolare in applicazioni che richiedono trasparenza, analisi qualitativa o manipolazione controllata del significato. Ne deriva l'esigenza di trasformare embeddings densi in rappresentazioni latenti più semplici e strutturate, in cui le componenti corrispondano a fattori semantici coerenti e, per quanto possibile, indipendenti. Questo obiettivo è comunemente indicato come \textit{disentanglement} delle rappresentazioni. In questa sezione analizziamo il metodo proposto nel lavoro \emph{Disentangling Dense Embeddings with Sparse Autoencoders} \cite{wang2024disentangledrepresentationlearning}, che affronta il problema del disentanglement applicando sparse autoencoders agli embeddings prodotti da modelli di linguaggio pre-addestrati. L'idea centrale è che l'introduzione di vincoli di sparsità nello spazio latente favorisca l'emergere di feature interpretabili, consentendo di scomporre rappresentazioni dense ed entangled in componenti semanticamente significative. Di seguito viene illustrata la metodologia proposta.
+L'assunzione nascosta è questa: abbiamo implicitamente identificato i \textit{neuroni} con le \textit{feature}. Abbiamo ragionato come se ogni concetto dovesse ``abitare'' in un neurone dedicato, e ogni neurone potesse ospitare un solo concetto. Ma queste due entità—neuroni e feature—sono oggetti profondamente diversi.
 
-\subsection{Ipotesi della superposizione}
-
-\subsection{Metodologia e Architettura}
-Per ottenere il disentanglement degli embeddings densi, la metodologia adottata si basa sull'utilizzo di \textit{Sparse Autoencoders} (SAE). A differenza degli autoencoder tradizionali, che comprimono l'input in uno spazio latente di dimensione inferiore (\textit{bottleneck}), i SAE proiettano l'input in uno spazio latente sovradimensionato ($n \gg d$), imponendo tuttavia un forte vincolo di sparsità sulle attivazioni. Questa scelta architetturale consente di rappresentare ciascun embedding come combinazione lineare di un numero limitato di feature latenti, favorendo l'emergere di componenti semanticamente interpretabili e riducendo il fenomeno di superposizione delle informazioni.
-
-\subsubsection{Definizione del Modello}
-Sia $x \in \mathbb{R}^d$ un vettore di embedding in input, prodotto da un modello di linguaggio pre-addestrato, e sia $h \in \mathbb{R}^n$ la rappresentazione latente, dove $n$ indica il numero totale di feature latenti apprese dal modello. In pratica, $n$ viene scelto come multiplo della dimensionalità originale $d$, così da ottenere una base latente sovracompleta. L'architettura del SAE è composta da un encoder e un decoder, definiti come segue:
-\begin{equation}
-\text{Encoder:} \quad h = f_{\theta}(x) = \sigma(W_e x + b_e)
-\end{equation}
-\begin{equation}
-\text{Decoder:} \quad \hat{x} = g_{\phi}(h) = W_d h + b_d
-\end{equation}
-dove:
+\begin{notebox}
+\textbf{Neuroni vs Feature}\\
 \begin{itemize}
-\item $W_e \in \mathbb{R}^{n \times d}$ e $W_d \in \mathbb{R}^{d \times n}$ sono rispettivamente le matrici dei pesi di codifica e decodifica;
-\item $b_e \in \mathbb{R}^n$ e $b_d \in \mathbb{R}^d$ sono i vettori di bias;
-\item $\sigma(\cdot)$ è una funzione di attivazione non lineare, tipicamente una ReLU.
+    \item Un \textbf{neurone} (o \textit{dimensione}) è un'unità computazionale della rete: un singolo valore numerico nello spazio delle attivazioni. I neuroni sono gli \textbf{assi} del sistema di coordinate—le direzioni ``cardinali'' lungo cui misuriamo le attivazioni. In BERT-base, ci sono 768 neuroni che definiscono gli assi $d_1, d_2, \dots, d_{768}$.
+    
+    \item Una \textbf{feature} $f_i$ è un concetto semantico che vorremmo catturare: ``torta al cioccolato'', ``meccanica quantistica'', ``sentimento negativo''. Le feature sono le proprietà \textit{dei dati} che risultano utili per i compiti del modello—i ``fattori generativi'' della semantica.
 \end{itemize}
-Ogni colonna della matrice di decoder $W_d$ può essere interpretata come una \emph{feature latente}, ovvero una direzione nello spazio degli embedding che corrisponde a un concetto semantico appreso dal modello. La ricostruzione di un embedding avviene quindi come combinazione lineare di un piccolo sottoinsieme di queste direzioni.
+\end{notebox}
 
-\subsubsection{Vincolo di Sparsità \textit{k-Sparse}}
-Un elemento cruciale della metodologia è il meccanismo con cui viene imposta la sparsità. Invece di adottare una regolarizzazione $L_1$ standard, che può introdurre effetti indesiderati di \textit{shrinkage} (riduzione sistematica dell'ampiezza delle attivazioni), viene utilizzato un vincolo \textit{Top-$k$}. Per ciascun input $x$, solo le $k$ attivazioni più elevate nel vettore latente $h$ vengono mantenute, mentre tutte le altre sono poste a zero. Questo garantisce che ogni embedding venga rappresentato attraverso un numero fisso e limitato di feature attive, rendendo la rappresentazione più interpretabile e favorendo un disentanglement più netto dei fattori semantici.
+La chiave per comprendere la superposition sta nel realizzare che \textit{le feature non devono necessariamente coincidere con gli assi}. Una feature può essere rappresentata come una \textbf{direzione arbitraria} nello spazio—un vettore che punta in una direzione qualsiasi, combinando più neuroni con pesi diversi. Indichiamo con $\mathbf{w}_i \in \mathbb{R}^{768}$ la direzione associata alla feature $f_i$ nello spazio di BERT.
 
-\subsubsection{Funzione di Costo e Addestramento}
-L'obiettivo dell'addestramento del SAE è minimizzare l'errore di ricostruzione preservando al contempo la sparsità delle attivazioni. La funzione di perdita globale è definita come:
+Consideriamo un'analogia geografica, illustrata in Figura~\ref{fig:geographic_analogy}. Se dobbiamo descrivere la posizione di una città, possiamo usare le coordinate cardinali: ``100 km a Nord, 50 km a Est''. Gli assi Nord-Sud ed Est-Ovest sono i nostri ``neuroni''—le direzioni di riferimento del sistema. Ma nulla ci impedisce di descrivere la stessa posizione come ``112 km in direzione Nord-Nord-Est''. La direzione Nord-Nord-Est non coincide con nessun asse, ma è perfettamente definita come combinazione degli assi.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.8]
+        % Griglia di sfondo
+        \draw[gray!20, very thin, step=0.5] (-0.3,-0.3) grid (3.3,2.8);
+        
+        % Assi (neuroni)
+        \draw[->, thick, black!70] (0,0) -- (3.2,0) node[right, font=\small] {Est ($d_1$)};
+        \draw[->, thick, black!70] (0,0) -- (0,2.7) node[above, font=\small] {Nord ($d_2$)};
+        
+        % Punto di destinazione
+        \coordinate (city) at (1.5, 2.2);
+        \fill[red!70!black] (city) circle (3pt);
+        \node[anchor=south west, font=\small\bfseries, red!70!black] at (city) {Città};
+        
+        % Componenti sugli assi (proiezioni tratteggiate)
+        \draw[dashed, blue!60, thick] (city) -- (1.5, 0) node[below, font=\scriptsize, blue!70!black] {50 km};
+        \draw[dashed, blue!60, thick] (city) -- (0, 2.2) node[left, font=\scriptsize, blue!70!black] {100 km};
+        
+        % Vettori componenti sugli assi
+        \draw[->, very thick, blue!70] (0,0) -- (1.5, 0);
+        \draw[->, very thick, blue!70] (0,0) -- (0, 2.2);
+        
+        % Direzione obliqua (la feature)
+        \draw[->, ultra thick, orange!80!red] (0,0) -- (city);
+        \node[anchor=south, font=\small\bfseries, orange!80!red, rotate=56] at (0.6, 1.3) {112 km NNE};
+        
+        % Angolo
+        \draw[orange!80!red, thick] (0.5,0) arc (0:56:0.5);
+        \node[orange!80!red, font=\scriptsize] at (0.75, 0.35) {$56°$};
+        
+        % Etichette esplicative
+        \node[anchor=north west, font=\small, align=left, text width=4.5cm] at (3.8, 2.8) {
+            \textbf{Assi} (neuroni):\\
+            Nord, Est\\[0.5em]
+            \textbf{Direzione} (feature):\\
+            Nord-Nord-Est\\[0.5em]
+            La direzione \textit{non coincide}\\
+            con nessun asse, ma è\\
+            definita dalla loro\\
+            combinazione.
+        };
+    \end{tikzpicture}
+    \caption{Analogia geografica tra neuroni e feature. Gli assi cardinali (Nord, Est) rappresentano i neuroni: le direzioni di riferimento del sistema. La direzione Nord-Nord-Est rappresenta una feature: non coincide con nessun asse, ma è definita come loro combinazione ($100 \text{ km Nord} + 50 \text{ km Est} = 112 \text{ km NNE}$). In uno spazio bidimensionale esistono solo 2 assi, ma infinite direzioni.}
+    \label{fig:geographic_analogy}
+\end{figure}
+
+Allo stesso modo, una feature come $f_{\text{torta}}$ (``torta al cioccolato'') non deve necessariamente corrispondere all'asse $d_{42}$. Può essere rappresentata come una direzione obliqua $\mathbf{w}_{\text{torta}}$ nello spazio delle attivazioni:
 \begin{equation}
-\mathcal{L}(\theta, \phi) = \frac{1}{d} \lVert x - \hat{x} \rVert_2^2 + \lambda \mathcal{L}_{\text{sparse}}(h) + \alpha \mathcal{L}_{\text{aux}}(x, \hat{x})
+    \mathbf{w}_{\text{torta}} = 0.7 \cdot \mathbf{d}_1 + 0.5 \cdot \mathbf{d}_2 - 0.3 \cdot \mathbf{d}_3 + \dots
 \end{equation}
-Oltre al termine di ricostruzione principale, viene introdotta una \textit{auxiliary loss} ($\mathcal{L}_{\text{aux}}$), ispirata alla tecnica dei \textit{ghost gradients}. Questa componente ha lo scopo di mitigare il problema dei \textit{dead latents}, ovvero feature che non si attivano mai durante il processo di addestramento. Dato l'errore di ricostruzione del modello principale $e = x - \hat{x}$, la perdita ausiliaria è calcolata modellando l'errore residuo tramite un sottoinsieme di latenti inermi:
+una combinazione di molti neuroni, nessuno dei quali ``significa'' torta al cioccolato in isolamento.
+
+Questa osservazione apre una possibilità che il ragionamento precedente escludeva: \textit{se le feature sono direzioni e non assi, possiamo avere più feature che neuroni}. In uno spazio tridimensionale esistono solo tre assi, ma infinite direzioni. La domanda diventa: quante direzioni ``utili'' possiamo stipare in uno spazio a $n$ dimensioni?
+\subsubsection{La geometria della superposition}
+
+Torniamo al nostro esempio con neuroni e feature, ma questa volta ragioniamo geometricamente. Consideriamo uno spazio semplificato con soli due neuroni—due assi, $d_1$ e $d_2$—e vediamo cosa succede al variare del numero di feature da rappresentare.
+
+\paragraph{Caso ideale: due feature, due neuroni.}
+Supponiamo di avere esattamente due feature da rappresentare: $f_{\text{torta}}$ (``torta al cioccolato'') e $f_{\text{quant}}$ (``meccanica quantistica''). Con due neuroni a disposizione, possiamo assegnare a ciascuna feature un asse dedicato. Le direzioni $\mathbf{w}_{\text{torta}}$ e $\mathbf{w}_{\text{quant}}$ coincidono con gli assi:
+
 \begin{equation}
-\mathcal{L}_{\text{aux}}(x, \hat{x}) = \lVert e - \hat{e} \rVert_2^2
+    \mathbf{w}_{\text{torta}} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \mathbf{d}_1, \qquad
+    \mathbf{w}_{\text{quant}} = \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \mathbf{d}_2
 \end{equation}
-dove $\hat{e}$ rappresenta la ricostruzione ottenuta utilizzando esclusivamente tali latenti. Questo meccanismo forza il modello a riutilizzare feature altrimenti inattive, migliorando la copertura dello spazio semantico.
 
-\subsection{Interpretazione Automatizzata delle Feature}
-Una volta addestrato il SAE, è necessario assegnare un significato semantico alle feature latenti apprese. Poiché il numero di feature può raggiungere decine o centinaia di migliaia, un'annotazione manuale risulta impraticabile. Per questo motivo viene adottato un approccio di interpretazione automatizzata basato su Large Language Models (LLM), utilizzati come \textit{Interpreter}. Per una data feature $i$, il processo di etichettatura avviene nei seguenti passaggi:
-\begin{enumerate}
-\item \textbf{Selezione degli esempi:} vengono individuati i documenti che producono le attivazioni più elevate per la feature $i$ (\textit{max activating examples}), insieme a documenti che non attivano la feature.
-\item \textbf{Generazione dell'interpretazione:} l'LLM analizza entrambi gli insiemi di testi e identifica il concetto comune presente nei testi attivi ma assente negli altri.
-\item \textbf{Astrazione:} il concetto individuato viene sintetizzato in una breve etichetta testuale, che rappresenta l'interpretazione semantica della feature.
-\end{enumerate}
-Questo processo consente di collegare le direzioni vettoriali astratte dello spazio latente a concetti comprensibili dall'uomo.
+Questa è una rappresentazione perfettamente \textit{disentangled}: ogni feature coincide con un asse. Le due direzioni sono \textbf{ortogonali}—il loro prodotto scalare è zero ($\mathbf{w}_{\text{torta}} \cdot \mathbf{w}_{\text{quant}} = 0$)—il che significa che sono completamente indipendenti.
 
-\subsection{Feature Families e Struttura Gerarchica}
-Le feature apprese da uno Sparse Autoencoder non sono indipendenti, ma mostrano strutture di co-occorrenza e relazioni gerarchiche che riflettono l'organizzazione latente dei concetti semantici nello spazio degli embedding. Per analizzare e strutturare tali relazioni, viene introdotto il concetto di \textit{Feature Families}, ovvero insiemi di feature semanticamente correlate che rappresentano uno stesso concetto a diversi livelli di astrazione. Una feature family è composta da una feature \textit{genitore}, associata a un concetto più generale e astratto, e da un insieme di feature \textit{figlie}, più sparse e specializzate, che catturano sottocategorie o istanze più specifiche del concetto genitore. È importante distinguere questa struttura gerarchica interna a un singolo SAE dal fenomeno del \textit{feature splitting}, che descrive invece come una stessa direzione semantica possa frammentarsi al crescere della capacità del modello e non riguarda relazioni tra feature all'interno dello stesso autoencoder.
-
-\paragraph{Criterio di identificazione delle feature genitore e figlie}
-La distinzione tra feature genitore e feature figlie non è determinata a partire da considerazioni semantiche esplicite, ma emerge da una proprietà statistica osservata nei dati, ovvero la \emph{densità di attivazione} delle feature. Per ciascuna feature $i$ viene definita la frequenza di attivazione
+In questa configurazione, l'embedding $\mathbf{x}$ di un input si scrive come semplice combinazione:
 \begin{equation}
-f_i = \sum_k A_{ik},
+    \mathbf{x} = a_{\text{torta}} \cdot \mathbf{w}_{\text{torta}} + a_{\text{quant}} \cdot \mathbf{w}_{\text{quant}} = \begin{pmatrix} a_{\text{torta}} \\ a_{\text{quant}} \end{pmatrix}
 \end{equation}
-che misura il numero di esempi del dataset sui quali la feature risulta attiva. Intuitivamente, feature con valori elevati di $f_i$ tendono ad attivarsi in un ampio numero di contesti e quindi a rappresentare concetti più generali, mentre feature con densità inferiore si attivano in contesti più ristretti e catturano concetti più specifici. Questa osservazione viene utilizzata per indurre una gerarchia: date due feature connesse nel grafo di co-occorrenza, la feature con densità di attivazione maggiore viene interpretata come \textit{genitore}, mentre quella con densità minore come \textit{figlia}. In questo modo, il ruolo gerarchico delle feature è determinato in modo automatico e riproducibile a partire dalle statistiche di attivazione, senza ricorrere a supervisione semantica.
+dove $a_{\text{torta}}$ e $a_{\text{quant}}$ sono le \textit{intensità} con cui ogni feature è presente nell'input (zero se la feature è assente, positiva se presente).
 
-\subsubsection{Costruzione del Grafo di Co-occorrenza}
-Per identificare le feature families, viene costruito un grafo che cattura i pattern di co-attivazione delle feature nel dataset. Per ogni coppia di feature $i$ e $j$ vengono calcolate le seguenti metriche:
+Interpretare $\mathbf{x}$ è banale: la prima coordinata ci dice direttamente quanto è attiva la feature $f_{\text{torta}}$, la seconda quanto è attiva $f_{\text{quant}}$. Nessuna ambiguità, nessuna interferenza. Questo è il mondo ideale in cui vorremmo vivere.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2.2]
+        % Griglia
+        \draw[gray!15, very thin, step=0.25] (-0.3,-0.3) grid (1.5,1.5);
+        
+        % Assi (neuroni)
+        \draw[->, thick, black!60] (-0.2,0) -- (1.4,0) node[right, font=\small] {$d_1$};
+        \draw[->, thick, black!60] (0,-0.2) -- (0,1.4) node[above, font=\small] {$d_2$};
+        
+        % Feature allineate agli assi
+        \draw[->, ultra thick, orange!80!red] (0,0) -- (1,0);
+        \node[anchor=north, font=\small\bfseries, orange!80!red] at (1, -0.08) {$\mathbf{w}_{\text{torta}}$};
+        
+        \draw[->, ultra thick, blue!70] (0,0) -- (0,1);
+        \node[anchor=east, font=\small\bfseries, blue!70] at (-0.08, 1) {$\mathbf{w}_{\text{quant}}$};
+        
+        % Angolo retto
+        \draw[thick, black!50] (0.15,0) -- (0.15,0.15) -- (0,0.15);
+        
+        % Etichetta
+        \node[anchor=north west, font=\small, align=left, text width=4.5cm] at (1.7, 1.5) {
+            \textbf{Caso ideale}\\[0.3em]
+            2 feature, 2 neuroni\\[0.5em]
+            $\mathbf{w}_i = \mathbf{d}_i$ (feature $=$ asse)\\[0.3em]
+            Ortogonalità perfetta:\\
+            $\mathbf{w}_{\text{torta}} \cdot \mathbf{w}_{\text{quant}} = 0$\\[0.5em]
+            $\Rightarrow$ Interpretazione banale:\\
+            $x_1 = a_{\text{torta}}$, \; $x_2 = a_{\text{quant}}$
+        };
+    \end{tikzpicture}
+    \caption{Rappresentazione disentangled ideale. Con due feature e due neuroni, ogni direzione $\mathbf{w}_i$ coincide con un asse $\mathbf{d}_i$. Le coordinate di $\mathbf{x}$ indicano direttamente le intensità $a_i$ di ciascuna feature.}
+    \label{fig:ideal_two_features}
+\end{figure}
+
+\paragraph{Il problema: tre feature, due neuroni.}
+Aggiungiamo ora una terza feature: $f_{\text{ricetta}}$ (``ricetta di cucina''). Improvvisamente ci troviamo in difficoltà: lo spazio ha solo due assi, ma tre feature da rappresentare. Nella logica del mondo ideale, dovremmo rinunciare a una delle tre—non c'è spazio per tutte sugli assi.
+Ma esiste un'alternativa. Se accettiamo che le direzioni $\mathbf{w}_i$ non debbano coincidere con gli assi, possiamo rappresentare tutte e tre le feature come \textit{direzioni} nel piano. La configurazione geometricamente ottimale è quella che le rende il più possibile ``separate''—il più possibile ortogonali, nei limiti del vincolo dimensionale.
+In due dimensioni, la migliore disposizione per tre vettori unitari è quella che li distribuisce uniformemente: tre direzioni a 120° l'una dall'altra, come i vertici di un triangolo equilatero centrato nell'origine.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2.2]
+        % Griglia
+        \draw[gray!15, very thin, step=0.25] (-1.3,-1.1) grid (1.5,1.5);
+        
+        % Assi (neuroni)
+        \draw[->, thick, black!60] (-1.2,0) -- (1.4,0) node[right, font=\small] {$d_1$};
+        \draw[->, thick, black!60] (0,-1.0) -- (0,1.4) node[above, font=\small] {$d_2$};
+        
+        % Tre feature a 120° (direzioni quasi-ortogonali)
+        % w_torta: 0°
+        \draw[->, ultra thick, orange!80!red] (0,0) -- (1,0);
+        \node[anchor=west, font=\small\bfseries, orange!80!red] at (1.05, 0) {$\mathbf{w}_{\text{torta}}$};
+        
+        % w_quant: 120°
+        \draw[->, ultra thick, blue!70] (0,0) -- ({cos(120)},{sin(120)});
+        \node[anchor=south east, font=\small\bfseries, blue!70] at ({cos(120)-0.05},{sin(120)+0.05}) {$\mathbf{w}_{\text{quant}}$};
+        
+        % w_ricetta: 240°
+        \draw[->, ultra thick, green!60!black] (0,0) -- ({cos(240)},{sin(240)});
+        \node[anchor=north east, font=\small\bfseries, green!60!black] at ({cos(240)-0.05},{sin(240)-0.05}) {$\mathbf{w}_{\text{ricetta}}$};
+        
+        % Angoli
+        \draw[red!50, thick] (0.3,0) arc (0:120:0.3);
+        \node[red!70!black, font=\scriptsize] at (0.22, 0.38) {120°};
+        
+        % Etichetta
+        \node[anchor=north west, font=\small, align=left, text width=4.5cm] at (1.7, 1.5) {
+            \textbf{Superposition}\\[0.3em]
+            3 feature, 2 neuroni\\[0.5em]
+            $\mathbf{w}_i \neq \mathbf{d}_j$ (feature $\neq$ asse)\\[0.3em]
+            Direzioni a 120°\\
+            (quasi-ortogonali)\\[0.5em]
+            $\Rightarrow$ Interpretazione difficile
+        };
+    \end{tikzpicture}
+    \caption{Superposition: tre feature in due dimensioni. Le direzioni $\mathbf{w}_i$ non coincidono più con gli assi; sono disposte a 120° l'una dall'altra—la configurazione che massimizza la ``separazione'' nel piano.}
+    \label{fig:superposition_three_features}
+\end{figure}
+Questa configurazione è ciò che Elhage et al.~\parencite{elhage2022superposition} chiamano \textbf{superposition}: la rete rappresenta più feature di quanti siano i neuroni disponibili, codificando le direzioni $\mathbf{w}_i$ come vettori quasi-ortogonali nello spazio delle attivazioni.
+\begin{notebox}
+\textbf{Superposition Hypothesis}\\
+Le reti neurali rappresentano $m$ feature in uno spazio di $n$ dimensioni, con $m > n$, codificando ogni feature $f_i$ come una \textbf{direzione} (vettore unitario) $\mathbf{w}_i$ nello spazio delle attivazioni. Le direzioni sono scelte per essere il più possibile \textit{quasi-ortogonali}—indipendenti nei limiti del vincolo dimensionale. Il risultato è una rappresentazione compressa ma \textit{polisemantica}: ogni neurone partecipa alla codifica di molteplici feature.
+\end{notebox}
+
+\paragraph{Il principio di sovrapposizione lineare.}
+Anche in superposition, l'embedding $\mathbf{x}$ di un input si scrive come combinazione delle direzioni delle feature attive:
+\begin{equation}
+    \mathbf{x} = \sum_{i} a_i \, \mathbf{w}_i = a_{\text{torta}} \, \mathbf{w}_{\text{torta}} + a_{\text{quant}} \, \mathbf{w}_{\text{quant}} + a_{\text{ricetta}} \, \mathbf{w}_{\text{ricetta}} + \dots
+    \label{eq:linear_superposition}
+\end{equation}
+dove $a_i \geq 0$ è l'intensità della feature $f_i$ (zero se assente). Questo è il \textbf{principio di sovrapposizione} dei sistemi lineari: la risposta a stimoli combinati è la somma delle risposte ai singoli stimoli.
+\begin{notebox}
+\textbf{Principio di Sovrapposizione}\\
+Per un sistema lineare, la risposta a una combinazione di input è la combinazione delle risposte individuali. Se l'input $A$ produce la risposta $X$, e l'input $B$ produce la risposta $Y$, allora l'input $(A + B)$ produce la risposta $(X + Y)$.
+Formalmente, una funzione $F$ soddisfa il principio di sovrapposizione se e solo se è \textit{lineare}:
+\begin{align}
+    F(x_1 + x_2) &= F(x_1) + F(x_2) && \text{(additività)} \\
+    F(\alpha x) &= \alpha F(x) && \text{(omogeneità)}
+\end{align}
+\end{notebox}
+
+\paragraph{L'opacità: direzioni sconosciute.}
+L'equazione~\eqref{eq:linear_superposition} ci dice che l'embedding $\mathbf{x}$ è una combinazione delle direzioni $\mathbf{w}_i$ con intensità $a_i$. In linea di principio, \textit{se conoscessimo} le direzioni, potremmo tentare di recuperare le intensità.
+Ma nella pratica:
 \begin{itemize}
-\item \textbf{Matrice di co-occorrenza:}
-\begin{equation}
-C_{ij} = \sum_{k} A_{ik} A_{jk},
-\end{equation}
-dove $A_{ik} = 1$ se la feature $i$ è attiva sull'esempio $k$, e $0$ altrimenti. Questo termine misura quante volte le due feature si attivano congiuntamente.
-\item \textbf{Matrice di similarità delle attivazioni:}
-\begin{equation}
-D_{ij} = \sum_{k} B_{ik} B_{jk},
-\end{equation}
-dove $B_{ik}$ rappresenta il valore scalare dell'attivazione latente. Questa metrica tiene conto non solo della presenza congiunta delle feature, ma anche dell'intensità delle loro attivazioni.
+    \item \textbf{Osserviamo} solo $\mathbf{x}$—il vettore risultante, l'embedding prodotto da BERT
+    \item \textbf{Non conosciamo} le direzioni $\mathbf{w}_i$—la rete le ha apprese durante l'addestramento, ma non ce le rivela
+    \item \textbf{Non conosciamo} le intensità $a_i$—non sappiamo quali feature $f_i$ sono attive né con quale forza
 \end{itemize}
-Poiché feature molto frequenti tendono a co-attivarsi con molte altre in modo spurio, la matrice di co-occorrenza viene normalizzata rispetto alla frequenza $f_i$ della feature $i$:
+Questa è l'\textbf{opacità} delle rappresentazioni neurali: l'informazione semantica è codificata in $\mathbf{x}$, ma non possiamo estrarla perché non conosciamo la ``chiave di decodifica''—le direzioni $\mathbf{w}_i$ delle feature.
+Ma anche se, per magia, conoscessimo le direzioni, rimarrebbe un secondo problema: nella superposition, le direzioni non sono ortogonali. E questo causa interferenza.
+
+
+\subsubsection{Il problema dell'interferenza}
+
+Supponiamo, per un momento, di conoscere le direzioni $\mathbf{w}_i$. Potremmo allora tentare di recuperare le intensità $a_i$ dall'embedding osservato $\mathbf{x}$? La risposta è: solo approssimativamente, e con un errore sistematico.
+
+\paragraph{Decodifica nel caso ideale.}
+Nel caso disentangled (Figura~\ref{fig:ideal_two_features}), le direzioni coincidono con gli assi e sono perfettamente ortogonali. Se vogliamo sapere quanto è attiva la feature $f_{\text{torta}}$, calcoliamo il prodotto scalare tra $\mathbf{x}$ e la direzione $\mathbf{w}_{\text{torta}}$:
 \begin{equation}
-C_{ij}^{\text{norm}} = \frac{C_{ij}}{f_i + \epsilon},
+    \mathbf{x} \cdot \mathbf{w}_{\text{torta}} = \left( a_{\text{torta}} \, \mathbf{w}_{\text{torta}} + a_{\text{quant}} \, \mathbf{w}_{\text{quant}} \right) \cdot \mathbf{w}_{\text{torta}}
 \end{equation}
-ottenendo una misura asimmetrica che approssima la probabilità che la feature $j$ sia attiva dato che la feature $i$ è attiva.
 
-\subsubsection{Identificazione delle Feature Families}
-Sulla matrice di co-occorrenza normalizzata viene applicata una soglia $\tau$ per eliminare relazioni deboli o rumorose. Nel lavoro originale viene utilizzato $\tau = 0.1$, valore che rappresenta un compromesso empirico tra robustezza delle relazioni individuate e copertura dello spazio semantico. A partire dalla matrice sogliata, l'identificazione delle feature families avviene attraverso i seguenti passaggi:
-\begin{enumerate}
-\item costruzione di un \textit{Maximum Spanning Tree} (MST) sul grafo di co-occorrenza, al fine di preservare le relazioni più forti evitando cicli;
-\item orientamento degli archi confrontando la densità di attivazione dei nodi connessi, dirigendo ciascun arco dalla feature più densa (genitore) verso quella meno densa (figlia);
-\item identificazione delle famiglie tramite una ricerca in profondità (DFS) a partire dai nodi radice, ovvero feature prive di archi entranti;
-\item rimozione iterativa delle feature genitore e ricostruzione dell'MST per far emergere famiglie più fini o parzialmente sovrapposte.
-\end{enumerate}
-Questo procedimento consente di ricostruire una struttura gerarchica dello spazio semantico latente, nella quale concetti astratti emergono come nodi ad alta connettività che aggregano progressivamente sottocategorie più specifiche, riflettendo l'organizzazione interna degli embeddings densi appresi dal modello.
-
-\subsection{Il problema del disentanglement}
-
-\subsubsection{Introduzione al disentanglement}
-Nel capitolo precedente abbiamo esplorato come i modelli di \textit{embedding} siano in grado di mappare i significati latenti del linguaggio all'interno di spazi vettoriali ad alta dimensionalità. Un fenomeno empirico di particolare rilievo, nonché una proprietà estremamente desiderabile, è la tendenza di tali significati a organizzarsi secondo strutture lineari. È noto, come abbiamo visto, che le relazioni semantiche possano riflettersi in precise operazioni geometriche: il vettore che congiunge le rappresentazioni di \textit{re} e \textit{regina} approssima lo stesso spostamento semantico che intercorre tra \textit{uomo} e \textit{donna}. Questa regolarità suggerisce che la semantica possa essere descritta attraverso una rappresentazione strutturata, ordinata e, almeno in linea di principio, interpretabile. Con l'avvento dei grandi modelli di linguaggio (\textit{Large Language Models}), l'estrazione di una struttura leggibile dallo spazio rappresentazionale ha smesso di essere un mero interesse di ricerca teorica per diventare una necessità impellente. Dal momento in cui l'interazione tra esseri umani e modelli generativi è diventata centrale, la capacità di esercitare un controllo puntuale su tali strumenti è diventata prioritaria. Tale controllo presuppone il bisogno fondamentale di interpretare il loro funzionamento interno: il \textit{disentanglement} dei fattori di variazione diventa quindi la chiave per trasformare sistemi opachi in strumenti trasparenti e affidabili. Dal punto di vista della geometria dello spazio rappresentazionale, l'ideale teorico consisterebbe nell'associare ogni singola dimensione a un concetto semantico univoco. In un'ottica ingegneristica, ciò corrisponderebbe alla presenza di "neuroni" specializzati all'interno della rete neurale, la cui attivazione risulti proporzionale all'intensità del concetto espresso. Tuttavia, nella pratica, tale corrispondenza biunivoca è raramente riscontrabile: le rappresentazioni tendono a essere distribuite e i concetti risultano spesso intrecciati tra loro. La sfida di isolare queste componenti semantiche indipendenti costituisce il cuore del problema del \textit{disentanglement}.
-
-\subsubsection{Il fenomeno della Superposizione}
-Idealmente, in una rete neurale ``trasparente'', ogni neurone dovrebbe corrispondere a una singola \textit{feature} (caratteristica) dell'input chiaramente interpretabile. In un classificatore di immagini, ad esempio, ci aspetteremmo di trovare un neurone che si attivi esclusivamente per una specifica forma geometrica o un particolare colore; in un modello di linguaggio, per un preciso concetto sintattico o semantico. Questo fenomeno di corrispondenza biunivoca è definito \textbf{monosemanticità}. Tuttavia, l'evidenza empirica mostra che i neuroni sono spesso \textbf{polisemici}: un singolo neurone può attivarsi in risposta a una moltitudine di stimoli tra loro non correlati. Per indagare questo fenomeno, il lavoro di Anthropic, \textit{Toy Models of Superposition}, ha introdotto il concetto di \textbf{superposizione} attraverso l'analisi di modelli semplificati addestrati su dati sintetici.
-
-\paragraph{Formalismo matematico}
-Il problema può essere formalizzato considerando un modello lineare che tenta di mappare un numero $m$ di \textit{features} di input in uno spazio latente di dimensione $d$, dove $d$ rappresenta il numero di neuroni fisici della rete, con $m > d$. Sia $x \in \mathbb{R}^m$ un vettore che rappresenta le \textit{features} in ingresso. Il modello comprime queste informazioni in un vettore di attivazioni neuronali $h \in \mathbb{R}^d$ tramite una matrice di pesi $W \in \mathbb{R}^{d \times m}$:
+Poiché $\mathbf{w}_{\text{torta}} \cdot \mathbf{w}_{\text{torta}} = 1$ (vettore unitario) e $\mathbf{w}_{\text{quant}} \cdot \mathbf{w}_{\text{torta}} = 0$ (ortogonalità), otteniamo:
 \begin{equation}
-h = Wx
+    \mathbf{x} \cdot \mathbf{w}_{\text{torta}} = a_{\text{torta}} \cdot 1 + a_{\text{quant}} \cdot 0 = a_{\text{torta}}
 \end{equation}
-Per ricostruire le \textit{features} originali dalle attivazioni dei neuroni, il modello applica la matrice trasposta, seguita da una non-linearità (solitamente una funzione ReLU) necessaria per filtrare il rumore generato dalle interferenze:
-\begin{equation}
-\hat{x} = \text{ReLU}(W^T h + b) = \text{ReLU}(W^T W x + b)
-\end{equation}
-In un regime di non-superposizione, la rete utilizzerebbe una base ortogonale per rappresentare le \textit{features}, limitandosi a codificarne al massimo $d$. Tuttavia, quando $m > d$, il modello è costretto a ``stipare'' più informazioni di quante siano le dimensioni fisiche disponibili.
 
-\paragraph{Il ruolo della sparsità}
-La domanda fondamentale è perché il modello scelga di rappresentare più \textit{features} dei neuroni disponibili. La risposta risiede nella \textbf{sparsità} ($\mathcal{S}$) delle \textit{features}. Nei dati reali, la maggior parte dei concetti non è presente simultaneamente: le \textit{features} sono cioè raramente attive allo stesso tempo. Se le \textit{features} sono sparse, il modello può sfruttare una proprietà geometrica degli spazi ad alta dimensionalità: l'esistenza di un numero esponenziale di vettori \textbf{quasi-ortogonali} (vettori il cui prodotto scalare è prossimo a zero, $\epsilon$). Il modello accetta quindi un compromesso:
+Perfetto: il prodotto scalare restituisce esattamente l'intensità cercata, senza contaminazioni. L'ortogonalità garantisce che le feature non si ``vedano'' a vicenda.
+
+\paragraph{Decodifica in superposition: l'interferenza.}
+Nel caso della superposition (Figura~\ref{fig:superposition_three_features}), le direzioni non sono ortogonali. Calcoliamo i prodotti scalari tra le nostre tre direzioni a 120°:
+
+\begin{equation}
+    \mathbf{w}_{\text{torta}} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad
+    \mathbf{w}_{\text{quant}} = \begin{pmatrix} -0.5 \\ 0.866 \end{pmatrix}, \quad
+    \mathbf{w}_{\text{ricetta}} = \begin{pmatrix} -0.5 \\ -0.866 \end{pmatrix}
+\end{equation}
+
+I prodotti scalari tra coppie di direzioni sono:
+\begin{equation}
+    \mathbf{w}_{\text{torta}} \cdot \mathbf{w}_{\text{quant}} = 1 \cdot (-0.5) + 0 \cdot 0.866 = -0.5 \neq 0
+\end{equation}
+Le direzioni non sono ortogonali—hanno una ``sovrapposizione'' non nulla. Cosa comporta questo in pratica?
+\paragraph{Esempio: interferenza concreta.}
+Consideriamo un input che riguarda \textit{solo} torte al cioccolato: la feature $f_{\text{torta}}$ è attiva con intensità $a_{\text{torta}} = 1$, mentre le altre sono inattive ($a_{\text{quant}} = a_{\text{ricetta}} = 0$). L'embedding risultante è semplicemente:
+\begin{equation}
+    \mathbf{x} = 1 \cdot \mathbf{w}_{\text{torta}} + 0 \cdot \mathbf{w}_{\text{quant}} + 0 \cdot \mathbf{w}_{\text{ricetta}} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+\end{equation}
+Ora proviamo a ``decodificare'' quanto sembra attiva la feature $f_{\text{quant}}$:
+\begin{equation}
+    \mathbf{x} \cdot \mathbf{w}_{\text{quant}} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \cdot \begin{pmatrix} -0.5 \\ 0.866 \end{pmatrix} = -0.5
+\end{equation}
+Il risultato è $-0.5$, non zero! Nonostante la feature ``meccanica quantistica'' sia completamente assente dall'input, il prodotto scalare restituisce un valore non nullo. Questo è il \textbf{rumore di interferenza}: la non-ortogonalità delle direzioni causa un ``leakage'' tra feature. Quando una feature si attiva, altre feature non correlate mostrano attivazioni spurie.
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2.4]
+        % Griglia
+        \draw[gray!15, very thin, step=0.25] (-1.3,-1.1) grid (1.5,1.3);
+        
+        % Assi (neuroni)
+        \draw[->, thick, black!60] (-1.2,0) -- (1.4,0) node[right, font=\small] {$d_1$};
+        \draw[->, thick, black!60] (0,-1.0) -- (0,1.2) node[above, font=\small] {$d_2$};
+        
+        % Direzioni delle feature
+        \draw[->, thick, orange!80!red] (0,0) -- (1,0);
+        \node[anchor=south, font=\small\bfseries, orange!80!red] at (1, 0.05) {$\mathbf{w}_{\text{torta}}$};
+        
+        \draw[->, thick, blue!70] (0,0) -- ({cos(120)},{sin(120)});
+        \node[anchor=south east, font=\small\bfseries, blue!70] at ({cos(120)-0.08},{sin(120)+0.05}) {$\mathbf{w}_{\text{quant}}$};
+        
+        % Vettore x osservato (solo torta attiva)
+        \draw[->, ultra thick, black] (0,0) -- (1,0);
+        \node[anchor=north west, font=\small] at (0.85, -0.05) {$\mathbf{x}$};
+        
+        % Proiezione di x su w_quant
+        \coordinate (proj) at ({cos(120)*(-0.5)},{sin(120)*(-0.5)});
+        \draw[dashed, blue!70, thick] (1,0) -- (proj);
+        \draw[->, blue!70, very thick] (0,0) -- (proj);
+        \node[blue!70!black, font=\small, anchor=north east] at (proj) {proiezione};
+        
+        % Etichetta interferenza
+        \node[anchor=north west, font=\small, align=left, text width=5cm, fill=red!5, draw=red!30, rounded corners, inner sep=6pt] at (1.6, 1.2) {
+            \textbf{Interferenza}\\[0.3em]
+            Input: solo $f_{\text{torta}}$ attiva\\[0.3em]
+            $\mathbf{x} \cdot \mathbf{w}_{\text{quant}} = -0.5 \neq 0$\\[0.3em]
+            $\Rightarrow$ $f_{\text{quant}}$ \textit{sembra} attiva,\\
+            \phantom{$\Rightarrow$} ma non lo è!
+        };
+    \end{tikzpicture}
+    \caption{Interferenza nella superposition. L'input contiene solo ``torta al cioccolato'' ($\mathbf{x} = \mathbf{w}_{\text{torta}}$), ma la proiezione su $\mathbf{w}_{\text{quant}}$ è non nulla ($-0.5$). La non-ortogonalità causa attivazioni spurie: feature inattive sembrano parzialmente attive.}
+    \label{fig:interference}
+\end{figure}
+
+\paragraph{Il costo della compressione.}
+L'interferenza è il prezzo da pagare per la superposition. Abbiamo guadagnato la possibilità di rappresentare più feature che neuroni, ma abbiamo perso la separabilità perfetta. Ogni volta che ``leggiamo'' l'attivazione di una feature, il segnale è contaminato dalle altre.
+In formule, se proviamo a decodificare l'intensità $a_i$ tramite il prodotto scalare:
+\begin{equation}
+    \mathbf{x} \cdot \mathbf{w}_i = \sum_j a_j \, (\mathbf{w}_j \cdot \mathbf{w}_i) = a_i + \sum_{j \neq i} a_j \, (\mathbf{w}_j \cdot \mathbf{w}_i)
+    \label{eq:interference}
+\end{equation}
+Il primo termine è il segnale che cerchiamo ($a_i$). Il secondo termine è il rumore di interferenza—la somma dei contributi di tutte le altre feature, pesati per quanto le loro direzioni sono ``allineate'' con $\mathbf{w}_i$. Solo se tutte le direzioni fossero ortogonali ($\mathbf{w}_j \cdot \mathbf{w}_i = 0$ per $j \neq i$), il rumore svanirebbe.
+A questo punto la superposition sembra un pessimo affare: comprimiamo le feature, ma le rendiamo inseparabili. Perché mai una rete neurale dovrebbe adottare questa strategia?
+
+\subsubsection{Perché funziona comunque: la sparsità delle feature}
+
+L'interferenza sembra un problema grave: se ogni volta che decodifichiamo una feature otteniamo un segnale contaminato dalle altre, come può la rete funzionare correttamente? La risposta sta in un'osservazione empirica cruciale: \textbf{le feature sono sparse}.
+
+\paragraph{Feature sparse nel mondo reale.}
+Consideriamo i concetti che un modello linguistico deve rappresentare. ``Meccanica quantistica'' è rilevante solo in una minuscola frazione dei testi—articoli scientifici, manuali di fisica, discussioni specialistiche. ``Torta al cioccolato'' compare in contesti completamente diversi—ricette, blog culinari, menu di ristoranti. ``Legislazione fiscale'', ``errore di sintassi'', ``partita di calcio''—ciascun concetto ha il suo dominio ristretto.
+
+In un dato input, solo \textit{pochi} concetti tra le migliaia possibili sono effettivamente pertinenti. Una frase sul calcio non menziona la meccanica quantistica; una ricetta di dolci non discute di legislazione fiscale. Le feature sono \textbf{sparse}: la maggior parte ha intensità $a_i = 0$ per la maggior parte degli input.
+
+\paragraph{Sparsità e interferenza.}
+Torniamo all'equazione dell'interferenza~\eqref{eq:interference}:
+\begin{equation*}
+    \mathbf{x} \cdot \mathbf{w}_i = a_i + \sum_{j \neq i} a_j \, (\mathbf{w}_j \cdot \mathbf{w}_i)
+\end{equation*}
+
+Il rumore di interferenza dipende dai prodotti $a_j \cdot (\mathbf{w}_j \cdot \mathbf{w}_i)$. Ma se la feature $f_j$ è inattiva ($a_j = 0$), il suo contributo al rumore è nullo—indipendentemente da quanto $\mathbf{w}_j$ sia allineata con $\mathbf{w}_i$.
+
+Questo significa che \textit{l'interferenza si manifesta solo tra feature simultaneamente attive}. Se $f_{\text{torta}}$ e $f_{\text{quant}}$ non sono mai attive nello stesso input, possono condividere direzioni parzialmente sovrapposte senza mai interferire in pratica.
+
+\begin{notebox}
+\textbf{Sparsità e Superposition}\\
+La superposition è vantaggiosa quando le feature sono sparse. Se ogni input attiva solo una piccola frazione delle feature totali, l'interferenza potenziale (dovuta alla non-ortogonalità) raramente si manifesta in pratica. La rete può ``stipare'' molte più feature di quanti siano i neuroni, accettando un piccolo rischio di interferenza nei rari casi di co-occorrenza.
+\end{notebox}
+
+\paragraph{Il trade-off sparsità-capacità.}
+Emerge quindi un trade-off fondamentale, illustrato in Figura~\ref{fig:sparsity_superposition}. Al crescere della sparsità delle feature, la rete può permettersi di rappresentarne sempre di più nello stesso spazio:
+
 \begin{itemize}
-\item \textbf{Vantaggio:} Può rappresentare un numero di concetti $m \gg d$.
-\item \textbf{Costo:} Introduce delle interferenze (rumore) tra le \textit{features} a causa della mancata ortogonalità perfetta.
+    \item \textbf{Sparsità 0\%} (ogni feature sempre attiva): l'unica rappresentazione senza interferenza è quella disentangled—ogni feature su un asse dedicato. Se abbiamo $n$ neuroni, possiamo rappresentare al massimo $n$ feature.
+    
+    \item \textbf{Sparsità moderata} (es. 50\%): le feature si attivano metà delle volte. Possiamo iniziare a usare direzioni non allineate agli assi, accettando interferenza occasionale. La capacità cresce oltre $n$.
+    
+    \item \textbf{Sparsità alta} (es. 90\%): le feature si attivano raramente. Possiamo ``stipare'' molte più feature come direzioni quasi-ortogonali—l'interferenza è rara perché le co-occorrenze sono rare. La capacità può crescere significativamente oltre $n$.
 \end{itemize}
-Quando la sparsità è elevata, il rumore di interferenza diventa trascurabile rispetto al beneficio computazionale di poter codificare una vasta gamma di concetti. La superposizione emerge quindi come una strategia di compressione ottimale, permettendo alla rete di simulare un'architettura molto più grande utilizzando un numero limitato di neuroni fisici.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=0.9]
+        
+        % === BOX 1: Sparsità 0% ===
+        \draw[rounded corners, fill=gray!5, draw=gray!30] (-2.2,-2.5) rectangle (2.2,2.5);
+        \node[font=\small\bfseries] at (0, 3) {Sparsità 0\%};
+        
+        % Assi
+        \draw[->, gray!40] (-1.8, 0) -- (1.8, 0) node[right, font=\tiny, gray] {$d_1$};
+        \draw[->, gray!40] (0, -1.8) -- (0, 1.8) node[above, font=\tiny, gray] {$d_2$};
+        
+        % 2 feature sugli assi (ortogonali)
+        \draw[->, very thick, yellow!80!orange] (0,0) -- (1.3,0);
+        \draw[->, very thick, yellow!80!orange] (0,0) -- (0,1.3);
+        \fill[yellow!80!orange] (1.3,0) circle (4pt);
+        \fill[yellow!80!orange] (0,1.3) circle (4pt);
+        
+        \node[font=\scriptsize, align=center, text width=2.5cm] at (0, -2.1) {
+            Solo 2 feature\\(una per asse)
+        };
+        \node[font=\scriptsize\itshape, gray] at (0, -2.8) {Nessuna interferenza};
+        
+        % === BOX 2: Sparsità 80% ===
+        \begin{scope}[shift={(5.5,0)}]
+            \draw[rounded corners, fill=gray!5, draw=gray!30] (-2.2,-2.5) rectangle (2.2,2.5);
+            \node[font=\small\bfseries] at (0, 3) {Sparsità 80\%};
+            
+            % Assi
+            \draw[->, gray!40] (-1.8, 0) -- (1.8, 0) node[right, font=\tiny, gray] {$d_1$};
+            \draw[->, gray!40] (0, -1.8) -- (0, 1.8) node[above, font=\tiny, gray] {$d_2$};
+            
+            % 4 feature: due coppie antipodalid su assi obliqui
+            % Coppia 1: asse a 45° (giallo)
+            \draw[->, very thick, yellow!80!orange] (0,0) -- (0.92, 0.92);
+            \draw[->, very thick, yellow!80!orange] (0,0) -- (-0.92, -0.92);
+            \fill[yellow!80!orange] (0.92, 0.92) circle (4pt);
+            \fill[yellow!80!orange] (-0.92, -0.92) circle (4pt);
+            
+            % Coppia 2: asse a -45° (verde)
+            \draw[->, very thick, green!60!black] (0,0) -- (0.92, -0.92);
+            \draw[->, very thick, green!60!black] (0,0) -- (-0.92, 0.92);
+            \fill[green!60!black] (0.92, -0.92) circle (4pt);
+            \fill[green!60!black] (-0.92, 0.92) circle (4pt);
+            
+            \node[font=\scriptsize, align=center, text width=2.8cm] at (0, -2.1) {
+                4 feature\\(coppie antipodalid)
+            };
+            \node[font=\scriptsize\itshape, gray] at (0, -2.8) {Interferenza rara};
+        \end{scope}
+        
+        % === BOX 3: Sparsità 95% ===
+        \begin{scope}[shift={(11,0)}]
+            \draw[rounded corners, fill=gray!5, draw=gray!30] (-2.2,-2.5) rectangle (2.2,2.5);
+            \node[font=\small\bfseries] at (0, 3) {Sparsità 95\%};
+            
+            % Assi
+            \draw[->, gray!40] (-1.8, 0) -- (1.8, 0) node[right, font=\tiny, gray] {$d_1$};
+            \draw[->, gray!40] (0, -1.8) -- (0, 1.8) node[above, font=\tiny, gray] {$d_2$};
+            
+            % 5 feature come pentagono (72° tra loro)
+            \draw[->, very thick, yellow!80!orange] (0,0) -- ({1.2*cos(90)}, {1.2*sin(90)});
+            \fill[yellow!80!orange] ({1.2*cos(90)}, {1.2*sin(90)}) circle (4pt);
+            
+            \draw[->, very thick, green!60!black] (0,0) -- ({1.2*cos(162)}, {1.2*sin(162)});
+            \fill[green!60!black] ({1.2*cos(162)}, {1.2*sin(162)}) circle (4pt);
+            
+            \draw[->, very thick, green!60!black] (0,0) -- ({1.2*cos(18)}, {1.2*sin(18)});
+            \fill[green!60!black] ({1.2*cos(18)}, {1.2*sin(18)}) circle (4pt);
+            
+            \draw[->, very thick, cyan!70] (0,0) -- ({1.2*cos(234)}, {1.2*sin(234)});
+            \fill[cyan!70] ({1.2*cos(234)}, {1.2*sin(234)}) circle (4pt);
+            
+            \draw[->, very thick, cyan!70] (0,0) -- ({1.2*cos(306)}, {1.2*sin(306)});
+            \fill[cyan!70] ({1.2*cos(306)}, {1.2*sin(306)}) circle (4pt);
+            
+            % Linea di interferenza tra feature vicine
+            \draw[dashed, red!60, thick] ({1.2*cos(90)}, {1.2*sin(90)}) -- ({1.2*cos(162)}, {1.2*sin(162)});
+            \node[red!60, font=\tiny] at (-0.3, 1.35) {interf.};
+            
+            \node[font=\scriptsize, align=center, text width=2.8cm] at (0, -2.1) {
+                5 feature\\(pentagono)
+            };
+            \node[font=\scriptsize\itshape, gray] at (0, -2.8) {Interferenza possibile ma rara};
+        \end{scope}
+        
+        % Freccia sparsità crescente
+        \draw[->, ultra thick, gray!50] (-2.5, 3.6) -- (13.5, 3.6);
+        \node[font=\small, above] at (5.5, 3.7) {Sparsità crescente $\longrightarrow$ Più feature rappresentabili};
+        
+        % Legenda
+        \node[anchor=north west, font=\scriptsize, align=left] at (13.8, 2.5) {
+            \textbf{Legenda}\\[0.5em]
+            \tikz\fill[yellow!80!orange] (0,0) circle (3pt); Priorità alta\\[0.3em]
+            \tikz\fill[green!60!black] (0,0) circle (3pt); Priorità media\\[0.3em]
+            \tikz\fill[cyan!70] (0,0) circle (3pt); Priorità bassa
+        };
+        
+    \end{tikzpicture}
+    \caption{Superposition al variare della sparsità (adattato da Elhage et al.~\parencite{elhage2022superposition}). Con sparsità 0\%, solo 2 feature ottengono assi dedicati (ortogonali). Con sparsità 80\%, 4 feature vengono rappresentate come coppie antipodalid su due assi obliqui (a 45° e -45°). Con sparsità 95\%, 5 feature sono distribuite come un pentagono—l'interferenza tra direzioni vicine è possibile, ma rara grazie alla bassa probabilità di co-occorrenza.}
+    \label{fig:sparsity_superposition}
+\end{figure}
+
+\paragraph{La strategia ottimale della rete.}
+Perché le reti neurali adottano la superposition? Perché è \textit{conveniente}. Il mondo del linguaggio naturale è dominato da feature sparse: la maggior parte dei concetti è rilevante solo in contesti specifici. In questa situazione, dedicare un neurone intero a ogni concetto sarebbe uno spreco—quel neurone resterebbe inattivo per la stragrande maggioranza degli input.
+La superposition permette di sfruttare la capacità della rete in modo più efficiente: ``ricicla'' gli stessi neuroni per feature diverse, confidando nel fatto che raramente serviranno contemporaneamente. È una forma di \textbf{compressione lossy}—perdiamo la perfetta separabilità, ma guadagniamo enormemente in capacità rappresentativa.
+Questo spiega come BERT possa rappresentare decine di migliaia di concetti con soli 768 neuroni: le feature sono codificate come direzioni quasi-ortogonali, e la sparsità naturale del linguaggio garantisce che l'interferenza, pur possibile in linea di principio, sia rara in pratica.
+
+%https://claude.ai/chat/a893ee36-8c08-401b-b4be-f02cb99770a5

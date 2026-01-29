@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  28 JAN 2026 16:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  29 JAN 2026 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1378,7 +1378,7 @@ LaTeX Info: Redefining \nameref on input line 98.
 \openout2 = `style/abstract.aux'.
 
  (./style/abstract.tex
-<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=332, 398.4486pt x 156.585pt>
+<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=292, 398.4486pt x 156.585pt>
 File: pictures/tesiSCIENZE_TECNOLOGIE.jpg Graphic file (type jpg)
 <use pictures/tesiSCIENZE_TECNOLOGIE.jpg>
 Package pdftex.def Info: pictures/tesiSCIENZE_TECNOLOGIE.jpg  used on input lin
@@ -1416,7 +1416,7 @@ l.28 ...zione matematica}{22}{subsubsection.2.7.2}
 \tf@toc=\write8
 \openout8 = `main.toc'.
 
- [3] [4]
+ [3]
 \openout2 = `chapters/01_introduzione.aux'.
 
 
@@ -1427,7 +1427,7 @@ l.28 ...zione matematica}{22}{subsubsection.2.7.2}
 \openout2 = `chapters/02_autoencoders.aux'.
 
  (./chapters/02_autoencoders.tex
-<pictures/cap2/Richard_Feynman_Nobel.jpg, id=448, 501.875pt x 709.65125pt>
+<pictures/cap2/Richard_Feynman_Nobel.jpg, id=394, 501.875pt x 709.65125pt>
 File: pictures/cap2/Richard_Feynman_Nobel.jpg Graphic file (type jpg)
 <use pictures/cap2/Richard_Feynman_Nobel.jpg>
 Package pdftex.def Info: pictures/cap2/Richard_Feynman_Nobel.jpg  used on input
@@ -1443,19 +1443,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--11
 
 
  <./pictures/cap2/Richard_Feynman_Nobel.jpg>] [3] [4]
-<pictures/cap2/reconstructions.png, id=487, 1084.05pt x 252.945pt>
+<pictures/cap2/reconstructions.png, id=433, 1084.05pt x 252.945pt>
 File: pictures/cap2/reconstructions.png Graphic file (type png)
 <use pictures/cap2/reconstructions.png>
 Package pdftex.def Info: pictures/cap2/reconstructions.png  used on input line 
 156.
 (pdftex.def)             Requested size: 390.0pt x 90.99837pt.
-<pictures/cap2/manifold_grid.png, id=489, 578.16pt x 578.16pt>
+<pictures/cap2/manifold_grid.png, id=435, 578.16pt x 578.16pt>
 File: pictures/cap2/manifold_grid.png Graphic file (type png)
 <use pictures/cap2/manifold_grid.png>
 Package pdftex.def Info: pictures/cap2/manifold_grid.png  used on input line 16
 6.
 (pdftex.def)             Requested size: 390.0pt x 389.99414pt.
-<pictures/cap2/latent_scatter.png, id=490, 433.62pt x 433.62pt>
+<pictures/cap2/latent_scatter.png, id=436, 433.62pt x 433.62pt>
 File: pictures/cap2/latent_scatter.png Graphic file (type png)
 <use pictures/cap2/latent_scatter.png>
 Package pdftex.def Info: pictures/cap2/latent_scatter.png  used on input line 1
@@ -1485,7 +1485,7 @@ Overfull \hbox (11.51898pt too wide) in paragraph at lines 399--400
  []
 
 [11] [12] [13]
-<pictures/cap2/mnist_disenangled_info_gan.png, id=574, 1110.1475pt x 668.4975pt
+<pictures/cap2/mnist_disenangled_info_gan.png, id=520, 1110.1475pt x 668.4975pt
 >
 File: pictures/cap2/mnist_disenangled_info_gan.png Graphic file (type png)
 <use pictures/cap2/mnist_disenangled_info_gan.png>
@@ -1494,12 +1494,12 @@ input line 481.
 (pdftex.def)             Requested size: 390.0pt x 234.84467pt.
  [14] [15 <./pictures/cap2/mnist_disenangled_info_gan.png>]
 [16] [17]
-<pictures/cap2/latent_ae.png, id=619, 1016.79875pt x 323.2075pt>
+<pictures/cap2/latent_ae.png, id=565, 1016.79875pt x 323.2075pt>
 File: pictures/cap2/latent_ae.png Graphic file (type png)
 <use pictures/cap2/latent_ae.png>
 Package pdftex.def Info: pictures/cap2/latent_ae.png  used on input line 552.
 (pdftex.def)             Requested size: 390.0pt x 123.96922pt.
-<pictures/cap2/latent_vae.png, id=620, 990.70125pt x 319.1925pt>
+<pictures/cap2/latent_vae.png, id=566, 990.70125pt x 319.1925pt>
 File: pictures/cap2/latent_vae.png Graphic file (type png)
 <use pictures/cap2/latent_vae.png>
 Package pdftex.def Info: pictures/cap2/latent_vae.png  used on input line 561.
@@ -1526,7 +1526,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 ]
-<pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png, id=695, 501.875pt x 756.82
+<pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png, id=641, 501.875pt x 756.82
 75pt>
 File: pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png Graphic file (type png
 )
@@ -1560,7 +1560,7 @@ Overfull \hbox (9.67581pt too wide) in paragraph at lines 303--325
  []
 
 [34] [35] [36] [37]
-<pictures/embeddings_w2vec.png, id=792, 1294.8375pt x 630.355pt>
+<pictures/embeddings_w2vec.png, id=738, 1294.8375pt x 630.355pt>
 File: pictures/embeddings_w2vec.png Graphic file (type png)
 <use pictures/embeddings_w2vec.png>
 Package pdftex.def Info: pictures/embeddings_w2vec.png  used on input line 443.
@@ -1593,11 +1593,53 @@ File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 \openout2 = `chapters/04_disentangling_dense_embeddings_with_sparse_autoencoder
 s.aux'.
 
- (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.tex [58
+ (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.tex
+Underfull \hbox (badness 10000) in paragraph at lines 6--8
+
+ []
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 47.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 47.
+
+Missing character: There is no ° in font cmr8!
+[58
 
 
 
-] [59] [60] [61] [62] [63] [64]) [65]
+]
+Overfull \hbox (0.98364pt too wide) in paragraph at lines 71--72
+[]\T1/cmr/m/n/12 Questa os-ser-va-zio-ne apre una pos-si-bi-li-tà che il ra-gio
+-na-men-to pre-ce-den-te esclu-
+ []
+
+[59] [60]
+
+LaTeX Warning: Citation 'elhage2022superposition' on page 61 undefined on input
+ line 174.
+
+[61] [62] [63] [64] [65]
+Overfull \hbox (9.2135pt too wide) in paragraph at lines 332--333
+\T1/cmr/m/n/12 ``sti-pa-re'' mol-te più fea-tu-re co-me di-re-zio-ni quasi-orto
+gonali^^Vl'interferenza
+ []
+
+
+Overfull \hbox (99.0101pt too wide) in paragraph at lines 433--434
+ [][] 
+ []
+
+
+LaTeX Warning: Citation 'elhage2022superposition' on page 66 undefined on input
+ line 434.
+
+
+LaTeX Warning: Citation 'elhage2022superposition' on page 66 undefined on input
+ line 434.
+
+[66]) [67]
 \openout2 = `chapters/05_prisma.aux'.
 
  (./chapters/05_prisma.tex
@@ -1605,15 +1647,15 @@ Overfull \hbox (3.7292pt too wide) in paragraph at lines 32--32
  [][]\T1/cmss/bx/n/10.95 Interpretazione 
  []
 
-[66
+[68
 
 
 
-] [67] [68] [69] [70] [71]) [72]
+] [69] [70] [71] [72] [73]) [74]
 \openout2 = `chapters/06_analisi_e_risultati.aux'.
 
  (./chapters/06_analisi_e_risultati.tex)
-[73
+[75
 
 
 
@@ -1630,7 +1672,7 @@ Overfull \hbox (32.15178pt too wide) in paragraph at lines 130--130
  adap-ta-tion of transformer-
  []
 
-[74
+[76
 
 
 
@@ -1639,7 +1681,7 @@ Overfull \hbox (32.15178pt too wide) in paragraph at lines 130--130
 
 
 
-] [75] (./main.aux (./style/abstract.aux) (./chapters/01_introduzione.aux)
+] [77] (./main.aux (./style/abstract.aux) (./chapters/01_introduzione.aux)
 (./chapters/02_autoencoders.aux) (./chapters/03_embeddings.aux)
 (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.aux)
 (./chapters/05_prisma.aux) (./chapters/06_analisi_e_risultati.aux)
@@ -1647,67 +1689,78 @@ Overfull \hbox (32.15178pt too wide) in paragraph at lines 130--130
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 48EAD77F15D927A40A9CA89FB8E97341;17679.
+(rerunfilecheck)             Checksum: AF2C0B3B0F72B893EB310345B469882A;15506.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 53580 strings out of 480122
- 1173305 string characters out of 5893077
- 1815427 words of memory out of 5000000
- 70471 multiletter control sequences out of 15000+600000
- 506888 words of font info for 120 fonts, out of 8000000 for 9000
+ 53715 strings out of 480122
+ 1176028 string characters out of 5893077
+ 1817438 words of memory out of 5000000
+ 70602 multiletter control sequences out of 15000+600000
+ 508347 words of font info for 123 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 127i,18n,122p,2303b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 127i,18n,122p,1765b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk
-> </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk>
- </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk> 
-</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> <
-/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1200.600pk> </
-home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </h
-ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk> </ho
-me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </hom
-e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home
-/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/
-edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/e
-do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home/ed
-o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/edo
-/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/edo/
-.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/edo/.
-texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/edo/.t
-exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home/edo/.te
-xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo/.tex
-live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/edo/.texl
-ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/.texli
-ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.texliv
-e2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.texlive
-2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.texlive2
-021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texlive20
-21/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texlive202
-1/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/symbols/msbm10.pfb>
-Output written on main.pdf (80 pages, 4954827 bytes).
+> </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk>
+ </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> 
+</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> <
+/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk> </
+home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </h
+ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1200.600pk> </ho
+me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </hom
+e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk> </home
+/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/
+edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/e
+do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ed
+o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/edo
+/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home/edo/
+.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/edo/.
+texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/edo/.t
+exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/edo/.te
+xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/edo/.tex
+live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home/edo/.texl
+ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo/.texli
+ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/edo/.texliv
+e2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/.texlive
+2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.texlive2
+021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.texlive20
+21/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.texlive202
+1/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texlive2021
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texlive2021/
+texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb>
+Output written on main.pdf (81 pages, 4987518 bytes).
 PDF statistics:
- 2094 PDF objects out of 2487 (max. 8388607)
- 1144 compressed objects within 12 object streams
- 334 named destinations out of 1000 (max. 500000)
- 765 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2111 PDF objects out of 2487 (max. 8388607)
+ 1123 compressed objects within 12 object streams
+ 335 named destinations out of 1000 (max. 500000)
+ 685 words of extra memory for PDF output out of 10000 (max. 10000000)
 
