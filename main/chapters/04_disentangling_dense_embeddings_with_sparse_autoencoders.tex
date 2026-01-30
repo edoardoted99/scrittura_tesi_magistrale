@@ -303,19 +303,14 @@ L'interferenza sembra un problema grave: se ogni volta che decodifichiamo una fe
 
 \paragraph{Feature sparse nel mondo reale.}
 Consideriamo i concetti che un modello linguistico deve rappresentare. ``Meccanica quantistica'' è rilevante solo in una minuscola frazione dei testi—articoli scientifici, manuali di fisica, discussioni specialistiche. ``Torta al cioccolato'' compare in contesti completamente diversi—ricette, blog culinari, menu di ristoranti. ``Legislazione fiscale'', ``errore di sintassi'', ``partita di calcio''—ciascun concetto ha il suo dominio ristretto.
-
 In un dato input, solo \textit{pochi} concetti tra le migliaia possibili sono effettivamente pertinenti. Una frase sul calcio non menziona la meccanica quantistica; una ricetta di dolci non discute di legislazione fiscale. Le feature sono \textbf{sparse}: la maggior parte ha intensità $a_i = 0$ per la maggior parte degli input.
-
 \paragraph{Sparsità e interferenza.}
 Torniamo all'equazione dell'interferenza~\eqref{eq:interference}:
 \begin{equation*}
     \mathbf{x} \cdot \mathbf{w}_i = a_i + \sum_{j \neq i} a_j \, (\mathbf{w}_j \cdot \mathbf{w}_i)
 \end{equation*}
-
 Il rumore di interferenza dipende dai prodotti $a_j \cdot (\mathbf{w}_j \cdot \mathbf{w}_i)$. Ma se la feature $f_j$ è inattiva ($a_j = 0$), il suo contributo al rumore è nullo—indipendentemente da quanto $\mathbf{w}_j$ sia allineata con $\mathbf{w}_i$.
-
 Questo significa che \textit{l'interferenza si manifesta solo tra feature simultaneamente attive}. Se $f_{\text{torta}}$ e $f_{\text{quant}}$ non sono mai attive nello stesso input, possono condividere direzioni parzialmente sovrapposte senza mai interferire in pratica.
-
 \begin{notebox}
 \textbf{Sparsità e Superposition}\\
 La superposition è vantaggiosa quando le feature sono sparse. Se ogni input attiva solo una piccola frazione delle feature totali, l'interferenza potenziale (dovuta alla non-ortogonalità) raramente si manifesta in pratica. La rete può ``stipare'' molte più feature di quanti siano i neuroni, accettando un piccolo rischio di interferenza nei rari casi di co-occorrenza.
@@ -324,84 +319,68 @@ La superposition è vantaggiosa quando le feature sono sparse. Se ogni input att
 \paragraph{Il trade-off sparsità-capacità.}
 Emerge quindi un trade-off fondamentale, illustrato in Figura~\ref{fig:sparsity_superposition}. Al crescere della sparsità delle feature, la rete può permettersi di rappresentarne sempre di più nello stesso spazio:
 
-\begin{itemize}
-    \item \textbf{Sparsità 0\%} (ogni feature sempre attiva): l'unica rappresentazione senza interferenza è quella disentangled—ogni feature su un asse dedicato. Se abbiamo $n$ neuroni, possiamo rappresentare al massimo $n$ feature.
-    
-    \item \textbf{Sparsità moderata} (es. 50\%): le feature si attivano metà delle volte. Possiamo iniziare a usare direzioni non allineate agli assi, accettando interferenza occasionale. La capacità cresce oltre $n$.
-    
-    \item \textbf{Sparsità alta} (es. 90\%): le feature si attivano raramente. Possiamo ``stipare'' molte più feature come direzioni quasi-ortogonali—l'interferenza è rara perché le co-occorrenze sono rare. La capacità può crescere significativamente oltre $n$.
-\end{itemize}
+\begin{enumerate}
+    \item Sparsità 0\% (ogni feature sempre attiva): l'unica rappresentazione senza interferenza è quella disentangled—ogni feature su un asse dedicato. Se abbiamo $n$ neuroni, possiamo rappresentare al massimo $n$ feature.    
+    \item Sparsità moderata (es. 50\%): le feature si attivano metà delle volte. Possiamo iniziare a usare direzioni non allineate agli assi, accettando interferenza occasionale. La capacità cresce oltre $n$.
+    \item Sparsità alta (es. 90\%): le feature si attivano raramente. Possiamo ``stipare'' molte più feature come direzioni quasi-ortogonali—l'interferenza è rara perché le co-occorrenze sono rare. La capacità può crescere significativamente oltre $n$.
+\end{enumerate}
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=0.9]
-        
+    \begin{tikzpicture}[scale=0.9]    
         % === BOX 1: Sparsità 0% ===
         \draw[rounded corners, fill=gray!5, draw=gray!30] (-2.2,-2.5) rectangle (2.2,2.5);
-        \node[font=\small\bfseries] at (0, 3) {Sparsità 0\%};
-        
+        \node[font=\small\bfseries] at (0, 3) {Sparsità 0\%};     
         % Assi
         \draw[->, gray!40] (-1.8, 0) -- (1.8, 0) node[right, font=\tiny, gray] {$d_1$};
         \draw[->, gray!40] (0, -1.8) -- (0, 1.8) node[above, font=\tiny, gray] {$d_2$};
-        
         % 2 feature sugli assi (ortogonali)
         \draw[->, very thick, yellow!80!orange] (0,0) -- (1.3,0);
         \draw[->, very thick, yellow!80!orange] (0,0) -- (0,1.3);
         \fill[yellow!80!orange] (1.3,0) circle (4pt);
         \fill[yellow!80!orange] (0,1.3) circle (4pt);
-        
         \node[font=\scriptsize, align=center, text width=2.5cm] at (0, -2.1) {
             Solo 2 feature\\(una per asse)
         };
         \node[font=\scriptsize\itshape, gray] at (0, -2.8) {Nessuna interferenza};
-        
         % === BOX 2: Sparsità 80% ===
         \begin{scope}[shift={(5.5,0)}]
             \draw[rounded corners, fill=gray!5, draw=gray!30] (-2.2,-2.5) rectangle (2.2,2.5);
             \node[font=\small\bfseries] at (0, 3) {Sparsità 80\%};
-            
             % Assi
             \draw[->, gray!40] (-1.8, 0) -- (1.8, 0) node[right, font=\tiny, gray] {$d_1$};
             \draw[->, gray!40] (0, -1.8) -- (0, 1.8) node[above, font=\tiny, gray] {$d_2$};
-            
             % 4 feature: due coppie antipodalid su assi obliqui
             % Coppia 1: asse a 45° (giallo)
             \draw[->, very thick, yellow!80!orange] (0,0) -- (0.92, 0.92);
             \draw[->, very thick, yellow!80!orange] (0,0) -- (-0.92, -0.92);
             \fill[yellow!80!orange] (0.92, 0.92) circle (4pt);
             \fill[yellow!80!orange] (-0.92, -0.92) circle (4pt);
-            
             % Coppia 2: asse a -45° (verde)
             \draw[->, very thick, green!60!black] (0,0) -- (0.92, -0.92);
             \draw[->, very thick, green!60!black] (0,0) -- (-0.92, 0.92);
             \fill[green!60!black] (0.92, -0.92) circle (4pt);
             \fill[green!60!black] (-0.92, 0.92) circle (4pt);
-            
             \node[font=\scriptsize, align=center, text width=2.8cm] at (0, -2.1) {
                 4 feature\\(coppie antipodalid)
             };
             \node[font=\scriptsize\itshape, gray] at (0, -2.8) {Interferenza rara};
         \end{scope}
-        
         % === BOX 3: Sparsità 95% ===
         \begin{scope}[shift={(11,0)}]
             \draw[rounded corners, fill=gray!5, draw=gray!30] (-2.2,-2.5) rectangle (2.2,2.5);
             \node[font=\small\bfseries] at (0, 3) {Sparsità 95\%};
-            
             % Assi
             \draw[->, gray!40] (-1.8, 0) -- (1.8, 0) node[right, font=\tiny, gray] {$d_1$};
             \draw[->, gray!40] (0, -1.8) -- (0, 1.8) node[above, font=\tiny, gray] {$d_2$};
-            
             % 5 feature come pentagono (72° tra loro)
             \draw[->, very thick, yellow!80!orange] (0,0) -- ({1.2*cos(90)}, {1.2*sin(90)});
             \fill[yellow!80!orange] ({1.2*cos(90)}, {1.2*sin(90)}) circle (4pt);
-            
             \draw[->, very thick, green!60!black] (0,0) -- ({1.2*cos(162)}, {1.2*sin(162)});
             \fill[green!60!black] ({1.2*cos(162)}, {1.2*sin(162)}) circle (4pt);
-            
             \draw[->, very thick, green!60!black] (0,0) -- ({1.2*cos(18)}, {1.2*sin(18)});
             \fill[green!60!black] ({1.2*cos(18)}, {1.2*sin(18)}) circle (4pt);
-            
+        
             \draw[->, very thick, cyan!70] (0,0) -- ({1.2*cos(234)}, {1.2*sin(234)});
             \fill[cyan!70] ({1.2*cos(234)}, {1.2*sin(234)}) circle (4pt);
             
@@ -429,7 +408,6 @@ Emerge quindi un trade-off fondamentale, illustrato in Figura~\ref{fig:sparsity_
             \tikz\fill[green!60!black] (0,0) circle (3pt); Priorità media\\[0.3em]
             \tikz\fill[cyan!70] (0,0) circle (3pt); Priorità bassa
         };
-        
     \end{tikzpicture}
     \caption{Superposition al variare della sparsità (adattato da Elhage et al.~\parencite{elhage2022superposition}). Con sparsità 0\%, solo 2 feature ottengono assi dedicati (ortogonali). Con sparsità 80\%, 4 feature vengono rappresentate come coppie antipodalid su due assi obliqui (a 45° e -45°). Con sparsità 95\%, 5 feature sono distribuite come un pentagono—l'interferenza tra direzioni vicine è possibile, ma rara grazie alla bassa probabilità di co-occorrenza.}
     \label{fig:sparsity_superposition}
