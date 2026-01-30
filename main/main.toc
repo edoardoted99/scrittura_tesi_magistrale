@@ -60,9 +60,50 @@
 \contentsline {subsubsection}{\numberline {3.3.7}BERT: codifica bidirezionale}{54}{subsubsection.3.3.7}%
 \contentsline {paragraph}{Pre-training e fine-tuning.}{56}{section*.38}%
 \contentsline {paragraph}{Il problema dell'opacità.}{56}{section*.39}%
-\contentsline {section}{\numberline {4}PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{58}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Fare luce nella black box degli embedding}{59}{subsection.4.1}%
-\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability Sparse Monosemantic Autoencoders}{62}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embeddings}{62}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{64}{section.6}%
-\contentsline {section}{\numberline {7}PubMed}{64}{section.7}%
+\contentsline {section}{\numberline {4}Il problema del Disentanglement}{58}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Il mondo ideale: rappresentazioni disentangled}{59}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}La rete ideale}{60}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Due spazi vettoriali}{60}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Definizione di disentanglement}{61}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}Il paradosso della capacità}{62}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Neuroni e feature: una distinzione cruciale}{64}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}L'analogia geografica}{64}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Direzioni e capacità}{65}{subsubsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.4}La Superposition Hypothesis}{66}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Il caso ideale: direzioni ortogonali}{66}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Superposition: più feature che neuroni}{66}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Perché la superposition funziona: la sparsità}{67}{subsubsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.5}I due problemi della superposition}{68}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Problema 1: l'opacità}{69}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Problema 2: l'interferenza}{70}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Un esempio concreto}{70}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Riepilogo}{71}{subsubsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.6}L'idea del disentanglement}{72}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Invertire la superposition}{72}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Lo spazio overcomplete}{73}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}La sparsità come vincolo}{73}{subsubsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.4}Il risultato: feature separate}{75}{subsubsection.4.6.4}%
+\contentsline {subsection}{\numberline {4.7}Verso una soluzione: PRISMA}{75}{subsection.4.7}%
+\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{77}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embedding}{78}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Architettura dello Sparse Autoencoder}{80}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Panoramica dell'architettura}{80}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Lo spazio latente overcomplete}{83}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}La linearità del decoder: la chiave del disentanglement}{84}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Feature come direzioni nello spazio degli embedding}{87}{subsubsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{89}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}La funzione di perdita complessiva}{90}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Il vincolo di sparsità Top-K}{91}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Auxiliary loss e il problema dei dead latents}{93}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Interpretabilità automatica delle feature}{95}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{96}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{98}{subsubsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.5}Feature Families: struttura gerarchica dei concetti}{99}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Co-attivazione e struttura emergente}{99}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Identificazione delle famiglie}{100}{subsubsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.6}Feature Splitting: granularità emergente}{102}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Il fenomeno dello splitting}{102}{subsubsection.5.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.2}Feature ricorrenti e feature nuove}{102}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.3}Implicazioni per la dimensionalità delle rappresentazioni}{104}{subsubsection.5.6.3}%
+\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{106}{section.6}%
+\contentsline {section}{\numberline {7}PubMed}{106}{section.7}%

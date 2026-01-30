@@ -1,19 +1,145 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability Sparse Monosemantic Autoencoders}{62}{section.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Home page di PRISMA\relax }}{62}{figure.caption.42}\protected@file@percent }
-\newlabel{fig:prisma_home}{{27}{62}{Home page di PRISMA\relax }{figure.caption.42}{}}
-\newlabel{fig:prisma_home@cref}{{[figure][27][]27}{[1][62][]62}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embeddings}{62}{subsection.5.1}\protected@file@percent }
-\newlabel{sec:prisma_intro}{{5.1}{62}{Fare luce nella black box degli embeddings}{subsection.5.1}{}}
-\newlabel{sec:prisma_intro@cref}{{[subsection][1][5]5.1}{[1][62][]62}}
-\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf  {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots  , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile.\relax }}{63}{figure.caption.43}\protected@file@percent }
-\newlabel{fig:prisma_analogy}{{28}{63}{L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile.\relax }{figure.caption.43}{}}
-\newlabel{fig:prisma_analogy@cref}{{[figure][28][]28}{[1][62][]63}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{77}{section.5}\protected@file@percent }
+\newlabel{sec:05_prisma}{{5}{77}{PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{section.5}{}}
+\newlabel{sec:05_prisma@cref}{{[section][5][]5}{[1][77][]77}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embedding}{78}{subsection.5.1}\protected@file@percent }
+\newlabel{subsec:prisma_intro}{{5.1}{78}{Fare luce nella black box degli embedding}{subsection.5.1}{}}
+\newlabel{subsec:prisma_intro@cref}{{[subsection][1][5]5.1}{[1][78][]78}}
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Home page di PRISMA, l'applicazione sviluppata in questa tesi per la scomposizione degli embedding in feature interpretabili.\relax }}{78}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:prisma_home}{{33}{78}{Home page di PRISMA, l'applicazione sviluppata in questa tesi per la scomposizione degli embedding in feature interpretabili.\relax }{figure.caption.48}{}}
+\newlabel{fig:prisma_home@cref}{{[figure][33][]33}{[1][78][]78}}
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf  {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots  , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile.\relax }}{79}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:prisma_analogy}{{34}{79}{L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile.\relax }{figure.caption.49}{}}
+\newlabel{fig:prisma_analogy@cref}{{[figure][34][]34}{[1][78][]79}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Architettura dello Sparse Autoencoder}{80}{subsection.5.2}\protected@file@percent }
+\newlabel{subsec:sae_architecture}{{5.2}{80}{Architettura dello Sparse Autoencoder}{subsection.5.2}{}}
+\newlabel{subsec:sae_architecture@cref}{{[subsection][2][5]5.2}{[1][79][]80}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Panoramica dell'architettura}{80}{subsubsection.5.2.1}\protected@file@percent }
+\newlabel{subsubsec:sae_overview}{{5.2.1}{80}{Panoramica dell'architettura}{subsubsection.5.2.1}{}}
+\newlabel{subsubsec:sae_overview@cref}{{[subsubsection][1][5,2]5.2.1}{[1][80][]80}}
+\newlabel{eq:sae_encoder}{{43}{80}{Panoramica dell'architettura}{equation.5.43}{}}
+\newlabel{eq:sae_encoder@cref}{{[equation][43][]43}{[1][80][]80}}
+\newlabel{eq:sae_decoder}{{44}{80}{Panoramica dell'architettura}{equation.5.44}{}}
+\newlabel{eq:sae_decoder@cref}{{[equation][44][]44}{[1][80][]80}}
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Architettura dello Sparse Autoencoder. L'encoder $f_\theta $ (non lineare) mappa l'input $\mathbf  {x}$ in uno spazio latente \textit  {overcomplete} di dimensione $n \gg d$. La sparsità forza solo poche componenti di $\mathbf  {h}$ (cerchi verdi) ad essere attive, mentre le altre (cerchi grigi) restano nulle. Il decoder $g_\phi $ (lineare) ricostruisce l'input come combinazione delle sole direzioni attive.\relax }}{81}{figure.caption.50}\protected@file@percent }
+\newlabel{fig:sae_architecture}{{35}{81}{Architettura dello Sparse Autoencoder. L'encoder $f_\theta $ (non lineare) mappa l'input $\mathbf {x}$ in uno spazio latente \textit {overcomplete} di dimensione $n \gg d$. La sparsità forza solo poche componenti di $\mathbf {h}$ (cerchi verdi) ad essere attive, mentre le altre (cerchi grigi) restano nulle. Il decoder $g_\phi $ (lineare) ricostruisce l'input come combinazione delle sole direzioni attive.\relax }{figure.caption.50}{}}
+\newlabel{fig:sae_architecture@cref}{{[figure][35][]35}{[1][80][]81}}
+\newlabel{subsubsec:sae_encoder}{{5.2.1}{81}{Panoramica dell'architettura}{figure.caption.50}{}}
+\newlabel{subsubsec:sae_encoder@cref}{{[subsubsection][1][5,2]5.2.1}{[1][80][]81}}
+\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces L'encoder come rilevatore di feature. L'input $\mathbf  {x}$ viene proiettato sulle direzioni $\mathbf  {e}_i$ (righe di $W_e$). Le direzioni sufficientemente allineate con $\mathbf  {x}$ (in verde) producono pre-attivazioni positive $z_i > 0$, che la ReLU preserva; quelle non allineate (in rosso) producono $z_i < 0$ e vengono azzerate.\relax }}{82}{figure.caption.51}\protected@file@percent }
+\newlabel{fig:encoder_detection}{{36}{82}{L'encoder come rilevatore di feature. L'input $\mathbf {x}$ viene proiettato sulle direzioni $\mathbf {e}_i$ (righe di $W_e$). Le direzioni sufficientemente allineate con $\mathbf {x}$ (in verde) producono pre-attivazioni positive $z_i > 0$, che la ReLU preserva; quelle non allineate (in rosso) producono $z_i < 0$ e vengono azzerate.\relax }{figure.caption.51}{}}
+\newlabel{fig:encoder_detection@cref}{{[figure][36][]36}{[1][81][]82}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Lo spazio latente overcomplete}{83}{subsubsection.5.2.2}\protected@file@percent }
+\newlabel{subsubsec:sae_overcomplete}{{5.2.2}{83}{Lo spazio latente overcomplete}{subsubsection.5.2.2}{}}
+\newlabel{subsubsec:sae_overcomplete@cref}{{[subsubsection][2][5,2]5.2.2}{[1][83][]83}}
+\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Autoencoder classico: il bottleneck forza la compressione informativa ($m < d$).\relax }}{84}{figure.caption.52}\protected@file@percent }
+\newlabel{fig:ae_classico}{{37}{84}{Autoencoder classico: il bottleneck forza la compressione informativa ($m < d$).\relax }{figure.caption.52}{}}
+\newlabel{fig:ae_classico@cref}{{[figure][37][]37}{[1][83][]84}}
+\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Sparse Autoencoder: lo spazio latente è overcomplete ($n > d$), con abbastanza dimensioni affinché ogni feature possa avere un asse dedicato.\relax }}{84}{figure.caption.53}\protected@file@percent }
+\newlabel{fig:sae_overcomplete}{{38}{84}{Sparse Autoencoder: lo spazio latente è overcomplete ($n > d$), con abbastanza dimensioni affinché ogni feature possa avere un asse dedicato.\relax }{figure.caption.53}{}}
+\newlabel{fig:sae_overcomplete@cref}{{[figure][38][]38}{[1][83][]84}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}La linearità del decoder: la chiave del disentanglement}{84}{subsubsection.5.2.3}\protected@file@percent }
+\newlabel{subsubsec:sae_decoder_linearity}{{5.2.3}{84}{La linearità del decoder: la chiave del disentanglement}{subsubsection.5.2.3}{}}
+\newlabel{subsubsec:sae_decoder_linearity@cref}{{[subsubsection][3][5,2]5.2.3}{[1][84][]84}}
+\newlabel{eq:decoder_linear_combination}{{51}{85}{La linearità del decoder: la chiave del disentanglement}{equation.5.51}{}}
+\newlabel{eq:decoder_linear_combination@cref}{{[equation][51][]51}{[1][85][]85}}
+\newlabel{eq:reconstruction_explicit}{{52}{85}{La linearità del decoder: la chiave del disentanglement}{equation.5.52}{}}
+\newlabel{eq:reconstruction_explicit@cref}{{[equation][52][]52}{[1][85][]85}}
+\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces La ricostruzione come combinazione lineare. Ogni colonna $\mathbf  {w}_i$ della matrice del decoder rappresenta una direzione nello spazio degli embedding. La ricostruzione $\hat  {\mathbf  {x}}$ è la somma dei vettori $\mathbf  {w}_i$ pesati dalle rispettive attivazioni $h_i$. La linearità garantisce che ogni feature contribuisca in modo indipendente e trasparente.\relax }}{87}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:decoder_linear_combination}{{39}{87}{La ricostruzione come combinazione lineare. Ogni colonna $\mathbf {w}_i$ della matrice del decoder rappresenta una direzione nello spazio degli embedding. La ricostruzione $\hat {\mathbf {x}}$ è la somma dei vettori $\mathbf {w}_i$ pesati dalle rispettive attivazioni $h_i$. La linearità garantisce che ogni feature contribuisca in modo indipendente e trasparente.\relax }{figure.caption.54}{}}
+\newlabel{fig:decoder_linear_combination@cref}{{[figure][39][]39}{[1][86][]87}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Feature come direzioni nello spazio degli embedding}{87}{subsubsection.5.2.4}\protected@file@percent }
+\newlabel{subsubsec:features_as_directions}{{5.2.4}{87}{Feature come direzioni nello spazio degli embedding}{subsubsection.5.2.4}{}}
+\newlabel{subsubsec:features_as_directions@cref}{{[subsubsection][4][5,2]5.2.4}{[1][87][]87}}
+\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Feature come direzioni normalizzate nello spazio degli embedding. Ogni colonna $\mathbf  {w}_i$ del decoder definisce una direzione unitaria associata a un concetto semantico. Le direzioni non sono ortogonali: feature semanticamente correlate (come febbre e tosse) possono puntare in direzioni simili.\relax }}{88}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:features_as_directions}{{40}{88}{Feature come direzioni normalizzate nello spazio degli embedding. Ogni colonna $\mathbf {w}_i$ del decoder definisce una direzione unitaria associata a un concetto semantico. Le direzioni non sono ortogonali: feature semanticamente correlate (come febbre e tosse) possono puntare in direzioni simili.\relax }{figure.caption.55}{}}
+\newlabel{fig:features_as_directions@cref}{{[figure][40][]40}{[1][88][]88}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{89}{subsection.5.3}\protected@file@percent }
+\newlabel{subsec:loss_function}{{5.3}{89}{Funzione di perdita e addestramento}{subsection.5.3}{}}
+\newlabel{subsec:loss_function@cref}{{[subsection][3][5]5.3}{[1][89][]89}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}La funzione di perdita complessiva}{90}{subsubsection.5.3.1}\protected@file@percent }
+\newlabel{subsubsec:loss_overview}{{5.3.1}{90}{La funzione di perdita complessiva}{subsubsection.5.3.1}{}}
+\newlabel{subsubsec:loss_overview@cref}{{[subsubsection][1][5,3]5.3.1}{[1][90][]90}}
+\newlabel{eq:total_loss}{{58}{90}{La funzione di perdita complessiva}{equation.5.58}{}}
+\newlabel{eq:total_loss@cref}{{[equation][58][]58}{[1][90][]90}}
+\newlabel{eq:reconstruction_loss}{{59}{90}{La funzione di perdita complessiva}{equation.5.59}{}}
+\newlabel{eq:reconstruction_loss@cref}{{[equation][59][]59}{[1][90][]90}}
+\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces I tre componenti della funzione di perdita. La perdita di ricostruzione garantisce fedeltà semantica; il vincolo di sparsità forza rappresentazioni con poche attivazioni; la perdita ausiliaria previene il collasso di feature inutilizzate.\relax }}{91}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:loss_components}{{41}{91}{I tre componenti della funzione di perdita. La perdita di ricostruzione garantisce fedeltà semantica; il vincolo di sparsità forza rappresentazioni con poche attivazioni; la perdita ausiliaria previene il collasso di feature inutilizzate.\relax }{figure.caption.56}{}}
+\newlabel{fig:loss_components@cref}{{[figure][41][]41}{[1][90][]91}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Il vincolo di sparsità Top-K}{91}{subsubsection.5.3.2}\protected@file@percent }
+\newlabel{subsubsec:topk_sparsity}{{5.3.2}{91}{Il vincolo di sparsità Top-K}{subsubsection.5.3.2}{}}
+\newlabel{subsubsec:topk_sparsity@cref}{{[subsubsection][2][5,3]5.3.2}{[1][91][]91}}
+\newlabel{eq:topk_activation}{{63}{92}{Il vincolo di sparsità Top-K}{equation.5.63}{}}
+\newlabel{eq:topk_activation@cref}{{[equation][63][]63}{[1][92][]92}}
+\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces Il vincolo Top-K. A sinistra: le pre-attivazioni $\mathbf  {z}$ calcolate dall'encoder. Le tre componenti con valore più alto sono evidenziate in blu. A destra: le attivazioni finali $\mathbf  {h}$ dopo l'applicazione del vincolo Top-K con $k=3$. Solo le componenti selezionate (in verde) mantengono il loro valore; tutte le altre sono forzate a zero.\relax }}{92}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:topk_mechanism}{{42}{92}{Il vincolo Top-K. A sinistra: le pre-attivazioni $\mathbf {z}$ calcolate dall'encoder. Le tre componenti con valore più alto sono evidenziate in blu. A destra: le attivazioni finali $\mathbf {h}$ dopo l'applicazione del vincolo Top-K con $k=3$. Solo le componenti selezionate (in verde) mantengono il loro valore; tutte le altre sono forzate a zero.\relax }{figure.caption.57}{}}
+\newlabel{fig:topk_mechanism@cref}{{[figure][42][]42}{[1][92][]92}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Auxiliary loss e il problema dei dead latents}{93}{subsubsection.5.3.3}\protected@file@percent }
+\newlabel{subsubsec:auxiliary_loss}{{5.3.3}{93}{Auxiliary loss e il problema dei dead latents}{subsubsection.5.3.3}{}}
+\newlabel{subsubsec:auxiliary_loss@cref}{{[subsubsection][3][5,3]5.3.3}{[1][93][]93}}
+\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces Evoluzione dei dead latents durante il training (illustrazione qualitativa basata sui risultati di O'Neill et al.). Senza la perdita ausiliaria, una frazione significativa di feature diventa permanentemente inattiva. Con la perdita ausiliaria, i dead latents vengono progressivamente ``rianimati'' fino a scomparire.\relax }}{94}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:dead_latents}{{43}{94}{Evoluzione dei dead latents durante il training (illustrazione qualitativa basata sui risultati di O'Neill et al.). Senza la perdita ausiliaria, una frazione significativa di feature diventa permanentemente inattiva. Con la perdita ausiliaria, i dead latents vengono progressivamente ``rianimati'' fino a scomparire.\relax }{figure.caption.58}{}}
+\newlabel{fig:dead_latents@cref}{{[figure][43][]43}{[1][93][]94}}
+\newlabel{eq:auxiliary_loss}{{64}{94}{Auxiliary loss e il problema dei dead latents}{equation.5.64}{}}
+\newlabel{eq:auxiliary_loss@cref}{{[equation][64][]64}{[1][94][]94}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Interpretabilità automatica delle feature}{95}{subsection.5.4}\protected@file@percent }
+\newlabel{subsec:interpretability}{{5.4}{95}{Interpretabilità automatica delle feature}{subsection.5.4}{}}
+\newlabel{subsec:interpretability@cref}{{[subsection][4][5]5.4}{[1][95][]95}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{96}{subsubsection.5.4.1}\protected@file@percent }
+\newlabel{subsubsec:interpreter}{{5.4.1}{96}{L'Interpreter LLM}{subsubsection.5.4.1}{}}
+\newlabel{subsubsec:interpreter@cref}{{[subsubsection][1][5,4]5.4.1}{[1][95][]96}}
+\@writefile{lof}{\contentsline {figure}{\numberline {44}{\ignorespaces Il processo di interpretazione automatica. Per ogni feature, si identificano i testi che la attivano maggiormente e quelli che non la attivano affatto. Un LLM esamina entrambi gli insiemi e produce un'etichetta che descrive il concetto catturato dalla feature.\relax }}{97}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:interpreter_process}{{44}{97}{Il processo di interpretazione automatica. Per ogni feature, si identificano i testi che la attivano maggiormente e quelli che non la attivano affatto. Un LLM esamina entrambi gli insiemi e produce un'etichetta che descrive il concetto catturato dalla feature.\relax }{figure.caption.59}{}}
+\newlabel{fig:interpreter_process@cref}{{[figure][44][]44}{[1][96][]97}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{98}{subsubsection.5.4.2}\protected@file@percent }
+\newlabel{subsubsec:prisma_interpreter}{{5.4.2}{98}{Implementazione in PRISMA}{subsubsection.5.4.2}{}}
+\newlabel{subsubsec:prisma_interpreter@cref}{{[subsubsection][2][5,4]5.4.2}{[1][96][]98}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Feature Families: struttura gerarchica dei concetti}{99}{subsection.5.5}\protected@file@percent }
+\newlabel{subsec:feature_families}{{5.5}{99}{Feature Families: struttura gerarchica dei concetti}{subsection.5.5}{}}
+\newlabel{subsec:feature_families@cref}{{[subsection][5][5]5.5}{[1][99][]99}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Co-attivazione e struttura emergente}{99}{subsubsection.5.5.1}\protected@file@percent }
+\newlabel{subsubsec:coactivation}{{5.5.1}{99}{Co-attivazione e struttura emergente}{subsubsection.5.5.1}{}}
+\newlabel{subsubsec:coactivation@cref}{{[subsubsection][1][5,5]5.5.1}{[1][99][]99}}
+\newlabel{eq:cooccurrence}{{65}{99}{Co-attivazione e struttura emergente}{equation.5.65}{}}
+\newlabel{eq:cooccurrence@cref}{{[equation][65][]65}{[1][99][]99}}
+\newlabel{eq:cooccurrence_norm}{{66}{99}{Co-attivazione e struttura emergente}{equation.5.66}{}}
+\newlabel{eq:cooccurrence_norm@cref}{{[equation][66][]66}{[1][99][]99}}
+\@writefile{lof}{\contentsline {figure}{\numberline {45}{\ignorespaces Esempio di feature family nel dominio del machine learning (adattato da O'Neill et al.). La radice ``Optimization'' è il parent: un concetto generale con alta densità di attivazione $f_i$. Gli archi sono orientati verso feature con densità decrescente, riflettendo la gerarchia semantica dal generale allo specifico.\relax }}{100}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:feature_family_tree}{{45}{100}{Esempio di feature family nel dominio del machine learning (adattato da O'Neill et al.). La radice ``Optimization'' è il parent: un concetto generale con alta densità di attivazione $f_i$. Gli archi sono orientati verso feature con densità decrescente, riflettendo la gerarchia semantica dal generale allo specifico.\relax }{figure.caption.60}{}}
+\newlabel{fig:feature_family_tree@cref}{{[figure][45][]45}{[1][100][]100}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Identificazione delle famiglie}{100}{subsubsection.5.5.2}\protected@file@percent }
+\newlabel{subsubsec:family_identification}{{5.5.2}{100}{Identificazione delle famiglie}{subsubsection.5.5.2}{}}
+\newlabel{subsubsec:family_identification@cref}{{[subsubsection][2][5,5]5.5.2}{[1][100][]100}}
+\newlabel{eq:threshold}{{67}{100}{Identificazione delle famiglie}{equation.5.67}{}}
+\newlabel{eq:threshold@cref}{{[equation][67][]67}{[1][100][]100}}
+\newlabel{eq:edge_direction}{{68}{101}{Identificazione delle famiglie}{equation.5.68}{}}
+\newlabel{eq:edge_direction@cref}{{[equation][68][]68}{[1][101][]101}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Feature Splitting: granularità emergente}{102}{subsection.5.6}\protected@file@percent }
+\newlabel{subsec:feature_splitting}{{5.6}{102}{Feature Splitting: granularità emergente}{subsection.5.6}{}}
+\newlabel{subsec:feature_splitting@cref}{{[subsection][6][5]5.6}{[1][101][]102}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}Il fenomeno dello splitting}{102}{subsubsection.5.6.1}\protected@file@percent }
+\newlabel{subsubsec:splitting_phenomenon}{{5.6.1}{102}{Il fenomeno dello splitting}{subsubsection.5.6.1}{}}
+\newlabel{subsubsec:splitting_phenomenon@cref}{{[subsubsection][1][5,6]5.6.1}{[1][102][]102}}
+\newlabel{eq:feature_similarity}{{69}{102}{Il fenomeno dello splitting}{equation.5.69}{}}
+\newlabel{eq:feature_similarity@cref}{{[equation][69][]69}{[1][102][]102}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Feature ricorrenti e feature nuove}{102}{subsubsection.5.6.2}\protected@file@percent }
+\newlabel{subsubsec:recurrent_novel}{{5.6.2}{102}{Feature ricorrenti e feature nuove}{subsubsection.5.6.2}{}}
+\newlabel{subsubsec:recurrent_novel@cref}{{[subsubsection][2][5,6]5.6.2}{[1][102][]102}}
+\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces Illustrazione del feature splitting. Una feature generale in un SAE piccolo (``Ottimizzazione'') si scinde progressivamente in feature più specifiche all'aumentare della capacità. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 arriva a distinguere singoli algoritmi.\relax }}{103}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:feature_splitting}{{46}{103}{Illustrazione del feature splitting. Una feature generale in un SAE piccolo (``Ottimizzazione'') si scinde progressivamente in feature più specifiche all'aumentare della capacità. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 arriva a distinguere singoli algoritmi.\relax }{figure.caption.61}{}}
+\newlabel{fig:feature_splitting@cref}{{[figure][46][]46}{[1][102][]103}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Implicazioni per la dimensionalità delle rappresentazioni}{104}{subsubsection.5.6.3}\protected@file@percent }
+\newlabel{subsubsec:dimensionality_implications}{{5.6.3}{104}{Implicazioni per la dimensionalità delle rappresentazioni}{subsubsection.5.6.3}{}}
+\newlabel{subsubsec:dimensionality_implications@cref}{{[subsubsection][3][5,6]5.6.3}{[1][104][]104}}
+\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces La matrice di attivazione sparsa $A$ rivela la struttura delle rappresentazioni. Feature che tendono ad attivarsi insieme (colori simili) formano gruppi correlati. Il rango effettivo della matrice è inferiore al numero nominale di feature, riflettendo la ridondanza introdotta dalle feature families e dallo splitting.\relax }}{105}{figure.caption.62}\protected@file@percent }
+\newlabel{fig:activation_matrix}{{47}{105}{La matrice di attivazione sparsa $A$ rivela la struttura delle rappresentazioni. Feature che tendono ad attivarsi insieme (colori simili) formano gruppi correlati. Il rango effettivo della matrice è inferiore al numero nominale di feature, riflettendo la ridondanza introdotta dalle feature families e dallo splitting.\relax }{figure.caption.62}{}}
+\newlabel{fig:activation_matrix@cref}{{[figure][47][]47}{[1][105][]105}}
 \@setckpt{chapters/05_prisma}{
-\setcounter{page}{64}
-\setcounter{equation}{28}
-\setcounter{enumi}{2}
+\setcounter{page}{106}
+\setcounter{equation}{69}
+\setcounter{enumi}{5}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
@@ -21,11 +147,11 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{section}{5}
-\setcounter{subsection}{1}
-\setcounter{subsubsection}{0}
+\setcounter{subsection}{6}
+\setcounter{subsubsection}{3}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{28}
+\setcounter{figure}{47}
 \setcounter{table}{2}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
@@ -75,7 +201,7 @@
 \setcounter{parenlevel}{0}
 \setcounter{blx@maxsection}{0}
 \setcounter{blx@maxsegment@0}{0}
-\setcounter{blx@sectionciteorder@0}{21}
+\setcounter{blx@sectionciteorder@0}{36}
 \setcounter{mincomprange}{10}
 \setcounter{maxcomprange}{100000}
 \setcounter{mincompwidth}{1}
@@ -158,14 +284,14 @@
 \setcounter{smartand}{1}
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
-\setcounter{Item}{71}
+\setcounter{Item}{103}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{52}
+\setcounter{bookmark@seq@number}{93}
 \setcounter{FancyVerbLine}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{24}
+\setcounter{tcolorbox@number}{37}
 \setcounter{definition}{0}
 \setcounter{lstlisting}{0}
-\setcounter{section@level}{2}
+\setcounter{section@level}{3}
 }
