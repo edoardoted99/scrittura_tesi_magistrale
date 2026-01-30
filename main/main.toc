@@ -51,45 +51,18 @@
 \contentsline {paragraph}{Geometria dell'analogia: il modello del parallelogramma.}{39}{section*.29}%
 \contentsline {subsubsection}{\numberline {3.2.3}Limiti degli embeddings statici}{39}{subsubsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.3}Embeddings dinamici (contestuali)}{41}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}RNN: memoria sequenziale}{42}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.1}RNN: memoria sequenziale}{43}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}LSTM: controllare il flusso di informazione}{44}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Bidirezionalità}{46}{subsubsection.3.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.4}Encoder-Decoder: trasformare sequenze}{48}{subsubsection.3.3.4}%
 \contentsline {subsubsection}{\numberline {3.3.5}Attenzione: superare il bottleneck}{50}{subsubsection.3.3.5}%
 \contentsline {subsubsection}{\numberline {3.3.6}Transformer: attenzione senza ricorrenza}{52}{subsubsection.3.3.6}%
-\contentsline {subsubsection}{\numberline {3.3.7}BERT: codifica bidirezionale}{55}{subsubsection.3.3.7}%
+\contentsline {subsubsection}{\numberline {3.3.7}BERT: codifica bidirezionale}{54}{subsubsection.3.3.7}%
 \contentsline {paragraph}{Pre-training e fine-tuning.}{56}{section*.38}%
 \contentsline {paragraph}{Il problema dell'opacità.}{56}{section*.39}%
-\contentsline {subsubsection}{\numberline {3.3.8}Neuroni e feature: una distinzione cruciale}{58}{subsubsection.3.3.8}%
-\contentsline {subsubsection}{\numberline {3.3.9}La geometria della superposition}{59}{subsubsection.3.3.9}%
-\contentsline {paragraph}{Caso ideale: due feature, due neuroni.}{59}{section*.41}%
-\contentsline {paragraph}{Il problema: tre feature, due neuroni.}{60}{section*.43}%
-\contentsline {paragraph}{Il principio di sovrapposizione lineare.}{61}{section*.45}%
-\contentsline {paragraph}{L'opacità: direzioni sconosciute.}{62}{section*.46}%
-\contentsline {subsubsection}{\numberline {3.3.10}Il problema dell'interferenza}{63}{subsubsection.3.3.10}%
-\contentsline {paragraph}{Decodifica nel caso ideale.}{63}{section*.47}%
-\contentsline {paragraph}{Decodifica in superposition: l'interferenza.}{63}{section*.48}%
-\contentsline {paragraph}{Esempio: interferenza concreta.}{63}{section*.49}%
-\contentsline {paragraph}{Il costo della compressione.}{64}{section*.51}%
-\contentsline {subsubsection}{\numberline {3.3.11}Perché funziona comunque: la sparsità delle feature}{65}{subsubsection.3.3.11}%
-\contentsline {paragraph}{Feature sparse nel mondo reale.}{65}{section*.52}%
-\contentsline {paragraph}{Sparsità e interferenza.}{65}{section*.53}%
-\contentsline {paragraph}{Il trade-off sparsità-capacità.}{66}{section*.54}%
-\contentsline {paragraph}{La strategia ottimale della rete.}{66}{section*.56}%
-\contentsline {section}{\numberline {4}Prisma}{68}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Introduzione}{68}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Architettura}{68}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Generazione Embeddings}{68}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Gestione di documenti lunghi: strategia \textit {chunk-and-average}}{69}{subsubsection.4.3.1}%
-\contentsline {paragraph}{Tokenizzazione e vincoli di lunghezza}{69}{section*.58}%
-\contentsline {paragraph}{Segmentazione in chunk contigui}{70}{section*.59}%
-\contentsline {paragraph}{Embedding per chunk e concetto di pooling}{70}{section*.60}%
-\contentsline {paragraph}{Aggregazione a livello documento}{71}{section*.61}%
-\contentsline {subsection}{\numberline {4.4}Training SAE}{71}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Interpretazione}{72}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Esperimenti}{72}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}Pedianet}{72}{subsection.4.7}%
-\contentsline {subsubsection}{\numberline {4.7.1}Scelta del modello di embedding}{73}{subsubsection.4.7.1}%
-\contentsline {subsubsection}{\numberline {4.7.2}Esperimento}{73}{subsubsection.4.7.2}%
-\contentsline {section}{\numberline {5}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{75}{section.5}%
-\contentsline {section}{\numberline {6}PubMed}{75}{section.6}%
+\contentsline {section}{\numberline {4}PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{58}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Fare luce nella black box degli embedding}{59}{subsection.4.1}%
+\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability Sparse Monosemantic Autoencoders}{62}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embeddings}{62}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{64}{section.6}%
+\contentsline {section}{\numberline {7}PubMed}{64}{section.7}%
