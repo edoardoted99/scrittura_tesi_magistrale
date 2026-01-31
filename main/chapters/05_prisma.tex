@@ -888,74 +888,161 @@ La capacità di un SAE—determinata dal numero di latenti totali $n$ e dal nume
 
 \subsubsection{Il fenomeno dello splitting}
 \label{subsubsec:splitting_phenomenon}
-
 L'osservazione di partenza è empirica: addestrando SAE con capacità crescenti sullo stesso corpus, alcune feature si ``dividono'' in sotto-feature più specifiche. O'Neill et al. studiano questo fenomeno confrontando sistematicamente SAE di dimensioni diverse—in particolare SAE16 ($k=16$, $n=3072$), SAE32 ($k=32$, $n=6144$) e SAE64 ($k=64$, $n=9216$).
-
 Per tracciare come le feature evolvono tra modelli, si utilizza un approccio basato sul \textbf{nearest neighbour}. Data una coppia di SAE con $n_1$ e $n_2$ feature rispettivamente, si calcola una matrice di similarità $S \in \mathbb{R}^{n_1 \times n_2}$ dove ogni elemento è la similarità del coseno tra i vettori decoder:
 \begin{equation}
     S_{ij} = \frac{\mathbf{w}_i^T \mathbf{w}_j}{\|\mathbf{w}_i\| \|\mathbf{w}_j\|}
     \label{eq:feature_similarity}
 \end{equation}
 dove $\mathbf{w}_i$ è il vettore decoder della feature $i$ nel SAE più piccolo e $\mathbf{w}_j$ quello della feature $j$ nel SAE più grande. Per ogni feature nel SAE grande, si identifica la feature più simile nel SAE piccolo—il suo ``nearest neighbour''.
-
 L'analisi rivela un pattern consistente: all'aumentare di $k$ e $n$, la similarità massima tra nearest neighbour \textit{diminuisce}. In altre parole, le feature dei SAE più grandi sono progressivamente più distanti da quelle dei SAE più piccoli. Questo indica che i modelli con maggiore capacità apprendono rappresentazioni più fini e specializzate.
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        level 1/.style={sibling distance=4.5cm, level distance=2.8cm},
+        level 2/.style={sibling distance=2.2cm, level distance=2.8cm},
+        every node/.style={font=\small},
+        edge from parent/.style={draw, ->, thick, gray!70},
+        sae16/.style={draw, rectangle, rounded corners, fill=blue!25, minimum width=2.8cm, minimum height=0.9cm, font=\small\bfseries},
+        sae32/.style={draw, rectangle, rounded corners, fill=green!25, minimum width=2.4cm, minimum height=0.75cm, font=\footnotesize},
+        sae64/.style={draw, rectangle, rounded corners, fill=orange!25, minimum width=1.8cm, minimum height=0.65cm, font=\scriptsize}
+    ]
+        
+        % Albero
+        \node[sae16] {Ottimizzazione}
+            child {
+                node[sae32] {Gradient-based}
+                child {node[sae64] {SGD}}
+                child {node[sae64] {Adam}}
+            }
+            child {
+                node[sae32] {Second-order}
+                child {node[sae64] {RMSprop}}
+                child {node[sae64] {Newton}}
+            };
+        
+        % Etichette dei livelli (a sinistra)
+        \node[left, font=\footnotesize, blue!50!black] at (-5.5, 0) {SAE16};
+        \node[left, font=\footnotesize, green!50!black] at (-5.5, -2.8) {SAE32};
+        \node[left, font=\footnotesize, orange!60!black] at (-5.5, -5.6) {SAE64};
+        
+        % Linee tratteggiate orizzontali per i livelli
+        \draw[dashed, gray!40] (-5.3, -1.4) -- (5.3, -1.4);
+        \draw[dashed, gray!40] (-5.3, -4.2) -- (5.3, -4.2);
+        
+        % Freccia capacità crescente (a destra)
+        \draw[->, thick, gray!60] (6, 0.3) -- (6, -5.9);
+        \node[right, font=\footnotesize, gray!70, align=left, rotate=-90] at (6.4, -1.8) {Capacità crescente};
+        
+
+    \end{tikzpicture}
+    \caption{Il fenomeno del \emph{feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi.}
+    \label{fig:feature_splitting}
+\end{figure}
+\subsubsection{Feature ricorrenti, splitting e feature nuove}
+\label{subsubsec:recurrent_novel}
+
+Per comprendere come le feature evolvono al variare della capacità del SAE, O'Neill et al.~\parencite{oneill2024disentangling} introducono due metriche quantitative che permettono di classificare ogni feature di un SAE più grande rispetto al SAE più piccolo.
+
+\paragraph{Similarità geometrica.} Data una coppia di SAE con $n_1$ e $n_2$ feature rispettivamente (con $n_1 < n_2$), si calcola la matrice di similarità $S \in \mathbb{R}^{n_1 \times n_2}$ dove ogni elemento è la similarità del coseno tra i vettori decoder:
+\begin{equation}
+    S_{ij} = \frac{\mathbf{w}_i^T \mathbf{w}_j}{\|\mathbf{w}_i\| \|\mathbf{w}_j\|}
+    \label{eq:feature_similarity}
+\end{equation}
+dove $\mathbf{w}_i$ è la colonna $i$-esima del decoder del SAE piccolo e $\mathbf{w}_j$ quella del SAE grande. Per ogni feature $j$ nel SAE grande, si identifica il \textit{nearest neighbour} nel SAE piccolo:
+\begin{equation}
+i^*(j) = \underset{i \in \{1,\dots,n_1\}}{\mathrm{arg\,max}} \; S_{ij}
+\end{equation}
+e si definisce la \textbf{similarità geometrica massima}:
+\begin{equation}
+    S^*_j = \max_{i} S_{ij} = S_{i^*(j), j}
+\end{equation}
+
+\paragraph{Similarità di attivazione.} La similarità geometrica cattura la vicinanza nello spazio dei pesi, ma non garantisce che due feature si comportino allo stesso modo sui dati. Si introduce quindi la \textbf{similarità di attivazione} $D_{ij}$, che misura quanto due feature co-attivano sugli stessi documenti:
+\begin{equation}
+    D_{ij} = \frac{\sum_{k=1}^{N} B_{ik} \cdot B_{jk}}{\sqrt{\sum_k B_{ik}^2} \cdot \sqrt{\sum_k B_{jk}^2}}
+    \label{eq:activation_similarity}
+\end{equation}
+dove $B_{ik} = h_{k,i}$ è l'attivazione della feature $i$ sul documento $k$ (zero se non attiva). In pratica, $D_{ij}$ è la correlazione tra i vettori di attivazione delle due feature sull'intero corpus.
+
+\paragraph{Classificazione delle feature.} Combinando le due metriche, ogni feature $j$ del SAE grande può essere classificata in una delle tre categorie:
+
+\begin{enumerate}
+    \item \textbf{Feature ricorrenti}: feature che riappaiono sostanzialmente invariate nel SAE più grande. Sono caratterizzate da:
+    \begin{equation}
+        S^*_j > \tau_{\text{high}} \quad \text{e} \quad D_{i^*(j), j} > \tau_{\text{high}}
+    \end{equation}
+    dove tipicamente $\tau_{\text{high}} \approx 0.95$. Queste feature rappresentano concetti ``atomici'' che non si scompongono ulteriormente---ad esempio, ``O-type stars'' in astrofisica o ``Generative Adversarial Networks'' in machine learning. La loro stabilità attraverso modelli di capacità diversa suggerisce che corrispondono a concetti fondamentali del dominio.
+    
+    \item \textbf{Feature da splitting}: feature che emergono dalla scissione di una feature più generale. Sono caratterizzate da:
+    \begin{equation}
+        \tau_{\text{low}} < S^*_j < \tau_{\text{high}} \quad \text{e} \quad D_{i^*(j), j} > \tau_{\text{mod}}
+    \end{equation}
+    dove tipicamente $\tau_{\text{low}} \approx 0.5$ e $\tau_{\text{mod}} \approx 0.3$. La similarità geometrica moderata indica che la nuova feature punta in una direzione correlata ma distinta; la similarità di attivazione positiva indica che si attiva su un \textit{sottoinsieme} dei documenti che attivavano la feature parent. Semanticamente, rappresentano sotto-concetti più specifici.
+    
+    \item \textbf{Feature nuove} (\textit{novel features}): feature che non hanno corrispondenti nel SAE più piccolo. Sono caratterizzate da:
+    \begin{equation}
+        S^*_j < \tau_{\text{low}} \quad \text{oppure} \quad D_{i^*(j), j} < \tau_{\text{low}}
+    \end{equation}
+    Queste feature emergono solo quando la capacità è sufficiente a rappresentarle separatamente. Un SAE piccolo potrebbe non avere abbastanza dimensioni per distinguere ``polmonite batterica'' da ``polmonite virale'', rappresentandole con un'unica feature ``polmonite''. Un SAE più grande può permettersi questa distinzione, facendo emergere feature nuove che non hanno un corrispondente diretto nel modello più piccolo.
+\end{enumerate}
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=0.9]
+    \begin{tikzpicture}[scale=1.0]
         % Assi
-        \draw[->, thick] (0, 0) -- (10, 0) node[right] {Capacità del SAE};
-        \draw[->, thick] (0, 0) -- (0, 5) node[above] {Granularità};
+        \draw[->, thick] (0, 0) -- (6, 0) node[right, font=\small] {Similarità geometrica $S^*_j$};
+        \draw[->, thick] (0, 0) -- (0, 5) node[above, font=\small] {Similarità attivazione $D_{i^*,j}$};
         
-        % SAE16
-        \node[draw, rectangle, rounded corners, fill=blue!30, minimum width=2.5cm, minimum height=0.8cm] (sae16) at (1.5, 1.5) {Ottimizzazione};
-        \node[below, font=\scriptsize] at (1.5, 0.3) {SAE16};
+        % Soglie
+        \draw[dashed, gray] (2, 0) -- (2, 4.8) node[above, font=\scriptsize] {$\tau_{\text{low}}$};
+        \draw[dashed, gray] (4.5, 0) -- (4.5, 4.8) node[above, font=\scriptsize] {$\tau_{\text{high}}$};
+        \draw[dashed, gray] (0, 1.5) -- (5.8, 1.5);
+        \node[left, font=\scriptsize] at (0, 1.5) {$\tau_{\text{low}}$};
+        \draw[dashed, gray] (0, 4) -- (5.8, 4);
+        \node[left, font=\scriptsize] at (0, 4) {$\tau_{\text{high}}$};
         
-        % SAE32 - splitting in 2
-        \node[draw, rectangle, rounded corners, fill=green!25, minimum width=2cm, minimum height=0.6cm, font=\footnotesize] (sae32a) at (5, 2.2) {Gradient-based};
-        \node[draw, rectangle, rounded corners, fill=green!25, minimum width=2cm, minimum height=0.6cm, font=\footnotesize] (sae32b) at (5, 1) {Second-order};
-        \node[below, font=\scriptsize] at (5, 0.3) {SAE32};
+        % Regioni
+        % Ricorrenti (alto-destra)
+        \fill[green!20, opacity=0.7] (4.5, 4) rectangle (5.8, 4.8);
+        \node[font=\scriptsize, green!50!black, align=center] at (5.15, 4.4) {Ricorrenti};
         
-        % SAE64 - splitting in 4
-        \node[draw, rectangle, rounded corners, fill=orange!20, minimum width=1.6cm, minimum height=0.5cm, font=\scriptsize] (sae64a) at (8.5, 3.8) {SGD};
-        \node[draw, rectangle, rounded corners, fill=orange!20, minimum width=1.6cm, minimum height=0.5cm, font=\scriptsize] (sae64b) at (8.5, 2.8) {Adam};
-        \node[draw, rectangle, rounded corners, fill=orange!20, minimum width=1.6cm, minimum height=0.5cm, font=\scriptsize] (sae64c) at (8.5, 1.8) {RMSprop};
-        \node[draw, rectangle, rounded corners, fill=orange!20, minimum width=1.6cm, minimum height=0.5cm, font=\scriptsize] (sae64d) at (8.5, 0.8) {Newton};
-        \node[below, font=\scriptsize] at (8.5, 0.3) {SAE64};
+        % Splitting (centro)
+        \fill[blue!20, opacity=0.7] (2, 1.5) rectangle (4.5, 4.8);
+        \node[font=\scriptsize, blue!60!black, align=center] at (3.25, 3.2) {Splitting};
         
-        % Frecce di splitting
-        \draw[->, gray, thick] (2.8, 1.7) -- (3.9, 2.1);
-        \draw[->, gray, thick] (2.8, 1.3) -- (3.9, 1.1);
+        % Novel (sinistra e basso)
+        \fill[orange!20, opacity=0.7] (0, 0) rectangle (2, 4.8);
+        \fill[orange!20, opacity=0.7] (2, 0) rectangle (5.8, 1.5);
+        \node[font=\scriptsize, orange!60!black] at (1, 2.5) {Novel};
+        \node[font=\scriptsize, orange!60!black] at (4, 0.75) {Novel};
         
-        \draw[->, gray] (6.1, 2.4) -- (7.6, 3.7);
-        \draw[->, gray] (6.1, 2.1) -- (7.6, 2.8);
-        \draw[->, gray] (6.1, 1.2) -- (7.6, 1.8);
-        \draw[->, gray] (6.1, 0.9) -- (7.6, 0.9);
+        % Punti esempio
+        \fill[green!60!black] (5.2, 4.5) circle (3pt);
+        \fill[blue!70] (3.5, 3.8) circle (3pt);
+        \fill[blue!70] (2.8, 2.5) circle (3pt);
+        \fill[orange!70!black] (1.2, 3.5) circle (3pt);
+        \fill[orange!70!black] (3.8, 0.8) circle (3pt);
         
     \end{tikzpicture}
-    \caption{Illustrazione del feature splitting. Una feature generale in un SAE piccolo (``Ottimizzazione'') si scinde progressivamente in feature più specifiche all'aumentare della capacità. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 arriva a distinguere singoli algoritmi.}
-    \label{fig:feature_splitting}
+    \caption{Classificazione delle feature in base a similarità geometrica ($S^*_j$) e similarità di attivazione ($D_{i^*,j}$). Le feature \textbf{ricorrenti} (verde) hanno entrambe le similarità elevate. Le feature da \textbf{splitting} (blu) hanno similarità geometrica moderata ma attivazione correlata---si attivano su un sottoinsieme dei documenti della feature parent. Le feature \textbf{nuove} (arancione) hanno bassa similarità in almeno una delle due dimensioni, indicando concetti non rappresentati nel SAE più piccolo.}
+    \label{fig:feature_classification}
 \end{figure}
 
-\subsubsection{Feature ricorrenti e feature nuove}
-\label{subsubsec:recurrent_novel}
-
-Non tutte le feature si comportano allo stesso modo al variare della capacità. O'Neill et al. identificano due categorie distinte:
-
-Le \textbf{feature ricorrenti} appaiono con alta similarità ($S_{ij} > 0.95$) in SAE di dimensioni diverse. Queste feature rappresentano concetti ``atomici'' che non si scompongono ulteriormente—ad esempio, ``O-type stars'' in astrofisica o ``Generative Adversarial Networks'' in machine learning. La loro stabilità attraverso modelli di capacità diversa suggerisce che corrispondono a concetti fondamentali del dominio, non ulteriormente scomponibili.
-
-Le \textbf{feature nuove} (o \textit{novel features}) hanno invece bassa similarità con qualsiasi feature del SAE più piccolo. Queste emergono solo quando la capacità è sufficiente a rappresentarle separatamente. Un SAE piccolo potrebbe non avere abbastanza dimensioni per distinguere ``polmonite batterica'' da ``polmonite virale'', rappresentandole con un'unica feature ``polmonite''. Un SAE più grande può permettersi questa distinzione, facendo emergere feature nuove che non hanno un corrispondente diretto nel modello più piccolo.
+\paragraph{Interpretazione geometrica dello splitting.} Lo splitting può essere compreso geometricamente. Se una feature $\mathbf{w}_p$ del SAE piccolo rappresenta un concetto generale (es. ``ottimizzazione''), nel SAE grande questo concetto può scindersi in $k$ feature $\mathbf{w}_{c_1}, \dots, \mathbf{w}_{c_k}$ che rappresentano sotto-concetti (es. ``SGD'', ``Adam'', ``Newton''). Geometricamente:
+\begin{equation}
+    \mathbf{w}_p \approx \frac{1}{k} \sum_{i=1}^{k} \mathbf{w}_{c_i} + \boldsymbol{\epsilon}
+\end{equation}
+dove $\boldsymbol{\epsilon}$ è un residuo. La feature parent punta approssimativamente nella direzione ``media'' dei children. Ogni child ha similarità moderata con il parent ($0.5 < S_{p,c_i} < 0.95$) ma bassa similarità tra loro ($S_{c_i, c_j} < 0.5$ per $i \neq j$), riflettendo la specializzazione semantica.
 
 \begin{notebox}
-\textbf{Splitting vs.\ feature nuove}\\[0.5em]
-È importante distinguere tra:
+\textbf{Splitting vs.\ feature nuove: riepilogo}\\[0.5em]
 \begin{itemize}
-    \item \textbf{Feature splitting}: una feature del SAE piccolo si ``divide'' in più feature correlate nel SAE grande. Le nuove feature hanno alta similarità di attivazione con la feature originale su un sottoinsieme dei documenti.
-    \item \textbf{Feature nuove}: feature nel SAE grande che non hanno corrispondenti semantici nel SAE piccolo. Possono emergere perché il SAE piccolo non aveva capacità sufficiente per rappresentare quel concetto, oppure perché aggregava concetti non correlati.
+    \item \textbf{Feature splitting}: la feature del SAE grande ha similarità \textit{moderata} ($0.5$--$0.95$) con una feature del SAE piccolo, e si attiva su un \textit{sottoinsieme} dei suoi documenti. Semanticamente, è un sotto-concetto.
+    \item \textbf{Feature nuova}: la feature del SAE grande ha similarità \textit{bassa} ($< 0.5$) con tutte le feature del SAE piccolo. Il concetto non era rappresentabile con la capacità precedente.
 \end{itemize}
-La distinzione si basa sia sulla similarità geometrica ($S_{ij}$) che sulla similarità di attivazione sui documenti.
+La distinzione si basa su due metriche complementari: $S^*_j$ (geometria dei pesi) e $D_{i^*,j}$ (comportamento sui dati).
 \end{notebox}
-
 \subsubsection{Implicazioni per la dimensionalità delle rappresentazioni}
 \label{subsubsec:dimensionality_implications}
 

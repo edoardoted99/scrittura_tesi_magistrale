@@ -30,11 +30,11 @@ Le reti neurali hanno dimostrato capacità predittive straordinarie. Un modello 
         \fill[green!60!black] (4,3.3) circle (3pt);
         \node[anchor=west, font=\small] at (4.15,3.3) {Ideale};
         
-        % Frecce tratteggiate verso l'ideale (ortogonali)
-        % Dalle reti neurali: prima su, poi a destra
-        \draw[->, dashed, thick, green!60!black] (4,1.6) -- (4,3.1);
-        % Dalle leggi fisiche: prima a destra, poi su
-        \draw[->, dashed, thick, green!60!black] (2.2,3.1) -- (3.8,3.1) -- (3.8,3.3);
+        % Frecce tratteggiate verso l'ideale
+        % Dalle reti neurali: dritta verso l'alto
+        \draw[->, dashed, thick, green!60!black] (4,1.6) -- (4,3.15);
+        % Dalle leggi fisiche: dritta verso destra
+        \draw[->, dashed, thick, green!60!black] (2.2,3.3) -- (3.85,3.3);
         
     \end{tikzpicture}
     \caption{Il trade-off tra capacità predittiva e interpretabilità. Le leggi fisiche classiche sono interpretabili ma limitate nella complessità dei fenomeni che descrivono. Le reti neurali raggiungono capacità predittive elevate, ma producono rappresentazioni opache. L'obiettivo ideale è il punto di convergenza in alto a destra: modelli che uniscono la potenza predittiva alla trasparenza semantica.}

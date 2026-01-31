@@ -103,7 +103,11 @@
 \contentsline {subsubsection}{\numberline {5.5.2}Identificazione delle famiglie}{100}{subsubsection.5.5.2}%
 \contentsline {subsection}{\numberline {5.6}Feature Splitting: granularità emergente}{102}{subsection.5.6}%
 \contentsline {subsubsection}{\numberline {5.6.1}Il fenomeno dello splitting}{102}{subsubsection.5.6.1}%
-\contentsline {subsubsection}{\numberline {5.6.2}Feature ricorrenti e feature nuove}{102}{subsubsection.5.6.2}%
-\contentsline {subsubsection}{\numberline {5.6.3}Implicazioni per la dimensionalità delle rappresentazioni}{104}{subsubsection.5.6.3}%
-\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{106}{section.6}%
-\contentsline {section}{\numberline {7}PubMed}{106}{section.7}%
+\contentsline {subsubsection}{\numberline {5.6.2}Feature ricorrenti, splitting e feature nuove}{102}{subsubsection.5.6.2}%
+\contentsline {paragraph}{Similarità geometrica.}{103}{section*.62}%
+\contentsline {paragraph}{Similarità di attivazione.}{104}{section*.63}%
+\contentsline {paragraph}{Classificazione delle feature.}{104}{section*.64}%
+\contentsline {paragraph}{Interpretazione geometrica dello splitting.}{105}{section*.66}%
+\contentsline {subsubsection}{\numberline {5.6.3}Implicazioni per la dimensionalità delle rappresentazioni}{106}{subsubsection.5.6.3}%
+\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{108}{section.6}%
+\contentsline {section}{\numberline {7}PubMed}{108}{section.7}%

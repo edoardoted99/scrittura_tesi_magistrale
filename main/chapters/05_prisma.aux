@@ -124,22 +124,33 @@
 \newlabel{subsubsec:splitting_phenomenon@cref}{{[subsubsection][1][5,6]5.6.1}{[1][102][]102}}
 \newlabel{eq:feature_similarity}{{69}{102}{Il fenomeno dello splitting}{equation.5.69}{}}
 \newlabel{eq:feature_similarity@cref}{{[equation][69][]69}{[1][102][]102}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Feature ricorrenti e feature nuove}{102}{subsubsection.5.6.2}\protected@file@percent }
-\newlabel{subsubsec:recurrent_novel}{{5.6.2}{102}{Feature ricorrenti e feature nuove}{subsubsection.5.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Feature ricorrenti, splitting e feature nuove}{102}{subsubsection.5.6.2}\protected@file@percent }
+\newlabel{subsubsec:recurrent_novel}{{5.6.2}{102}{Feature ricorrenti, splitting e feature nuove}{subsubsection.5.6.2}{}}
 \newlabel{subsubsec:recurrent_novel@cref}{{[subsubsection][2][5,6]5.6.2}{[1][102][]102}}
-\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces Illustrazione del feature splitting. Una feature generale in un SAE piccolo (``Ottimizzazione'') si scinde progressivamente in feature più specifiche all'aumentare della capacità. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 arriva a distinguere singoli algoritmi.\relax }}{103}{figure.caption.61}\protected@file@percent }
-\newlabel{fig:feature_splitting}{{46}{103}{Illustrazione del feature splitting. Una feature generale in un SAE piccolo (``Ottimizzazione'') si scinde progressivamente in feature più specifiche all'aumentare della capacità. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 arriva a distinguere singoli algoritmi.\relax }{figure.caption.61}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces Il fenomeno del \emph  {feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi.\relax }}{103}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:feature_splitting}{{46}{103}{Il fenomeno del \emph {feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi.\relax }{figure.caption.61}{}}
 \newlabel{fig:feature_splitting@cref}{{[figure][46][]46}{[1][102][]103}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Implicazioni per la dimensionalità delle rappresentazioni}{104}{subsubsection.5.6.3}\protected@file@percent }
-\newlabel{subsubsec:dimensionality_implications}{{5.6.3}{104}{Implicazioni per la dimensionalità delle rappresentazioni}{subsubsection.5.6.3}{}}
-\newlabel{subsubsec:dimensionality_implications@cref}{{[subsubsection][3][5,6]5.6.3}{[1][104][]104}}
-\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces La matrice di attivazione sparsa $A$ rivela la struttura delle rappresentazioni. Feature che tendono ad attivarsi insieme (colori simili) formano gruppi correlati. Il rango effettivo della matrice è inferiore al numero nominale di feature, riflettendo la ridondanza introdotta dalle feature families e dallo splitting.\relax }}{105}{figure.caption.62}\protected@file@percent }
-\newlabel{fig:activation_matrix}{{47}{105}{La matrice di attivazione sparsa $A$ rivela la struttura delle rappresentazioni. Feature che tendono ad attivarsi insieme (colori simili) formano gruppi correlati. Il rango effettivo della matrice è inferiore al numero nominale di feature, riflettendo la ridondanza introdotta dalle feature families e dallo splitting.\relax }{figure.caption.62}{}}
-\newlabel{fig:activation_matrix@cref}{{[figure][47][]47}{[1][105][]105}}
+\@writefile{toc}{\contentsline {paragraph}{Similarità geometrica.}{103}{section*.62}\protected@file@percent }
+\newlabel{eq:feature_similarity}{{70}{103}{Similarità geometrica}{equation.5.70}{}}
+\newlabel{eq:feature_similarity@cref}{{[equation][70][]70}{[1][103][]103}}
+\@writefile{toc}{\contentsline {paragraph}{Similarità di attivazione.}{104}{section*.63}\protected@file@percent }
+\newlabel{eq:activation_similarity}{{73}{104}{Similarità di attivazione}{equation.5.73}{}}
+\newlabel{eq:activation_similarity@cref}{{[equation][73][]73}{[1][104][]104}}
+\@writefile{toc}{\contentsline {paragraph}{Classificazione delle feature.}{104}{section*.64}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces Classificazione delle feature in base a similarità geometrica ($S^*_j$) e similarità di attivazione ($D_{i^*,j}$). Le feature \textbf  {ricorrenti} (verde) hanno entrambe le similarità elevate. Le feature da \textbf  {splitting} (blu) hanno similarità geometrica moderata ma attivazione correlata---si attivano su un sottoinsieme dei documenti della feature parent. Le feature \textbf  {nuove} (arancione) hanno bassa similarità in almeno una delle due dimensioni, indicando concetti non rappresentati nel SAE più piccolo.\relax }}{105}{figure.caption.65}\protected@file@percent }
+\newlabel{fig:feature_classification}{{47}{105}{Classificazione delle feature in base a similarità geometrica ($S^*_j$) e similarità di attivazione ($D_{i^*,j}$). Le feature \textbf {ricorrenti} (verde) hanno entrambe le similarità elevate. Le feature da \textbf {splitting} (blu) hanno similarità geometrica moderata ma attivazione correlata---si attivano su un sottoinsieme dei documenti della feature parent. Le feature \textbf {nuove} (arancione) hanno bassa similarità in almeno una delle due dimensioni, indicando concetti non rappresentati nel SAE più piccolo.\relax }{figure.caption.65}{}}
+\newlabel{fig:feature_classification@cref}{{[figure][47][]47}{[1][105][]105}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretazione geometrica dello splitting.}{105}{section*.66}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Implicazioni per la dimensionalità delle rappresentazioni}{106}{subsubsection.5.6.3}\protected@file@percent }
+\newlabel{subsubsec:dimensionality_implications}{{5.6.3}{106}{Implicazioni per la dimensionalità delle rappresentazioni}{subsubsection.5.6.3}{}}
+\newlabel{subsubsec:dimensionality_implications@cref}{{[subsubsection][3][5,6]5.6.3}{[1][106][]106}}
+\@writefile{lof}{\contentsline {figure}{\numberline {48}{\ignorespaces La matrice di attivazione sparsa $A$ rivela la struttura delle rappresentazioni. Feature che tendono ad attivarsi insieme (colori simili) formano gruppi correlati. Il rango effettivo della matrice è inferiore al numero nominale di feature, riflettendo la ridondanza introdotta dalle feature families e dallo splitting.\relax }}{107}{figure.caption.67}\protected@file@percent }
+\newlabel{fig:activation_matrix}{{48}{107}{La matrice di attivazione sparsa $A$ rivela la struttura delle rappresentazioni. Feature che tendono ad attivarsi insieme (colori simili) formano gruppi correlati. Il rango effettivo della matrice è inferiore al numero nominale di feature, riflettendo la ridondanza introdotta dalle feature families e dallo splitting.\relax }{figure.caption.67}{}}
+\newlabel{fig:activation_matrix@cref}{{[figure][48][]48}{[1][107][]107}}
 \@setckpt{chapters/05_prisma}{
-\setcounter{page}{106}
-\setcounter{equation}{69}
-\setcounter{enumi}{5}
+\setcounter{page}{108}
+\setcounter{equation}{77}
+\setcounter{enumi}{3}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
@@ -151,7 +162,7 @@
 \setcounter{subsubsection}{3}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{47}
+\setcounter{figure}{48}
 \setcounter{table}{2}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
@@ -201,7 +212,7 @@
 \setcounter{parenlevel}{0}
 \setcounter{blx@maxsection}{0}
 \setcounter{blx@maxsegment@0}{0}
-\setcounter{blx@sectionciteorder@0}{36}
+\setcounter{blx@sectionciteorder@0}{37}
 \setcounter{mincomprange}{10}
 \setcounter{maxcomprange}{100000}
 \setcounter{mincompwidth}{1}
@@ -284,7 +295,7 @@
 \setcounter{smartand}{1}
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
-\setcounter{Item}{103}
+\setcounter{Item}{106}
 \setcounter{Hfootnote}{0}
 \setcounter{bookmark@seq@number}{93}
 \setcounter{FancyVerbLine}{0}
