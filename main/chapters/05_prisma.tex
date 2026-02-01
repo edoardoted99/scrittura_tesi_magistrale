@@ -196,22 +196,17 @@ La scelta della ReLU serve a due scopi. Il primo è garantire attivazioni non ne
 \end{figure}
 
 È importante chiarire il ruolo di questi vettori $\mathbf{e}_i$. Essi non coincidono con le direzioni $\mathbf{w}_i$ introdotte nel Capitolo~\ref{sec:04_disentangling_dense_embeddings_with_sparse_autoencoders}: le $\mathbf{w}_i$ sono le direzioni lungo cui le feature sono \textit{codificate} nello spazio degli embedding, e corrispondono—come vedremo—alle colonne della matrice del decoder $W_d$. Le $\mathbf{e}_i$, invece, sono direzioni ausiliarie che l'encoder utilizza per \textit{rilevare} le feature nell'input. In uno scenario ideale con feature perfettamente ortogonali, le due coinciderebbero: per rilevare una feature basterebbe proiettare lungo la sua stessa direzione. Ma nella superposition le $\mathbf{w}_i$ non sono ortogonali, e proiettare direttamente lungo di esse causerebbe l'interferenza descritta nel capitolo precedente. L'encoder impara quindi direzioni $\mathbf{e}_i \neq \mathbf{w}_i$ che compensano questa sovrapposizione.
-
 Dal punto di vista dell'interpretabilità, le $\mathbf{e}_i$ non hanno un significato semantico diretto: sono un meccanismo interno che serve all'encoder per svolgere il suo compito. Ciò che ci interessa—e che costituisce il vero output interpretabile del SAE—sono le attivazioni $h_i$ e le direzioni $\mathbf{w}_i$ del decoder. La corrispondenza è uno-a-uno: per ogni $i \in \{1, \dots, n\}$, il vettore $\mathbf{e}_i$ rileva la feature $i$ producendo l'attivazione $h_i$, che a sua volta pesa la direzione $\mathbf{w}_i$ nella ricostruzione. Ma mentre $\mathbf{e}_i$ è un dettaglio implementativo, $\mathbf{w}_i$ rappresenta la feature stessa nello spazio semantico.
-
 La non linearità dell'encoder è dunque essenziale: permette di implementare una logica di rilevamento sofisticata in presenza di sovrapposizione. Il decoder, come vedremo, ha un compito diverso—ricostruire l'input come combinazione di feature—e per quel compito la linearità non è solo possibile, ma necessaria.
 
 \subsubsection{Lo spazio latente overcomplete}
 \label{subsubsec:sae_overcomplete}
-
 Nel Capitolo~\ref{sec:04_disentangling_dense_embeddings_with_sparse_autoencoders} abbiamo identificato il paradosso della capacità: un modello come BERT rappresenta decine di migliaia di concetti con soli 768 neuroni. La superposition risolve questo problema comprimendo le feature come direzioni oblique, ma al costo dell'opacità e dell'interferenza. Se vogliamo invertire questo processo—ottenere una rappresentazione in cui ogni feature abbia un asse dedicato—servono più dimensioni di quelle originarie.
-
 Questa è l'intuizione alla base dello spazio latente \textit{overcomplete}. A differenza degli autoencoder classici, che comprimono l'input in un bottleneck di dimensionalità inferiore ($n < d$), lo Sparse Autoencoder espande la rappresentazione in uno spazio più grande:
 \begin{equation}
     n > d
 \end{equation}
 dove $d$ è la dimensionalità dell'embedding originale e $n$ è la dimensionalità dello spazio latente.
-
 Il rapporto tra queste due quantità è detto \textit{expansion factor}:
 \begin{equation}
     \rho = \frac{n}{d}
@@ -219,7 +214,7 @@ Il rapporto tra queste due quantità è detto \textit{expansion factor}:
 e assume tipicamente valori compresi tra 2 e 9~\parencite{oneill2024disentangling}. Un expansion factor $\rho = 4$, ad esempio, significa che lo spazio latente ha quattro volte le dimensioni dell'input: per un embedding BERT a 768 dimensioni, lo spazio latente avrebbe $n = 3072$ componenti.
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=0.6, transform shape, node distance=1cm]
+    \begin{tikzpicture}[scale=1, transform shape, node distance=1cm]
         % Nodes
         \node[draw, rectangle, minimum height=3cm, minimum width=0.5cm, fill=gray!20] (input) at (0,0) {$\mathbf{x} \in \mathbb{R}^{d}$};
         \node[draw, trapezium, trapezium angle=70, shape border rotate=270, minimum height=1.5cm, fill=orange!15] (enc) at (2.5,0) {Encoder};
@@ -239,7 +234,7 @@ e assume tipicamente valori compresi tra 2 e 9~\parencite{oneill2024disentanglin
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=0.6, transform shape, node distance=1cm]
+    \begin{tikzpicture}[scale=1, transform shape, node distance=1cm]
         % Nodes
         \node[draw, rectangle, minimum height=2cm, minimum width=0.5cm, fill=gray!20] (input) at (0,0) {$\mathbf{x} \in \mathbb{R}^{d}$};
         
@@ -269,14 +264,11 @@ Nella pratica, la scelta dell'expansion factor dipende dal dominio e dalla granu
 
 \subsubsection{La linearità del decoder: la chiave del disentanglement}
 \label{subsubsec:sae_decoder_linearity}
-
 Abbiamo visto che l'encoder è una funzione non lineare: la ReLU introduce una soglia che azzera le attivazioni negative, permettendo di rilevare le feature in modo selettivo. Il decoder, al contrario, è una trasformazione puramente lineare. Riprendendo l'Equazione~\ref{eq:sae_decoder}:
 \begin{equation}
     \hat{\mathbf{x}} = g_\phi(\mathbf{h}) = W_d \mathbf{h} + \mathbf{b}_d
 \end{equation}
-Questa asimmetria non è un dettaglio implementativo: è la scelta architetturale che rende possibile il disentanglement.
-
-Per capire perché, espandiamo il prodotto matrice-vettore $W_d \mathbf{h}$. La matrice $W_d \in \mathbb{R}^{d \times n}$ ha $n$ colonne; indichiamo la $i$-esima colonna con $\mathbf{w}_i \in \mathbb{R}^d$. Il vettore $\mathbf{h} \in \mathbb{R}^n$ ha $n$ componenti $h_1, h_2, \dots, h_n$. Il prodotto può essere scritto come:
+Questa asimmetria non è un dettaglio implementativo: è la scelta architetturale che rende possibile il disentanglement. Per capire perché, espandiamo il prodotto matrice-vettore $W_d \mathbf{h}$. La matrice $W_d \in \mathbb{R}^{d \times n}$ ha $n$ colonne; indichiamo la $i$-esima colonna con $\mathbf{w}_i \in \mathbb{R}^d$. Il vettore $\mathbf{h} \in \mathbb{R}^n$ ha $n$ componenti $h_1, h_2, \dots, h_n$. Il prodotto può essere scritto come:
 \begin{equation}
     W_d \mathbf{h} = \sum_{i=1}^{n} h_i \cdot \mathbf{w}_i
     \label{eq:decoder_linear_combination}
@@ -286,18 +278,14 @@ La ricostruzione completa diventa quindi:
     \hat{\mathbf{x}} = \sum_{i=1}^{n} h_i \cdot \mathbf{w}_i + \mathbf{b}_d
     \label{eq:reconstruction_explicit}
 \end{equation}
-
 Questa equazione è il cuore dell'interpretabilità dello Sparse Autoencoder. La ricostruzione $\hat{\mathbf{x}}$ è una \textit{combinazione lineare} dei vettori $\mathbf{w}_i$, pesata dalle attivazioni $h_i$. Ogni vettore $\mathbf{w}_i$ rappresenta il contributo che la feature $i$ apporta alla ricostruzione quando è attiva con intensità unitaria. L'attivazione $h_i$ modula questo contributo: se $h_i = 0$ la feature non contribuisce; se $h_i > 0$, il vettore $\mathbf{w}_i$ viene sommato alla ricostruzione con peso proporzionale all'intensità della feature.
-
 I vettori $\mathbf{w}_i$ sono esattamente le direzioni delle feature di cui abbiamo parlato nel Capitolo~\ref{sec:04_disentangling_dense_embeddings_with_sparse_autoencoders}. Là avevamo scritto l'embedding come combinazione di direzioni sconosciute:
 \begin{equation}
     \mathbf{x} = \sum_i a_i \, \mathbf{w}_i
 \end{equation}
 lamentando di non conoscere né le direzioni $\mathbf{w}_i$ né le intensità $a_i$. Lo Sparse Autoencoder risolve entrambi i problemi: le direzioni $\mathbf{w}_i$ sono le colonne della matrice $W_d$, apprese durante l'addestramento e quindi note; le intensità $a_i$ corrispondono alle attivazioni $h_i$, calcolate dall'encoder per ogni input.
-
 \begin{notebox}
 \textbf{La chiave del disentanglement}\\
-
 Nel Capitolo~\ref{sec:04_disentangling_dense_embeddings_with_sparse_autoencoders} abbiamo identificato due problemi della superposition:
 \begin{enumerate}
     \item \textbf{Opacità}: non conosciamo le direzioni $\mathbf{w}_i$ delle feature
@@ -309,13 +297,11 @@ Lo Sparse Autoencoder affronta entrambi:
     \item Le intensità $h_i$ sono calcolate dall'encoder, che impara a compensare l'interferenza
 \end{enumerate}
 \end{notebox}
-
 È istruttivo confrontare questa situazione con un decoder non lineare. Supponiamo di aggiungere una ReLU anche al decoder:
 \begin{equation}
     \hat{\mathbf{x}} = \sigma(W_d \mathbf{h} + \mathbf{b}_d)
 \end{equation}
 In questo caso la ricostruzione non sarebbe più una combinazione lineare delle colonne di $W_d$. Le interazioni tra feature diventerebbero opache: il contributo della feature $i$ alla ricostruzione dipenderebbe non solo da $h_i$ e $\mathbf{w}_i$, ma anche da tutte le altre attivazioni e dalla soglia della ReLU. Perderemmo la possibilità di dire ``questa componente della ricostruzione viene dalla feature $i$''.
-
 La linearità del decoder garantisce invece una proprietà fondamentale: \textit{additività dei contributi}. Se due feature $i$ e $j$ sono attive, i loro contributi alla ricostruzione sono semplicemente sommati:
 \begin{equation}
     \hat{\mathbf{x}} = h_i \cdot \mathbf{w}_i + h_j \cdot \mathbf{w}_j + \sum_{k \neq i,j} h_k \cdot \mathbf{w}_k + \mathbf{b}_d
@@ -360,17 +346,13 @@ La linearità ha anche un'altra conseguenza importante: ogni colonna $\mathbf{w}
 
 \subsubsection{Feature come direzioni nello spazio degli embedding}
 \label{subsubsec:features_as_directions}
-
 Abbiamo stabilito che le colonne $\mathbf{w}_i$ della matrice del decoder rappresentano le feature apprese dal modello. Ma cosa significa, concretamente, che una feature è una ``direzione nello spazio degli embedding''?
-
 Consideriamo lo spazio $\mathbb{R}^d$ in cui vivono gli embedding—ad esempio, lo spazio a 768 dimensioni di BERT. Ogni punto di questo spazio corrisponde a un possibile embedding, cioè alla rappresentazione di un testo. Punti vicini rappresentano testi semanticamente simili; punti lontani rappresentano testi dissimili. In questo spazio, una direzione non è semplicemente un punto, ma un \textit{asse lungo cui spostarsi}.
-
 Ogni colonna $\mathbf{w}_i \in \mathbb{R}^d$ definisce una di queste direzioni. Muoversi lungo $\mathbf{w}_i$, partendo da un embedding $\mathbf{x}$, significa aggiungere o intensificare un certo aspetto semantico. Se $\mathbf{w}_{42}$ rappresenta il concetto di ``febbre'', allora:
 \begin{equation}
     \mathbf{x}' = \mathbf{x} + \alpha \cdot \mathbf{w}_{42}
 \end{equation}
 produce un embedding $\mathbf{x}'$ in cui il concetto di febbre è più presente rispetto a $\mathbf{x}$. Il parametro $\alpha > 0$ controlla l'intensità di questa aggiunta. Questa è esattamente l'operazione che il decoder compie implicitamente: ricostruisce l'embedding sommando le direzioni delle feature attive, ciascuna pesata dalla propria attivazione.
-
 Durante l'addestramento, le colonne di $W_d$ vengono tipicamente normalizzate a norma unitaria:
 \begin{equation}
     \|\mathbf{w}_i\| = 1 \quad \forall i \in \{1, \dots, n\}
@@ -412,11 +394,8 @@ Questa normalizzazione ha due scopi. Il primo è separare il ruolo della direzio
 \end{figure}
 
 È importante osservare che le direzioni $\mathbf{w}_i$ non sono, in generale, ortogonali tra loro. Questo potrebbe sembrare un fallimento: nel Capitolo~\ref{sec:04_disentangling_dense_embeddings_with_sparse_autoencoders} abbiamo presentato l'ortogonalità come condizione ideale per il disentanglement. Ma l'ortogonalità perfetta è impossibile quando il numero di feature $n$ supera la dimensionalità dello spazio $d$: in $\mathbb{R}^d$ possono esistere al massimo $d$ vettori mutuamente ortogonali. Con $n = 3072$ feature e $d = 768$ dimensioni, la non-ortogonalità è una necessità matematica.
-
 Ciò che lo Sparse Autoencoder garantisce non è l'ortogonalità delle direzioni, ma la loro \textit{esplicitezza}. A differenza della superposition originaria—dove le direzioni erano sconosciute e mescolate—qui ogni $\mathbf{w}_i$ è un vettore ispezionabile, memorizzato come colonna della matrice $W_d$. Possiamo misurare il prodotto scalare $\mathbf{w}_i^T \mathbf{w}_j$ per quantificare la sovrapposizione tra due feature. Possiamo visualizzare le direzioni, confrontarle, raggrupparle. L'interferenza geometrica non è eliminata, ma è resa trasparente.
-
 Questa trasparenza apre la strada all'interpretazione. Se $\mathbf{w}_i$ è una direzione nello spazio degli embedding, possiamo chiederci: quali testi producono embedding allineati con questa direzione? Ovvero: per quali input l'attivazione $h_i$ è elevata? La risposta a questa domanda—trovare i testi che ``accendono'' una feature—è il primo passo per assegnare un significato semantico alle direzioni apprese. Vedremo nella Sezione~\ref{subsec:interpretability} come questo processo possa essere automatizzato utilizzando un modello linguistico come interprete.
-
 \begin{notebox}
 \textbf{Riepilogo: l'architettura dello Sparse Autoencoder}\\
 Lo Sparse Autoencoder trasforma un embedding denso $\mathbf{x} \in \mathbb{R}^d$ in una rappresentazione sparsa $\mathbf{h} \in \mathbb{R}^n$ con $n > d$:
@@ -458,46 +437,11 @@ Il secondo termine è il \textbf{vincolo di sparsità}, che penalizza le rappres
     \mathcal{L}_{\text{sparse}}(\mathbf{h})
 \end{equation}
 La forma esatta di questo termine può variare; nella prossima sezione vedremo l'approccio Top-K adottato da O'Neill et al., che differisce dalla classica regolarizzazione $L_1$.
-
 Il terzo termine è la \textbf{perdita ausiliaria}, introdotta per risolvere un problema pratico dell'addestramento—il fenomeno dei \textit{dead latents}:
 \begin{equation}
     \mathcal{L}_{\text{aux}}(\mathbf{x}, \hat{\mathbf{x}})
 \end{equation}
-Dedicheremo la Sezione~\ref{subsubsec:auxiliary_loss} a questo componente.
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[scale=0.9]
-        % Box principale
-        \node[draw, rectangle, minimum width=12cm, minimum height=3.2cm, fill=gray!5, rounded corners] at (0, 0) {};
-        
-        % Titolo
-        \node[font=\bfseries] at (0, 2.0) {Funzione di perdita complessiva};
-        
-        % Tre componenti
-        \node[draw, rectangle, minimum width=2.8cm, minimum height=1.4cm, fill=blue!15, rounded corners] (rec) at (-4, 0.2) {};
-        \node[font=\small, align=center] at (-4, 0.2) {$\mathcal{L}_{\text{rec}}$\\[2pt]\scriptsize ricostruzione};
-        
-        \node[font=\large] at (-2.25, 0.2) {$+\ \lambda$};
-        
-        \node[draw, rectangle, minimum width=2.8cm, minimum height=1.4cm, fill=green!15, rounded corners] (sparse) at (0, 0.2) {};
-        \node[font=\small, align=center] at (0, 0.2) {$\mathcal{L}_{\text{sparse}}$\\[2pt]\scriptsize sparsità};
-        
-        \node[font=\large] at (2.25, 0.2) {$+\ \alpha $ };
-        
-        \node[draw, rectangle, minimum width=2.8cm, minimum height=1.4cm, fill=orange!15, rounded corners] (aux) at (4, 0.2) {};
-        \node[font=\small, align=center] at (4, 0.2) {$\mathcal{L}_{\text{aux}}$\\[2pt]\scriptsize ausiliaria};
-        
-        % Descrizioni sotto (più distanziate)
-        \node[font=\scriptsize, align=center, blue!70!black] at (-4, -1.3) {fedeltà della\\ricostruzione};
-        \node[font=\scriptsize, align=center, green!60!black] at (0, -1.3) {poche feature\\attive per input};
-        \node[font=\scriptsize, align=center, orange!70!black] at (4, -1.3) {contrasta i\\dead latents};
-        
-    \end{tikzpicture}
-    \caption{I tre componenti della funzione di perdita. La perdita di ricostruzione garantisce fedeltà semantica; il vincolo di sparsità forza rappresentazioni con poche attivazioni; la perdita ausiliaria previene il collasso di feature inutilizzate.}
-    \label{fig:loss_components}
-\end{figure}
-
-Il bilanciamento tra questi termini è cruciale. Se $\lambda$ è troppo basso, il modello potrebbe attivare molte feature per ogni input, perdendo il vantaggio della sparsità. Se $\lambda$ è troppo alto, il modello potrebbe sacrificare la qualità della ricostruzione pur di mantenere poche attivazioni. O'Neill et al. osservano che, con l'approccio Top-K, il coefficiente $\lambda$ diventa meno critico perché la sparsità è imposta come vincolo rigido piuttosto che come penalità morbida. Il coefficiente $\alpha$ della perdita ausiliaria è tipicamente fissato a $1/32$, un valore che bilancia l'effetto di recupero dei dead latents senza interferire eccessivamente con l'obiettivo principale.
+Dedicheremo la Sezione~\ref{subsubsec:auxiliary_loss} a questo componente. Il bilanciamento tra questi termini è cruciale. Se $\lambda$ è troppo basso, il modello potrebbe attivare molte feature per ogni input, perdendo il vantaggio della sparsità. Se $\lambda$ è troppo alto, il modello potrebbe sacrificare la qualità della ricostruzione pur di mantenere poche attivazioni. O'Neill et al. osservano che, con l'approccio Top-K, il coefficiente $\lambda$ diventa meno critico perché la sparsità è imposta come vincolo rigido piuttosto che come penalità morbida. Il coefficiente $\alpha$ della perdita ausiliaria è tipicamente fissato a $1/32$, un valore che bilancia l'effetto di recupero dei dead latents senza interferire eccessivamente con l'obiettivo principale.
 \subsubsection{Il vincolo di sparsità Top-K}
 \label{subsubsec:topk_sparsity}
 
@@ -506,9 +450,7 @@ L'approccio tradizionale per indurre sparsità in un autoencoder è la regolariz
     \mathcal{L}_{\text{sparse}}^{L_1}(\mathbf{h}) = \sum_{i=1}^{n} |h_i|
 \end{equation}
 Questo termine penalizza le attivazioni non nulle, spingendo il modello a utilizzare poche feature. Tuttavia, la regolarizzazione $L_1$ presenta un problema noto come \textit{shrinkage}: per ridurre la penalità, il modello tende a sottostimare sistematicamente le attivazioni, producendo valori $h_i$ più bassi di quelli che sarebbero ottimali per la ricostruzione~\parencite{oneill2024disentangling}. Il risultato è una rappresentazione sì sparsa, ma anche meno fedele.
-
 O'Neill et al. adottano un approccio diverso: il vincolo \textbf{Top-K} (o \textit{k-sparse})~\parencite{makhzani2013ksparse}. Invece di penalizzare le attivazioni con un termine morbido, si impone un vincolo rigido: per ogni input, solo le $k$ attivazioni più grandi vengono mantenute, mentre tutte le altre sono forzate a zero.
-
 Formalmente, sia $\mathbf{z} = W_e \mathbf{x} + \mathbf{b}_e$ il vettore delle pre-attivazioni. Il vincolo Top-K opera in due passi:
 \begin{enumerate}
     \item Si identificano gli indici delle $k$ componenti di $\mathbf{z}$ con valore più alto
@@ -781,121 +723,456 @@ E non si attivi su:
 \end{itemize}
 L'interprete, confrontando i due insiemi, identificherebbe il tema comune e produrrebbe l'etichetta: ``febbre / iperpiressia''.
 \end{notebox}
-
 È importante sottolineare i limiti di questo approccio. L'interpretazione automatica è un'euristica, non una dimostrazione formale che la feature catturi esattamente il concetto indicato dall'etichetta. Alcune feature potrebbero essere polisemantiche (catturare più concetti correlati), altre potrebbero essere difficili da descrivere in poche parole. O'Neill et al. propongono un secondo passo—un \textit{Predictor} LLM che valida le etichette predicendo le attivazioni su testi unseen—ma questa validazione formale esula dagli scopi dell'implementazione attuale di PRISMA. Le etichette vanno quindi intese come ipotesi interpretative da verificare qualitativamente, non come verità assolute.
-
-\subsection{Feature Families: struttura gerarchica dei concetti}
-\label{subsec:feature_families}
-Finora abbiamo trattato le feature come entità indipendenti: ogni $\mathbf{w}_i$ rappresenta un concetto, ogni $h_i$ ne indica l'intensità. Ma l'analisi empirica delle feature apprese rivela una struttura più ricca: le feature non sono isolate, ma si organizzano spontaneamente in \textbf{famiglie gerarchiche}—gruppi di concetti correlati che spaziano da temi generali a sotto-temi specifici.
-\subsubsection{Co-attivazione e struttura emergente}
-\label{subsubsec:coactivation}
-L'osservazione di partenza è semplice: alcune feature tendono ad attivarsi insieme. Se un testo parla di ``ottimizzazione in reti neurali'', è probabile che attivi simultaneamente feature legate a ``gradient descent'', ``learning rate'', ``Adam optimizer''. Questa co-attivazione non è casuale—riflette relazioni semantiche reali tra i concetti.
-O'Neill et al.~\parencite{oneill2024disentangling} quantificano questo fenomeno attraverso la \textbf{matrice di co-occorrenza} $C$. Per ogni coppia di feature $(i, j)$, si conta quante volte entrambe sono attive sullo stesso documento:
+\subsection{Analisi della struttura delle feature}
+\label{subsec:feature_analysis}
+Le feature apprese da uno Sparse Autoencoder non sono entità isolate. L'analisi empirica rivela che si organizzano in strutture ricche: alcune feature tendono ad attivarsi insieme (\textit{feature families}), altre emergono come specializzazioni di feature più generali al crescere della capacità del modello (\textit{feature splitting}). Per studiare queste strutture in modo rigoroso, introduciamo un insieme di matrici che catturano diversi aspetti del comportamento delle feature.
+\subsubsection{Notazione e matrici fondamentali}
+\label{subsubsec:notation_matrices}
+Sia $N$ il numero di documenti nel corpus e $n$ il numero di feature dello Sparse Autoencoder. Quando confrontiamo SAE di dimensioni diverse, indicheremo con $n_1$ e $n_2$ i rispettivi numeri di feature.
+\paragraph{Matrice delle attivazioni.} La \textbf{matrice delle attivazioni} $H \in \mathbb{R}^{N \times n}$ raccoglie le attivazioni di tutte le feature su tutti i documenti:
 \begin{equation}
-    C_{ij} = \sum_{k=1}^{N} A_{ik} \cdot A_{jk}
-    \label{eq:cooccurrence}
+    H_{ki} = h_{k,i} = \left[ f_\theta(\mathbf{x}_k) \right]_i
+    \label{eq:activation_matrix}
 \end{equation}
-dove $A_{ik} = 1$ se la feature $i$ è attiva sul documento $k$, e $A_{ik} = 0$ altrimenti. La matrice $C$ è simmetrica: $C_{ij} = C_{ji}$.
-Per rendere i valori comparabili tra feature con frequenze diverse, si normalizza per la frequenza di attivazione:
+dove $h_{k,i}$ è l'attivazione della feature $i$ sul documento $k$, ottenuta passando l'embedding $\mathbf{x}_k$ attraverso l'encoder $f_\theta$. Ogni riga di $H$ è il vettore latente sparso di un documento; ogni colonna rappresenta il pattern di attivazione di una feature sull'intero corpus.
+Grazie al vincolo Top-K, la matrice $H$ è intrinsecamente sparsa: per ogni riga, al massimo $k$ elementi sono non nulli. Seguendo O'Neill et al.~\parencite{oneill2024disentangling}, utilizziamo anche la notazione $B \equiv H$ quando vogliamo enfatizzare che stiamo considerando i \textit{valori} delle attivazioni (non solo la loro presenza).
+\paragraph{Matrice delle attivazioni binaria.} La \textbf{matrice binaria} $A \in \{0,1\}^{N \times n}$ indica semplicemente se una feature è attiva o meno:
 \begin{equation}
-    C_{ij}^{\text{norm}} = \frac{C_{ij}}{f_i + \epsilon}
-    \label{eq:cooccurrence_norm}
+    A_{ki} = \chi_{H_{ki} > 0} = 
+    \begin{cases}
+        1 & \text{se la feature } i \text{ è attiva sul documento } k \\
+        0 & \text{altrimenti}
+    \end{cases}
+    \label{eq:binary_activation}
 \end{equation}
-dove $f_i = \sum_k A_{ik}$ è la frequenza di attivazione della feature $i$ e $\epsilon$ è una piccola costante per la stabilità numerica.
-Analizzando questa matrice emerge un pattern caratteristico: esistono gruppi di feature con alta co-occorrenza interna e bassa co-occorrenza con l'esterno. Ma la struttura non è simmetrica all'interno dei gruppi. Tipicamente, una feature—il \textbf{parent}—co-occorre con tutte le altre del gruppo, mentre le altre—i \textbf{children}—co-occorrono col parent ma raramente tra loro.
-
-
+dove $\chi$ è la funzione caratteristica. Una feature è considerata ``attiva'' quando la sua attivazione è non nulla---ovvero quando è stata selezionata dal meccanismo Top-K.
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[
-        scale=0.85,
-        every node/.style={font=\small},
-        parent/.style={draw, rectangle, rounded corners, fill=blue!25, minimum width=2.8cm, minimum height=0.8cm},
-        child/.style={draw, rectangle, rounded corners, fill=green!20, minimum width=2.5cm, minimum height=0.7cm},
-        arrow/.style={->, thick, gray!70}
-    ]
+    \begin{tikzpicture}[scale=0.75]
         
-        % Parent (root)
-        \node[parent] (root) at (0, 0) {Optimization};
+        % Matrice H
+        \node[font=\small\bfseries] at (2, 3.8) {Matrice $H$ (attivazioni)};
         
-        % Children (livello 1)
-        \node[child] (c1) at (-4.5, -2) {Gradient Descent};
-        \node[child] (c2) at (-1.5, -2) {Learning Rate};
-        \node[child] (c3) at (1.5, -2) {Adam Optimizer};
-        \node[child] (c4) at (4.5, -2) {Momentum};
+        \def\rows{5}
+        \def\cols{7}
+        \def\cellsize{0.55}
         
-        % Grandchildren (livello 2) - solo per alcuni
-        \node[child, fill=green!10, minimum width=2.2cm] (gc1) at (-5.5, -4) {SGD};
-        \node[child, fill=green!10, minimum width=2.2cm] (gc2) at (-3.5, -4) {Mini-batch};
-        \node[child, fill=green!10, minimum width=2.2cm] (gc3) at (1.5, -4) {RMSprop};
+        % Celle con valori
+        % Doc 1
+        \fill[blue!50] (0*\cellsize, 4*\cellsize) rectangle (1*\cellsize, 5*\cellsize);
+        \node[font=\tiny, white] at (0.5*\cellsize, 4.5*\cellsize) {.31};
+        \fill[blue!30] (2*\cellsize, 4*\cellsize) rectangle (3*\cellsize, 5*\cellsize);
+        \node[font=\tiny] at (2.5*\cellsize, 4.5*\cellsize) {.15};
         
-        % Archi
-        \draw[arrow] (root) -- (c1);
-        \draw[arrow] (root) -- (c2);
-        \draw[arrow] (root) -- (c3);
-        \draw[arrow] (root) -- (c4);
-        \draw[arrow] (c1) -- (gc1);
-        \draw[arrow] (c1) -- (gc2);
-        \draw[arrow] (c3) -- (gc3);
+        % Doc 2
+        \fill[blue!40] (1*\cellsize, 3*\cellsize) rectangle (2*\cellsize, 4*\cellsize);
+        \node[font=\tiny] at (1.5*\cellsize, 3.5*\cellsize) {.22};
+        \fill[blue!60] (4*\cellsize, 3*\cellsize) rectangle (5*\cellsize, 4*\cellsize);
+        \node[font=\tiny, white] at (4.5*\cellsize, 3.5*\cellsize) {.41};
         
-        % Annotazioni densità
-        \node[right, font=\scriptsize, gray] at (1.5, 0) {$f_i$ alta};
-        \node[right, font=\scriptsize, gray] at (5.2, -2) {$f_i$ media};
-        \node[right, font=\scriptsize, gray] at (3, -4) {$f_i$ bassa};
+        % Doc 3
+        \fill[blue!35] (0*\cellsize, 2*\cellsize) rectangle (1*\cellsize, 3*\cellsize);
+        \node[font=\tiny] at (0.5*\cellsize, 2.5*\cellsize) {.18};
+        \fill[blue!25] (3*\cellsize, 2*\cellsize) rectangle (4*\cellsize, 3*\cellsize);
+        \node[font=\tiny] at (3.5*\cellsize, 2.5*\cellsize) {.12};
+        \fill[blue!45] (6*\cellsize, 2*\cellsize) rectangle (7*\cellsize, 3*\cellsize);
+        \node[font=\tiny] at (6.5*\cellsize, 2.5*\cellsize) {.28};
         
-        % Freccia indicante direzione
-        \draw[->, thick, gray!50] (6.5, 0) -- (6.5, -4);
-        \node[right, font=\scriptsize, gray, align=left] at (6.7, -2) {direzione:\\generale $\to$ specifico};
+        % Doc 4
+        \fill[blue!55] (2*\cellsize, 1*\cellsize) rectangle (3*\cellsize, 2*\cellsize);
+        \node[font=\tiny, white] at (2.5*\cellsize, 1.5*\cellsize) {.37};
+        \fill[blue!30] (5*\cellsize, 1*\cellsize) rectangle (6*\cellsize, 2*\cellsize);
+        \node[font=\tiny] at (5.5*\cellsize, 1.5*\cellsize) {.14};
+        
+        % Doc 5
+        \fill[blue!70] (1*\cellsize, 0*\cellsize) rectangle (2*\cellsize, 1*\cellsize);
+        \node[font=\tiny, white] at (1.5*\cellsize, 0.5*\cellsize) {.52};
+        \fill[blue!20] (4*\cellsize, 0*\cellsize) rectangle (5*\cellsize, 1*\cellsize);
+        \node[font=\tiny] at (4.5*\cellsize, 0.5*\cellsize) {.09};
+        
+        % Griglia
+        \draw[gray, thin] (0, 0) grid[step=\cellsize] (\cols*\cellsize, \rows*\cellsize);
+        
+        % Labels
+        \node[left, font=\scriptsize] at (0, 4.5*\cellsize) {$k=1$};
+        \node[left, font=\scriptsize] at (0, 2.5*\cellsize) {$k=3$};
+        \node[left, font=\scriptsize] at (0, 0.5*\cellsize) {$k=5$};
+        \node[below, font=\scriptsize] at (0.5*\cellsize, 0) {$f_1$};
+        \node[below, font=\scriptsize] at (3.5*\cellsize, 0) {$f_4$};
+        \node[below, font=\scriptsize] at (6.5*\cellsize, 0) {$f_7$};
+        
+        % Freccia
+        \draw[->, very thick, gray] (4.5, 1.4) -- (6, 1.4);
+        \node[above, font=\scriptsize] at (5.25, 1.5) {$\mathbb{1}[H > 0]$};
+        
+        % Matrice A
+        \begin{scope}[shift={(7, 0)}]
+            \node[font=\small\bfseries] at (2, 3.8) {Matrice $A$ (binaria)};
+            
+            % Doc 1
+            \fill[green!50] (0*\cellsize, 4*\cellsize) rectangle (1*\cellsize, 5*\cellsize);
+            \node[font=\tiny] at (0.5*\cellsize, 4.5*\cellsize) {1};
+            \fill[green!50] (2*\cellsize, 4*\cellsize) rectangle (3*\cellsize, 5*\cellsize);
+            \node[font=\tiny] at (2.5*\cellsize, 4.5*\cellsize) {1};
+            
+            % Doc 2
+            \fill[green!50] (1*\cellsize, 3*\cellsize) rectangle (2*\cellsize, 4*\cellsize);
+            \node[font=\tiny] at (1.5*\cellsize, 3.5*\cellsize) {1};
+            \fill[green!50] (4*\cellsize, 3*\cellsize) rectangle (5*\cellsize, 4*\cellsize);
+            \node[font=\tiny] at (4.5*\cellsize, 3.5*\cellsize) {1};
+            
+            % Doc 3
+            \fill[green!50] (0*\cellsize, 2*\cellsize) rectangle (1*\cellsize, 3*\cellsize);
+            \node[font=\tiny] at (0.5*\cellsize, 2.5*\cellsize) {1};
+            \fill[green!50] (3*\cellsize, 2*\cellsize) rectangle (4*\cellsize, 3*\cellsize);
+            \node[font=\tiny] at (3.5*\cellsize, 2.5*\cellsize) {1};
+            \fill[green!50] (6*\cellsize, 2*\cellsize) rectangle (7*\cellsize, 3*\cellsize);
+            \node[font=\tiny] at (6.5*\cellsize, 2.5*\cellsize) {1};
+            
+            % Doc 4
+            \fill[green!50] (2*\cellsize, 1*\cellsize) rectangle (3*\cellsize, 2*\cellsize);
+            \node[font=\tiny] at (2.5*\cellsize, 1.5*\cellsize) {1};
+            \fill[green!50] (5*\cellsize, 1*\cellsize) rectangle (6*\cellsize, 2*\cellsize);
+            \node[font=\tiny] at (5.5*\cellsize, 1.5*\cellsize) {1};
+            
+            % Doc 5
+            \fill[green!50] (1*\cellsize, 0*\cellsize) rectangle (2*\cellsize, 1*\cellsize);
+            \node[font=\tiny] at (1.5*\cellsize, 0.5*\cellsize) {1};
+            \fill[green!50] (4*\cellsize, 0*\cellsize) rectangle (5*\cellsize, 1*\cellsize);
+            \node[font=\tiny] at (4.5*\cellsize, 0.5*\cellsize) {1};
+            
+            % Zeri espliciti in alcune celle vuote
+            \node[font=\tiny, gray] at (1.5*\cellsize, 4.5*\cellsize) {0};
+            \node[font=\tiny, gray] at (3.5*\cellsize, 4.5*\cellsize) {0};
+            \node[font=\tiny, gray] at (0.5*\cellsize, 3.5*\cellsize) {0};
+            
+            % Griglia
+            \draw[gray, thin] (0, 0) grid[step=\cellsize] (\cols*\cellsize, \rows*\cellsize);
+        \end{scope}
         
     \end{tikzpicture}
-    \caption{Esempio di feature family nel dominio del machine learning (adattato da O'Neill et al.). La radice ``Optimization'' è il parent: un concetto generale con alta densità di attivazione $f_i$. Gli archi sono orientati verso feature con densità decrescente, riflettendo la gerarchia semantica dal generale allo specifico.}
-    \label{fig:feature_family_tree}
+    \caption{Dalla matrice delle attivazioni $H$ alla matrice binaria $A$. A sinistra: $H$ contiene i valori continui delle attivazioni (le celle vuote sono zeri, dovuti al vincolo Top-K). A destra: $A$ indica solo se una feature è attiva (1) o meno (0). La sparsità è evidente: ogni riga ha al massimo $k$ elementi non nulli.}
+    \label{fig:H_to_A}
 \end{figure}
 
-\subsubsection{Identificazione delle famiglie}
-\label{subsubsec:family_identification}
+\paragraph{Matrice di co-occorrenza.} La \textbf{matrice di co-occorrenza} $C \in \mathbb{N}^{n \times n}$ conta quante volte due feature si attivano insieme sullo stesso documento:
+\begin{equation}
+    C_{ij} = \sum_{k=1}^{N} A_{ki} \cdot A_{kj} = \left( A^T A \right)_{ij}
+    \label{eq:cooccurrence}
+\end{equation}
+La matrice $C$ è simmetrica ($C_{ij} = C_{ji}$) e gli elementi diagonali $C_{ii}$ rappresentano la \textbf{frequenza di attivazione} della feature $i$---il numero totale di documenti su cui si attiva:
+\begin{equation}
+    f_i = C_{ii} = \sum_{k=1}^{N} A_{ki}
+    \label{eq:activation_frequency}
+\end{equation}
+Poiché feature diverse hanno frequenze diverse, è utile normalizzare la co-occorrenza. La \textbf{matrice di co-occorrenza normalizzata} è definita come:
+\begin{equation}
+    C^{\text{norm}}_{ij} = \frac{C_{ij}}{f_i + \epsilon}
+    \label{eq:cooccurrence_norm}
+\end{equation}
+dove $\epsilon$ è una piccola costante per la stabilità numerica. Questa normalizzazione misura la frazione di attivazioni della feature $i$ in cui anche la feature $j$ è presente. Si noti che $C^{\text{norm}}$ non è simmetrica: $C^{\text{norm}}_{ij} \neq C^{\text{norm}}_{ji}$ in generale.
+\paragraph{Matrice di similarità delle attivazioni.} Mentre $C$ considera solo la presenza/assenza delle feature, la \textbf{matrice di similarità delle attivazioni} $D \in \mathbb{R}^{n \times n}$ tiene conto anche dell'intensità:
+\begin{equation}
+    D_{ij} = \sum_{k=1}^{N} H_{ki} \cdot H_{kj} = \left( H^T H \right)_{ij}
+    \label{eq:activation_similarity}
+\end{equation}
+dove $H_{ki}$ è il valore dell'attivazione (non solo 0 o 1). Due feature con alta $D_{ij}$ non solo si attivano spesso insieme, ma lo fanno con intensità correlate.
+\paragraph{Similarità geometrica tra SAE.} Le matrici precedenti descrivono le relazioni tra feature \textit{all'interno} di un singolo SAE. Per confrontare feature \textit{tra SAE diversi}---ad esempio per studiare come le feature evolvono al crescere della capacità---si utilizza la \textbf{matrice di similarità geometrica}.
+Dati due SAE con $n_1$ e $n_2$ feature rispettivamente, la matrice $S \in \mathbb{R}^{n_1 \times n_2}$ è definita come:
+\begin{equation}
+    S_{ij} = \frac{\mathbf{w}_i^T \mathbf{w}_j}{\|\mathbf{w}_i\| \|\mathbf{w}_j\|}
+    \label{eq:geometric_similarity}
+\end{equation}
+dove $\mathbf{w}_i$ è la $i$-esima colonna del decoder $W_d$ del primo SAE e $\mathbf{w}_j$ la $j$-esima colonna del decoder del secondo SAE.
+\begin{notebox}
+\textbf{Perché il decoder e non l'encoder?}\\[0.5em]
+Le colonne del decoder $\mathbf{w}_i$ rappresentano le \textbf{direzioni semantiche} delle feature nello spazio degli embedding---sono loro a definire ``cosa significa'' ogni feature (cfr.\ Sezione~\ref{subsubsec:features_as_directions}). Le righe dell'encoder $\mathbf{e}_i$, invece, sono direzioni ausiliarie ottimizzate per \textit{rilevare} le feature minimizzando l'interferenza, ma non hanno un significato semantico diretto. Confrontare i vettori decoder significa quindi confrontare il \textit{contenuto semantico} delle feature, non il meccanismo con cui vengono rilevate.
+\end{notebox}
+La Tabella~\ref{tab:matrices_summary} riassume le matrici introdotte e il loro ruolo nell'analisi.
+\begin{table}[htbp]
+    \centering
+    \caption{Riepilogo delle matrici fondamentali per l'analisi delle feature.}
+    \label{tab:matrices_summary}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Matrice} & \textbf{Dimensione} & \textbf{Definizione} & \textbf{Interpretazione} \\
+        \midrule
+        $H$ (o $B$) & $N \times n$ & $H_{ki} = h_{k,i}$ & Attivazioni (valori continui) \\
+        $A$ & $N \times n$ & $A_{ki} = \chi_{H_{ki} > 0}$ & Attivazioni (binarie) \\
+        $C$ & $n \times n$ & $C = A^T A$ & Co-occorrenza tra feature \\
+        $C^{\text{norm}}$ & $n \times n$ & $C^{\text{norm}}_{ij} = C_{ij}/(f_i + \epsilon)$ & Co-occorrenza normalizzata \\
+        $D$ & $n \times n$ & $D = H^T H$ & Similarità attivazioni (pesata) \\
+        $S$ & $n_1 \times n_2$ & $S_{ij} = \cos(\mathbf{w}_i, \mathbf{w}_j)$ & Similarità geometrica decoder \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-Per estrarre automaticamente le feature families dalla matrice di co-occorrenza, O'Neill et al. sviluppano un algoritmo basato su grafi. L'intuizione è costruire un albero che colleghi le feature più correlate, poi interpretare le relazioni padre-figlio in base alla frequenza di attivazione. L'algoritmo procede come segue:
+Nelle sezioni seguenti utilizzeremo queste matrici per identificare le \textit{feature families} (Sezione~\ref{subsubsec:feature_families}) e caratterizzare il fenomeno del \textit{feature splitting} (Sezione~\ref{subsubsec:feature_splitting}).
+\subsubsection{Feature families: struttura gerarchica intra-SAE}
+\label{subsubsec:feature_families}
+
+L'analisi della matrice di co-occorrenza $C$ rivela un pattern caratteristico: esistono gruppi di feature con alta co-occorrenza interna e bassa co-occorrenza con l'esterno. Ma la struttura non è simmetrica all'interno dei gruppi. Tipicamente, una feature---il \textbf{parent}---co-occorre con tutte le altre del gruppo, mentre le altre---i \textbf{children}---co-occorrono col parent ma raramente tra loro.
+
+O'Neill et al.~\parencite{oneill2024disentangling} chiamano questi gruppi \textbf{feature families} e propongono un algoritmo per identificarli automaticamente a partire dalla matrice di co-occorrenza.
+
+Consideriamo un dominio come l'ottimizzazione nel machine learning. Una feature generale ``Optimization Techniques'' potrebbe attivarsi ogni volta che un paper parla di ottimizzazione---che sia SGD, Adam, o metodi del secondo ordine. Feature più specifiche come ``Adam optimizer'' o ``Newton's method'' si attivano solo su sottoinsiemi di questi paper. La feature generale (parent) co-occorre con tutte le specifiche (children), ma ``Adam'' e ``Newton'' raramente compaiono insieme nello stesso paper. Questa struttura si riflette nella matrice $C^{\text{norm}}$: il parent ha alta co-occorrenza normalizzata con ogni child, ma i children hanno bassa co-occorrenza tra loro.
+
+L'identificazione delle feature families procede in quattro passi:
 
 \begin{enumerate}
-    \item \textbf{Selezione delle feature.} Si considerano solo le feature altamente interpretabili, definite da O'Neill et al. come quelle con $\text{F1} \geq 0.8$ e correlazione di Pearson $\geq 0.8$ nel task di predizione dell'Interpreter. Questa selezione preliminare garantisce che le famiglie estratte siano composte da feature semanticamente significative.
+    \item \textbf{Selezione delle feature.} Si considerano solo le feature altamente interpretabili, definite da O'Neill et al.\ come quelle con $\text{F1} \geq 0.8$ e correlazione di Pearson $\geq 0.8$ nel task di predizione dell'Interpreter (cfr.\ Sezione~\ref{subsec:interpretability}). Questa selezione preliminare garantisce che le famiglie estratte siano composte da feature semanticamente significative.
     
-    \item \textbf{Costruzione del grafo pesato.} Si parte dalla matrice di co-occorrenza normalizzata $C^{\text{norm}}$ e si applica una \textbf{soglia} $\tau$ per filtrare le relazioni deboli. Due feature $i$ e $j$ vengono collegate da un arco se e solo se:
+    \item \textbf{Costruzione del grafo pesato.} Si parte dalla matrice di co-occorrenza normalizzata $C^{\text{norm}}$ e si applica una soglia $\tau$ per filtrare le relazioni deboli. Due feature $i$ e $j$ vengono collegate da un arco se e solo se:
     \begin{equation}
         C^{\text{norm}}_{ij} > \tau
         \label{eq:threshold}
     \end{equation}
     dove tipicamente $\tau = 0.1$. L'intuizione è semplice: se la feature $j$ si attiva in meno del 10\% dei casi in cui si attiva la feature $i$, la relazione è troppo debole per essere considerata significativa. Il risultato è un grafo pesato $G = (V, E)$ in cui i nodi $V$ sono le feature e gli archi $E$ collegano coppie con co-occorrenza sopra soglia, con peso $w_{ij} = C^{\text{norm}}_{ij}$.
     
-    \item \textbf{Estrazione del Maximum Spanning Tree.} Dal grafo pesato $G$ si estrae il \textbf{Maximum Spanning Tree} (MST)—l'albero di copertura che connette tutti i nodi massimizzando la somma dei pesi degli archi. A differenza del più noto Minimum Spanning Tree usato per trovare connessioni a costo minimo, qui si vuole preservare le relazioni \textit{più forti}. L'MST ha due proprietà: (1) connette tutte le feature in un'unica struttura, e (2) evita i cicli, garantendo una topologia ad albero che si presta naturalmente all'interpretazione gerarchica. In pratica, l'MST seleziona, per ogni feature, la connessione più forte con il resto della struttura, scartando le ridondanze.
+    \item \textbf{Estrazione del Maximum Spanning Tree.} Dal grafo pesato $G$ si estrae il \textbf{Maximum Spanning Tree} (MST)---l'albero di copertura che connette tutti i nodi massimizzando la somma dei pesi degli archi. A differenza del più noto Minimum Spanning Tree usato per trovare connessioni a costo minimo, qui si vuole preservare le relazioni \textit{più forti}. L'MST ha due proprietà fondamentali: (1) connette tutte le feature in un'unica struttura, e (2) evita i cicli, garantendo una topologia ad albero che si presta naturalmente all'interpretazione gerarchica.
     
-    \item \textbf{Orientamento degli archi.} L'albero ottenuto è inizialmente non diretto. Per convertirlo in una gerarchia, si assegna una direzione a ogni arco basandosi sulla \textbf{densità di attivazione} $f_i = \sum_k A_{ik}$, ovvero il numero totale di documenti su cui la feature $i$ si attiva. Gli archi vengono orientati \textit{dalla feature più densa verso quella meno densa}:
+    \item \textbf{Orientamento degli archi.} L'albero ottenuto è inizialmente non orientato. Per convertirlo in una gerarchia, si assegna una direzione a ogni arco basandosi sulla frequenza di attivazione $f_i$ (Equazione~\ref{eq:activation_frequency}). Gli archi vengono orientati dalla feature più frequente verso quella meno frequente:
     \begin{equation}
-        i \to j \quad \text{se} \quad f_i > f_j
-        \label{eq:edge_direction}
+        i \to j \quad \text{se e solo se} \quad f_i > f_j
+        \label{eq:edge_orientation}
     \end{equation}
-    L'intuizione semantica è che i concetti generali si attivano più frequentemente dei concetti specifici: ``ottimizzazione'' compare in più paper di ``Adam optimizer'', ``malattie respiratorie'' in più referti di ``polmonite da Pneumocystis''. Dopo l'orientamento, l'albero diventa un grafo diretto aciclico (DAG) con una chiara direzione dal generale allo specifico.
-    
-    \item \textbf{Identificazione delle radici e estrazione delle famiglie.} Nel grafo diretto, le \textbf{radici} sono i nodi senza archi entranti—feature che non sono ``figlie'' di nessun'altra feature nel grafo. Ogni radice rappresenta il concetto più generale di una potenziale famiglia. A partire da ciascuna radice, si esplora l'albero con una visita in profondità (\textit{depth-first search}), raccogliendo tutti i discendenti. L'insieme formato dalla radice (il \textbf{parent}) e dai suoi discendenti (i \textbf{children}) costituisce una feature family. Se l'albero ha più componenti connesse dopo il thresholding, si ottengono più famiglie indipendenti.
-    
-    
+    L'intuizione semantica è che i concetti generali si attivano più frequentemente dei concetti specifici: ``ottimizzazione'' compare in più paper di ``Adam optimizer''. Dopo l'orientamento, l'albero diventa un grafo diretto aciclico (DAG) con una chiara direzione dal generale allo specifico.
 \end{enumerate}
 
-\subsection{Feature Splitting: granularità emergente}
-\label{subsec:feature_splitting}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=0.75]
+        
+        % === PASSO 1-2: Grafo pesato ===
+        \node[font=\small\bfseries] at (0, 3.5) {Grafo pesato $G$};
+        
+        \node[draw, circle, fill=blue!20, minimum size=0.7cm, font=\scriptsize] (A) at (0, 2) {$f_1$};
+        \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (B) at (-1.3, 0.5) {$f_2$};
+        \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (C) at (1.3, 0.5) {$f_3$};
+        \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (D) at (-0.8, -1) {$f_4$};
+        \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (E) at (0.8, -1) {$f_5$};
+        
+        \draw[thick, gray] (A) -- node[left, font=\tiny] {.42} (B);
+        \draw[thick, gray] (A) -- node[right, font=\tiny] {.38} (C);
+        \draw[thick, gray] (A) -- node[left, font=\tiny, pos=0.7] {.25} (D);
+        \draw[thick, gray] (A) -- node[right, font=\tiny, pos=0.7] {.31} (E);
+        \draw[thick, gray!50, dashed] (B) -- node[below, font=\tiny] {.08} (D);
+        \draw[thick, gray!50, dashed] (C) -- node[below, font=\tiny] {.05} (E);
+        
+        \node[font=\tiny, gray] at (0, -2) {(tratteggio: $< \tau$)};
+        
+        % Freccia
+        \draw[->, very thick, gray] (2.3, 0.5) -- (3.5, 0.5);
+        \node[above, font=\scriptsize] at (2.9, 0.6) {MST};
+        
+        % === PASSO 3: MST ===
+        \begin{scope}[shift={(6, 0)}]
+            \node[font=\small\bfseries] at (0, 3.5) {Spanning Tree};
+            
+            \node[draw, circle, fill=blue!20, minimum size=0.7cm, font=\scriptsize] (A2) at (0, 2) {$f_1$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (B2) at (-1.3, 0.5) {$f_2$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (C2) at (1.3, 0.5) {$f_3$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (D2) at (-0.8, -1) {$f_4$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (E2) at (0.8, -1) {$f_5$};
+            
+            \draw[thick] (A2) -- (B2);
+            \draw[thick] (A2) -- (C2);
+            \draw[thick] (A2) -- (D2);
+            \draw[thick] (A2) -- (E2);
+        \end{scope}
+        
+        % Freccia
+        \draw[->, very thick, gray] (8.3, 0.5) -- (9.5, 0.5);
+        \node[above, font=\scriptsize, align=center] at (8.9, 0.7) {Orient.};
+        
+        % === PASSO 4: DAG orientato ===
+        \begin{scope}[shift={(12, 0)}]
+            \node[font=\small\bfseries] at (0, 3.5) {Feature Family};
+            
+            \node[draw, circle, fill=blue!30, minimum size=0.7cm, font=\scriptsize] (A3) at (0, 2) {$f_1$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (B3) at (-1.3, 0.5) {$f_2$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (C3) at (1.3, 0.5) {$f_3$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (D3) at (-0.8, -1) {$f_4$};
+            \node[draw, circle, fill=green!20, minimum size=0.7cm, font=\scriptsize] (E3) at (0.8, -1) {$f_5$};
+            
+            \draw[->, thick] (A3) -- (B3);
+            \draw[->, thick] (A3) -- (C3);
+            \draw[->, thick] (A3) -- (D3);
+            \draw[->, thick] (A3) -- (E3);
+            
+            \node[right, font=\scriptsize, blue!50!black] at (0.4, 2) {parent};
+            \node[right, font=\scriptsize, green!50!black] at (1.5, -0.7) {children};
+        \end{scope}
+        
+    \end{tikzpicture}
+    \caption{Costruzione di una feature family. (Sinistra) Il grafo pesato $G$ con pesi $C^{\text{norm}}_{ij}$; gli archi tratteggiati sono sotto soglia e verranno rimossi. (Centro) Il Maximum Spanning Tree preserva solo le connessioni più forti. (Destra) L'orientamento basato sulla frequenza $f_i$ rivela la struttura gerarchica: $f_1$ (parent) punta verso i children meno frequenti.}
+    \label{fig:family_construction}
+\end{figure}
+Nel grafo orientato risultante, le \textbf{radici}---nodi senza archi entranti---sono i parent delle famiglie. A partire da ciascuna radice, una visita in profondità (depth-first search) raccoglie tutti i discendenti, formando una feature family. La struttura tipica è a stella: il parent è connesso direttamente a tutti i children, che raramente sono connessi tra loro. Questa topologia riflette la struttura gerarchica dei concetti: il parent cattura un tema generale, i children catturano sotto-temi specifici che condividono il tema generale ma non si sovrappongono tra loro.
+Le feature families catturano la struttura gerarchica naturale dei concetti in un dominio. Nel dataset di O'Neill et al.\ su paper di machine learning, emergono famiglie come \textit{Optimization Techniques} (parent) con children \textit{Gradient Descent}, \textit{Adam}, \textit{RMSprop}, \textit{Momentum}; oppure \textit{Transformer models} (parent) con children \textit{Vision Transformers}, \textit{Positional Encoding}, \textit{Attention mechanisms}. Nel contesto medico-pediatrico di PRISMA, ci aspettiamo famiglie analoghe, come \textit{Infezioni respiratorie} (parent) con children \textit{Polmonite}, \textit{Bronchiolite}, \textit{Faringite}.
 
-La capacità di un SAE—determinata dal numero di latenti totali $n$ e dal numero di latenti attivi $k$—non influenza solo la qualità della ricostruzione, ma anche la \textit{granularità} delle feature apprese. All'aumentare della capacità, i concetti rappresentati diventano progressivamente più specifici: una feature che in un SAE piccolo cattura ``ottimizzazione'' può \textit{scindersi} in un SAE più grande in feature distinte per ``gradient descent'', ``Adam'', ``learning rate scheduling''. Questo fenomeno, chiamato \textbf{feature splitting}, rivela come la struttura semantica emerga gradualmente con l'aumentare delle risorse rappresentazionali.
+% [NOTA: Qui inserirò screenshot di PRISMA che mostra il grafo di una feature family]
+Le feature families non sono solo un artefatto dell'analisi: riflettono come il SAE ha imparato a organizzare i concetti del dominio, e forniscono una mappa navigabile della conoscenza codificata nelle rappresentazioni sparse.
 
-\subsubsection{Il fenomeno dello splitting}
-\label{subsubsec:splitting_phenomenon}
-L'osservazione di partenza è empirica: addestrando SAE con capacità crescenti sullo stesso corpus, alcune feature si ``dividono'' in sotto-feature più specifiche. O'Neill et al. studiano questo fenomeno confrontando sistematicamente SAE di dimensioni diverse—in particolare SAE16 ($k=16$, $n=3072$), SAE32 ($k=32$, $n=6144$) e SAE64 ($k=64$, $n=9216$).
-Per tracciare come le feature evolvono tra modelli, si utilizza un approccio basato sul \textbf{nearest neighbour}. Data una coppia di SAE con $n_1$ e $n_2$ feature rispettivamente, si calcola una matrice di similarità $S \in \mathbb{R}^{n_1 \times n_2}$ dove ogni elemento è la similarità del coseno tra i vettori decoder:
+\subsubsection{Feature splitting: evoluzione inter-SAE}
+\label{subsubsec:feature_splitting}
+
+Le feature families descrivono la struttura \textit{all'interno} di un singolo SAE. Ma cosa succede quando confrontiamo SAE di capacità diverse addestrati sugli stessi dati? Emergono tre fenomeni distinti: alcune feature riappaiono identiche (\textit{feature ricorrenti}), altre si scindono in sotto-concetti più specifici (\textit{feature splitting}), altre ancora compaiono per la prima volta (\textit{feature nuove}).
+
+Per studiare questi fenomeni, O'Neill et al.~\parencite{oneill2024disentangling} confrontano SAE con diversi valori di $k$ (numero di feature attive per documento) e $n$ (dimensione dello spazio latente), utilizzando due metriche complementari che catturano aspetti diversi della relazione tra feature.
+
+La \textbf{similarità geometrica} $S_{ij}$, definita in Sezione~\ref{subsubsec:notation_matrices}, confronta le \textit{direzioni} dei vettori decoder $\mathbf{w}_i$ e $\mathbf{w}_j$ nello spazio degli embedding. È una proprietà dei pesi appresi: risponde alla domanda ``queste due feature puntano nella stessa direzione semantica?''. Può essere calcolata anche senza passare alcun documento attraverso il SAE.
+
+La \textbf{similarità di attivazione} confronta invece i \textit{pattern di attivazione} sui documenti. Ogni feature $i$ ha un profilo di attivazione sull'intero corpus, rappresentato dalla colonna $i$-esima della matrice $H$. Due feature con alta similarità di attivazione si ``accendono'' sugli stessi documenti, con intensità correlate. È una proprietà del comportamento sui dati: risponde alla domanda ``queste due feature reagiscono agli stessi input?''.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Confronto tra le due metriche per l'analisi delle feature.}
+    \label{tab:similarity_comparison}
+    \begin{tabular}{@{}p{2.8cm}p{4.5cm}p{4.5cm}@{}}
+        \toprule
+        & \textbf{Similarità geometrica} $S$ & \textbf{Similarità di attivazione} $D$ \\
+        \midrule
+        Cosa confronta & Direzioni nello spazio embedding & Pattern di attivazione sui documenti \\[0.5em]
+        Vettori coinvolti & $\mathbf{w}_i, \mathbf{w}_j \in \mathbb{R}^d$ & Colonne di $H \in \mathbb{R}^N$ \\[0.5em]
+        Dipende dai dati? & No (solo pesi del decoder) & Sì (richiede il corpus) \\[0.5em]
+        Domanda chiave & ``Dove puntano?'' & ``Quando si accendono?'' \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+La similarità geometrica ha un'interpretazione immediata in termini di angoli. Poiché $S_{ij}$ è definita come il coseno tra i vettori decoder, vale:
 \begin{equation}
-    S_{ij} = \frac{\mathbf{w}_i^T \mathbf{w}_j}{\|\mathbf{w}_i\| \|\mathbf{w}_j\|}
-    \label{eq:feature_similarity}
+    S_{ij} = \cos(\theta_{ij})
+    \label{eq:similarity_angle}
 \end{equation}
-dove $\mathbf{w}_i$ è il vettore decoder della feature $i$ nel SAE più piccolo e $\mathbf{w}_j$ quello della feature $j$ nel SAE più grande. Per ogni feature nel SAE grande, si identifica la feature più simile nel SAE piccolo—il suo ``nearest neighbour''.
-L'analisi rivela un pattern consistente: all'aumentare di $k$ e $n$, la similarità massima tra nearest neighbour \textit{diminuisce}. In altre parole, le feature dei SAE più grandi sono progressivamente più distanti da quelle dei SAE più piccoli. Questo indica che i modelli con maggiore capacità apprendono rappresentazioni più fini e specializzate.
+dove $\theta_{ij}$ è l'angolo tra le direzioni $\mathbf{w}_i$ e $\mathbf{w}_j$ nello spazio degli embedding. Le soglie di similarità corrispondono quindi a soglie angolari: $S = 0.95$ equivale a $\theta \approx 18°$ (direzioni quasi parallele), $S = 0.5$ equivale a $\theta = 60°$ (angolo moderato), $S = 0$ equivale a $\theta = 90°$ (direzioni ortogonali).
+
+Perché servono entrambe le metriche? Consideriamo i casi limite. Due feature potrebbero puntare in direzioni simili ($S$ alta) ma attivarsi su documenti completamente diversi ($D$ bassa)---un caso raro, possibile artefatto del training. Viceversa, due feature potrebbero rappresentare concetti semanticamente distinti ($S$ bassa) ma co-occorrere frequentemente ($D$ alta)---ad esempio ``febbre'' e ``infezione'', concetti diversi che compaiono spesso insieme.
+
+Data una coppia di SAE---uno ``piccolo'' con $n_1$ feature e uno ``grande'' con $n_2$ feature ($n_1 < n_2$)---per ogni feature $j$ del SAE grande si identifica il \textbf{nearest neighbour} nel SAE piccolo:
+\begin{equation}
+    i^*(j) = \underset{i \in \{1,\dots,n_1\}}{\mathrm{arg\,max}} \; S_{ij}
+    \label{eq:nearest_neighbour}
+\end{equation}
+e si calcola sia la similarità geometrica massima $S^*_j = S_{i^*(j), j}$, sia la similarità di attivazione tra $j$ e $i^*(j)$. Combinando le due metriche, ogni feature del SAE grande può essere classificata:
+
+\begin{enumerate}
+    \item \textbf{Feature ricorrenti.} Caratterizzate da alta similarità geometrica ($S^*_j > 0.95$, ovvero $\theta < 18°$) \textit{e} alta similarità di attivazione. Riappaiono sostanzialmente invariate nel SAE più grande. Rappresentano concetti ``atomici'' che non si scompongono ulteriormente all'aumentare della capacità---ad esempio, ``O-type stars'' in astrofisica o ``Generative Adversarial Networks'' in machine learning.
+    
+    \item \textbf{Feature da splitting.} Caratterizzate da similarità geometrica moderata ($0.5 < S^*_j < 0.95$, ovvero $18° < \theta < 60°$) e similarità di attivazione parziale. Emergono dalla scissione di una feature più generale: si attivano su un \textit{sottoinsieme} dei documenti che attivavano la feature parent. Ad esempio, ``Periodicity detection'' nel SAE piccolo potrebbe scindersi in ``Quasi-periodic oscillations in blazars'' e ``Pulsar timing'' nel SAE grande.
+    
+    \item \textbf{Feature nuove.} Caratterizzate da bassa similarità geometrica ($S^*_j < 0.5$, ovvero $\theta > 60°$) \textit{oppure} bassa similarità di attivazione. Non hanno corrispondenti nel SAE più piccolo: il concetto non era rappresentabile con la capacità precedente.
+\end{enumerate}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.0]
+        
+        % Titolo
+        \node[font=\small\bfseries] at (4.5, 6.8) {Classificazione delle feature};
+        
+        % Griglia di sfondo
+        \fill[orange!15] (0, 0) rectangle (9, 5.5);
+        \fill[blue!15] (3, 2) rectangle (6.5, 5.5);
+        \fill[green!20] (6.5, 2) rectangle (9, 5.5);
+        
+        % Bordi regioni
+        \draw[thick, gray] (0, 0) rectangle (9, 5.5);
+        \draw[dashed, gray] (3, 0) -- (3, 5.5);
+        \draw[dashed, gray] (6.5, 0) -- (6.5, 5.5);
+        \draw[dashed, gray] (0, 2) -- (9, 2);
+        
+        % Assi
+        \draw[->, thick] (0, 0) -- (9.5, 0);
+        \draw[->, thick] (0, 0) -- (0, 6.2);
+        
+        % Labels assi
+        \node[below, font=\small] at (4.5, -0.4) {Similarità geometrica $S^*_j = \cos(\theta)$};
+        \node[left, font=\small, rotate=90, anchor=south] at (-0.9, 2.75) {Similarità attivazione};
+        
+        % Labels soglie similarità
+        \node[below, font=\scriptsize] at (3, 0) {$0.5$};
+        \node[below, font=\scriptsize] at (6.5, 0) {$0.95$};
+        \node[left, font=\scriptsize] at (0, 2) {bassa};
+        \node[left, font=\scriptsize] at (0, 5.5) {alta};
+        
+        % Labels soglie angolari (sopra)
+        \node[above, font=\scriptsize, gray] at (3, 5.5) {$\theta = 60°$};
+        \node[above, font=\scriptsize, gray] at (6.5, 5.5) {$\theta = 18°$};
+        
+        % Freccia direzione angolo
+        \draw[<-, thick, gray!60] (0.5, 6.0) -- (8.5, 6.0);
+        \node[above, font=\scriptsize, gray] at (4.5, 6.0) {angolo $\theta$ decrescente};
+        
+        % Labels regioni
+        \node[font=\normalsize, orange!70!black, align=center] at (1.5, 3.75) {\textbf{NUOVE}\\[0.3em]\small $\theta > 60°$};
+        \node[font=\normalsize, orange!70!black, align=center] at (4.75, 1) {\textbf{NUOVE}\\[0.3em]\small bassa $D$};
+        \node[font=\normalsize, blue!70!black, align=center] at (4.75, 3.75) {\textbf{SPLITTING}\\[0.3em]\small $18° < \theta < 60°$};
+        \node[font=\normalsize, green!50!black, align=center] at (7.75, 3.75) {\textbf{RICORR.}\\[0.3em]\small $\theta < 18°$};
+        
+    \end{tikzpicture}
+    \caption{Classificazione delle feature del SAE grande rispetto al SAE piccolo. L'asse orizzontale misura la similarità geometrica $S^*_j = \cos(\theta)$, dove $\theta$ è l'angolo tra i vettori decoder. Le soglie di similarità corrispondono a soglie angolari: feature \textbf{ricorrenti} hanno direzioni quasi parallele ($\theta < 18°$), feature da \textbf{splitting} formano angoli moderati ($18°$--$60°$), feature \textbf{nuove} puntano in direzioni molto diverse ($\theta > 60°$) oppure hanno bassa similarità di attivazione.}
+    \label{fig:feature_classification}
+\end{figure}
+
+Lo splitting può essere compreso anche geometricamente. Se una feature $\mathbf{w}_p$ del SAE piccolo rappresenta un concetto generale, nel SAE grande questo concetto può scindersi in $m$ feature $\mathbf{w}_{c_1}, \dots, \mathbf{w}_{c_m}$ che rappresentano sotto-concetti. La direzione del parent è approssimativamente una combinazione delle direzioni dei children:
+\begin{equation}
+    \mathbf{w}_p \approx \sum_{i=1}^{m} \alpha_i \, \mathbf{w}_{c_i}
+    \label{eq:splitting_geometry}
+\end{equation}
+dove i coefficienti $\alpha_i$ riflettono il ``peso'' relativo di ogni sotto-concetto. Ogni child ha similarità moderata con il parent (angolo $18°$--$60°$) ma bassa similarità con gli altri children (angolo $> 60°$), riflettendo la specializzazione semantica.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        
+        % Assi
+        \draw[->, thick, gray!50] (-0.5, 0) -- (5, 0) node[right, font=\small, gray] {$d_1$};
+        \draw[->, thick, gray!50] (0, -0.5) -- (0, 4) node[above, font=\small, gray] {$d_2$};
+        
+        % Origine
+        \coordinate (O) at (0, 0);
+        \fill (O) circle (2pt);
+        
+        % Child 1 (più verticale)
+        \coordinate (Wc1) at (1.2, 3.5);
+        \draw[->, thick, green!60!black, line width=1.5pt] (O) -- (Wc1);
+        \node[above, font=\small, green!60!black] at (Wc1) {$\mathbf{w}_{c_1}$};
+        
+        % Child 2 (più orizzontale)
+        \coordinate (Wc2) at (4, 1.3);
+        \draw[->, thick, green!60!black, line width=1.5pt] (O) -- (Wc2);
+        \node[right, font=\small, green!60!black] at (Wc2) {$\mathbf{w}_{c_2}$};
+        
+        % Parent (nel mezzo)
+        \coordinate (Wp) at (2.4, 2.2);
+        \draw[->, very thick, blue!70!black, line width=2pt] (O) -- (Wp);
+        \node[above right, font=\small, blue!70!black] at (Wp) {$\mathbf{w}_p$};
+        
+        % Somma pesata (tratteggiato, vicino al parent)
+        \coordinate (Sum) at (2.6, 2.4);
+        \draw[->, thick, gray!50, dashed, line width=1.2pt] (O) -- (Sum);
+        \node[below right, font=\scriptsize, gray!60] at (2.7, 2.5) {$\sum_i \alpha_i \mathbf{w}_{c_i}$};
+        
+        % Arco angolo grande tra children
+        \draw[thick, red!60!black] (0.5, 1.45) arc[start angle=71, end angle=18, radius=1.55];
+        \node[font=\small, red!60!black] at (1.8, 1.1) {$\theta_{c_1, c_2}$};
+        
+        % Box legenda
+        \node[draw, rectangle, rounded corners, fill=gray!5, font=\small, align=left, anchor=north west] at (5.2, 3.8) {
+            \textcolor{blue!70!black}{$\mathbf{w}_p$}: parent\\[0.4em]
+            \textcolor{green!60!black}{$\mathbf{w}_{c_i}$}: children\\[0.4em]
+            \textcolor{red!60!black}{$\theta_{c_1,c_2} > 60°$}\\
+            \footnotesize$(S_{c_1,c_2} < 0.5)$
+        };
+        
+    \end{tikzpicture}
+    \caption{Interpretazione geometrica del feature splitting. I children $\mathbf{w}_{c_1}$ e $\mathbf{w}_{c_2}$ (verde) rappresentano sotto-concetti specializzati nel SAE grande. Il parent $\mathbf{w}_p$ (blu) del SAE piccolo punta nella direzione della loro combinazione pesata. L'angolo $\theta_{c_1,c_2} > 60°$ tra i children corrisponde a similarità $S < 0.5$: i sotto-concetti sono semanticamente distinti tra loro.}
+    \label{fig:splitting_geometry}
+\end{figure}
+
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[
@@ -932,210 +1209,153 @@ L'analisi rivela un pattern consistente: all'aumentare di $k$ e $n$, la similari
         
         % Freccia capacità crescente (a destra)
         \draw[->, thick, gray!60] (6, 0.3) -- (6, -5.9);
-        \node[right, font=\footnotesize, gray!70, align=left, rotate=-90] at (6.4, -1.8) {Capacità crescente};
+        \node[right, font=\footnotesize, gray!70, align=left, rotate=-90] at (6.4, -2.8) {Capacità crescente};
         
-
     \end{tikzpicture}
     \caption{Il fenomeno del \emph{feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi.}
     \label{fig:feature_splitting}
 \end{figure}
-\subsubsection{Feature ricorrenti, splitting e feature nuove}
-\label{subsubsec:recurrent_novel}
 
-Per comprendere come le feature evolvono al variare della capacità del SAE, O'Neill et al.~\parencite{oneill2024disentangling} introducono due metriche quantitative che permettono di classificare ogni feature di un SAE più grande rispetto al SAE più piccolo.
+Il fenomeno dello splitting ha implicazioni pratiche importanti: SAE più grandi non apprendono semplicemente ``più feature'', ma apprendono feature \textit{più specifiche}. La capacità del SAE determina il livello di granularità concettuale raggiungibile: un SAE piccolo cattura solo i macro-concetti, un SAE grande distingue sfumature più sottili. La scelta della capacità diventa quindi un trade-off tra interpretabilità (poche feature generali, facili da etichettare) e precisione semantica (molte feature specifiche, più informative).
 
-\paragraph{Similarità geometrica.} Data una coppia di SAE con $n_1$ e $n_2$ feature rispettivamente (con $n_1 < n_2$), si calcola la matrice di similarità $S \in \mathbb{R}^{n_1 \times n_2}$ dove ogni elemento è la similarità del coseno tra i vettori decoder:
+% [NOTA: Qui inserirò screenshot di PRISMA che mostra il confronto tra SAE di capacità diverse]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Quantificare la struttura: Effective Rank}
+\label{subsubsec:effective_rank}
+
+
+Questa sezione presenta un contributo originale di questa tesi: l'applicazione dell'Effective Rank alla matrice di attivazione degli Sparse Autoencoder come metrica per quantificare la compressione semantica.
+Le sezioni precedenti hanno mostrato che le feature apprese da un SAE non sono indipendenti: si organizzano in famiglie gerarchiche (Sezione~\ref{subsubsec:feature_families}) e si scindono progressivamente al crescere della capacità (Sezione~\ref{subsubsec:feature_splitting}). Queste strutture implicano \textit{correlazioni sistematiche} nella matrice di attivazione $H$: feature della stessa famiglia tendono a co-attivarsi, feature da splitting si attivano su sottoinsiemi sovrapposti di documenti.
+Una conseguenza diretta è che la matrice $H \in \mathbb{R}^{N \times n}$, pur avendo $n$ colonne (feature), non utilizza realmente $n$ gradi di libertà indipendenti. La dimensionalità \textit{effettiva} del codice sparso è inferiore alla dimensionalità nominale. Quantificare questo gap permette di misurare quanto la struttura semantica del dominio ``comprime'' le rappresentazioni apprese.
+Il rango matriciale classico non è adatto a questo scopo: è instabile in presenza di rumore e restituisce un intero, perdendo informazione sulla distribuzione della varianza tra le direzioni. Per questo adottiamo l'\textbf{Effective Rank}~\parencite{roy2007effective}, una misura continua e robusta della dimensionalità intrinseca basata sull'entropia dello spettro singolare.
+Sia $H = U \Sigma V^T$ la decomposizione ai valori singolari (SVD) della matrice di attivazione, con valori singolari $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_Q \geq 0$, dove $Q = \min(N, n)$. Si definisce la \textbf{distribuzione normalizzata} dei valori singolari:
 \begin{equation}
-    S_{ij} = \frac{\mathbf{w}_i^T \mathbf{w}_j}{\|\mathbf{w}_i\| \|\mathbf{w}_j\|}
-    \label{eq:feature_similarity}
+    p_i = \frac{\sigma_i}{\sum_{j=1}^{Q} \sigma_j} = \frac{\sigma_i}{\|\boldsymbol{\sigma}\|_1}
+    \label{eq:singular_distribution}
 \end{equation}
-dove $\mathbf{w}_i$ è la colonna $i$-esima del decoder del SAE piccolo e $\mathbf{w}_j$ quella del SAE grande. Per ogni feature $j$ nel SAE grande, si identifica il \textit{nearest neighbour} nel SAE piccolo:
+dove $\|\boldsymbol{\sigma}\|_1$ è la norma $\ell_1$ del vettore dei valori singolari. La distribuzione $\{p_i\}$ soddisfa $p_i \geq 0$ e $\sum_i p_i = 1$, e può essere interpretata come una distribuzione di probabilità che descrive come la ``varianza'' totale della matrice è distribuita tra le diverse direzioni singolari.
+L'\textbf{Effective Rank} è definito come l'esponenziale dell'entropia di Shannon di questa distribuzione:
 \begin{equation}
-i^*(j) = \underset{i \in \{1,\dots,n_1\}}{\mathrm{arg\,max}} \; S_{ij}
+    \text{ER}(H) = \exp\left( -\sum_{i=1}^{Q} p_i \log p_i \right) = \exp\bigl( H(\mathbf{p}) \bigr)
+    \label{eq:effective_rank}
 \end{equation}
-e si definisce la \textbf{similarità geometrica massima}:
-\begin{equation}
-    S^*_j = \max_{i} S_{ij} = S_{i^*(j), j}
-\end{equation}
-
-\paragraph{Similarità di attivazione.} La similarità geometrica cattura la vicinanza nello spazio dei pesi, ma non garantisce che due feature si comportino allo stesso modo sui dati. Si introduce quindi la \textbf{similarità di attivazione} $D_{ij}$, che misura quanto due feature co-attivano sugli stessi documenti:
-\begin{equation}
-    D_{ij} = \frac{\sum_{k=1}^{N} B_{ik} \cdot B_{jk}}{\sqrt{\sum_k B_{ik}^2} \cdot \sqrt{\sum_k B_{jk}^2}}
-    \label{eq:activation_similarity}
-\end{equation}
-dove $B_{ik} = h_{k,i}$ è l'attivazione della feature $i$ sul documento $k$ (zero se non attiva). In pratica, $D_{ij}$ è la correlazione tra i vettori di attivazione delle due feature sull'intero corpus.
-
-\paragraph{Classificazione delle feature.} Combinando le due metriche, ogni feature $j$ del SAE grande può essere classificata in una delle tre categorie:
-
-\begin{enumerate}
-    \item \textbf{Feature ricorrenti}: feature che riappaiono sostanzialmente invariate nel SAE più grande. Sono caratterizzate da:
-    \begin{equation}
-        S^*_j > \tau_{\text{high}} \quad \text{e} \quad D_{i^*(j), j} > \tau_{\text{high}}
-    \end{equation}
-    dove tipicamente $\tau_{\text{high}} \approx 0.95$. Queste feature rappresentano concetti ``atomici'' che non si scompongono ulteriormente---ad esempio, ``O-type stars'' in astrofisica o ``Generative Adversarial Networks'' in machine learning. La loro stabilità attraverso modelli di capacità diversa suggerisce che corrispondono a concetti fondamentali del dominio.
-    
-    \item \textbf{Feature da splitting}: feature che emergono dalla scissione di una feature più generale. Sono caratterizzate da:
-    \begin{equation}
-        \tau_{\text{low}} < S^*_j < \tau_{\text{high}} \quad \text{e} \quad D_{i^*(j), j} > \tau_{\text{mod}}
-    \end{equation}
-    dove tipicamente $\tau_{\text{low}} \approx 0.5$ e $\tau_{\text{mod}} \approx 0.3$. La similarità geometrica moderata indica che la nuova feature punta in una direzione correlata ma distinta; la similarità di attivazione positiva indica che si attiva su un \textit{sottoinsieme} dei documenti che attivavano la feature parent. Semanticamente, rappresentano sotto-concetti più specifici.
-    
-    \item \textbf{Feature nuove} (\textit{novel features}): feature che non hanno corrispondenti nel SAE più piccolo. Sono caratterizzate da:
-    \begin{equation}
-        S^*_j < \tau_{\text{low}} \quad \text{oppure} \quad D_{i^*(j), j} < \tau_{\text{low}}
-    \end{equation}
-    Queste feature emergono solo quando la capacità è sufficiente a rappresentarle separatamente. Un SAE piccolo potrebbe non avere abbastanza dimensioni per distinguere ``polmonite batterica'' da ``polmonite virale'', rappresentandole con un'unica feature ``polmonite''. Un SAE più grande può permettersi questa distinzione, facendo emergere feature nuove che non hanno un corrispondente diretto nel modello più piccolo.
-\end{enumerate}
-
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[scale=1.0]
-        % Assi
-        \draw[->, thick] (0, 0) -- (6, 0) node[right, font=\small] {Similarità geometrica $S^*_j$};
-        \draw[->, thick] (0, 0) -- (0, 5) node[above, font=\small] {Similarità attivazione $D_{i^*,j}$};
-        
-        % Soglie
-        \draw[dashed, gray] (2, 0) -- (2, 4.8) node[above, font=\scriptsize] {$\tau_{\text{low}}$};
-        \draw[dashed, gray] (4.5, 0) -- (4.5, 4.8) node[above, font=\scriptsize] {$\tau_{\text{high}}$};
-        \draw[dashed, gray] (0, 1.5) -- (5.8, 1.5);
-        \node[left, font=\scriptsize] at (0, 1.5) {$\tau_{\text{low}}$};
-        \draw[dashed, gray] (0, 4) -- (5.8, 4);
-        \node[left, font=\scriptsize] at (0, 4) {$\tau_{\text{high}}$};
-        
-        % Regioni
-        % Ricorrenti (alto-destra)
-        \fill[green!20, opacity=0.7] (4.5, 4) rectangle (5.8, 4.8);
-        \node[font=\scriptsize, green!50!black, align=center] at (5.15, 4.4) {Ricorrenti};
-        
-        % Splitting (centro)
-        \fill[blue!20, opacity=0.7] (2, 1.5) rectangle (4.5, 4.8);
-        \node[font=\scriptsize, blue!60!black, align=center] at (3.25, 3.2) {Splitting};
-        
-        % Novel (sinistra e basso)
-        \fill[orange!20, opacity=0.7] (0, 0) rectangle (2, 4.8);
-        \fill[orange!20, opacity=0.7] (2, 0) rectangle (5.8, 1.5);
-        \node[font=\scriptsize, orange!60!black] at (1, 2.5) {Novel};
-        \node[font=\scriptsize, orange!60!black] at (4, 0.75) {Novel};
-        
-        % Punti esempio
-        \fill[green!60!black] (5.2, 4.5) circle (3pt);
-        \fill[blue!70] (3.5, 3.8) circle (3pt);
-        \fill[blue!70] (2.8, 2.5) circle (3pt);
-        \fill[orange!70!black] (1.2, 3.5) circle (3pt);
-        \fill[orange!70!black] (3.8, 0.8) circle (3pt);
-        
-    \end{tikzpicture}
-    \caption{Classificazione delle feature in base a similarità geometrica ($S^*_j$) e similarità di attivazione ($D_{i^*,j}$). Le feature \textbf{ricorrenti} (verde) hanno entrambe le similarità elevate. Le feature da \textbf{splitting} (blu) hanno similarità geometrica moderata ma attivazione correlata---si attivano su un sottoinsieme dei documenti della feature parent. Le feature \textbf{nuove} (arancione) hanno bassa similarità in almeno una delle due dimensioni, indicando concetti non rappresentati nel SAE più piccolo.}
-    \label{fig:feature_classification}
-\end{figure}
-
-\paragraph{Interpretazione geometrica dello splitting.} Lo splitting può essere compreso geometricamente. Se una feature $\mathbf{w}_p$ del SAE piccolo rappresenta un concetto generale (es. ``ottimizzazione''), nel SAE grande questo concetto può scindersi in $k$ feature $\mathbf{w}_{c_1}, \dots, \mathbf{w}_{c_k}$ che rappresentano sotto-concetti (es. ``SGD'', ``Adam'', ``Newton''). Geometricamente:
-\begin{equation}
-    \mathbf{w}_p \approx \frac{1}{k} \sum_{i=1}^{k} \mathbf{w}_{c_i} + \boldsymbol{\epsilon}
-\end{equation}
-dove $\boldsymbol{\epsilon}$ è un residuo. La feature parent punta approssimativamente nella direzione ``media'' dei children. Ogni child ha similarità moderata con il parent ($0.5 < S_{p,c_i} < 0.95$) ma bassa similarità tra loro ($S_{c_i, c_j} < 0.5$ per $i \neq j$), riflettendo la specializzazione semantica.
-
-\begin{notebox}
-\textbf{Splitting vs.\ feature nuove: riepilogo}\\[0.5em]
+dove $H(\mathbf{p})$ è l'entropia della distribuzione $\{p_i\}$, con la convenzione $0 \log 0 = 0$.
+L'effective rank ha un'interpretazione intuitiva legata alla distribuzione della varianza:
 \begin{itemize}
-    \item \textbf{Feature splitting}: la feature del SAE grande ha similarità \textit{moderata} ($0.5$--$0.95$) con una feature del SAE piccolo, e si attiva su un \textit{sottoinsieme} dei suoi documenti. Semanticamente, è un sotto-concetto.
-    \item \textbf{Feature nuova}: la feature del SAE grande ha similarità \textit{bassa} ($< 0.5$) con tutte le feature del SAE piccolo. Il concetto non era rappresentabile con la capacità precedente.
+    \item Se tutti i valori singolari sono uguali ($\sigma_i = \sigma$ per ogni $i$), allora $p_i = 1/Q$ per ogni $i$, l'entropia è massima ($H = \log Q$), e $\text{ER}(H) = Q$: la matrice utilizza tutte le direzioni in modo uniforme.    
+    \item Se un solo valore singolare domina ($\sigma_1 \gg \sigma_{i>1}$), allora $p_1 \approx 1$ e $p_{i>1} \approx 0$, l'entropia è minima ($H \approx 0$), e $\text{ER}(H) \approx 1$: la matrice è essenzialmente unidimensionale.  
+    \item Nei casi intermedi, $\text{ER}(H)$ restituisce un valore continuo che rappresenta il ``numero effettivo'' di direzioni indipendenti utilizzate dalla matrice.
 \end{itemize}
-La distinzione si basa su due metriche complementari: $S^*_j$ (geometria dei pesi) e $D_{i^*,j}$ (comportamento sui dati).
-\end{notebox}
-\subsubsection{Implicazioni per la dimensionalità delle rappresentazioni}
-\label{subsubsec:dimensionality_implications}
-
-Il feature splitting ha implicazioni profonde per comprendere la struttura delle rappresentazioni apprese. L'esistenza di feature ricorrenti suggerisce che esiste un ``nucleo'' di concetti stabili che qualsiasi SAE sufficientemente capace deve rappresentare. L'emergere di feature nuove indica invece che la capacità aggiuntiva viene utilizzata per raffinare la granularità della rappresentazione.
-
-Questa osservazione solleva una domanda fondamentale: \textit{quante} feature sono realmente necessarie per rappresentare un dominio? E quante di queste feature vengono effettivamente utilizzate dal modello?
-
-La risposta non è semplicemente $n$ (il numero totale di latenti) né $k$ (il numero di latenti attivi per input). La \textbf{dimensionalità effettiva} della rappresentazione dipende da come le feature vengono utilizzate \textit{nel loro insieme} attraverso il corpus. Se molte feature sono altamente correlate nei loro pattern di attivazione—come accade nelle feature families—la dimensionalità effettiva può essere significativamente inferiore al numero nominale di feature.
-
-Questa intuizione motiva l'analisi della \textbf{matrice di attivazione sparsa} $A \in \mathbb{R}^{N \times n}$, dove $N$ è il numero di documenti e $n$ il numero di feature. Ogni riga $A_k$ contiene le attivazioni $h_i$ per il documento $k$. La struttura di questa matrice—in particolare il suo \textbf{rango effettivo}—rivela quanto della capacità teorica del SAE viene realmente sfruttata e come le feature si organizzano in strutture di correlazione. Questa analisi sarà oggetto del Capitolo~\ref{chap:results}, dove utilizzeremo metriche come l'\textit{Effective Rank} per quantificare la dimensionalità intrinseca delle rappresentazioni sparse apprese da PRISMA.
 
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[scale=0.85]
         
-        % Matrice di attivazione
-        \node[font=\small\bfseries] at (3, 4.5) {Matrice di attivazione $A$};
+        % Caso 1: uniforme
+        \begin{scope}[shift={(0, 0)}]
+            \node[font=\small\bfseries] at (2, 3.8) {Spettro uniforme};
+            \draw[->, thick] (0, 0) -- (4.2, 0) node[right, font=\scriptsize] {$i$};
+            \draw[->, thick] (0, 0) -- (0, 3) node[above, font=\scriptsize] {$\sigma_i$};
+            
+            \foreach \x in {0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 3.6} {
+                \fill[blue!60] (\x, 0) rectangle (\x+0.3, 2);
+            }
+            
+            \node[font=\scriptsize, align=center] at (2, -0.8) {$\text{ER} \approx n$\\(tutte le direzioni)};
+        \end{scope}
         
-        % Griglia matrice
-        \def\rows{6}
-        \def\cols{8}
-        \def\cellsize{0.5}
+        % Caso 2: decadimento graduale
+        \begin{scope}[shift={(5.5, 0)}]
+            \node[font=\small\bfseries] at (2, 3.8) {Spettro intermedio};
+            \draw[->, thick] (0, 0) -- (4.2, 0) node[right, font=\scriptsize] {$i$};
+            \draw[->, thick] (0, 0) -- (0, 3) node[above, font=\scriptsize] {$\sigma_i$};
+            
+            \fill[green!60] (0.4, 0) rectangle (0.7, 2.6);
+            \fill[green!60] (0.8, 0) rectangle (1.1, 2.2);
+            \fill[green!60] (1.2, 0) rectangle (1.5, 1.8);
+            \fill[green!60] (1.6, 0) rectangle (1.9, 1.4);
+            \fill[green!60] (2.0, 0) rectangle (2.3, 1.0);
+            \fill[green!60] (2.4, 0) rectangle (2.7, 0.7);
+            \fill[green!60] (2.8, 0) rectangle (3.1, 0.4);
+            \fill[green!60] (3.2, 0) rectangle (3.5, 0.2);
+            \fill[green!60] (3.6, 0) rectangle (3.9, 0.1);
+            
+            \node[font=\scriptsize, align=center] at (2, -0.8) {$\text{ER} \approx r_{\text{eff}}$\\(alcune direzioni)};
+        \end{scope}
         
-        % Sfondo celle con pattern di sparsità
-        % Documento 1: feature 1, 3 attive
-        \fill[blue!40] (0*\cellsize, 5*\cellsize) rectangle (1*\cellsize, 6*\cellsize);
-        \fill[blue!20] (2*\cellsize, 5*\cellsize) rectangle (3*\cellsize, 6*\cellsize);
-        
-        % Documento 2: feature 1, 2, 3 attive (correlate)
-        \fill[blue!50] (0*\cellsize, 4*\cellsize) rectangle (1*\cellsize, 5*\cellsize);
-        \fill[blue!30] (1*\cellsize, 4*\cellsize) rectangle (2*\cellsize, 5*\cellsize);
-        \fill[blue!40] (2*\cellsize, 4*\cellsize) rectangle (3*\cellsize, 5*\cellsize);
-        
-        % Documento 3: feature 5, 6 attive
-        \fill[green!40] (4*\cellsize, 3*\cellsize) rectangle (5*\cellsize, 4*\cellsize);
-        \fill[green!30] (5*\cellsize, 3*\cellsize) rectangle (6*\cellsize, 4*\cellsize);
-        
-        % Documento 4: feature 1, 3, 7 attive
-        \fill[blue!30] (0*\cellsize, 2*\cellsize) rectangle (1*\cellsize, 3*\cellsize);
-        \fill[blue!20] (2*\cellsize, 2*\cellsize) rectangle (3*\cellsize, 3*\cellsize);
-        \fill[orange!40] (6*\cellsize, 2*\cellsize) rectangle (7*\cellsize, 3*\cellsize);
-        
-        % Documento 5: feature 5, 6, 8 attive
-        \fill[green!50] (4*\cellsize, 1*\cellsize) rectangle (5*\cellsize, 2*\cellsize);
-        \fill[green!40] (5*\cellsize, 1*\cellsize) rectangle (6*\cellsize, 2*\cellsize);
-        \fill[green!20] (7*\cellsize, 1*\cellsize) rectangle (8*\cellsize, 2*\cellsize);
-        
-        % Documento 6: feature 4, 7 attive
-        \fill[orange!30] (3*\cellsize, 0*\cellsize) rectangle (4*\cellsize, 1*\cellsize);
-        \fill[orange!50] (6*\cellsize, 0*\cellsize) rectangle (7*\cellsize, 1*\cellsize);
-        
-        % Griglia
-        \draw[gray, thin] (0, 0) grid[step=\cellsize] (\cols*\cellsize, \rows*\cellsize);
-        
-        % Labels
-        \node[left, font=\scriptsize] at (0, 5.5*\cellsize) {doc 1};
-        \node[left, font=\scriptsize] at (0, 4.5*\cellsize) {doc 2};
-        \node[left, font=\scriptsize] at (0, 3.5*\cellsize) {doc 3};
-        \node[left, font=\scriptsize] at (0, 2.5*\cellsize) {doc 4};
-        \node[left, font=\scriptsize] at (0, 1.5*\cellsize) {doc 5};
-        \node[left, font=\scriptsize] at (0, 0.5*\cellsize) {doc 6};
-        
-        \node[below, font=\scriptsize] at (0.5*\cellsize, 0) {$f_1$};
-        \node[below, font=\scriptsize] at (1.5*\cellsize, 0) {$f_2$};
-        \node[below, font=\scriptsize] at (2.5*\cellsize, 0) {$f_3$};
-        \node[below, font=\scriptsize] at (3.5*\cellsize, 0) {$f_4$};
-        \node[below, font=\scriptsize] at (4.5*\cellsize, 0) {$f_5$};
-        \node[below, font=\scriptsize] at (5.5*\cellsize, 0) {$f_6$};
-        \node[below, font=\scriptsize] at (6.5*\cellsize, 0) {$f_7$};
-        \node[below, font=\scriptsize] at (7.5*\cellsize, 0) {$f_8$};
-        
-        % Annotazioni
-        \draw[decorate, decoration={brace, amplitude=5pt, raise=2pt}] 
-            (0, 6*\cellsize) -- (3*\cellsize, 6*\cellsize);
-        \node[above, font=\scriptsize] at (1.5*\cellsize, 6*\cellsize + 0.4) {famiglia 1};
-        
-        \draw[decorate, decoration={brace, amplitude=5pt, raise=2pt}] 
-            (4*\cellsize, 6*\cellsize) -- (6*\cellsize, 6*\cellsize);
-        \node[above, font=\scriptsize] at (5*\cellsize, 6*\cellsize + 0.4) {famiglia 2};
-        
-        % Freccia verso analisi
-        \draw[->, thick] (5, 1.5) -- (7, 1.5);
-        
-        % Box analisi
-        \node[draw, rectangle, rounded corners, fill=gray!10, minimum width=3cm, minimum height=2.5cm, align=center] at (9.5, 1.5) {
-            \footnotesize\textbf{Analisi}\\[0.3em]
-            \scriptsize Rango nominale: $n$\\
-            \scriptsize Rango effettivo: $r_{\text{eff}} < n$\\[0.3em]
-            \scriptsize Feature correlate\\
-            \scriptsize $\Rightarrow$ ridondanza
-        };
+        % Caso 3: dominato
+        \begin{scope}[shift={(11, 0)}]
+            \node[font=\small\bfseries] at (2, 3.8) {Spettro concentrato};
+            \draw[->, thick] (0, 0) -- (4.2, 0) node[right, font=\scriptsize] {$i$};
+            \draw[->, thick] (0, 0) -- (0, 3) node[above, font=\scriptsize] {$\sigma_i$};
+            
+            \fill[orange!60] (0.4, 0) rectangle (0.7, 2.7);
+            \fill[orange!60] (0.8, 0) rectangle (1.1, 0.3);
+            \fill[orange!60] (1.2, 0) rectangle (1.5, 0.15);
+            \fill[orange!60] (1.6, 0) rectangle (1.9, 0.1);
+            \fill[orange!60] (2.0, 0) rectangle (2.3, 0.05);
+            \fill[orange!60] (2.4, 0) rectangle (2.7, 0.03);
+            \fill[orange!60] (2.8, 0) rectangle (3.1, 0.02);
+            \fill[orange!60] (3.2, 0) rectangle (3.5, 0.01);
+            \fill[orange!60] (3.6, 0) rectangle (3.9, 0.01);
+            
+            \node[font=\scriptsize, align=center] at (2, -0.8) {$\text{ER} \approx 1$\\(una direzione)};
+        \end{scope}
         
     \end{tikzpicture}
-    \caption{La matrice di attivazione sparsa $A$ rivela la struttura delle rappresentazioni. Feature che tendono ad attivarsi insieme (colori simili) formano gruppi correlati. Il rango effettivo della matrice è inferiore al numero nominale di feature, riflettendo la ridondanza introdotta dalle feature families e dallo splitting.}
-    \label{fig:activation_matrix}
+    \caption{Interpretazione geometrica dell'Effective Rank. Lo spettro dei valori singolari $\{\sigma_i\}$ determina quante direzioni la matrice utilizza effettivamente. Uno spettro uniforme (sinistra) indica che tutte le direzioni contribuiscono equamente: $\text{ER} \approx n$. Uno spettro concentrato (destra) indica che una sola direzione domina: $\text{ER} \approx 1$. I casi reali (centro) mostrano un decadimento graduale, con $\text{ER}$ che quantifica il numero effettivo di direzioni informative.}
+    \label{fig:effective_rank_spectrum}
 \end{figure}
+Nel contesto degli Sparse Autoencoder, l'effective rank della matrice di attivazione $H$ misura quante feature ``indipendenti'' il SAE sta effettivamente utilizzando. Se le feature fossero perfettamente scorrelate, ci aspetteremmo $\text{ER}(H) \approx n$. Ma la presenza di feature families e splitting introduce correlazioni che riducono l'effective rank: $\text{ER}(H) < n$.
+Per isolare il contributo della \textit{struttura semantica} dei dati dalla compressione intrinseca dell'architettura, confrontiamo l'effective rank su dati reali con un'\textbf{ipotesi nulla}: addestriamo lo stesso SAE su input casuali non strutturati (embedding generati uniformemente). Il SAE addestrato su rumore non può apprendere correlazioni semantiche, quindi il suo effective rank $\text{ER}_{\text{null}}$ riflette solo i vincoli architetturali (Top-K, dimensione latente).
+Definiamo il \textbf{Semantic Compression Ratio} (SCR) come la riduzione percentuale dell'effective rank dovuta alla semantica:
+\begin{equation}
+    \text{SCR}(\%) = 100 \cdot \frac{\text{ER}_{\text{null}} - \text{ER}_{\text{real}}}{\text{ER}_{\text{null}}}
+    \label{eq:scr}
+\end{equation}
+
+Un valore di $\text{SCR} = 40\%$ significa che il 40\% della compressione osservata è attribuibile alla struttura semantica del dominio---le co-attivazioni tra concetti correlati (febbre $\leftrightarrow$ infezione), le gerarchie concettuali (polmonite $\subset$ infezioni respiratorie), e le dipendenze implicite nel corpus.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=0.9]
+        
+        % Assi
+        \draw[->, thick] (0, 0) -- (10, 0) node[right, font=\small] {Capacità latente $n$};
+        \draw[->, thick] (0, 0) -- (0, 6) node[above, font=\small] {Effective Rank};
+        
+        % Curva null (più alta)
+        \draw[thick, orange!70!black, dashed] plot[smooth] coordinates {
+            (0.5, 0.8) (2, 2.2) (4, 3.5) (6, 4.3) (8, 4.9) (9.5, 5.2)
+        };
+        \node[right, font=\scriptsize, orange!70!black] at (9.5, 5.4) {$\text{ER}_{\text{null}}$};
+        
+        % Curva real (più bassa)
+        \draw[thick, blue!70!black] plot[smooth] coordinates {
+            (0.5, 0.6) (2, 1.5) (4, 2.3) (6, 2.8) (8, 3.2) (9.5, 3.5)
+        };
+        \node[right, font=\scriptsize, blue!70!black] at (9.5, 3.7) {$\text{ER}_{\text{real}}$};
+        
+        % Gap annotato
+        \draw[<->, thick, gray] (6, 2.8) -- (6, 4.3);
+        \node[right, font=\scriptsize, gray, align=left] at (6.1, 3.55) {SCR};
+        
+        % Legenda
+        \draw[thick, orange!70!black, dashed] (1, 5.5) -- (2, 5.5);
+        \node[right, font=\scriptsize] at (2, 5.5) {Dati casuali (ipotesi nulla)};
+        \draw[thick, blue!70!black] (1, 5) -- (2, 5);
+        \node[right, font=\scriptsize] at (2, 5) {Dati reali (struttura semantica)};
+        
+    \end{tikzpicture}
+    \caption{Andamento qualitativo dell'Effective Rank al variare della capacità del SAE. Su dati casuali (tratteggiato), l'ER cresce linearmente con $n$: non ci sono correlazioni da sfruttare. Su dati reali (linea continua), l'ER cresce più lentamente: la struttura semantica introduce correlazioni che riducono la dimensionalità effettiva. Il gap tra le due curve, quantificato dal Semantic Compression Ratio, misura la ``compressione semantica'' del dominio.}
+    \label{fig:er_scaling}
+\end{figure}
+L'analisi dell'effective rank fornisce una prospettiva complementare alle feature families e allo splitting:
+\begin{itemize}
+    \item Le \textbf{feature families} descrivono la struttura \textit{locale}: quali feature sono correlate tra loro.
+    \item Il \textbf{feature splitting} descrive l'evoluzione \textit{inter-modello}: come le feature si raffinano al crescere della capacità.
+    \item L'\textbf{effective rank} fornisce una misura \textit{globale}: quanta ridondanza complessiva esiste nel codice sparso.
+\end{itemize}
+I risultati empirici dell'analisi dell'effective rank su PRISMA saranno presentati nel Capitolo~\ref{chap:results}.

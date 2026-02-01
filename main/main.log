@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  31 JAN 2026 12:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  1 FEB 2026 00:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1277,7 +1277,8 @@ Package csquotes Info: Redefining alias 'default' -> 'italian'.
 (./chapters/01_introduzione.aux) (./chapters/02_autoencoders.aux)
 (./chapters/03_embeddings.aux)
 (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.aux)
-(./chapters/05_prisma.aux))
+(./chapters/05_prisma.aux) (./chapters/06_analisi_e_risultati.aux)
+(./chapters/07_conclusioni.aux) (./chapters/08_appendice.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
@@ -1370,7 +1371,7 @@ LaTeX Info: Redefining \nameref on input line 98.
 \openout2 = `style/abstract.aux'.
 
  (./style/abstract.tex
-<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=400, 398.4486pt x 156.585pt>
+<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=404, 398.4486pt x 156.585pt>
 File: pictures/tesiSCIENZE_TECNOLOGIE.jpg Graphic file (type jpg)
 <use pictures/tesiSCIENZE_TECNOLOGIE.jpg>
 Package pdftex.def Info: pictures/tesiSCIENZE_TECNOLOGIE.jpg  used on input lin
@@ -1380,30 +1381,46 @@ e 4.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./pictures/tesiSCIENZE_TEC
-NOLOGIE.jpg>]) (./main.toc)
-\tf@toc=\write8
-\openout8 = `main.toc'.
+NOLOGIE.jpg>]) (./main.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (2.05836pt too wide) in paragraph at lines 27--27
+ [][] [][]\T1/cmr/m/n/12 Dall'undercomplete al-l'o-ver-com-ple-te: in-ver-sio-n
+e del pa- 
+ []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.112 \clearpage
-                 [1
+l.28 ...zione matematica}{22}{subsubsection.2.7.2}
+                                                  % [1
 
 
-]
+] [2] [3])
+\tf@toc=\write8
+\openout8 = `main.toc'.
+
+ [4]
 \openout2 = `chapters/01_introduzione.aux'.
 
- (./chapters/01_introduzione.tex) [1
+
+(./chapters/01_introduzione.tex) [1
 
 
 ]
 \openout2 = `chapters/02_autoencoders.aux'.
 
-
-(./chapters/02_autoencoders.tex
-<pictures/cap2/Richard_Feynman_Nobel.jpg, id=421, 501.875pt x 709.65125pt>
+ (./chapters/02_autoencoders.tex
+<pictures/cap2/Richard_Feynman_Nobel.jpg, id=538, 501.875pt x 709.65125pt>
 File: pictures/cap2/Richard_Feynman_Nobel.jpg Graphic file (type jpg)
 <use pictures/cap2/Richard_Feynman_Nobel.jpg>
 Package pdftex.def Info: pictures/cap2/Richard_Feynman_Nobel.jpg  used on input
@@ -1423,17 +1440,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--11
 \T1/cmr/m/it/12 ``What I can-not build, I do not un-der-stand.''
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [2
+[2
 
 
 
@@ -1452,19 +1459,19 @@ Overfull \hbox (78.74692pt too wide) in paragraph at lines 67--76
  []
 
 [3] [4]
-<pictures/cap2/reconstructions.png, id=454, 1084.05pt x 252.945pt>
+<pictures/cap2/reconstructions.png, id=571, 1084.05pt x 252.945pt>
 File: pictures/cap2/reconstructions.png Graphic file (type png)
 <use pictures/cap2/reconstructions.png>
 Package pdftex.def Info: pictures/cap2/reconstructions.png  used on input line 
 156.
 (pdftex.def)             Requested size: 390.0pt x 90.99837pt.
-<pictures/cap2/manifold_grid.png, id=456, 578.16pt x 578.16pt>
+<pictures/cap2/manifold_grid.png, id=573, 578.16pt x 578.16pt>
 File: pictures/cap2/manifold_grid.png Graphic file (type png)
 <use pictures/cap2/manifold_grid.png>
 Package pdftex.def Info: pictures/cap2/manifold_grid.png  used on input line 16
 6.
 (pdftex.def)             Requested size: 390.0pt x 389.99414pt.
-<pictures/cap2/latent_scatter.png, id=457, 433.62pt x 433.62pt>
+<pictures/cap2/latent_scatter.png, id=574, 433.62pt x 433.62pt>
 File: pictures/cap2/latent_scatter.png Graphic file (type png)
 <use pictures/cap2/latent_scatter.png>
 Package pdftex.def Info: pictures/cap2/latent_scatter.png  used on input line 1
@@ -1538,7 +1545,7 @@ Overfull \hbox (0.40733pt too wide) in paragraph at lines 477--478
 \T1/cmr/m/n/12 del-lo In-fo-GAN ([])
  []
 
-<pictures/cap2/mnist_disenangled_info_gan.png, id=538, 1110.1475pt x 668.4975pt
+<pictures/cap2/mnist_disenangled_info_gan.png, id=655, 1110.1475pt x 668.4975pt
 >
 File: pictures/cap2/mnist_disenangled_info_gan.png Graphic file (type png)
 <use pictures/cap2/mnist_disenangled_info_gan.png>
@@ -1554,12 +1561,12 @@ LaTeX Warning: Citation 'chen2016infoganinterpretablerepresentationlearning' on
  page 14 undefined on input line 482.
 
 [14] [15 <./pictures/cap2/mnist_disenangled_info_gan.png>] [16] [17]
-<pictures/cap2/latent_ae.png, id=581, 1016.79875pt x 323.2075pt>
+<pictures/cap2/latent_ae.png, id=697, 1016.79875pt x 323.2075pt>
 File: pictures/cap2/latent_ae.png Graphic file (type png)
 <use pictures/cap2/latent_ae.png>
 Package pdftex.def Info: pictures/cap2/latent_ae.png  used on input line 552.
 (pdftex.def)             Requested size: 390.0pt x 123.96922pt.
-<pictures/cap2/latent_vae.png, id=582, 990.70125pt x 319.1925pt>
+<pictures/cap2/latent_vae.png, id=698, 990.70125pt x 319.1925pt>
 File: pictures/cap2/latent_vae.png Graphic file (type png)
 <use pictures/cap2/latent_vae.png>
 Package pdftex.def Info: pictures/cap2/latent_vae.png  used on input line 561.
@@ -1603,7 +1610,7 @@ LaTeX Warning: Citation 'wang2024disentangledrepresentationlearning' on page 22
 
 
 ]
-<pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png, id=650, 501.875pt x 756.82
+<pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png, id=767, 501.875pt x 756.82
 75pt>
 File: pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png Graphic file (type png
 )
@@ -1650,7 +1657,7 @@ LaTeX Warning: Citation 'mikolov2013efficientestimationwordrepresentations' on
 page 36 undefined on input line 412.
 
 [36] [37]
-<pictures/embeddings_w2vec.png, id=741, 1294.8375pt x 630.355pt>
+<pictures/embeddings_w2vec.png, id=857, 1294.8375pt x 630.355pt>
 File: pictures/embeddings_w2vec.png Graphic file (type png)
 <use pictures/embeddings_w2vec.png>
 Package pdftex.def Info: pictures/embeddings_w2vec.png  used on input line 443.
@@ -1768,7 +1775,7 @@ Overfull \hbox (6.04369pt too wide) in paragraph at lines 1--1
 
 
 ]
-<pictures/cap5/home.png, id=992, 1075.01625pt x 811.03pt>
+<pictures/cap5/home.png, id=1109, 1075.01625pt x 811.03pt>
 File: pictures/cap5/home.png Graphic file (type png)
 <use pictures/cap5/home.png>
 Package pdftex.def Info: pictures/cap5/home.png  used on input line 15.
@@ -1781,132 +1788,350 @@ LaTeX Warning: Citation 'oneill2024disentangling' on page 80 undefined on input
 [80] [81] [82]
 
 LaTeX Warning: Citation 'oneill2024disentangling' on page 83 undefined on input
- line 219.
+ line 214.
 
 
 LaTeX Warning: Citation 'oneill2024disentangling' on page 83 undefined on input
- line 267.
-
-[83] [84]
-Underfull \hbox (badness 10000) in paragraph at lines 299--300
-
- []
+ line 262.
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 309--310
+LaTeX Warning: Reference `subsec:feature_splitting' on page 83 undefined on inp
+ut line 262.
+
+[83] [84] [85]
+Underfull \hbox (badness 2326) in paragraph at lines 297--298
 []\T1/cmr/m/n/12 Le in-ten-si-tà $\OML/cmm/m/it/12 h[]$ \T1/cmr/m/n/12 so-no ca
 l-co-la-te dal-l'en-co-der, che im-pa-ra a
  []
 
-[85] [86] [87] [88]
-Underfull \hbox (badness 1546) in paragraph at lines 424--425
+[86] [87]
+Underfull \hbox (badness 1546) in paragraph at lines 403--404
 []\T1/cmr/m/n/12 L'\T1/cmr/bx/n/12 encoder \T1/cmr/m/n/12 (non li-nea-re) ri-le
 -va qua-li fea-tu-re so-no pre-sen-ti,
  []
 
-[89]
+[88] [89]
 
 LaTeX Warning: Citation 'oneill2024disentangling' on page 90 undefined on input
- line 442.
+ line 421.
 
 [90]
 
 LaTeX Warning: Citation 'oneill2024disentangling' on page 91 undefined on input
- line 508.
+ line 452.
 
 
 LaTeX Warning: Citation 'makhzani2013ksparse' on page 91 undefined on input lin
-e 510.
+e 453.
 
 
-Overfull \hbox (127.39113pt too wide) in paragraph at lines 510--511
-[]\T1/cmr/m/n/12 O'Neill et al. adot-ta-no un ap-proc-cio di-ver-so: il vin-co-
-lo \T1/cmr/bx/n/12 Top-K \T1/cmr/m/n/12 (o \T1/cmr/m/it/12 k-sparse\T1/cmr/m/n/
-12 ) ([]).
+Overfull \hbox (58.97919pt too wide) in paragraph at lines 451--456
+\T1/cmr/m/n/12 adot-ta-no un ap-proc-cio di-ver-so: il vin-co-lo \T1/cmr/bx/n/1
+2 Top-K \T1/cmr/m/n/12 (o \T1/cmr/m/it/12 k-sparse\T1/cmr/m/n/12 ) ([]).
  []
 
-[91] [92]
+[91]
+
+LaTeX Warning: Citation 'oneill2024disentangling' on page 92 undefined on input
+ line 545.
+
+
+LaTeX Warning: Reference `subsec:feature_splitting' on page 92 undefined on inp
+ut line 551.
+
+[92]
 
 LaTeX Warning: Citation 'oneill2024disentangling' on page 93 undefined on input
- line 603.
+ line 559.
 
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 93 undefined on input
- line 617.
-
-
-Overfull \hbox (109.1428pt too wide) in paragraph at lines 617--618
+Overfull \hbox (109.1428pt too wide) in paragraph at lines 559--560
 []\T1/cmr/m/n/12 Queste fea-tu-re inu-ti-liz-za-te so-no chia-ma-te \T1/cmr/bx/
 n/12 dead la-ten-ts\T1/cmr/m/n/12 . O'Neill et al. ([])
  []
 
 
 LaTeX Warning: Citation 'jermyn2023ghostgrads' on page 93 undefined on input li
-ne 664.
+ne 606.
 
 
-Overfull \hbox (22.74355pt too wide) in paragraph at lines 663--666
+Overfull \hbox (22.74355pt too wide) in paragraph at lines 605--608
 \T1/cmr/bx/n/12 di-ta au-si-lia-ria \T1/cmr/m/n/12 ispi-ra-ta al-la tec-ni-ca d
 ei ``gho-st grads'' ([]).
  []
 
 [93]
-Underfull \hbox (badness 10000) in paragraph at lines 673--675
+Underfull \hbox (badness 10000) in paragraph at lines 615--617
 
  []
 
 [94]
 
 LaTeX Warning: Citation 'oneill2024disentangling' on page 95 undefined on input
- line 686.
+ line 628.
 
-[95] [96] [97]
-Underfull \hbox (badness 1087) in paragraph at lines 782--783
+[95] [96]
+Underfull \hbox (badness 1087) in paragraph at lines 724--725
 \T1/cmr/m/n/12 L'interprete, con-fron-tan-do i due in-sie-mi, iden-ti-fi-che-re
 b-be il te-ma
  []
 
-[98]
+[97] [98]
 
 LaTeX Warning: Citation 'oneill2024disentangling' on page 99 undefined on input
- line 793.
+ line 739.
 
-[99]
-Overfull \hbox (19.94289pt too wide) in paragraph at lines 850--851
+[99] [100]
+Overfull \hbox (18.64005pt too wide) in paragraph at lines 897--909
  [][] 
  []
 
 
-Overfull \hbox (7.40991pt too wide) in paragraph at lines 858--859
-\T1/cmr/m/n/12 Per estrar-re au-to-ma-ti-ca-men-te le fea-tu-re fa-mi-lies dal-
-la ma-tri-ce di co-occorrenza,
- []
+LaTeX Warning: Citation 'oneill2024disentangling' on page 101 undefined on inpu
+t line 917.
 
-
-Overfull \hbox (4.34747pt too wide) in paragraph at lines 863--864
+[101]
+Overfull \hbox (4.34747pt too wide) in paragraph at lines 926--927
 []\T1/cmr/bx/n/12 Costruzione del gra-fo pe-sa-to. \T1/cmr/m/n/12 Si par-te dal
 -la ma-tri-ce di co-occorrenza
  []
 
-[100] [101]
+[102] [103]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 102 undefined on inpu
-t line 945.
+LaTeX Warning: Citation 'oneill2024disentangling' on page 104 undefined on inpu
+t line 1023.
 
-[102] [103] [104]
-Underfull \hbox (badness 10000) in paragraph at lines 1039--1041
 
+Underfull \hbox (badness 1859) in paragraph at lines 1035--1036
+[]|\T1/cmr/bx/n/12 Similarità di at-ti-va-
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 1037--1037
+[]|\T1/cmr/m/n/12 Direzioni nel-lo spa-zio
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1039
+[]|\T1/cmr/m/n/12 Dipende dai
+ []
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1050.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1050.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1050.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1050.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1050.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1050.
+
+Missing character: There is no ° in font cmr12!
+[104]
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1062.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1062.
+
+Missing character: There is no ° in font cmr12!
+
+Overfull \hbox (2.38864pt too wide) in paragraph at lines 1062--1063
+[]\T1/cmr/bx/n/12 Feature ri-cor-ren-ti. \T1/cmr/m/n/12 Ca-rat-te-riz-za-te da 
+al-ta si-mi-la-ri-tà geo-me-tri-ca ($\OML/cmm/m/it/12 S[] >
+ []
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1064.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1064.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1064.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1064.
+
+Missing character: There is no ° in font cmr12!
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1066.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1066.
+
+Missing character: There is no ° in font cmr12!
 [105]
 
-LaTeX Warning: Reference `chap:results' on page 106 undefined on input line 105
-5.
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1102.
 
-[106]) [107]
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1102.
+
+Missing character: There is no ° in font cmr8!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1103.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1103.
+
+Missing character: There is no ° in font cmr8!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1110.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1110.
+
+Missing character: There is no ° in font cmr10!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1112.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1112.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1112.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1112.
+
+Missing character: There is no ° in font cmr10!
+Missing character: There is no ° in font cmr10!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1113.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1113.
+
+Missing character: There is no ° in font cmr10!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1116.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1125.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1125.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1125.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1125.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1125.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1125.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1167.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1167.
+
+Missing character: There is no ° in font cmr10!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1172.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1172.
+
+Missing character: There is no ° in font cmr12!
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1172.
+
+
+LaTeX Warning: Command \textdegree invalid in math mode on input line 1172.
+
+Missing character: There is no ° in font cmr12!
+[106] [107]
+
+LaTeX Warning: Citation 'roy2007effective' on page 108 undefined on input line 
+1232.
+
+[108] [109]
+Overfull \hbox (1.6928pt too wide) in paragraph at lines 1351--1352
+ [][] 
+ []
+
+[110]
+
+LaTeX Warning: Reference `chap:results' on page 111 undefined on input line 136
+1.
+
+) [111]
 \openout2 = `chapters/06_analisi_e_risultati.aux'.
 
- (./chapters/06_analisi_e_risultati.tex) [108
+ (./chapters/06_analisi_e_risultati.tex) [112
 
 
 
@@ -1932,14 +2157,8 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 26928127347B2A8AEC244C742876809C;22689
-(rerunfilecheck)             After:  DDEB1EC5159B706397ED35EC53FAE5F8;23649.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: B31D40288C016143826731344E79A7AC;23048.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1950,13 +2169,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54291 strings out of 480122
- 1184481 string characters out of 5893077
- 1816274 words of memory out of 5000000
- 71069 multiletter control sequences out of 15000+600000
- 505520 words of font info for 118 fonts, out of 8000000 for 9000
+ 54415 strings out of 480122
+ 1186180 string characters out of 5893077
+ 1831506 words of memory out of 5000000
+ 71174 multiletter control sequences out of 15000+600000
+ 506198 words of font info for 120 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 127i,18n,122p,1602b,1545s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 127i,18n,122p,1602b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk
 > </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1200.600pk>
  </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> 
@@ -1984,25 +2203,26 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb>
-Output written on main.pdf (110 pages, 5507266 bytes).
+lic/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (117 pages, 5559711 bytes).
 PDF statistics:
- 2225 PDF objects out of 2487 (max. 8388607)
- 1285 compressed objects within 13 object streams
- 455 named destinations out of 1000 (max. 500000)
- 906 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2401 PDF objects out of 2487 (max. 8388607)
+ 1428 compressed objects within 15 object streams
+ 466 named destinations out of 1000 (max. 500000)
+ 914 words of extra memory for PDF output out of 10000 (max. 10000000)
 

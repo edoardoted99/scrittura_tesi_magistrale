@@ -89,25 +89,24 @@
 \contentsline {subsection}{\numberline {5.2}Architettura dello Sparse Autoencoder}{80}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Panoramica dell'architettura}{80}{subsubsection.5.2.1}%
 \contentsline {subsubsection}{\numberline {5.2.2}Lo spazio latente overcomplete}{83}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}La linearità del decoder: la chiave del disentanglement}{84}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.3}La linearità del decoder: la chiave del disentanglement}{85}{subsubsection.5.2.3}%
 \contentsline {subsubsection}{\numberline {5.2.4}Feature come direzioni nello spazio degli embedding}{87}{subsubsection.5.2.4}%
-\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{89}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{90}{subsection.5.3}%
 \contentsline {subsubsection}{\numberline {5.3.1}La funzione di perdita complessiva}{90}{subsubsection.5.3.1}%
 \contentsline {subsubsection}{\numberline {5.3.2}Il vincolo di sparsità Top-K}{91}{subsubsection.5.3.2}%
 \contentsline {subsubsection}{\numberline {5.3.3}Auxiliary loss e il problema dei dead latents}{93}{subsubsection.5.3.3}%
 \contentsline {subsection}{\numberline {5.4}Interpretabilità automatica delle feature}{95}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{96}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{98}{subsubsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.5}Feature Families: struttura gerarchica dei concetti}{99}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Co-attivazione e struttura emergente}{99}{subsubsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.2}Identificazione delle famiglie}{100}{subsubsection.5.5.2}%
-\contentsline {subsection}{\numberline {5.6}Feature Splitting: granularità emergente}{102}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Il fenomeno dello splitting}{102}{subsubsection.5.6.1}%
-\contentsline {subsubsection}{\numberline {5.6.2}Feature ricorrenti, splitting e feature nuove}{102}{subsubsection.5.6.2}%
-\contentsline {paragraph}{Similarità geometrica.}{103}{section*.62}%
-\contentsline {paragraph}{Similarità di attivazione.}{104}{section*.63}%
-\contentsline {paragraph}{Classificazione delle feature.}{104}{section*.64}%
-\contentsline {paragraph}{Interpretazione geometrica dello splitting.}{105}{section*.66}%
-\contentsline {subsubsection}{\numberline {5.6.3}Implicazioni per la dimensionalità delle rappresentazioni}{106}{subsubsection.5.6.3}%
-\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{108}{section.6}%
-\contentsline {section}{\numberline {7}PubMed}{108}{section.7}%
+\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{95}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{97}{subsubsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.5}Analisi della struttura delle feature}{98}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Notazione e matrici fondamentali}{99}{subsubsection.5.5.1}%
+\contentsline {paragraph}{Matrice delle attivazioni.}{99}{section*.59}%
+\contentsline {paragraph}{Matrice delle attivazioni binaria.}{99}{section*.60}%
+\contentsline {paragraph}{Matrice di co-occorrenza.}{99}{section*.62}%
+\contentsline {paragraph}{Matrice di similarità delle attivazioni.}{100}{section*.63}%
+\contentsline {paragraph}{Similarità geometrica tra SAE.}{100}{section*.64}%
+\contentsline {subsubsection}{\numberline {5.5.2}Feature families: struttura gerarchica intra-SAE}{101}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{104}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{108}{subsubsection.5.5.4}%
+\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{112}{section.6}%
+\contentsline {section}{\numberline {7}PubMed}{112}{section.7}%
