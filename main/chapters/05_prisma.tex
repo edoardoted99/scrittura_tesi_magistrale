@@ -411,27 +411,41 @@ La linearità del decoder è la chiave: garantisce che ogni feature contribuisca
 \subsection{Funzione di perdita e addestramento}
 \label{subsec:loss_function}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap5/1_load_ds.png}
+    \caption{L'utente può caricare un dataset di dati testuali e scegliere quale modello di embedding denso utilizzare per la fase di pre-encoding. I dati testuali salvati nel database MySQL di PRISMA con il relativo vettore $\mathbf{x}$ di embedding una volta generato.}
+    \label{fig:prisma_home}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap5/2_prepare_experiment.png}
+    \caption{Una volta terminata la generazione del dataset di embedding, l'utente può selezionarlo, configurare gli iper parametri dell'addestramento dello Sparse Autoencoder e monitorarne il progresso in tempo reale.}
+    \label{fig:prisma_home}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap5/training_2.png}
+    \caption{View che mostra i risultati dell'addestramento e la matrice dello spazio latente $H$ con attivazioni sparse.}
+    \label{fig:prisma_home}
+\end{figure}
 L'architettura dello Sparse Autoencoder—encoder non lineare, spazio overcomplete, decoder lineare—definisce la struttura del modello. Ma è la funzione di perdita a determinare \textit{cosa} il modello apprende. In questa sezione esaminiamo i tre componenti della loss function e il loro ruolo nel produrre rappresentazioni sparse e interpretabili.
 
 \subsubsection{La funzione di perdita complessiva}
 \label{subsubsec:loss_overview}
-
 L'obiettivo dell'addestramento è duplice: il modello deve ricostruire fedelmente gli embedding originali, ma deve farlo utilizzando rappresentazioni sparse. Questi due obiettivi sono potenzialmente in conflitto—una ricostruzione perfetta potrebbe richiedere molte feature attive simultaneamente—e la funzione di perdita deve bilanciarli.
-
 Seguendo O'Neill et al.~\parencite{oneill2024disentangling}, la loss complessiva combina tre termini:
 \begin{equation}
     \mathcal{L} = \mathcal{L}_{\text{rec}} + \lambda \mathcal{L}_{\text{sparse}}(\mathbf{h}) + \alpha \mathcal{L}_{\text{aux}}(\mathbf{x}, \hat{\mathbf{x}})
     \label{eq:total_loss}
 \end{equation}
 dove $\lambda > 0$ e $\alpha > 0$ sono iperparametri che controllano il peso relativo di ciascun termine.
-
 Il primo termine è la \textbf{perdita di ricostruzione}, che misura quanto bene il decoder riesce a ricostruire l'input originale:
 \begin{equation}
     \mathcal{L}_{\text{rec}} = \frac{1}{d} \|\mathbf{x} - \hat{\mathbf{x}}\|_2^2
     \label{eq:reconstruction_loss}
 \end{equation}
 Si tratta del Mean Squared Error (MSE) tra l'embedding originale $\mathbf{x}$ e la sua ricostruzione $\hat{\mathbf{x}}$, normalizzato per la dimensionalità $d$. Minimizzare questo termine spinge il modello a preservare l'informazione contenuta nell'embedding: una ricostruzione fedele implica che le feature estratte catturano gli aspetti rilevanti dell'input.
-
 Il secondo termine è il \textbf{vincolo di sparsità}, che penalizza le rappresentazioni con troppe attivazioni non nulle:
 \begin{equation}
     \mathcal{L}_{\text{sparse}}(\mathbf{h})
@@ -535,7 +549,26 @@ dove $\sigma(\cdot)$ è la ReLU.
     \caption{Il vincolo Top-K. A sinistra: le pre-attivazioni $\mathbf{z}$ calcolate dall'encoder. Le tre componenti con valore più alto sono evidenziate in blu. A destra: le attivazioni finali $\mathbf{h}$ dopo l'applicazione del vincolo Top-K con $k=3$. Solo le componenti selezionate (in verde) mantengono il loro valore; tutte le altre sono forzate a zero.}
     \label{fig:topk_mechanism}
 \end{figure}
-
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{pictures/cap5/8_vector_sparse_unsorted.png}
+        \caption{Vettore originale}
+        \label{fig:vector_unsorted}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{pictures/cap5/6_vector_sparse_sorted.png}
+        \caption{Vettore riordinato}
+        \label{fig:vector_sorted}
+    \end{subfigure}
+    \caption{Rappresentazione latente delle feature attivate da un documento: confronto tra vettore originale e riordinato per valori decrescenti.}
+    \label{fig:vector_comparison}
+\end{figure}
 Il vantaggio del Top-K rispetto alla regolarizzazione $L_1$ è duplice. 
 
 Il primo vantaggio è l'assenza di shrinkage. Le $k$ attivazioni selezionate mantengono il loro valore originale $\sigma(z_i)$, senza alcuna penalizzazione. Il modello può quindi apprendere attivazioni di intensità appropriata senza il compromesso imposto dalla regolarizzazione.

@@ -2,176 +2,196 @@
 \providecommand\hyper@newdestlabel[2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{77}{section.5}\protected@file@percent }
 \newlabel{sec:05_prisma}{{5}{77}{PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{section.5}{}}
-\newlabel{sec:05_prisma@cref}{{[section][5][]5}{[1][77][]77}}
+\newlabel{sec:05_prisma@cref}{{[section][5][]5}{[1][77][]77}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embedding}{78}{subsection.5.1}\protected@file@percent }
 \newlabel{subsec:prisma_intro}{{5.1}{78}{Fare luce nella black box degli embedding}{subsection.5.1}{}}
-\newlabel{subsec:prisma_intro@cref}{{[subsection][1][5]5.1}{[1][78][]78}}
-\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Home page di PRISMA, l'applicazione sviluppata in questa tesi per la scomposizione degli embedding in feature interpretabili.\relax }}{78}{figure.caption.48}\protected@file@percent }
-\newlabel{fig:prisma_home}{{33}{78}{Home page di PRISMA, l'applicazione sviluppata in questa tesi per la scomposizione degli embedding in feature interpretabili.\relax }{figure.caption.48}{}}
-\newlabel{fig:prisma_home@cref}{{[figure][33][]33}{[1][78][]78}}
-\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf  {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots  , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile.\relax }}{79}{figure.caption.49}\protected@file@percent }
-\newlabel{fig:prisma_analogy}{{34}{79}{L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile.\relax }{figure.caption.49}{}}
-\newlabel{fig:prisma_analogy@cref}{{[figure][34][]34}{[1][78][]79}}
+\newlabel{subsec:prisma_intro@cref}{{[subsection][1][5]5.1}{[1][78][]78}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Home page di PRISMA, l'applicazione sviluppata in questa tesi per la scomposizione degli embedding in feature interpretabili.}}{78}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:prisma_home}{{33}{78}{Home page di PRISMA, l'applicazione sviluppata in questa tesi per la scomposizione degli embedding in feature interpretabili}{figure.caption.48}{}}
+\newlabel{fig:prisma_home@cref}{{[figure][33][]33}{[1][78][]78}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf  {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots  , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile.}}{79}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:prisma_analogy}{{34}{79}{L'analogia ottica di PRISMA. Come un prisma scompone la luce bianca nelle sue componenti spettrali, così PRISMA scompone un embedding denso $\mathbf {x}$ nelle sue feature semantiche costitutive $h_1, h_2, \dots , h_n$. L'informazione era già presente nell'embedding originario, ma codificata in forma opaca; PRISMA la rende esplicita e interpretabile}{figure.caption.49}{}}
+\newlabel{fig:prisma_analogy@cref}{{[figure][34][]34}{[1][78][]79}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Architettura dello Sparse Autoencoder}{80}{subsection.5.2}\protected@file@percent }
 \newlabel{subsec:sae_architecture}{{5.2}{80}{Architettura dello Sparse Autoencoder}{subsection.5.2}{}}
-\newlabel{subsec:sae_architecture@cref}{{[subsection][2][5]5.2}{[1][79][]80}}
+\newlabel{subsec:sae_architecture@cref}{{[subsection][2][5]5.2}{[1][79][]80}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Panoramica dell'architettura}{80}{subsubsection.5.2.1}\protected@file@percent }
 \newlabel{subsubsec:sae_overview}{{5.2.1}{80}{Panoramica dell'architettura}{subsubsection.5.2.1}{}}
-\newlabel{subsubsec:sae_overview@cref}{{[subsubsection][1][5,2]5.2.1}{[1][80][]80}}
-\newlabel{eq:sae_encoder}{{43}{80}{Panoramica dell'architettura}{equation.5.43}{}}
-\newlabel{eq:sae_encoder@cref}{{[equation][43][]43}{[1][80][]80}}
-\newlabel{eq:sae_decoder}{{44}{80}{Panoramica dell'architettura}{equation.5.44}{}}
-\newlabel{eq:sae_decoder@cref}{{[equation][44][]44}{[1][80][]80}}
-\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Architettura dello Sparse Autoencoder. L'encoder $f_\theta $ (non lineare) mappa l'input $\mathbf  {x}$ in uno spazio latente \textit  {overcomplete} di dimensione $n \gg d$. La sparsità forza solo poche componenti di $\mathbf  {h}$ (cerchi verdi) ad essere attive, mentre le altre (cerchi grigi) restano nulle. Il decoder $g_\phi $ (lineare) ricostruisce l'input come combinazione delle sole direzioni attive.\relax }}{81}{figure.caption.50}\protected@file@percent }
-\newlabel{fig:sae_architecture}{{35}{81}{Architettura dello Sparse Autoencoder. L'encoder $f_\theta $ (non lineare) mappa l'input $\mathbf {x}$ in uno spazio latente \textit {overcomplete} di dimensione $n \gg d$. La sparsità forza solo poche componenti di $\mathbf {h}$ (cerchi verdi) ad essere attive, mentre le altre (cerchi grigi) restano nulle. Il decoder $g_\phi $ (lineare) ricostruisce l'input come combinazione delle sole direzioni attive.\relax }{figure.caption.50}{}}
-\newlabel{fig:sae_architecture@cref}{{[figure][35][]35}{[1][80][]81}}
+\newlabel{subsubsec:sae_overview@cref}{{[subsubsection][1][5,2]5.2.1}{[1][80][]80}{}{}{}}
+\newlabel{eq:sae_encoder}{{43}{80}{Panoramica dell'architettura}{equation.43}{}}
+\newlabel{eq:sae_encoder@cref}{{[equation][43][]43}{[1][80][]80}{}{}{}}
+\newlabel{eq:sae_decoder}{{44}{80}{Panoramica dell'architettura}{equation.44}{}}
+\newlabel{eq:sae_decoder@cref}{{[equation][44][]44}{[1][80][]80}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Architettura dello Sparse Autoencoder. L'encoder $f_\theta $ (non lineare) mappa l'input $\mathbf  {x}$ in uno spazio latente \textit  {overcomplete} di dimensione $n \gg d$. La sparsità forza solo poche componenti di $\mathbf  {h}$ (cerchi verdi) ad essere attive, mentre le altre (cerchi grigi) restano nulle. Il decoder $g_\phi $ (lineare) ricostruisce l'input come combinazione delle sole direzioni attive.}}{81}{figure.caption.50}\protected@file@percent }
+\newlabel{fig:sae_architecture}{{35}{81}{Architettura dello Sparse Autoencoder. L'encoder $f_\theta $ (non lineare) mappa l'input $\mathbf {x}$ in uno spazio latente \textit {overcomplete} di dimensione $n \gg d$. La sparsità forza solo poche componenti di $\mathbf {h}$ (cerchi verdi) ad essere attive, mentre le altre (cerchi grigi) restano nulle. Il decoder $g_\phi $ (lineare) ricostruisce l'input come combinazione delle sole direzioni attive}{figure.caption.50}{}}
+\newlabel{fig:sae_architecture@cref}{{[figure][35][]35}{[1][80][]81}{}{}{}}
 \newlabel{subsubsec:sae_encoder}{{5.2.1}{81}{Panoramica dell'architettura}{figure.caption.50}{}}
-\newlabel{subsubsec:sae_encoder@cref}{{[subsubsection][1][5,2]5.2.1}{[1][80][]81}}
-\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces L'encoder come rilevatore di feature. L'input $\mathbf  {x}$ viene proiettato sulle direzioni $\mathbf  {e}_i$ (righe di $W_e$). Le direzioni sufficientemente allineate con $\mathbf  {x}$ (in verde) producono pre-attivazioni positive $z_i > 0$, che la ReLU preserva; quelle non allineate (in rosso) producono $z_i < 0$ e vengono azzerate.\relax }}{82}{figure.caption.51}\protected@file@percent }
-\newlabel{fig:encoder_detection}{{36}{82}{L'encoder come rilevatore di feature. L'input $\mathbf {x}$ viene proiettato sulle direzioni $\mathbf {e}_i$ (righe di $W_e$). Le direzioni sufficientemente allineate con $\mathbf {x}$ (in verde) producono pre-attivazioni positive $z_i > 0$, che la ReLU preserva; quelle non allineate (in rosso) producono $z_i < 0$ e vengono azzerate.\relax }{figure.caption.51}{}}
-\newlabel{fig:encoder_detection@cref}{{[figure][36][]36}{[1][81][]82}}
+\newlabel{subsubsec:sae_encoder@cref}{{[subsubsection][1][5,2]5.2.1}{[1][80][]81}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces L'encoder come rilevatore di feature. L'input $\mathbf  {x}$ viene proiettato sulle direzioni $\mathbf  {e}_i$ (righe di $W_e$). Le direzioni sufficientemente allineate con $\mathbf  {x}$ (in verde) producono pre-attivazioni positive $z_i > 0$, che la ReLU preserva; quelle non allineate (in rosso) producono $z_i < 0$ e vengono azzerate.}}{82}{figure.caption.51}\protected@file@percent }
+\newlabel{fig:encoder_detection}{{36}{82}{L'encoder come rilevatore di feature. L'input $\mathbf {x}$ viene proiettato sulle direzioni $\mathbf {e}_i$ (righe di $W_e$). Le direzioni sufficientemente allineate con $\mathbf {x}$ (in verde) producono pre-attivazioni positive $z_i > 0$, che la ReLU preserva; quelle non allineate (in rosso) producono $z_i < 0$ e vengono azzerate}{figure.caption.51}{}}
+\newlabel{fig:encoder_detection@cref}{{[figure][36][]36}{[1][81][]82}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Lo spazio latente overcomplete}{83}{subsubsection.5.2.2}\protected@file@percent }
 \newlabel{subsubsec:sae_overcomplete}{{5.2.2}{83}{Lo spazio latente overcomplete}{subsubsection.5.2.2}{}}
-\newlabel{subsubsec:sae_overcomplete@cref}{{[subsubsection][2][5,2]5.2.2}{[1][83][]83}}
-\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Autoencoder classico: il bottleneck forza la compressione informativa ($m < d$).\relax }}{84}{figure.caption.52}\protected@file@percent }
-\newlabel{fig:ae_classico}{{37}{84}{Autoencoder classico: il bottleneck forza la compressione informativa ($m < d$).\relax }{figure.caption.52}{}}
-\newlabel{fig:ae_classico@cref}{{[figure][37][]37}{[1][83][]84}}
-\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Sparse Autoencoder: lo spazio latente è overcomplete ($n > d$), con abbastanza dimensioni affinché ogni feature possa avere un asse dedicato.\relax }}{84}{figure.caption.53}\protected@file@percent }
-\newlabel{fig:sae_overcomplete}{{38}{84}{Sparse Autoencoder: lo spazio latente è overcomplete ($n > d$), con abbastanza dimensioni affinché ogni feature possa avere un asse dedicato.\relax }{figure.caption.53}{}}
-\newlabel{fig:sae_overcomplete@cref}{{[figure][38][]38}{[1][83][]84}}
+\newlabel{subsubsec:sae_overcomplete@cref}{{[subsubsection][2][5,2]5.2.2}{[1][83][]83}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Autoencoder classico: il bottleneck forza la compressione informativa ($m < d$).}}{84}{figure.caption.52}\protected@file@percent }
+\newlabel{fig:ae_classico}{{37}{84}{Autoencoder classico: il bottleneck forza la compressione informativa ($m < d$)}{figure.caption.52}{}}
+\newlabel{fig:ae_classico@cref}{{[figure][37][]37}{[1][83][]84}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Sparse Autoencoder: lo spazio latente è overcomplete ($n > d$), con abbastanza dimensioni affinché ogni feature possa avere un asse dedicato.}}{84}{figure.caption.53}\protected@file@percent }
+\newlabel{fig:sae_overcomplete}{{38}{84}{Sparse Autoencoder: lo spazio latente è overcomplete ($n > d$), con abbastanza dimensioni affinché ogni feature possa avere un asse dedicato}{figure.caption.53}{}}
+\newlabel{fig:sae_overcomplete@cref}{{[figure][38][]38}{[1][83][]84}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}La linearità del decoder: la chiave del disentanglement}{85}{subsubsection.5.2.3}\protected@file@percent }
 \newlabel{subsubsec:sae_decoder_linearity}{{5.2.3}{85}{La linearità del decoder: la chiave del disentanglement}{subsubsection.5.2.3}{}}
-\newlabel{subsubsec:sae_decoder_linearity@cref}{{[subsubsection][3][5,2]5.2.3}{[1][85][]85}}
-\newlabel{eq:decoder_linear_combination}{{51}{85}{La linearità del decoder: la chiave del disentanglement}{equation.5.51}{}}
-\newlabel{eq:decoder_linear_combination@cref}{{[equation][51][]51}{[1][85][]85}}
-\newlabel{eq:reconstruction_explicit}{{52}{85}{La linearità del decoder: la chiave del disentanglement}{equation.5.52}{}}
-\newlabel{eq:reconstruction_explicit@cref}{{[equation][52][]52}{[1][85][]85}}
-\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces La ricostruzione come combinazione lineare. Ogni colonna $\mathbf  {w}_i$ della matrice del decoder rappresenta una direzione nello spazio degli embedding. La ricostruzione $\hat  {\mathbf  {x}}$ è la somma dei vettori $\mathbf  {w}_i$ pesati dalle rispettive attivazioni $h_i$. La linearità garantisce che ogni feature contribuisca in modo indipendente e trasparente.\relax }}{87}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:decoder_linear_combination}{{39}{87}{La ricostruzione come combinazione lineare. Ogni colonna $\mathbf {w}_i$ della matrice del decoder rappresenta una direzione nello spazio degli embedding. La ricostruzione $\hat {\mathbf {x}}$ è la somma dei vettori $\mathbf {w}_i$ pesati dalle rispettive attivazioni $h_i$. La linearità garantisce che ogni feature contribuisca in modo indipendente e trasparente.\relax }{figure.caption.54}{}}
-\newlabel{fig:decoder_linear_combination@cref}{{[figure][39][]39}{[1][86][]87}}
+\newlabel{subsubsec:sae_decoder_linearity@cref}{{[subsubsection][3][5,2]5.2.3}{[1][85][]85}{}{}{}}
+\newlabel{eq:decoder_linear_combination}{{51}{85}{La linearità del decoder: la chiave del disentanglement}{equation.51}{}}
+\newlabel{eq:decoder_linear_combination@cref}{{[equation][51][]51}{[1][85][]85}{}{}{}}
+\newlabel{eq:reconstruction_explicit}{{52}{85}{La linearità del decoder: la chiave del disentanglement}{equation.52}{}}
+\newlabel{eq:reconstruction_explicit@cref}{{[equation][52][]52}{[1][85][]85}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces La ricostruzione come combinazione lineare. Ogni colonna $\mathbf  {w}_i$ della matrice del decoder rappresenta una direzione nello spazio degli embedding. La ricostruzione $\hat  {\mathbf  {x}}$ è la somma dei vettori $\mathbf  {w}_i$ pesati dalle rispettive attivazioni $h_i$. La linearità garantisce che ogni feature contribuisca in modo indipendente e trasparente.}}{87}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:decoder_linear_combination}{{39}{87}{La ricostruzione come combinazione lineare. Ogni colonna $\mathbf {w}_i$ della matrice del decoder rappresenta una direzione nello spazio degli embedding. La ricostruzione $\hat {\mathbf {x}}$ è la somma dei vettori $\mathbf {w}_i$ pesati dalle rispettive attivazioni $h_i$. La linearità garantisce che ogni feature contribuisca in modo indipendente e trasparente}{figure.caption.54}{}}
+\newlabel{fig:decoder_linear_combination@cref}{{[figure][39][]39}{[1][86][]87}{}{}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Feature come direzioni nello spazio degli embedding}{87}{subsubsection.5.2.4}\protected@file@percent }
 \newlabel{subsubsec:features_as_directions}{{5.2.4}{87}{Feature come direzioni nello spazio degli embedding}{subsubsection.5.2.4}{}}
-\newlabel{subsubsec:features_as_directions@cref}{{[subsubsection][4][5,2]5.2.4}{[1][87][]87}}
-\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Feature come direzioni normalizzate nello spazio degli embedding. Ogni colonna $\mathbf  {w}_i$ del decoder definisce una direzione unitaria associata a un concetto semantico. Le direzioni non sono ortogonali: feature semanticamente correlate (come febbre e tosse) possono puntare in direzioni simili.\relax }}{88}{figure.caption.55}\protected@file@percent }
-\newlabel{fig:features_as_directions}{{40}{88}{Feature come direzioni normalizzate nello spazio degli embedding. Ogni colonna $\mathbf {w}_i$ del decoder definisce una direzione unitaria associata a un concetto semantico. Le direzioni non sono ortogonali: feature semanticamente correlate (come febbre e tosse) possono puntare in direzioni simili.\relax }{figure.caption.55}{}}
-\newlabel{fig:features_as_directions@cref}{{[figure][40][]40}{[1][88][]88}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{90}{subsection.5.3}\protected@file@percent }
-\newlabel{subsec:loss_function}{{5.3}{90}{Funzione di perdita e addestramento}{subsection.5.3}{}}
-\newlabel{subsec:loss_function@cref}{{[subsection][3][5]5.3}{[1][89][]90}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}La funzione di perdita complessiva}{90}{subsubsection.5.3.1}\protected@file@percent }
-\newlabel{subsubsec:loss_overview}{{5.3.1}{90}{La funzione di perdita complessiva}{subsubsection.5.3.1}{}}
-\newlabel{subsubsec:loss_overview@cref}{{[subsubsection][1][5,3]5.3.1}{[1][90][]90}}
-\newlabel{eq:total_loss}{{58}{90}{La funzione di perdita complessiva}{equation.5.58}{}}
-\newlabel{eq:total_loss@cref}{{[equation][58][]58}{[1][90][]90}}
-\newlabel{eq:reconstruction_loss}{{59}{90}{La funzione di perdita complessiva}{equation.5.59}{}}
-\newlabel{eq:reconstruction_loss@cref}{{[equation][59][]59}{[1][90][]90}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Il vincolo di sparsità Top-K}{91}{subsubsection.5.3.2}\protected@file@percent }
-\newlabel{subsubsec:topk_sparsity}{{5.3.2}{91}{Il vincolo di sparsità Top-K}{subsubsection.5.3.2}{}}
-\newlabel{subsubsec:topk_sparsity@cref}{{[subsubsection][2][5,3]5.3.2}{[1][91][]91}}
-\newlabel{eq:topk_activation}{{63}{91}{Il vincolo di sparsità Top-K}{equation.5.63}{}}
-\newlabel{eq:topk_activation@cref}{{[equation][63][]63}{[1][91][]91}}
-\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces Il vincolo Top-K. A sinistra: le pre-attivazioni $\mathbf  {z}$ calcolate dall'encoder. Le tre componenti con valore più alto sono evidenziate in blu. A destra: le attivazioni finali $\mathbf  {h}$ dopo l'applicazione del vincolo Top-K con $k=3$. Solo le componenti selezionate (in verde) mantengono il loro valore; tutte le altre sono forzate a zero.\relax }}{92}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:topk_mechanism}{{41}{92}{Il vincolo Top-K. A sinistra: le pre-attivazioni $\mathbf {z}$ calcolate dall'encoder. Le tre componenti con valore più alto sono evidenziate in blu. A destra: le attivazioni finali $\mathbf {h}$ dopo l'applicazione del vincolo Top-K con $k=3$. Solo le componenti selezionate (in verde) mantengono il loro valore; tutte le altre sono forzate a zero.\relax }{figure.caption.56}{}}
-\newlabel{fig:topk_mechanism@cref}{{[figure][41][]41}{[1][91][]92}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Auxiliary loss e il problema dei dead latents}{93}{subsubsection.5.3.3}\protected@file@percent }
-\newlabel{subsubsec:auxiliary_loss}{{5.3.3}{93}{Auxiliary loss e il problema dei dead latents}{subsubsection.5.3.3}{}}
-\newlabel{subsubsec:auxiliary_loss@cref}{{[subsubsection][3][5,3]5.3.3}{[1][93][]93}}
-\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces Evoluzione dei dead latents durante il training (illustrazione qualitativa basata sui risultati di O'Neill et al.). Senza la perdita ausiliaria, una frazione significativa di feature diventa permanentemente inattiva. Con la perdita ausiliaria, i dead latents vengono progressivamente ``rianimati'' fino a scomparire.\relax }}{93}{figure.caption.57}\protected@file@percent }
-\newlabel{fig:dead_latents}{{42}{93}{Evoluzione dei dead latents durante il training (illustrazione qualitativa basata sui risultati di O'Neill et al.). Senza la perdita ausiliaria, una frazione significativa di feature diventa permanentemente inattiva. Con la perdita ausiliaria, i dead latents vengono progressivamente ``rianimati'' fino a scomparire.\relax }{figure.caption.57}{}}
-\newlabel{fig:dead_latents@cref}{{[figure][42][]42}{[1][93][]93}}
-\newlabel{eq:auxiliary_loss}{{64}{94}{Auxiliary loss e il problema dei dead latents}{equation.5.64}{}}
-\newlabel{eq:auxiliary_loss@cref}{{[equation][64][]64}{[1][94][]94}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Interpretabilità automatica delle feature}{95}{subsection.5.4}\protected@file@percent }
-\newlabel{subsec:interpretability}{{5.4}{95}{Interpretabilità automatica delle feature}{subsection.5.4}{}}
-\newlabel{subsec:interpretability@cref}{{[subsection][4][5]5.4}{[1][95][]95}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{95}{subsubsection.5.4.1}\protected@file@percent }
-\newlabel{subsubsec:interpreter}{{5.4.1}{95}{L'Interpreter LLM}{subsubsection.5.4.1}{}}
-\newlabel{subsubsec:interpreter@cref}{{[subsubsection][1][5,4]5.4.1}{[1][95][]95}}
-\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces Il processo di interpretazione automatica. Per ogni feature, si identificano i testi che la attivano maggiormente e quelli che non la attivano affatto. Un LLM esamina entrambi gli insiemi e produce un'etichetta che descrive il concetto catturato dalla feature.\relax }}{96}{figure.caption.58}\protected@file@percent }
-\newlabel{fig:interpreter_process}{{43}{96}{Il processo di interpretazione automatica. Per ogni feature, si identificano i testi che la attivano maggiormente e quelli che non la attivano affatto. Un LLM esamina entrambi gli insiemi e produce un'etichetta che descrive il concetto catturato dalla feature.\relax }{figure.caption.58}{}}
-\newlabel{fig:interpreter_process@cref}{{[figure][43][]43}{[1][95][]96}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{97}{subsubsection.5.4.2}\protected@file@percent }
-\newlabel{subsubsec:prisma_interpreter}{{5.4.2}{97}{Implementazione in PRISMA}{subsubsection.5.4.2}{}}
-\newlabel{subsubsec:prisma_interpreter@cref}{{[subsubsection][2][5,4]5.4.2}{[1][97][]97}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Analisi della struttura delle feature}{98}{subsection.5.5}\protected@file@percent }
-\newlabel{subsec:feature_analysis}{{5.5}{98}{Analisi della struttura delle feature}{subsection.5.5}{}}
-\newlabel{subsec:feature_analysis@cref}{{[subsection][5][5]5.5}{[1][98][]98}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Notazione e matrici fondamentali}{99}{subsubsection.5.5.1}\protected@file@percent }
-\newlabel{subsubsec:notation_matrices}{{5.5.1}{99}{Notazione e matrici fondamentali}{subsubsection.5.5.1}{}}
-\newlabel{subsubsec:notation_matrices@cref}{{[subsubsection][1][5,5]5.5.1}{[1][98][]99}}
-\@writefile{toc}{\contentsline {paragraph}{Matrice delle attivazioni.}{99}{section*.59}\protected@file@percent }
-\newlabel{eq:activation_matrix}{{65}{99}{Matrice delle attivazioni}{equation.5.65}{}}
-\newlabel{eq:activation_matrix@cref}{{[equation][65][]65}{[1][99][]99}}
-\@writefile{toc}{\contentsline {paragraph}{Matrice delle attivazioni binaria.}{99}{section*.60}\protected@file@percent }
-\newlabel{eq:binary_activation}{{66}{99}{Matrice delle attivazioni binaria}{equation.5.66}{}}
-\newlabel{eq:binary_activation@cref}{{[equation][66][]66}{[1][99][]99}}
-\@writefile{toc}{\contentsline {paragraph}{Matrice di co-occorrenza.}{99}{section*.62}\protected@file@percent }
-\newlabel{eq:cooccurrence}{{67}{99}{Matrice di co-occorrenza}{equation.5.67}{}}
-\newlabel{eq:cooccurrence@cref}{{[equation][67][]67}{[1][99][]99}}
-\newlabel{eq:activation_frequency}{{68}{99}{Matrice di co-occorrenza}{equation.5.68}{}}
-\newlabel{eq:activation_frequency@cref}{{[equation][68][]68}{[1][99][]99}}
-\@writefile{lof}{\contentsline {figure}{\numberline {44}{\ignorespaces Dalla matrice delle attivazioni $H$ alla matrice binaria $A$. A sinistra: $H$ contiene i valori continui delle attivazioni (le celle vuote sono zeri, dovuti al vincolo Top-K). A destra: $A$ indica solo se una feature è attiva (1) o meno (0). La sparsità è evidente: ogni riga ha al massimo $k$ elementi non nulli.\relax }}{100}{figure.caption.61}\protected@file@percent }
-\newlabel{fig:H_to_A}{{44}{100}{Dalla matrice delle attivazioni $H$ alla matrice binaria $A$. A sinistra: $H$ contiene i valori continui delle attivazioni (le celle vuote sono zeri, dovuti al vincolo Top-K). A destra: $A$ indica solo se una feature è attiva (1) o meno (0). La sparsità è evidente: ogni riga ha al massimo $k$ elementi non nulli.\relax }{figure.caption.61}{}}
-\newlabel{fig:H_to_A@cref}{{[figure][44][]44}{[1][99][]100}}
-\newlabel{eq:cooccurrence_norm}{{69}{100}{Matrice di co-occorrenza}{equation.5.69}{}}
-\newlabel{eq:cooccurrence_norm@cref}{{[equation][69][]69}{[1][99][]100}}
-\@writefile{toc}{\contentsline {paragraph}{Matrice di similarità delle attivazioni.}{100}{section*.63}\protected@file@percent }
-\newlabel{eq:activation_similarity}{{70}{100}{Matrice di similarità delle attivazioni}{equation.5.70}{}}
-\newlabel{eq:activation_similarity@cref}{{[equation][70][]70}{[1][100][]100}}
-\@writefile{toc}{\contentsline {paragraph}{Similarità geometrica tra SAE.}{100}{section*.64}\protected@file@percent }
-\newlabel{eq:geometric_similarity}{{71}{100}{Similarità geometrica tra SAE}{equation.5.71}{}}
-\newlabel{eq:geometric_similarity@cref}{{[equation][71][]71}{[1][100][]100}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Riepilogo delle matrici fondamentali per l'analisi delle feature.\relax }}{101}{table.caption.65}\protected@file@percent }
-\newlabel{tab:matrices_summary}{{3}{101}{Riepilogo delle matrici fondamentali per l'analisi delle feature.\relax }{table.caption.65}{}}
-\newlabel{tab:matrices_summary@cref}{{[table][3][]3}{[1][101][]101}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Feature families: struttura gerarchica intra-SAE}{101}{subsubsection.5.5.2}\protected@file@percent }
-\newlabel{subsubsec:feature_families}{{5.5.2}{101}{Feature families: struttura gerarchica intra-SAE}{subsubsection.5.5.2}{}}
-\newlabel{subsubsec:feature_families@cref}{{[subsubsection][2][5,5]5.5.2}{[1][101][]101}}
-\newlabel{eq:threshold}{{72}{102}{Feature families: struttura gerarchica intra-SAE}{equation.5.72}{}}
-\newlabel{eq:threshold@cref}{{[equation][72][]72}{[1][102][]102}}
-\newlabel{eq:edge_orientation}{{73}{103}{Feature families: struttura gerarchica intra-SAE}{equation.5.73}{}}
-\newlabel{eq:edge_orientation@cref}{{[equation][73][]73}{[1][102][]103}}
-\@writefile{lof}{\contentsline {figure}{\numberline {45}{\ignorespaces Costruzione di una feature family. (Sinistra) Il grafo pesato $G$ con pesi $C^{\text  {norm}}_{ij}$; gli archi tratteggiati sono sotto soglia e verranno rimossi. (Centro) Il Maximum Spanning Tree preserva solo le connessioni più forti. (Destra) L'orientamento basato sulla frequenza $f_i$ rivela la struttura gerarchica: $f_1$ (parent) punta verso i children meno frequenti.\relax }}{103}{figure.caption.66}\protected@file@percent }
-\newlabel{fig:family_construction}{{45}{103}{Costruzione di una feature family. (Sinistra) Il grafo pesato $G$ con pesi $C^{\text {norm}}_{ij}$; gli archi tratteggiati sono sotto soglia e verranno rimossi. (Centro) Il Maximum Spanning Tree preserva solo le connessioni più forti. (Destra) L'orientamento basato sulla frequenza $f_i$ rivela la struttura gerarchica: $f_1$ (parent) punta verso i children meno frequenti.\relax }{figure.caption.66}{}}
-\newlabel{fig:family_construction@cref}{{[figure][45][]45}{[1][103][]103}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{104}{subsubsection.5.5.3}\protected@file@percent }
-\newlabel{subsubsec:feature_splitting}{{5.5.3}{104}{Feature splitting: evoluzione inter-SAE}{subsubsection.5.5.3}{}}
-\newlabel{subsubsec:feature_splitting@cref}{{[subsubsection][3][5,5]5.5.3}{[1][104][]104}}
-\newlabel{eq:similarity_angle}{{74}{104}{Feature splitting: evoluzione inter-SAE}{equation.5.74}{}}
-\newlabel{eq:similarity_angle@cref}{{[equation][74][]74}{[1][104][]104}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Confronto tra le due metriche per l'analisi delle feature.\relax }}{105}{table.caption.67}\protected@file@percent }
-\newlabel{tab:similarity_comparison}{{4}{105}{Confronto tra le due metriche per l'analisi delle feature.\relax }{table.caption.67}{}}
-\newlabel{tab:similarity_comparison@cref}{{[table][4][]4}{[1][104][]105}}
-\newlabel{eq:nearest_neighbour}{{75}{105}{Feature splitting: evoluzione inter-SAE}{equation.5.75}{}}
-\newlabel{eq:nearest_neighbour@cref}{{[equation][75][]75}{[1][105][]105}}
-\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces Classificazione delle feature del SAE grande rispetto al SAE piccolo. L'asse orizzontale misura la similarità geometrica $S^*_j = \qopname  \relax o{cos}(\theta )$, dove $\theta $ è l'angolo tra i vettori decoder. Le soglie di similarità corrispondono a soglie angolari: feature \textbf  {ricorrenti} hanno direzioni quasi parallele ($\theta < 18°$), feature da \textbf  {splitting} formano angoli moderati ($18°$--$60°$), feature \textbf  {nuove} puntano in direzioni molto diverse ($\theta > 60°$) oppure hanno bassa similarità di attivazione.\relax }}{106}{figure.caption.68}\protected@file@percent }
-\newlabel{fig:feature_classification}{{46}{106}{Classificazione delle feature del SAE grande rispetto al SAE piccolo. L'asse orizzontale misura la similarità geometrica $S^*_j = \cos (\theta )$, dove $\theta $ è l'angolo tra i vettori decoder. Le soglie di similarità corrispondono a soglie angolari: feature \textbf {ricorrenti} hanno direzioni quasi parallele ($\theta < 18°$), feature da \textbf {splitting} formano angoli moderati ($18°$--$60°$), feature \textbf {nuove} puntano in direzioni molto diverse ($\theta > 60°$) oppure hanno bassa similarità di attivazione.\relax }{figure.caption.68}{}}
-\newlabel{fig:feature_classification@cref}{{[figure][46][]46}{[1][106][]106}}
-\newlabel{eq:splitting_geometry}{{76}{106}{Feature splitting: evoluzione inter-SAE}{equation.5.76}{}}
-\newlabel{eq:splitting_geometry@cref}{{[equation][76][]76}{[1][106][]106}}
-\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces Interpretazione geometrica del feature splitting. I children $\mathbf  {w}_{c_1}$ e $\mathbf  {w}_{c_2}$ (verde) rappresentano sotto-concetti specializzati nel SAE grande. Il parent $\mathbf  {w}_p$ (blu) del SAE piccolo punta nella direzione della loro combinazione pesata. L'angolo $\theta _{c_1,c_2} > 60°$ tra i children corrisponde a similarità $S < 0.5$: i sotto-concetti sono semanticamente distinti tra loro.\relax }}{107}{figure.caption.69}\protected@file@percent }
-\newlabel{fig:splitting_geometry}{{47}{107}{Interpretazione geometrica del feature splitting. I children $\mathbf {w}_{c_1}$ e $\mathbf {w}_{c_2}$ (verde) rappresentano sotto-concetti specializzati nel SAE grande. Il parent $\mathbf {w}_p$ (blu) del SAE piccolo punta nella direzione della loro combinazione pesata. L'angolo $\theta _{c_1,c_2} > 60°$ tra i children corrisponde a similarità $S < 0.5$: i sotto-concetti sono semanticamente distinti tra loro.\relax }{figure.caption.69}{}}
-\newlabel{fig:splitting_geometry@cref}{{[figure][47][]47}{[1][106][]107}}
-\@writefile{lof}{\contentsline {figure}{\numberline {48}{\ignorespaces Il fenomeno del \emph  {feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi.\relax }}{107}{figure.caption.70}\protected@file@percent }
-\newlabel{fig:feature_splitting}{{48}{107}{Il fenomeno del \emph {feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi.\relax }{figure.caption.70}{}}
-\newlabel{fig:feature_splitting@cref}{{[figure][48][]48}{[1][106][]107}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{108}{subsubsection.5.5.4}\protected@file@percent }
-\newlabel{subsubsec:effective_rank}{{5.5.4}{108}{Quantificare la struttura: Effective Rank}{subsubsection.5.5.4}{}}
-\newlabel{subsubsec:effective_rank@cref}{{[subsubsection][4][5,5]5.5.4}{[1][108][]108}}
-\newlabel{eq:singular_distribution}{{77}{108}{Quantificare la struttura: Effective Rank}{equation.5.77}{}}
-\newlabel{eq:singular_distribution@cref}{{[equation][77][]77}{[1][108][]108}}
-\newlabel{eq:effective_rank}{{78}{109}{Quantificare la struttura: Effective Rank}{equation.5.78}{}}
-\newlabel{eq:effective_rank@cref}{{[equation][78][]78}{[1][108][]109}}
-\@writefile{lof}{\contentsline {figure}{\numberline {49}{\ignorespaces Interpretazione geometrica dell'Effective Rank. Lo spettro dei valori singolari $\{\sigma _i\}$ determina quante direzioni la matrice utilizza effettivamente. Uno spettro uniforme (sinistra) indica che tutte le direzioni contribuiscono equamente: $\text  {ER} \approx n$. Uno spettro concentrato (destra) indica che una sola direzione domina: $\text  {ER} \approx 1$. I casi reali (centro) mostrano un decadimento graduale, con $\text  {ER}$ che quantifica il numero effettivo di direzioni informative.\relax }}{109}{figure.caption.71}\protected@file@percent }
-\newlabel{fig:effective_rank_spectrum}{{49}{109}{Interpretazione geometrica dell'Effective Rank. Lo spettro dei valori singolari $\{\sigma _i\}$ determina quante direzioni la matrice utilizza effettivamente. Uno spettro uniforme (sinistra) indica che tutte le direzioni contribuiscono equamente: $\text {ER} \approx n$. Uno spettro concentrato (destra) indica che una sola direzione domina: $\text {ER} \approx 1$. I casi reali (centro) mostrano un decadimento graduale, con $\text {ER}$ che quantifica il numero effettivo di direzioni informative.\relax }{figure.caption.71}{}}
-\newlabel{fig:effective_rank_spectrum@cref}{{[figure][49][]49}{[1][109][]109}}
-\newlabel{eq:scr}{{79}{110}{Quantificare la struttura: Effective Rank}{equation.5.79}{}}
-\newlabel{eq:scr@cref}{{[equation][79][]79}{[1][110][]110}}
-\@writefile{lof}{\contentsline {figure}{\numberline {50}{\ignorespaces Andamento qualitativo dell'Effective Rank al variare della capacità del SAE. Su dati casuali (tratteggiato), l'ER cresce linearmente con $n$: non ci sono correlazioni da sfruttare. Su dati reali (linea continua), l'ER cresce più lentamente: la struttura semantica introduce correlazioni che riducono la dimensionalità effettiva. Il gap tra le due curve, quantificato dal Semantic Compression Ratio, misura la ``compressione semantica'' del dominio.\relax }}{110}{figure.caption.72}\protected@file@percent }
-\newlabel{fig:er_scaling}{{50}{110}{Andamento qualitativo dell'Effective Rank al variare della capacità del SAE. Su dati casuali (tratteggiato), l'ER cresce linearmente con $n$: non ci sono correlazioni da sfruttare. Su dati reali (linea continua), l'ER cresce più lentamente: la struttura semantica introduce correlazioni che riducono la dimensionalità effettiva. Il gap tra le due curve, quantificato dal Semantic Compression Ratio, misura la ``compressione semantica'' del dominio.\relax }{figure.caption.72}{}}
-\newlabel{fig:er_scaling@cref}{{[figure][50][]50}{[1][110][]110}}
+\newlabel{subsubsec:features_as_directions@cref}{{[subsubsection][4][5,2]5.2.4}{[1][87][]87}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {40}{\ignorespaces Feature come direzioni normalizzate nello spazio degli embedding. Ogni colonna $\mathbf  {w}_i$ del decoder definisce una direzione unitaria associata a un concetto semantico. Le direzioni non sono ortogonali: feature semanticamente correlate (come febbre e tosse) possono puntare in direzioni simili.}}{88}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:features_as_directions}{{40}{88}{Feature come direzioni normalizzate nello spazio degli embedding. Ogni colonna $\mathbf {w}_i$ del decoder definisce una direzione unitaria associata a un concetto semantico. Le direzioni non sono ortogonali: feature semanticamente correlate (come febbre e tosse) possono puntare in direzioni simili}{figure.caption.55}{}}
+\newlabel{fig:features_as_directions@cref}{{[figure][40][]40}{[1][88][]88}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {41}{\ignorespaces L'utente può caricare un dataset di dati testuali e scegliere quale modello di embedding denso utilizzare per la fase di pre-encoding. I dati testuali salvati nel database MySQL di PRISMA con il relativo vettore $\mathbf  {x}$ di embedding una volta generato.}}{90}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:prisma_home}{{41}{90}{L'utente può caricare un dataset di dati testuali e scegliere quale modello di embedding denso utilizzare per la fase di pre-encoding. I dati testuali salvati nel database MySQL di PRISMA con il relativo vettore $\mathbf {x}$ di embedding una volta generato}{figure.caption.56}{}}
+\newlabel{fig:prisma_home@cref}{{[figure][41][]41}{[1][89][]90}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {42}{\ignorespaces Una volta terminata la generazione del dataset di embedding, l'utente può selezionarlo, configurare gli iper parametri dell'addestramento dello Sparse Autoencoder e monitorarne il progresso in tempo reale.}}{91}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:prisma_home}{{42}{91}{Una volta terminata la generazione del dataset di embedding, l'utente può selezionarlo, configurare gli iper parametri dell'addestramento dello Sparse Autoencoder e monitorarne il progresso in tempo reale}{figure.caption.57}{}}
+\newlabel{fig:prisma_home@cref}{{[figure][42][]42}{[1][89][]91}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {43}{\ignorespaces View che mostra i risultati dell'addestramento e la matrice dello spazio latente $H$ con attivazioni sparse.}}{92}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:prisma_home}{{43}{92}{View che mostra i risultati dell'addestramento e la matrice dello spazio latente $H$ con attivazioni sparse}{figure.caption.58}{}}
+\newlabel{fig:prisma_home@cref}{{[figure][43][]43}{[1][89][]92}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{93}{subsection.5.3}\protected@file@percent }
+\newlabel{subsec:loss_function}{{5.3}{93}{Funzione di perdita e addestramento}{subsection.5.3}{}}
+\newlabel{subsec:loss_function@cref}{{[subsection][3][5]5.3}{[1][89][]93}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}La funzione di perdita complessiva}{93}{subsubsection.5.3.1}\protected@file@percent }
+\newlabel{subsubsec:loss_overview}{{5.3.1}{93}{La funzione di perdita complessiva}{subsubsection.5.3.1}{}}
+\newlabel{subsubsec:loss_overview@cref}{{[subsubsection][1][5,3]5.3.1}{[1][93][]93}{}{}{}}
+\newlabel{eq:total_loss}{{58}{93}{La funzione di perdita complessiva}{equation.58}{}}
+\newlabel{eq:total_loss@cref}{{[equation][58][]58}{[1][93][]93}{}{}{}}
+\newlabel{eq:reconstruction_loss}{{59}{93}{La funzione di perdita complessiva}{equation.59}{}}
+\newlabel{eq:reconstruction_loss@cref}{{[equation][59][]59}{[1][93][]93}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Il vincolo di sparsità Top-K}{94}{subsubsection.5.3.2}\protected@file@percent }
+\newlabel{subsubsec:topk_sparsity}{{5.3.2}{94}{Il vincolo di sparsità Top-K}{subsubsection.5.3.2}{}}
+\newlabel{subsubsec:topk_sparsity@cref}{{[subsubsection][2][5,3]5.3.2}{[1][94][]94}{}{}{}}
+\newlabel{eq:topk_activation}{{63}{94}{Il vincolo di sparsità Top-K}{equation.63}{}}
+\newlabel{eq:topk_activation@cref}{{[equation][63][]63}{[1][94][]94}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {44}{\ignorespaces Il vincolo Top-K. A sinistra: le pre-attivazioni $\mathbf  {z}$ calcolate dall'encoder. Le tre componenti con valore più alto sono evidenziate in blu. A destra: le attivazioni finali $\mathbf  {h}$ dopo l'applicazione del vincolo Top-K con $k=3$. Solo le componenti selezionate (in verde) mantengono il loro valore; tutte le altre sono forzate a zero.}}{95}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:topk_mechanism}{{44}{95}{Il vincolo Top-K. A sinistra: le pre-attivazioni $\mathbf {z}$ calcolate dall'encoder. Le tre componenti con valore più alto sono evidenziate in blu. A destra: le attivazioni finali $\mathbf {h}$ dopo l'applicazione del vincolo Top-K con $k=3$. Solo le componenti selezionate (in verde) mantengono il loro valore; tutte le altre sono forzate a zero}{figure.caption.59}{}}
+\newlabel{fig:topk_mechanism@cref}{{[figure][44][]44}{[1][94][]95}{}{}{}}
+\newlabel{fig:vector_unsorted}{{45a}{96}{Vettore originale}{figure.caption.60}{}}
+\newlabel{fig:vector_unsorted@cref}{{[subfigure][1][45]45a}{[1][94][]96}{}{}{}}
+\newlabel{sub@fig:vector_unsorted}{{a}{96}{Vettore originale}{figure.caption.60}{}}
+\newlabel{sub@fig:vector_unsorted@cref}{{[subfigure][1][45]45a}{[1][94][]96}{}{}{}}
+\newlabel{fig:vector_sorted}{{45b}{96}{Vettore riordinato}{figure.caption.60}{}}
+\newlabel{fig:vector_sorted@cref}{{[subfigure][2][45]45b}{[1][94][]96}{}{}{}}
+\newlabel{sub@fig:vector_sorted}{{b}{96}{Vettore riordinato}{figure.caption.60}{}}
+\newlabel{sub@fig:vector_sorted@cref}{{[subfigure][2][45]45b}{[1][94][]96}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {45}{\ignorespaces Rappresentazione latente delle feature attivate da un documento: confronto tra vettore originale e riordinato per valori decrescenti.}}{96}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:vector_comparison}{{45}{96}{Rappresentazione latente delle feature attivate da un documento: confronto tra vettore originale e riordinato per valori decrescenti}{figure.caption.60}{}}
+\newlabel{fig:vector_comparison@cref}{{[figure][45][]45}{[1][94][]96}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Auxiliary loss e il problema dei dead latents}{97}{subsubsection.5.3.3}\protected@file@percent }
+\newlabel{subsubsec:auxiliary_loss}{{5.3.3}{97}{Auxiliary loss e il problema dei dead latents}{subsubsection.5.3.3}{}}
+\newlabel{subsubsec:auxiliary_loss@cref}{{[subsubsection][3][5,3]5.3.3}{[1][95][]97}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {46}{\ignorespaces Evoluzione dei dead latents durante il training (illustrazione qualitativa basata sui risultati di O'Neill et al.). Senza la perdita ausiliaria, una frazione significativa di feature diventa permanentemente inattiva. Con la perdita ausiliaria, i dead latents vengono progressivamente ``rianimati'' fino a scomparire.}}{97}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:dead_latents}{{46}{97}{Evoluzione dei dead latents durante il training (illustrazione qualitativa basata sui risultati di O'Neill et al.). Senza la perdita ausiliaria, una frazione significativa di feature diventa permanentemente inattiva. Con la perdita ausiliaria, i dead latents vengono progressivamente ``rianimati'' fino a scomparire}{figure.caption.61}{}}
+\newlabel{fig:dead_latents@cref}{{[figure][46][]46}{[1][97][]97}{}{}{}}
+\newlabel{eq:auxiliary_loss}{{64}{98}{Auxiliary loss e il problema dei dead latents}{equation.64}{}}
+\newlabel{eq:auxiliary_loss@cref}{{[equation][64][]64}{[1][98][]98}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Interpretabilità automatica delle feature}{99}{subsection.5.4}\protected@file@percent }
+\newlabel{subsec:interpretability}{{5.4}{99}{Interpretabilità automatica delle feature}{subsection.5.4}{}}
+\newlabel{subsec:interpretability@cref}{{[subsection][4][5]5.4}{[1][98][]99}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{99}{subsubsection.5.4.1}\protected@file@percent }
+\newlabel{subsubsec:interpreter}{{5.4.1}{99}{L'Interpreter LLM}{subsubsection.5.4.1}{}}
+\newlabel{subsubsec:interpreter@cref}{{[subsubsection][1][5,4]5.4.1}{[1][99][]99}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {47}{\ignorespaces Il processo di interpretazione automatica. Per ogni feature, si identificano i testi che la attivano maggiormente e quelli che non la attivano affatto. Un LLM esamina entrambi gli insiemi e produce un'etichetta che descrive il concetto catturato dalla feature.}}{100}{figure.caption.62}\protected@file@percent }
+\newlabel{fig:interpreter_process}{{47}{100}{Il processo di interpretazione automatica. Per ogni feature, si identificano i testi che la attivano maggiormente e quelli che non la attivano affatto. Un LLM esamina entrambi gli insiemi e produce un'etichetta che descrive il concetto catturato dalla feature}{figure.caption.62}{}}
+\newlabel{fig:interpreter_process@cref}{{[figure][47][]47}{[1][99][]100}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{101}{subsubsection.5.4.2}\protected@file@percent }
+\newlabel{subsubsec:prisma_interpreter}{{5.4.2}{101}{Implementazione in PRISMA}{subsubsection.5.4.2}{}}
+\newlabel{subsubsec:prisma_interpreter@cref}{{[subsubsection][2][5,4]5.4.2}{[1][101][]101}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Analisi della struttura delle feature}{102}{subsection.5.5}\protected@file@percent }
+\newlabel{subsec:feature_analysis}{{5.5}{102}{Analisi della struttura delle feature}{subsection.5.5}{}}
+\newlabel{subsec:feature_analysis@cref}{{[subsection][5][5]5.5}{[1][102][]102}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Notazione e matrici fondamentali}{103}{subsubsection.5.5.1}\protected@file@percent }
+\newlabel{subsubsec:notation_matrices}{{5.5.1}{103}{Notazione e matrici fondamentali}{subsubsection.5.5.1}{}}
+\newlabel{subsubsec:notation_matrices@cref}{{[subsubsection][1][5,5]5.5.1}{[1][102][]103}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Matrice delle attivazioni.}{103}{section*.63}\protected@file@percent }
+\newlabel{eq:activation_matrix}{{65}{103}{Matrice delle attivazioni}{equation.65}{}}
+\newlabel{eq:activation_matrix@cref}{{[equation][65][]65}{[1][103][]103}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Matrice delle attivazioni binaria.}{103}{section*.64}\protected@file@percent }
+\newlabel{eq:binary_activation}{{66}{103}{Matrice delle attivazioni binaria}{equation.66}{}}
+\newlabel{eq:binary_activation@cref}{{[equation][66][]66}{[1][103][]103}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Matrice di co-occorrenza.}{103}{section*.66}\protected@file@percent }
+\newlabel{eq:cooccurrence}{{67}{103}{Matrice di co-occorrenza}{equation.67}{}}
+\newlabel{eq:cooccurrence@cref}{{[equation][67][]67}{[1][103][]103}{}{}{}}
+\newlabel{eq:activation_frequency}{{68}{103}{Matrice di co-occorrenza}{equation.68}{}}
+\newlabel{eq:activation_frequency@cref}{{[equation][68][]68}{[1][103][]103}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {48}{\ignorespaces Dalla matrice delle attivazioni $H$ alla matrice binaria $A$. A sinistra: $H$ contiene i valori continui delle attivazioni (le celle vuote sono zeri, dovuti al vincolo Top-K). A destra: $A$ indica solo se una feature è attiva (1) o meno (0). La sparsità è evidente: ogni riga ha al massimo $k$ elementi non nulli.}}{104}{figure.caption.65}\protected@file@percent }
+\newlabel{fig:H_to_A}{{48}{104}{Dalla matrice delle attivazioni $H$ alla matrice binaria $A$. A sinistra: $H$ contiene i valori continui delle attivazioni (le celle vuote sono zeri, dovuti al vincolo Top-K). A destra: $A$ indica solo se una feature è attiva (1) o meno (0). La sparsità è evidente: ogni riga ha al massimo $k$ elementi non nulli}{figure.caption.65}{}}
+\newlabel{fig:H_to_A@cref}{{[figure][48][]48}{[1][103][]104}{}{}{}}
+\newlabel{eq:cooccurrence_norm}{{69}{104}{Matrice di co-occorrenza}{equation.69}{}}
+\newlabel{eq:cooccurrence_norm@cref}{{[equation][69][]69}{[1][103][]104}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Matrice di similarità delle attivazioni.}{104}{section*.67}\protected@file@percent }
+\newlabel{eq:activation_similarity}{{70}{104}{Matrice di similarità delle attivazioni}{equation.70}{}}
+\newlabel{eq:activation_similarity@cref}{{[equation][70][]70}{[1][104][]104}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Similarità geometrica tra SAE.}{104}{section*.68}\protected@file@percent }
+\newlabel{eq:geometric_similarity}{{71}{104}{Similarità geometrica tra SAE}{equation.71}{}}
+\newlabel{eq:geometric_similarity@cref}{{[equation][71][]71}{[1][104][]104}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Riepilogo delle matrici fondamentali per l'analisi delle feature.}}{105}{table.caption.69}\protected@file@percent }
+\newlabel{tab:matrices_summary}{{3}{105}{Riepilogo delle matrici fondamentali per l'analisi delle feature}{table.caption.69}{}}
+\newlabel{tab:matrices_summary@cref}{{[table][3][]3}{[1][105][]105}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Feature families: struttura gerarchica intra-SAE}{105}{subsubsection.5.5.2}\protected@file@percent }
+\newlabel{subsubsec:feature_families}{{5.5.2}{105}{Feature families: struttura gerarchica intra-SAE}{subsubsection.5.5.2}{}}
+\newlabel{subsubsec:feature_families@cref}{{[subsubsection][2][5,5]5.5.2}{[1][105][]105}{}{}{}}
+\newlabel{eq:threshold}{{72}{106}{Feature families: struttura gerarchica intra-SAE}{equation.72}{}}
+\newlabel{eq:threshold@cref}{{[equation][72][]72}{[1][106][]106}{}{}{}}
+\newlabel{eq:edge_orientation}{{73}{107}{Feature families: struttura gerarchica intra-SAE}{equation.73}{}}
+\newlabel{eq:edge_orientation@cref}{{[equation][73][]73}{[1][106][]107}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {49}{\ignorespaces Costruzione di una feature family. (Sinistra) Il grafo pesato $G$ con pesi $C^{\text  {norm}}_{ij}$; gli archi tratteggiati sono sotto soglia e verranno rimossi. (Centro) Il Maximum Spanning Tree preserva solo le connessioni più forti. (Destra) L'orientamento basato sulla frequenza $f_i$ rivela la struttura gerarchica: $f_1$ (parent) punta verso i children meno frequenti.}}{107}{figure.caption.70}\protected@file@percent }
+\newlabel{fig:family_construction}{{49}{107}{Costruzione di una feature family. (Sinistra) Il grafo pesato $G$ con pesi $C^{\text {norm}}_{ij}$; gli archi tratteggiati sono sotto soglia e verranno rimossi. (Centro) Il Maximum Spanning Tree preserva solo le connessioni più forti. (Destra) L'orientamento basato sulla frequenza $f_i$ rivela la struttura gerarchica: $f_1$ (parent) punta verso i children meno frequenti}{figure.caption.70}{}}
+\newlabel{fig:family_construction@cref}{{[figure][49][]49}{[1][107][]107}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{108}{subsubsection.5.5.3}\protected@file@percent }
+\newlabel{subsubsec:feature_splitting}{{5.5.3}{108}{Feature splitting: evoluzione inter-SAE}{subsubsection.5.5.3}{}}
+\newlabel{subsubsec:feature_splitting@cref}{{[subsubsection][3][5,5]5.5.3}{[1][108][]108}{}{}{}}
+\newlabel{eq:similarity_angle}{{74}{108}{Feature splitting: evoluzione inter-SAE}{equation.74}{}}
+\newlabel{eq:similarity_angle@cref}{{[equation][74][]74}{[1][108][]108}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Confronto tra le due metriche per l'analisi delle feature.}}{109}{table.caption.71}\protected@file@percent }
+\newlabel{tab:similarity_comparison}{{4}{109}{Confronto tra le due metriche per l'analisi delle feature}{table.caption.71}{}}
+\newlabel{tab:similarity_comparison@cref}{{[table][4][]4}{[1][108][]109}{}{}{}}
+\newlabel{eq:nearest_neighbour}{{75}{109}{Feature splitting: evoluzione inter-SAE}{equation.75}{}}
+\newlabel{eq:nearest_neighbour@cref}{{[equation][75][]75}{[1][109][]109}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {50}{\ignorespaces Classificazione delle feature del SAE grande rispetto al SAE piccolo. L'asse orizzontale misura la similarità geometrica $S^*_j = \cos (\theta )$, dove $\theta $ è l'angolo tra i vettori decoder. Le soglie di similarità corrispondono a soglie angolari: feature \textbf  {ricorrenti} hanno direzioni quasi parallele ($\theta < 18°$), feature da \textbf  {splitting} formano angoli moderati ($18°$--$60°$), feature \textbf  {nuove} puntano in direzioni molto diverse ($\theta > 60°$) oppure hanno bassa similarità di attivazione.}}{110}{figure.caption.72}\protected@file@percent }
+\newlabel{fig:feature_classification}{{50}{110}{Classificazione delle feature del SAE grande rispetto al SAE piccolo. L'asse orizzontale misura la similarità geometrica $S^*_j = \cos (\theta )$, dove $\theta $ è l'angolo tra i vettori decoder. Le soglie di similarità corrispondono a soglie angolari: feature \textbf {ricorrenti} hanno direzioni quasi parallele ($\theta < 18°$), feature da \textbf {splitting} formano angoli moderati ($18°$--$60°$), feature \textbf {nuove} puntano in direzioni molto diverse ($\theta > 60°$) oppure hanno bassa similarità di attivazione}{figure.caption.72}{}}
+\newlabel{fig:feature_classification@cref}{{[figure][50][]50}{[1][110][]110}{}{}{}}
+\newlabel{eq:splitting_geometry}{{76}{110}{Feature splitting: evoluzione inter-SAE}{equation.76}{}}
+\newlabel{eq:splitting_geometry@cref}{{[equation][76][]76}{[1][110][]110}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {51}{\ignorespaces Interpretazione geometrica del feature splitting. I children $\mathbf  {w}_{c_1}$ e $\mathbf  {w}_{c_2}$ (verde) rappresentano sotto-concetti specializzati nel SAE grande. Il parent $\mathbf  {w}_p$ (blu) del SAE piccolo punta nella direzione della loro combinazione pesata. L'angolo $\theta _{c_1,c_2} > 60°$ tra i children corrisponde a similarità $S < 0.5$: i sotto-concetti sono semanticamente distinti tra loro.}}{111}{figure.caption.73}\protected@file@percent }
+\newlabel{fig:splitting_geometry}{{51}{111}{Interpretazione geometrica del feature splitting. I children $\mathbf {w}_{c_1}$ e $\mathbf {w}_{c_2}$ (verde) rappresentano sotto-concetti specializzati nel SAE grande. Il parent $\mathbf {w}_p$ (blu) del SAE piccolo punta nella direzione della loro combinazione pesata. L'angolo $\theta _{c_1,c_2} > 60°$ tra i children corrisponde a similarità $S < 0.5$: i sotto-concetti sono semanticamente distinti tra loro}{figure.caption.73}{}}
+\newlabel{fig:splitting_geometry@cref}{{[figure][51][]51}{[1][110][]111}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {52}{\ignorespaces Il fenomeno del \emph  {feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi.}}{111}{figure.caption.74}\protected@file@percent }
+\newlabel{fig:feature_splitting}{{52}{111}{Il fenomeno del \emph {feature splitting}. Una feature generale (``Ottimizzazione'') appresa da un SAE a bassa capacità (SAE16) si scinde progressivamente in feature più specifiche quando la capacità aumenta. SAE32 distingue metodi gradient-based da metodi del secondo ordine; SAE64 risolve i singoli algoritmi. La struttura ad albero emerge spontaneamente dall'analisi delle similarità tra feature di modelli diversi}{figure.caption.74}{}}
+\newlabel{fig:feature_splitting@cref}{{[figure][52][]52}{[1][110][]111}{}{}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{112}{subsubsection.5.5.4}\protected@file@percent }
+\newlabel{subsubsec:effective_rank}{{5.5.4}{112}{Quantificare la struttura: Effective Rank}{subsubsection.5.5.4}{}}
+\newlabel{subsubsec:effective_rank@cref}{{[subsubsection][4][5,5]5.5.4}{[1][112][]112}{}{}{}}
+\newlabel{eq:singular_distribution}{{77}{112}{Quantificare la struttura: Effective Rank}{equation.77}{}}
+\newlabel{eq:singular_distribution@cref}{{[equation][77][]77}{[1][112][]112}{}{}{}}
+\newlabel{eq:effective_rank}{{78}{113}{Quantificare la struttura: Effective Rank}{equation.78}{}}
+\newlabel{eq:effective_rank@cref}{{[equation][78][]78}{[1][112][]113}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {53}{\ignorespaces Interpretazione geometrica dell'Effective Rank. Lo spettro dei valori singolari $\{\sigma _i\}$ determina quante direzioni la matrice utilizza effettivamente. Uno spettro uniforme (sinistra) indica che tutte le direzioni contribuiscono equamente: $\text  {ER} \approx n$. Uno spettro concentrato (destra) indica che una sola direzione domina: $\text  {ER} \approx 1$. I casi reali (centro) mostrano un decadimento graduale, con $\text  {ER}$ che quantifica il numero effettivo di direzioni informative.}}{113}{figure.caption.75}\protected@file@percent }
+\newlabel{fig:effective_rank_spectrum}{{53}{113}{Interpretazione geometrica dell'Effective Rank. Lo spettro dei valori singolari $\{\sigma _i\}$ determina quante direzioni la matrice utilizza effettivamente. Uno spettro uniforme (sinistra) indica che tutte le direzioni contribuiscono equamente: $\text {ER} \approx n$. Uno spettro concentrato (destra) indica che una sola direzione domina: $\text {ER} \approx 1$. I casi reali (centro) mostrano un decadimento graduale, con $\text {ER}$ che quantifica il numero effettivo di direzioni informative}{figure.caption.75}{}}
+\newlabel{fig:effective_rank_spectrum@cref}{{[figure][53][]53}{[1][113][]113}{}{}{}}
+\newlabel{eq:scr}{{79}{114}{Quantificare la struttura: Effective Rank}{equation.79}{}}
+\newlabel{eq:scr@cref}{{[equation][79][]79}{[1][114][]114}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {54}{\ignorespaces Andamento qualitativo dell'Effective Rank al variare della capacità del SAE. Su dati casuali (tratteggiato), l'ER cresce linearmente con $n$: non ci sono correlazioni da sfruttare. Su dati reali (linea continua), l'ER cresce più lentamente: la struttura semantica introduce correlazioni che riducono la dimensionalità effettiva. Il gap tra le due curve, quantificato dal Semantic Compression Ratio, misura la ``compressione semantica'' del dominio.}}{114}{figure.caption.76}\protected@file@percent }
+\newlabel{fig:er_scaling}{{54}{114}{Andamento qualitativo dell'Effective Rank al variare della capacità del SAE. Su dati casuali (tratteggiato), l'ER cresce linearmente con $n$: non ci sono correlazioni da sfruttare. Su dati reali (linea continua), l'ER cresce più lentamente: la struttura semantica introduce correlazioni che riducono la dimensionalità effettiva. Il gap tra le due curve, quantificato dal Semantic Compression Ratio, misura la ``compressione semantica'' del dominio}{figure.caption.76}{}}
+\newlabel{fig:er_scaling@cref}{{[figure][54][]54}{[1][114][]114}{}{}{}}
 \@setckpt{chapters/05_prisma}{
-\setcounter{page}{112}
+\setcounter{page}{116}
 \setcounter{equation}{79}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}
@@ -185,13 +205,13 @@
 \setcounter{subsubsection}{4}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{50}
+\setcounter{figure}{54}
 \setcounter{table}{4}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
 \setcounter{lstnumber}{1}
 \setcounter{parentequation}{0}
-\setcounter{caption@flags}{0}
+\setcounter{caption@flags}{2}
 \setcounter{continuedfloat}{0}
 \setcounter{subfigure}{0}
 \setcounter{subtable}{0}
@@ -234,8 +254,6 @@
 \setcounter{maxparens}{3}
 \setcounter{parenlevel}{0}
 \setcounter{blx@maxsection}{0}
-\setcounter{blx@maxsegment@0}{0}
-\setcounter{blx@sectionciteorder@0}{39}
 \setcounter{mincomprange}{10}
 \setcounter{maxcomprange}{100000}
 \setcounter{mincompwidth}{1}
@@ -318,6 +336,7 @@
 \setcounter{smartand}{1}
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
+\setcounter{section@level}{3}
 \setcounter{Item}{105}
 \setcounter{Hfootnote}{0}
 \setcounter{bookmark@seq@number}{91}
@@ -327,5 +346,4 @@
 \setcounter{tcolorbox@number}{37}
 \setcounter{definition}{0}
 \setcounter{lstlisting}{0}
-\setcounter{section@level}{3}
 }
