@@ -65,7 +65,6 @@ Nel resto di questo capitolo descriveremo l'architettura tecnica che realizza qu
 Lo SparseAutoencoder (SAE) è l'architettura neurale al cuore di PRISMA. Come ogni autoencoder, è composto da un encoder che mappa l'input in una rappresentazione latente e un decoder che ricostruisce l'input a partire da essa. La differenza cruciale rispetto agli autoencoder classici—trattati nel Capitolo 2—risiede in due scelte progettuali che invertono la logica tradizionale: lo spazio latente è \textit{overcomplete} anziché compresso, e le attivazioni sono forzate a essere \textit{sparse}.
 \subsubsection{Panoramica dell'architettura}
 \label{subsubsec:sae_overview}
-
 Seguiamo il formalismo di O'Neill et al.~\parencite{oneill2024disentangling}. Sia $\mathbf{x} \in \mathbb{R}^d$ l'embedding di input (ad esempio, il vettore a 768 dimensioni prodotto da BERT) e $\mathbf{h} \in \mathbb{R}^n$ la rappresentazione latente, con $n > d$. L'architettura è definita da due insiemi di parametri apprendibili:
 \begin{equation}
     \theta = \{W_e, \mathbf{b}_e\}, \qquad \phi = \{W_d, \mathbf{b}_d\}
@@ -554,7 +553,7 @@ dove $\sigma(\cdot)$ è la ReLU.
     \begin{subfigure}[b]{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{pictures/cap5/8_vector_sparse_unsorted.png}
-        \caption{Vettore originale}
+        \caption{Rappresentazione sparsa delle attivazioni associate ad un singolo documento in input. Le attivazioni corrispondono a concetti.}
         \label{fig:vector_unsorted}
     \end{subfigure}
     
@@ -945,7 +944,37 @@ Nelle sezioni seguenti utilizzeremo queste matrici per identificare le \textit{f
 \subsubsection{Feature families: struttura gerarchica intra-SAE}
 \label{subsubsec:feature_families}
 
+
+
 L'analisi della matrice di co-occorrenza $C$ rivela un pattern caratteristico: esistono gruppi di feature con alta co-occorrenza interna e bassa co-occorrenza con l'esterno. Ma la struttura non è simmetrica all'interno dei gruppi. Tipicamente, una feature---il \textbf{parent}---co-occorre con tutte le altre del gruppo, mentre le altre---i \textbf{children}---co-occorrono col parent ma raramente tra loro.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap5/9_fam_1.png}
+    \caption{Grafo delle feature.}
+    \label{fig:feature_graph}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap5/10_fam_2.png}
+    \caption{Le feature si organizzano in grappoli che sono le feature families.}
+    \label{fig:feature_families_clusters}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap5/11_feature_fam_3.png}
+    \caption{In blu sono evidenziate feature che fanno da ponte tra più feature families.}
+    \label{fig:feature_bridges}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap5/12_featur_familis_children.png}
+    \caption{Feature figlie legate al loro genitore (cryptography).}
+    \label{fig:feature_children_cryptography}
+\end{figure}
 
 O'Neill et al.~\parencite{oneill2024disentangling} chiamano questi gruppi \textbf{feature families} e propongono un algoritmo per identificarli automaticamente a partire dalla matrice di co-occorrenza.
 
@@ -1257,8 +1286,6 @@ Il fenomeno dello splitting ha implicazioni pratiche importanti: SAE più grandi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Quantificare la struttura: Effective Rank}
 \label{subsubsec:effective_rank}
-
-
 Questa sezione presenta un contributo originale di questa tesi: l'applicazione dell'Effective Rank alla matrice di attivazione degli Sparse Autoencoder come metrica per quantificare la compressione semantica.
 Le sezioni precedenti hanno mostrato che le feature apprese da un SAE non sono indipendenti: si organizzano in famiglie gerarchiche (Sezione~\ref{subsubsec:feature_families}) e si scindono progressivamente al crescere della capacità (Sezione~\ref{subsubsec:feature_splitting}). Queste strutture implicano \textit{correlazioni sistematiche} nella matrice di attivazione $H$: feature della stessa famiglia tendono a co-attivarsi, feature da splitting si attivano su sottoinsiemi sovrapposti di documenti.
 Una conseguenza diretta è che la matrice $H \in \mathbb{R}^{N \times n}$, pur avendo $n$ colonne (feature), non utilizza realmente $n$ gradi di libertà indipendenti. La dimensionalità \textit{effettiva} del codice sparso è inferiore alla dimensionalità nominale. Quantificare questo gap permette di misurare quanto la struttura semantica del dominio ``comprime'' le rappresentazioni apprese.

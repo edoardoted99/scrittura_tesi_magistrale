@@ -106,7 +106,7 @@
 \contentsline {paragraph}{Matrice di similarità delle attivazioni.}{104}{section*.67}%
 \contentsline {paragraph}{Similarità geometrica tra SAE.}{104}{section*.68}%
 \contentsline {subsubsection}{\numberline {5.5.2}Feature families: struttura gerarchica intra-SAE}{105}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{108}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{112}{subsubsection.5.5.4}%
-\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{116}{section.6}%
-\contentsline {section}{\numberline {7}PubMed}{116}{section.7}%
+\contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{110}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{114}{subsubsection.5.5.4}%
+\contentsline {section}{\numberline {6}Qual `e la dimensionalit`a intrinseca della variet`a su cui poggia il linguaggio umano?}{118}{section.6}%
+\contentsline {section}{\numberline {7}PubMed}{118}{section.7}%
