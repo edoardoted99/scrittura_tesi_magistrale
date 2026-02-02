@@ -1,0 +1,318 @@
+\section{Risultati sperimentali e conclusioni}
+\label{sec:06_risultati_conclusioni}
+
+\epigraph{
+    In God we trust; all others must bring data.
+}{W. Edwards Deming}
+
+\newpage
+
+\subsection{Configurazione sperimentale}
+\label{subsec:experimental_setup}
+
+Questo capitolo presenta i risultati sperimentali ottenuti con PRISMA su diversi domini applicativi. Prima di discutere i risultati, descriviamo l'infrastruttura hardware e i dataset utilizzati.
+
+\subsubsection{Infrastruttura hardware}
+\label{subsubsec:hardware}
+
+Tutti gli esperimenti sono stati condotti su un sistema Apple Mac Studio equipaggiato con chip \textbf{M3 Ultra} e \textbf{512 GB di memoria unificata}. L'architettura a memoria unificata di Apple Silicon si è rivelata particolarmente vantaggiosa per questo tipo di workload: la condivisione dello stesso spazio di indirizzamento tra CPU e GPU elimina i colli di bottiglia tipici del trasferimento dati tra memoria di sistema e memoria video, permettendo di eseguire modelli linguistici di grandi dimensioni (come DeepSeek) senza le limitazioni imposte dalla VRAM dedicata delle GPU tradizionali.
+
+L'addestramento degli Sparse Autoencoder è stato accelerato tramite il framework Metal Performance Shaders (MPS), che sfrutta la GPU integrata nel chip M3 Ultra. La configurazione ha permesso di:
+\begin{itemize}
+    \item Addestrare SAE con expansion factor fino a $\rho = 52$ senza incorrere in limiti di memoria
+    \item Eseguire l'interpretazione automatica delle feature utilizzando LLM locali via Ollama
+    \item Processare corpus di milioni di documenti mantenendo l'intero dataset di embedding in memoria
+\end{itemize}
+
+\subsubsection{Dataset e modelli di embedding}
+\label{subsubsec:datasets}
+
+Gli esperimenti sono stati condotti su tre dataset, ciascuno con caratteristiche e obiettivi diversi.
+
+\paragraph{Dataset 1: Cartelle cliniche pediatriche (Pedianet).}
+Il primo dataset è costituito da cartelle cliniche pediatriche italiane provenienti dall'archivio \textbf{Pedianet}, una rete di pediatri di libera scelta che raccoglie dati clinici anonimizzati a scopo di ricerca. Questo dataset rappresenta la motivazione pragmatica originaria di PRISMA: sviluppare strumenti di interpretabilità per applicazioni cliniche dove la trasparenza delle decisioni algoritmiche è un requisito normativo e deontologico.
+
+Per la generazione degli embedding è stato utilizzato \textbf{MedBIT}~\parencite{medbit2023}, un modello di embedding specificamente addestrato su testi medici italiani. La scelta di un modello domain-specific è motivata dalla natura altamente specializzata del linguaggio clinico: abbreviazioni, terminologia tecnica, e strutture sintattiche tipiche delle note mediche richiedono un modello che abbia appreso queste convenzioni durante il pre-training.
+
+\paragraph{Dataset 2: Abstract scientifici arXiv.}
+Il secondo dataset è l'archivio \texttt{nick007x/arxiv-papers}, contenente circa \textbf{2,5 milioni di abstract} di articoli scientifici pubblicati su arXiv. Questo dataset permette di validare PRISMA su un dominio completamente diverso---la letteratura scientifica multidisciplinare---e di confrontare i risultati con quelli riportati da O'Neill et al.~\parencite{oneill2024disentangling} su dataset simili.
+
+Per gli embedding è stato utilizzato un modello \textbf{sentence-transformer} basato su architettura LLaMA, ottimizzato per la rappresentazione semantica di testi scientifici in lingua inglese.
+
+\paragraph{Dataset 3: Abstract per l'analisi dell'Effective Rank.}
+Per lo studio sistematico dell'Effective Rank (Sezione~\ref{subsec:effective_rank_results}) è stato utilizzato il dataset \texttt{batterydata/paper-abstracts}\footnote{\url{https://huggingface.co/datasets/batterydata/paper-abstracts}}, contenente \textbf{50.000 abstract} di articoli scientifici. La dimensione più contenuta di questo dataset ha permesso di condurre esperimenti sistematici variando l'expansion factor su un ampio range di valori, calcolando l'Effective Rank per ciascuna configurazione.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Riepilogo dei dataset e modelli di embedding utilizzati negli esperimenti.}
+    \label{tab:datasets_summary}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Dataset} & \textbf{Dominio} & \textbf{Dimensione} & \textbf{Modello embedding} \\
+        \midrule
+        Pedianet & Clinico (IT) & --- & MedBIT \\
+        arXiv papers & Scientifico (EN) & $\sim$2.5M abstract & LLaMA sentence-transformer \\
+        Paper abstracts & Scientifico (EN) & 50K abstract & LLaMA sentence-transformer \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estrazione e organizzazione delle feature}
+\label{subsec:feature_extraction_results}
+
+\subsubsection{Feature families nel dominio clinico}
+\label{subsubsec:clinical_features}
+
+L'applicazione di PRISMA al dataset Pedianet ha prodotto risultati qualitativamente promettenti. Le feature estratte dallo Sparse Autoencoder mostrano una chiara organizzazione semantica, con raggruppamenti che riflettono le categorie concettuali naturali del dominio pediatrico.
+
+L'analisi delle feature families (Sezione~\ref{subsubsec:feature_families}) ha rivelato strutture gerarchiche coerenti con la tassonomia medica. Sono emerse famiglie corrispondenti a:
+\begin{itemize}
+    \item \textbf{Sintomatologia}: feature parent come ``sintomi respiratori'' con children ``tosse'', ``dispnea'', ``rinorrea''
+    \item \textbf{Patologie infettive}: feature parent come ``infezioni'' con children ``otite'', ``faringite'', ``gastroenterite''
+    \item \textbf{Parametri clinici}: feature parent come ``esame obiettivo'' con children ``temperatura'', ``frequenza cardiaca'', ``saturazione''
+    \item \textbf{Interventi terapeutici}: feature parent come ``terapia farmacologica'' con children ``antibiotici'', ``antipiretici'', ``aerosol''
+\end{itemize}
+
+La struttura a stella tipica delle feature families---un parent generale connesso a children specifici che raramente co-occorrono tra loro---riflette la logica del ragionamento clinico: un paziente può presentare ``sintomi respiratori'' (parent attivo) manifestati come tosse \textit{oppure} dispnea (un solo child attivo), ma raramente entrambi con uguale prominenza.
+
+\subsubsection{Feature families nel dominio scientifico}
+\label{subsubsec:scientific_features}
+
+Sul dataset arXiv, le feature estratte mostrano un'organizzazione altrettanto coerente, con famiglie che mappano le aree disciplinari e le metodologie della ricerca scientifica. Esempi di famiglie identificate:
+\begin{itemize}
+    \item \textbf{Machine Learning}: parent ``ottimizzazione'' con children ``gradient descent'', ``Adam'', ``learning rate scheduling''
+    \item \textbf{Fisica delle particelle}: parent ``modello standard'' con children ``bosone di Higgs'', ``quark'', ``simmetrie di gauge''
+    \item \textbf{Astrofisica}: parent ``oggetti compatti'' con children ``buchi neri'', ``stelle di neutroni'', ``pulsar''
+\end{itemize}
+
+Questi risultati sono consistenti con quelli riportati da O'Neill et al.~\parencite{oneill2024disentangling}, confermando che la metodologia degli Sparse Autoencoder produce feature semanticamente interpretabili anche quando applicata con modelli di embedding e infrastrutture diverse.
+
+\begin{notebox}
+\textbf{Consistenza cross-dominio}\\
+Un risultato notevole è la \textit{consistenza strutturale} delle feature families tra domini completamente diversi (clinico vs.\ scientifico). In entrambi i casi emergono:
+\begin{itemize}
+    \item Gerarchie a due livelli (parent $\to$ children)
+    \item Topologia a stella (children raramente connessi tra loro)
+    \item Corrispondenza con tassonomie domain-specific preesistenti
+\end{itemize}
+Questa consistenza suggerisce che l'organizzazione gerarchica non è un artefatto del dominio, ma una proprietà emergente del modo in cui i modelli linguistici rappresentano i concetti.
+\end{notebox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Analisi dell'Effective Rank}
+\label{subsec:effective_rank_results}
+
+La sezione~\ref{subsubsec:effective_rank} ha introdotto l'Effective Rank come metrica per quantificare la dimensionalità effettiva dello spazio delle attivazioni. In questa sezione presentiamo i risultati sperimentali ottenuti sul dataset di 50.000 abstract, variando sistematicamente l'expansion factor $\rho$.
+
+\subsubsection{Setup sperimentale}
+\label{subsubsec:er_setup}
+
+Per ogni valore di expansion factor $\rho \in \{0.125, 1, 2, 3, 4, 6.5, 13, 26, 52\}$, sono stati addestrati due Sparse Autoencoder:
+\begin{enumerate}
+    \item \textbf{SAE su dati reali}: addestrato sugli embedding dei 50.000 abstract
+    \item \textbf{SAE su dati casuali} (ipotesi nulla): addestrato su vettori generati uniformemente in $\mathbb{R}^d$, privi di struttura semantica
+\end{enumerate}
+
+Per ciascun SAE è stata calcolata la matrice di attivazione $H \in \mathbb{R}^{N \times n}$ e il corrispondente Effective Rank secondo l'Equazione~\ref{eq:effective_rank}. Il confronto tra le due condizioni permette di isolare il contributo della struttura semantica alla compressione delle rappresentazioni.
+
+\subsubsection{Il problema del limite degli autovalori}
+\label{subsubsec:eigenvalue_limit}
+
+Il calcolo dell'Effective Rank richiede la decomposizione ai valori singolari (SVD) della matrice $H$. Il numero massimo di valori singolari non nulli è limitato da $\min(N, n)$, dove $N$ è il numero di documenti e $n$ la dimensionalità dello spazio latente.
+
+Nel nostro setup con $N = 50.000$ documenti e embedding di dimensione $d = 768$, per expansion factor elevati ($\rho > 13$) la dimensionalità latente $n = \rho \cdot d$ supera $N$. In questo regime, l'Effective Rank non può superare $N$, indipendentemente dalla struttura intrinseca dei dati.
+
+Questo fenomeno è documentato nella letteratura sull'Effective Rank~\parencite{roy2007effective}: quando il numero di campioni è inferiore alla dimensionalità, la matrice è \textit{rank-deficient} e l'entropia dello spettro singolare satura al valore $\log(\min(N,n))$.
+
+Per verificare empiricamente questo effetto, abbiamo condotto due serie di esperimenti:
+\begin{enumerate}
+    \item \textbf{Limite a 10.000 autovalori}: SVD troncata ai primi 10.000 valori singolari
+    \item \textbf{Limite a 40.000 autovalori}: SVD troncata ai primi 40.000 valori singolari
+\end{enumerate}
+
+\subsubsection{Risultati: Effective Rank vs.\ Expansion Factor}
+\label{subsubsec:er_results}
+
+La Figura~\ref{fig:er_10000} mostra i risultati con limite a 10.000 autovalori. Si osserva:
+\begin{itemize}
+    \item L'Effective Rank su dati casuali (curva arancione) cresce quasi linearmente con l'expansion factor, come atteso per dati privi di struttura
+    \item L'Effective Rank su dati reali (curva blu) cresce più lentamente, evidenziando la compressione dovuta alla struttura semantica
+    \item Entrambe le curve raggiungono un \textbf{plateau} intorno a 8.000--10.000, corrispondente al limite artificiale imposto dalla SVD troncata
+    \item Il Semantic Compression Ratio (SCR) cresce fino a $\sim$37\%, poi \textbf{decresce} quando entrambe le curve saturano al limite
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap6/erank_ds11_ksing10000_ksparse16_analysis_1.png}
+    \caption{Effective Rank in funzione dell'expansion factor, con limite a 10.000 autovalori. \textbf{Sopra}: confronto tra dati reali (blu) e ipotesi nulla (arancione). Il plateau oltre $\rho \approx 26$ è un artefatto del limite computazionale. \textbf{Sotto}: Semantic Compression Ratio. Il calo dopo il picco è dovuto alla saturazione di entrambe le curve al limite degli autovalori, non a una reale diminuzione della compressione semantica.}
+    \label{fig:er_10000}
+\end{figure}
+
+La Figura~\ref{fig:er_40000} mostra i risultati con limite esteso a 40.000 autovalori. I risultati sono qualitativamente diversi:
+\begin{itemize}
+    \item Il plateau scompare: l'Effective Rank continua a crescere per entrambe le condizioni
+    \item Il gap tra dati reali e casuali \textbf{aumenta} con l'expansion factor
+    \item Il Semantic Compression Ratio cresce \textbf{monotonicamente}, raggiungendo circa il 60\% per $\rho = 52$
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/cap6/erank_ds11_ksing40000_ksparse16_analysis_1.png}
+    \caption{Effective Rank in funzione dell'expansion factor, con limite a 40.000 autovalori. \textbf{Sopra}: senza il limite artificiale, l'Effective Rank continua a crescere. Il gap tra le due condizioni aumenta progressivamente. \textbf{Sotto}: il Semantic Compression Ratio cresce monotonicamente fino al 60\%, indicando che la struttura semantica comprime sempre più le rappresentazioni all'aumentare della capacità.}
+    \label{fig:er_40000}
+\end{figure}
+
+\subsubsection{Interpretazione dei risultati}
+\label{subsubsec:er_interpretation}
+
+I risultati dell'analisi dell'Effective Rank supportano due conclusioni principali.
+
+\paragraph{La struttura semantica comprime le rappresentazioni.}
+Il gap persistente tra dati reali e casuali---quantificato dal Semantic Compression Ratio---dimostra che i dati linguistici reali occupano una varietà di dimensionalità inferiore rispetto a dati casuali nella stessa configurazione architettonica. Questa compressione non è un artefatto del vincolo Top-K (presente in entrambe le condizioni), ma riflette le correlazioni intrinseche del dominio semantico: concetti correlati (febbre $\leftrightarrow$ infezione, gradiente $\leftrightarrow$ ottimizzazione) tendono a co-attivarsi, riducendo la dimensionalità effettiva.
+
+\paragraph{L'SCR crescente è consistente con il feature splitting.}
+L'aumento monotono del Semantic Compression Ratio con l'expansion factor (Figura~\ref{fig:er_40000}) è coerente con il fenomeno del feature splitting descritto nella Sezione~\ref{subsubsec:feature_splitting}. All'aumentare della capacità, le feature generali si scindono in sotto-feature più specifiche. Ma queste sotto-feature, pur essendo distinte, rimangono \textit{correlate}: appartengono alla stessa famiglia semantica, si attivano su sottoinsiemi sovrapposti di documenti, e le loro direzioni decoder formano angoli non ortogonali.
+
+In altre parole: il feature splitting aumenta il numero di feature \textit{nominali} ($n$), ma non aumenta proporzionalmente la dimensionalità \textit{effettiva} (ER). Le nuove feature emergenti non sono indipendenti dalle precedenti---sono loro specializzazioni. Questo spiega perché l'SCR \textit{aumenta} con l'expansion factor: più feature, ma meno indipendenza relativa.
+
+\begin{notebox}
+\textbf{Il paradosso della capacità, rivisitato}\\
+Nel Capitolo~\ref{sec:04_disentangling_dense_embeddings_with_sparse_autoencoders} abbiamo introdotto il paradosso della capacità: come può BERT rappresentare decine di migliaia di concetti con soli 768 neuroni?
+
+L'analisi dell'Effective Rank suggerisce una risposta parziale: quei concetti non sono \textit{indipendenti}. La struttura semantica del linguaggio---le relazioni tassonomiche, le co-occorrenze, le analogie---introduce correlazioni che permettono di ``comprimere'' molti concetti in poche dimensioni effettive.
+
+Lo Sparse Autoencoder non elimina queste correlazioni: le rende \textit{esplicite}, mappandole in famiglie e gerarchie interpretabili.
+\end{notebox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Discussione e limitazioni}
+\label{subsec:discussion}
+
+\subsubsection{Punti di forza}
+\label{subsubsec:strengths}
+
+I risultati presentati dimostrano che PRISMA è in grado di:
+\begin{enumerate}
+    \item \textbf{Estrarre feature interpretabili} da embedding densi, in domini diversi (clinico e scientifico)
+    \item \textbf{Identificare strutture gerarchiche} (feature families) coerenti con le tassonomie di dominio
+    \item \textbf{Quantificare la compressione semantica} attraverso l'Effective Rank, distinguendo il contributo della struttura dei dati da quello dell'architettura
+    \item \textbf{Operare su hardware consumer} (Mac con memoria unificata), senza richiedere cluster GPU dedicati
+\end{enumerate}
+
+La consistenza dei risultati tra domini diversi e la corrispondenza con i risultati della letteratura~\parencite{oneill2024disentangling} suggeriscono che le metodologie implementate sono robuste e generalizzabili.
+
+\subsubsection{Limitazioni}
+\label{subsubsec:limitations}
+
+Riconosciamo diverse limitazioni del presente lavoro.
+
+\paragraph{Validazione quantitativa limitata.}
+L'interpretabilità delle feature è stata valutata principalmente in modo qualitativo, attraverso l'ispezione manuale delle etichette prodotte dall'Interpreter LLM. Una validazione rigorosa richiederebbe:
+\begin{itemize}
+    \item Confronto con annotazioni umane indipendenti
+    \item Valutazione su task downstream (classificazione, retrieval)
+    \item Metriche formali di monosematicità (come proposto da O'Neill et al.)
+\end{itemize}
+
+\paragraph{Dipendenza dal modello di embedding.}
+Le feature estratte dipendono criticamente dal modello di embedding utilizzato. Un modello pre-addestrato su dati diversi, o con architettura diversa, potrebbe produrre feature qualitativamente differenti. Non abbiamo condotto studi sistematici di ablazione su questo aspetto.
+
+\paragraph{Scalabilità dell'interpretazione automatica.}
+L'interpretazione automatica tramite LLM locale (via Ollama) richiede tempo significativo per corpus di grandi dimensioni. Per il dataset arXiv con milioni di documenti, l'interpretazione completa di tutte le feature richiede diverse ore di elaborazione.
+
+\paragraph{Effective Rank come proxy.}
+L'Effective Rank è una metrica globale che non cattura la struttura fine delle correlazioni. Due matrici con lo stesso ER potrebbero avere strutture di correlazione molto diverse. Metriche complementari (come l'analisi della struttura dei cluster nello spazio latente) potrebbero fornire informazioni aggiuntive.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Conclusioni}
+\label{subsec:conclusions}
+
+Questa tesi ha presentato PRISMA, un sistema per l'analisi interpretabile degli embedding testuali basato su Sparse Autoencoder. Il lavoro ha affrontato il problema della \textit{superposition}---la codifica di molti concetti in poche dimensioni attraverso direzioni non ortogonali---proponendo una metodologia per ``scomporre'' le rappresentazioni dense in feature sparse e monosemantiche.
+
+I contributi principali sono:
+\begin{enumerate}
+    \item \textbf{Implementazione completa} di una pipeline per l'addestramento di SAE, l'interpretazione automatica delle feature, e l'analisi delle strutture gerarchiche (feature families)
+    
+    \item \textbf{Applicazione al dominio clinico}, dimostrando che le metodologie sviluppate per la ricerca sull'interpretabilità dei LLM possono essere trasferite a contesti applicativi dove la trasparenza è un requisito
+    
+    \item \textbf{Analisi dell'Effective Rank} come metrica per quantificare la compressione semantica, con risultati che supportano l'ipotesi che il feature splitting aumenti il numero di feature senza aumentare proporzionalmente la dimensionalità effettiva
+    
+    \item \textbf{Validazione cross-dominio}, mostrando consistenza strutturale tra feature families estratte da corpora clinici e scientifici
+\end{enumerate}
+
+Il nome PRISMA---scelto per l'analogia con il prisma ottico che scompone la luce bianca nelle sue componenti spettrali---si è rivelato appropriato: lo Sparse Autoencoder non aggiunge informazione agli embedding, ma la rende \textit{visibile}, separando ciò che era mescolato in una rappresentazione opaca.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sviluppi futuri}
+\label{subsec:future_work}
+
+I risultati ottenuti aprono diverse direzioni di ricerca. Presentiamo qui una prospettiva teorica che guiderà i prossimi sviluppi.
+
+\subsubsection{Verso una teoria degli invarianti semantici}
+\label{subsubsec:semantic_invariants}
+
+Un'osservazione ricorrente in questo lavoro è la \textit{consistenza} delle strutture estratte: le feature families hanno topologie simili in domini diversi, le gerarchie riflettono tassonomie preesistenti, l'Effective Rank mostra andamenti regolari. Questa consistenza suggerisce l'esistenza di strutture che si preservano attraverso rappresentazioni diverse.
+
+Proponiamo di formalizzare questa intuizione prendendo ispirazione dalla fisica teorica. Prima di Einstein, i fisici cercavano un sistema di riferimento privilegiato---l'\textit{etere}---rispetto al quale misurare il moto assoluto. La relatività ha capovolto la prospettiva: non esiste un riferimento privilegiato, ma esistono \textbf{invarianti}---quantità che restano identiche in tutti i sistemi di riferimento. L'intervallo spaziotemporale $ds^2 = c^2 dt^2 - dx^2 - dy^2 - dz^2$ è reale proprio perché è invariante.
+
+Analogamente, nel dominio semantico potremmo smettere di cercare la rappresentazione ``vera'' (densa? sparsa? umana?) e concentrarci sugli \textbf{invarianti semantici}---strutture che si preservano attraverso tutte le rappresentazioni del significato.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Parallelo tra fisica relativistica e semantica.}
+    \label{tab:relativity_analogy}
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Relatività} & \textbf{Semantica} \\
+        \midrule
+        Non esiste sistema di riferimento privilegiato & Non esiste rappresentazione semantica privilegiata \\
+        Tutti i sistemi inerziali sono equivalenti & Denso, sparso, umano sono equivalenti \\
+        Cercare l'etere era un errore & Cercare la rappresentazione ``vera'' è un errore \\
+        Le leggi fisiche sono invarianti & Le leggi semantiche sono invarianti \\
+        L'intervallo $ds^2$ è reale & Gli invarianti semantici sono reali \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Candidati invarianti}
+\label{subsubsec:candidate_invariants}
+
+Se gli invarianti semantici esistono, quali potrebbero essere? Proponiamo alcuni candidati da investigare:
+
+\begin{enumerate}
+    \item \textbf{Relazioni di analogia.} Se la relazione ``re : uomo = regina : donna'' vale nella rappresentazione densa, in quella sparsa, \textit{e} nei giudizi umani, allora è un invariante.
+    
+    \item \textbf{Strutture gerarchiche.} Se ``cane è un mammifero'' si preserva in tutte le rappresentazioni (come inclusione, vicinanza, o implicazione), è un invariante.
+    
+    \item \textbf{Ordini di similarità.} Se $A$ è più simile a $B$ che a $C$ in tutte le rappresentazioni:
+    \begin{equation}
+        d(A,B) < d(A,C) \quad \forall \text{ rappresentazioni}
+    \end{equation}
+    
+    \item \textbf{Struttura delle feature families.} Se la topologia a stella (parent $\to$ children) emerge indipendentemente dal dominio, dal modello di embedding, e dalla capacità del SAE, potrebbe essere un invariante strutturale.
+\end{enumerate}
+
+\subsubsection{Programma di ricerca}
+\label{subsubsec:research_program}
+
+Il programma di ricerca che proponiamo si articola in quattro fasi:
+
+\begin{enumerate}
+    \item \textbf{Identificazione empirica}: estendere l'analisi a più domini, più modelli di embedding, più lingue, cercando strutture che si preservano
+    
+    \item \textbf{Formalizzazione matematica}: sviluppare un framework formale per descrivere gli invarianti (teoria delle categorie? topologia algebrica? teoria dei gruppi?)
+    
+    \item \textbf{Validazione con dati umani}: confrontare le strutture estratte dai modelli con giudizi umani (similarità, categorizzazione, inferenza)
+    
+    \item \textbf{Predizioni falsificabili}: derivare predizioni non ovvie dagli invarianti ipotizzati e testarle empiricamente
+\end{enumerate}
+
+Se gli invarianti semantici esistono e sono formalizzabili, avremmo trovato qualcosa di analogo alle leggi della fisica per il dominio del significato. La domanda non sarebbe più ``cos'è il significato?'' ma ``cosa resta invariante quando cambiamo modo di rappresentare il significato?''
+
+\begin{notebox}
+\textbf{La tesi centrale degli sviluppi futuri}\\
+Gli invarianti semantici---strutture che si preservano attraverso tutte le rappresentazioni del significato---sono ontologicamente fondamentali. Le rappresentazioni particolari (densa, sparsa, umana, linguistica) sono proiezioni di questi invarianti, così come le coordinate $(x, y, z, t)$ sono proiezioni dell'intervallo spaziotemporale invariante.
+
+Se questa tesi è corretta, lo Sparse Autoencoder non è solo uno strumento di interpretabilità: è un \textit{microscopio} per osservare gli invarianti semantici---la struttura profonda del significato.
+\end{notebox}
