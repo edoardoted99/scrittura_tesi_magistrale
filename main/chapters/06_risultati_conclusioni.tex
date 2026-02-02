@@ -1,5 +1,5 @@
-\section{Risultati sperimentali e conclusioni}
-\label{sec:06_risultati_conclusioni}
+\section{Risultati sperimentali}
+\label{sec:06_risultati}
 
 \epigraph{
     In God we trust; all others must bring data.
@@ -7,55 +7,153 @@
 
 \newpage
 
-\subsection{Configurazione sperimentale}
-\label{subsec:experimental_setup}
-
-Questo capitolo presenta i risultati sperimentali ottenuti con PRISMA su diversi domini applicativi. Prima di discutere i risultati, descriviamo l'infrastruttura hardware e i dataset utilizzati.
-
+\subsection{Setup sperimentale}
+\label{subsec:setup}
+Prima di presentare i risultati ottenuti con PRISMA, è necessario descrivere l'infrastruttura hardware e software su cui sono stati condotti gli esperimenti. La scelta della piattaforma non è stata casuale: l'addestramento di Sparse Autoencoder e l'esecuzione di Large Language Models per l'interpretazione automatica delle feature richiedono risorse computazionali significative, in particolare per quanto riguarda la memoria disponibile. Inoltre, la natura sensibile dei dati trattati—cartelle cliniche pediatriche—ha imposto vincoli stringenti sulla localizzazione dell'elaborazione.
 \subsubsection{Infrastruttura hardware}
 \label{subsubsec:hardware}
-
-Tutti gli esperimenti sono stati condotti su un sistema Apple Mac Studio equipaggiato con chip \textbf{M3 Ultra} e \textbf{512 GB di memoria unificata}. L'architettura a memoria unificata di Apple Silicon si è rivelata particolarmente vantaggiosa per questo tipo di workload: la condivisione dello stesso spazio di indirizzamento tra CPU e GPU elimina i colli di bottiglia tipici del trasferimento dati tra memoria di sistema e memoria video, permettendo di eseguire modelli linguistici di grandi dimensioni (come DeepSeek) senza le limitazioni imposte dalla VRAM dedicata delle GPU tradizionali.
-
-L'addestramento degli Sparse Autoencoder è stato accelerato tramite il framework Metal Performance Shaders (MPS), che sfrutta la GPU integrata nel chip M3 Ultra. La configurazione ha permesso di:
-\begin{itemize}
-    \item Addestrare SAE con expansion factor fino a $\rho = 52$ senza incorrere in limiti di memoria
-    \item Eseguire l'interpretazione automatica delle feature utilizzando LLM locali via Ollama
-    \item Processare corpus di milioni di documenti mantenendo l'intero dataset di embedding in memoria
-\end{itemize}
-
-\subsubsection{Dataset e modelli di embedding}
-\label{subsubsec:datasets}
-
-Gli esperimenti sono stati condotti su tre dataset, ciascuno con caratteristiche e obiettivi diversi.
-
-\paragraph{Dataset 1: Cartelle cliniche pediatriche (Pedianet).}
-Il primo dataset è costituito da cartelle cliniche pediatriche italiane provenienti dall'archivio \textbf{Pedianet}, una rete di pediatri di libera scelta che raccoglie dati clinici anonimizzati a scopo di ricerca. Questo dataset rappresenta la motivazione pragmatica originaria di PRISMA: sviluppare strumenti di interpretabilità per applicazioni cliniche dove la trasparenza delle decisioni algoritmiche è un requisito normativo e deontologico.
-
-Per la generazione degli embedding è stato utilizzato \textbf{MedBIT}~\parencite{medbit2023}, un modello di embedding specificamente addestrato su testi medici italiani. La scelta di un modello domain-specific è motivata dalla natura altamente specializzata del linguaggio clinico: abbreviazioni, terminologia tecnica, e strutture sintattiche tipiche delle note mediche richiedono un modello che abbia appreso queste convenzioni durante il pre-training.
-
-\paragraph{Dataset 2: Abstract scientifici arXiv.}
-Il secondo dataset è l'archivio \texttt{nick007x/arxiv-papers}, contenente circa \textbf{2,5 milioni di abstract} di articoli scientifici pubblicati su arXiv. Questo dataset permette di validare PRISMA su un dominio completamente diverso---la letteratura scientifica multidisciplinare---e di confrontare i risultati con quelli riportati da O'Neill et al.~\parencite{oneill2024disentangling} su dataset simili.
-
-Per gli embedding è stato utilizzato un modello \textbf{sentence-transformer} basato su architettura LLaMA, ottimizzato per la rappresentazione semantica di testi scientifici in lingua inglese.
-
-\paragraph{Dataset 3: Abstract per l'analisi dell'Effective Rank.}
-Per lo studio sistematico dell'Effective Rank (Sezione~\ref{subsec:effective_rank_results}) è stato utilizzato il dataset \texttt{batterydata/paper-abstracts}\footnote{\url{https://huggingface.co/datasets/batterydata/paper-abstracts}}, contenente \textbf{50.000 abstract} di articoli scientifici. La dimensione più contenuta di questo dataset ha permesso di condurre esperimenti sistematici variando l'expansion factor su un ampio range di valori, calcolando l'Effective Rank per ciascuna configurazione.
-
+Gli esperimenti sono stati condotti su un \textbf{Mac Studio} equipaggiato con chip \textbf{Apple M3 Ultra} e \textbf{512 GB} di memoria unificata. La Tabella~\ref{tab:hardware_specs} riassume le specifiche tecniche della macchina.
 \begin{table}[htbp]
     \centering
-    \caption{Riepilogo dei dataset e modelli di embedding utilizzati negli esperimenti.}
-    \label{tab:datasets_summary}
-    \begin{tabular}{@{}llll@{}}
+    \caption{Specifiche hardware della macchina utilizzata per gli esperimenti.}
+    \label{tab:hardware_specs}
+    \begin{tabular}{@{}ll@{}}
         \toprule
-        \textbf{Dataset} & \textbf{Dominio} & \textbf{Dimensione} & \textbf{Modello embedding} \\
+        \textbf{Componente} & \textbf{Specifica} \\
         \midrule
-        Pedianet & Clinico (IT) & --- & MedBIT \\
-        arXiv papers & Scientifico (EN) & $\sim$2.5M abstract & LLaMA sentence-transformer \\
-        Paper abstracts & Scientifico (EN) & 50K abstract & LLaMA sentence-transformer \\
+        Modello & Mac Studio (Mac15,14) \\
+        Chip & Apple M3 Ultra \\
+        Core CPU & 32 (24 performance + 8 efficiency) \\
+        Core GPU & 80 \\
+        Neural Engine & 32 core \\
+        Memoria unificata & 512 GB \\
+        Bandwidth memoria & 819 GB/s \\
         \bottomrule
     \end{tabular}
 \end{table}
+La scelta di questa piattaforma è motivata da due fattori: una caratteristica architetturale distintiva dei chip Apple Silicon e un requisito di privacy imposto dalla natura dei dati.
+\paragraph{La Unified Memory Architecture.}
+A differenza delle architetture tradizionali, dove CPU e GPU dispongono di memorie separate (RAM di sistema e VRAM dedicata), nei chip Apple Silicon tutti i componenti computazionali—CPU, GPU e Neural Engine—condividono lo stesso pool di memoria fisica. Questa architettura, denominata \textbf{Unified Memory Architecture} (UMA), elimina un collo di bottiglia fondamentale nel deep learning: il trasferimento dati tra CPU e GPU.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        scale=0.95,
+        block/.style={draw, rectangle, rounded corners=4pt, minimum height=1.4cm, minimum width=2.8cm, font=\small, fill=#1, drop shadow={opacity=0.15}},
+        memory/.style={draw, rectangle, rounded corners=6pt, minimum height=1.6cm, minimum width=11cm, font=\small\bfseries, fill=green!15, drop shadow={opacity=0.2}},
+        arrow/.style={->, thick, gray!60},
+        biarrow/.style={<->, very thick, green!50!black}
+    ]
+        
+        % Contenitore chip (sfondo)
+        \fill[gray!8, rounded corners=10pt] (-6, -0.5) rectangle (6, 4.2);
+        \draw[thick, rounded corners=10pt, gray!40] (-6, -0.5) rectangle (6, 4.2);
+        
+        % Titolo chip
+        \node[font=\normalsize\bfseries, gray!70] at (0, 3.7) {Apple M3 Ultra SoC};
+        
+        % CPU block
+        \node[block=blue!25] (cpu) at (-3.5, 1.9) {
+            \begin{tabular}{c}
+                \textbf{CPU} \\
+                \scriptsize 24 Performance \\
+                \scriptsize 8 Efficiency
+            \end{tabular}
+        };
+        
+        % GPU block
+        \node[block=orange!25] (gpu) at (0, 1.9) {
+            \begin{tabular}{c}
+                \textbf{GPU} \\
+                \scriptsize 80 cores \\
+                \scriptsize Ray Tracing
+            \end{tabular}
+        };
+        
+        % Neural Engine block
+        \node[block=violet!25] (ne) at (3.5, 1.9) {
+            \begin{tabular}{c}
+                \textbf{Neural Engine} \\
+                \scriptsize 32 cores \\
+                \scriptsize 31 TOPS
+            \end{tabular}
+        };
+        
+        % Memory controller (barra)
+        \fill[gray!20, rounded corners=3pt] (-5, 0) rectangle (5, 0.5);
+        \draw[gray!50, rounded corners=3pt] (-5, 0) rectangle (5, 0.5);
+        \node[font=\scriptsize\bfseries, gray!70] at (0, 0.25) {Memory Fabric · 819 GB/s};
+        
+        % Frecce dai componenti al memory controller
+        \draw[arrow, line width=1.2pt] (cpu.south) -- ++(0, -0.35);
+        \draw[arrow, line width=1.2pt] (gpu.south) -- ++(0, -0.35);
+        \draw[arrow, line width=1.2pt] (ne.south) -- ++(0, -0.35);
+        
+        % Unified Memory (sotto)
+        \node[memory] (mem) at (0, -1.7) {Unified Memory — 512 GB LPDDR5};
+        
+        % Freccia bidirezionale memory controller <-> memoria
+        \draw[biarrow, line width=2pt] (0, -0.1) -- (0, -0.9);
+        
+        % Annotazioni software (fuori dal chip)
+        \node[font=\scriptsize, blue!60!black, align=center] (ann1) at (-3.5, -3.5) {PyTorch MPS\\SAE Training};
+        \draw[->, blue!50, thick, dashed] (ann1.north) -- (-3.5, -2.5);
+        
+        \node[font=\scriptsize, orange!70!black, align=center] (ann2) at (0, -3.5) {BERT\\Embeddings};
+        \draw[->, orange!50, thick, dashed] (ann2.north) -- (0, -2.5);
+        
+        \node[font=\scriptsize, violet!60!black, align=center] (ann3) at (3.5, -3.5) {Ollama\\LLM Interpreter};
+        \draw[->, violet!50, thick, dashed] (ann3.north) -- (3.5, -2.5);
+        
+        % Nota zero-copy
+        \node[draw, rounded corners=3pt, fill=yellow!10, font=\scriptsize, inner sep=4pt] at (0, -4.5) {Zero-copy: tutti i componenti accedono agli stessi dati senza trasferimenti};
+        
+    \end{tikzpicture}
+    \caption{Architettura del chip Apple M3 Ultra con Unified Memory Architecture (UMA). I tre componenti computazionali—CPU, GPU e Neural Engine—condividono lo stesso pool di 512 GB di memoria LPDDR5, accessibile attraverso un memory fabric con bandwidth aggregato di 819 GB/s. Il \textbf{Neural Engine} è un acceleratore hardware dedicato alle operazioni di machine learning (moltiplicazioni matriciali, convoluzioni), capace di 31 trilioni di operazioni al secondo (TOPS); viene sfruttato da Ollama per accelerare l'inferenza dei Large Language Models utilizzati come interpreti delle feature. L'architettura elimina i trasferimenti CPU-GPU tipici dei sistemi con memorie separate, abilitando workflow che alternano preprocessing (CPU), training (GPU) e inferenza LLM (Neural Engine) sugli stessi dati.}
+    \label{fig:m3_ultra_architecture}
+\end{figure}
+\paragraph{Il collo di bottiglia nelle architetture tradizionali.}
+Per comprendere il vantaggio della UMA, è utile considerare come funzionano le architetture convenzionali. In un sistema con CPU e GPU discrete, i due processori dispongono di memorie fisicamente separate: la RAM di sistema (accessibile alla CPU) e la VRAM (accessibile alla GPU). Quando si addestra una rete neurale, i dati devono essere copiati dalla RAM alla VRAM prima di ogni operazione su GPU, e i risultati devono essere copiati indietro per l'elaborazione su CPU.
+Il canale di comunicazione tra CPU e GPU è il bus \textbf{PCIe} (Peripheral Component Interconnect Express). Anche nelle configurazioni più recenti, il bandwidth di questo canale è ordini di grandezza inferiore a quello della memoria locale:
+\begin{table}[htbp]
+    \centering
+    \caption{Confronto del memory bandwidth tra architetture. Il bandwidth misura quanti dati possono essere trasferiti al secondo tra memoria e processori—un fattore critico per workload memory-bound come l'inferenza di LLM.}
+    \label{tab:bandwidth_comparison}
+    \begin{tabular}{@{}lrl@{}}
+        \toprule
+        \textbf{Interfaccia} & \textbf{Bandwidth} & \textbf{Note} \\
+        \midrule
+        PCIe 4.0 x16 & 32 GB/s & Standard attuale per GPU \\
+        PCIe 5.0 x16 & 64 GB/s & Ultima generazione \\
+        \midrule
+        NVIDIA RTX 4090 (VRAM) & 1.008 GB/s & Memoria locale GPU \\
+        NVIDIA A100 80GB (VRAM) & 2.039 GB/s & GPU professionale \\
+        \midrule
+        \textbf{Apple M3 Ultra (UMA)} & \textbf{819 GB/s} & Memoria unificata \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Il problema emerge chiaramente: anche se la VRAM di una GPU NVIDIA ha bandwidth elevatissimo (1-2 TB/s), i dati devono prima \textit{attraversare} il bus PCIe, che è 15-30 volte più lento. Per workload che richiedono frequenti trasferimenti CPU-GPU—come l'addestramento di autoencoder con preprocessing su CPU—questo diventa il collo di bottiglia dominante.
+\begin{notebox}
+\textbf{Analogia: il magazzino e la porta}\\[0.5em]
+Il memory bandwidth può essere compreso con un'analogia. Immaginiamo la memoria come un magazzino e i processori (CPU/GPU) come operai che devono lavorare i materiali:
+\begin{itemize}
+    \item La \textbf{capacità della memoria} (512 GB) corrisponde alla dimensione del magazzino
+    \item Il \textbf{memory bandwidth} (819 GB/s) corrisponde alla larghezza della porta
+\end{itemize}
+Un magazzino enorme con una porta stretta costringe gli operai ad aspettare i materiali. Nelle architetture tradizionali, la ``porta'' tra CPU e GPU (il bus PCIe) è molto più stretta della ``porta'' verso le rispettive memorie locali. Con la UMA, CPU e GPU condividono lo stesso magazzino e la stessa porta—larga 819 GB/s.
+\end{notebox}
+Con la Unified Memory Architecture, questo collo di bottiglia scompare. Un tensore allocato in memoria è immediatamente accessibile sia dalla CPU che dalla GPU, senza alcuna copia (\textit{zero-copy}). Il bandwidth di 819 GB/s—25 volte superiore a PCIe 4.0—è disponibile per \textit{tutti} i componenti simultaneamente.
+\paragraph{Superamento dei limiti della VRAM.}
+
+Il secondo vantaggio della UMA riguarda la capacità. Le GPU consumer più potenti (NVIDIA RTX 4090) dispongono di 24 GB di VRAM; le GPU professionali (NVIDIA A100) arrivano a 80 GB. Con 512 GB di memoria unificata, il Mac Studio può caricare modelli che eccederebbero la VRAM di qualsiasi GPU singola.
+Questo è particolarmente rilevante per i Large Language Models. DeepSeek-V3, con 671 miliardi di parametri, richiede circa 400 GB di memoria anche in formato quantizzato\footnote{La quantizzazione riduce la precisione dei pesi (ad esempio da 16 bit a 4 bit) per diminuire l'occupazione di memoria. Una trattazione dettagliata è riportata in Appendice~\ref{app:quantization}.}. Sul Mac Studio utilizzato, è possibile eseguire questo modello interamente in memoria, senza ricorrere a tecniche di \textit{offloading} su disco o a cluster multi-GPU—opzioni che introdurrebbero latenza significativa e complessità architetturale.
+\paragraph{Metal Performance Shaders (MPS).}
+PyTorch supporta l'accelerazione GPU su Apple Silicon attraverso il backend MPS (\texttt{torch.device("mps")}). Questo permette di sfruttare gli 80 core GPU del M3 Ultra per l'addestramento degli Sparse Autoencoder, ottenendo prestazioni significativamente superiori rispetto all'esecuzione su sola CPU.
+\paragraph{Requisiti di privacy: elaborazione locale dei dati clinici.}
+Oltre ai vantaggi prestazionali, la scelta di un'infrastruttura locale è stata dettata da un requisito non negoziabile: la \textbf{privacy dei dati}. Il corpus utilizzato per gli esperimenti è costituito da cartelle cliniche pediatriche che, sebbene anonimizzate, contengono informazioni sensibili che non possono essere trasmesse a servizi cloud esterni.
+L'utilizzo di API cloud per l'interpretazione delle feature—ad esempio, inviando i testi attivanti a GPT-4 o Claude—avrebbe comportato il trasferimento di dati clinici su server di terze parti, una pratica incompatibile con le normative sulla protezione dei dati sanitari e con i principi etici della ricerca medica. La disponibilità di 512 GB di memoria unificata ha permesso di eseguire \textit{localmente} modelli linguistici di grande scala (DeepSeek, Llama, Qwen) attraverso Ollama, garantendo che nessun dato clinico lasciasse mai la macchina.
+Questa configurazione—elaborazione interamente on-premise con hardware sufficientemente potente da eseguire LLM di frontiera—rappresenta attualmente una soluzione rara nel panorama del deep learning, dove la maggior parte dei workflow assume l'accesso a risorse cloud. Il Mac Studio con M3 Ultra e 512 GB di memoria è una delle poche piattaforme consumer che rende possibile questo approccio.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Estrazione e organizzazione delle feature}

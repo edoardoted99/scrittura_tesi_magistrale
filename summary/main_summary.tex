@@ -30,13 +30,11 @@
 
 
 \AddToShipoutPictureBG*{%
-  \AtPageUpperRight{%
-    \raisebox{2.5cm}{%
-      \hspace{-2cm}%
-      \transparent{0.25}%
-      \includegraphics[width=26cm]{prism.jpg}%
-    }%
-  }%
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north east, opacity=0.25] 
+      at ([xshift=-2cm, yshift=-2.5cm]current page.north east) 
+      {\includegraphics[width=26cm]{prism.jpg}};
+  \end{tikzpicture}%
 }
 % --- INTESTAZIONE COMPATTA ---
 \twocolumn[

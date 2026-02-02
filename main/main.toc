@@ -51,13 +51,13 @@
 \contentsline {paragraph}{Geometria dell'analogia: il modello del parallelogramma.}{39}{section*.29}%
 \contentsline {subsubsection}{\numberline {3.2.3}Limiti degli embeddings statici}{39}{subsubsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.3}Embeddings dinamici (contestuali)}{41}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}RNN: memoria sequenziale}{42}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.1}RNN: memoria sequenziale}{43}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}LSTM: controllare il flusso di informazione}{44}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Bidirezionalità}{46}{subsubsection.3.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.4}Encoder-Decoder: trasformare sequenze}{48}{subsubsection.3.3.4}%
 \contentsline {subsubsection}{\numberline {3.3.5}Attenzione: superare il bottleneck}{50}{subsubsection.3.3.5}%
 \contentsline {subsubsection}{\numberline {3.3.6}Transformer: attenzione senza ricorrenza}{52}{subsubsection.3.3.6}%
-\contentsline {subsubsection}{\numberline {3.3.7}BERT: codifica bidirezionale}{55}{subsubsection.3.3.7}%
+\contentsline {subsubsection}{\numberline {3.3.7}BERT: codifica bidirezionale}{54}{subsubsection.3.3.7}%
 \contentsline {paragraph}{Pre-training e fine-tuning.}{56}{section*.38}%
 \contentsline {paragraph}{Il problema dell'opacità.}{56}{section*.39}%
 \contentsline {section}{\numberline {4}Il problema del Disentanglement}{58}{section.4}%
@@ -108,32 +108,33 @@
 \contentsline {subsubsection}{\numberline {5.5.2}Feature families: struttura gerarchica intra-SAE}{105}{subsubsection.5.5.2}%
 \contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{110}{subsubsection.5.5.3}%
 \contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{114}{subsubsection.5.5.4}%
-\contentsline {section}{\numberline {6}Risultati sperimentali e conclusioni}{118}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Configurazione sperimentale}{119}{subsection.6.1}%
+\contentsline {section}{\numberline {6}Risultati sperimentali}{118}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Setup sperimentale}{119}{subsection.6.1}%
 \contentsline {subsubsection}{\numberline {6.1.1}Infrastruttura hardware}{119}{subsubsection.6.1.1}%
-\contentsline {subsubsection}{\numberline {6.1.2}Dataset e modelli di embedding}{119}{subsubsection.6.1.2}%
-\contentsline {paragraph}{Dataset 1: Cartelle cliniche pediatriche (Pedianet).}{119}{section*.81}%
-\contentsline {paragraph}{Dataset 2: Abstract scientifici arXiv.}{120}{section*.82}%
-\contentsline {paragraph}{Dataset 3: Abstract per l'analisi dell'Effective Rank.}{120}{section*.83}%
-\contentsline {subsection}{\numberline {6.2}Estrazione e organizzazione delle feature}{121}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}Feature families nel dominio clinico}{121}{subsubsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2}Feature families nel dominio scientifico}{121}{subsubsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.3}Analisi dell'Effective Rank}{122}{subsection.6.3}%
-\contentsline {subsubsection}{\numberline {6.3.1}Setup sperimentale}{122}{subsubsection.6.3.1}%
-\contentsline {subsubsection}{\numberline {6.3.2}Il problema del limite degli autovalori}{123}{subsubsection.6.3.2}%
-\contentsline {subsubsection}{\numberline {6.3.3}Risultati: Effective Rank vs.\ Expansion Factor}{123}{subsubsection.6.3.3}%
-\contentsline {subsubsection}{\numberline {6.3.4}Interpretazione dei risultati}{124}{subsubsection.6.3.4}%
-\contentsline {paragraph}{La struttura semantica comprime le rappresentazioni.}{124}{section*.87}%
-\contentsline {paragraph}{L'SCR crescente è consistente con il feature splitting.}{124}{section*.88}%
-\contentsline {subsection}{\numberline {6.4}Discussione e limitazioni}{127}{subsection.6.4}%
-\contentsline {subsubsection}{\numberline {6.4.1}Punti di forza}{127}{subsubsection.6.4.1}%
-\contentsline {subsubsection}{\numberline {6.4.2}Limitazioni}{128}{subsubsection.6.4.2}%
-\contentsline {paragraph}{Validazione quantitativa limitata.}{128}{section*.89}%
-\contentsline {paragraph}{Dipendenza dal modello di embedding.}{128}{section*.90}%
-\contentsline {paragraph}{Scalabilità dell'interpretazione automatica.}{128}{section*.91}%
-\contentsline {paragraph}{Effective Rank come proxy.}{128}{section*.92}%
-\contentsline {subsection}{\numberline {6.5}Conclusioni}{128}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Sviluppi futuri}{129}{subsection.6.6}%
-\contentsline {subsubsection}{\numberline {6.6.1}Verso una teoria degli invarianti semantici}{129}{subsubsection.6.6.1}%
-\contentsline {subsubsection}{\numberline {6.6.2}Candidati invarianti}{130}{subsubsection.6.6.2}%
-\contentsline {subsubsection}{\numberline {6.6.3}Programma di ricerca}{131}{subsubsection.6.6.3}%
+\contentsline {paragraph}{La Unified Memory Architecture.}{119}{section*.82}%
+\contentsline {paragraph}{Il collo di bottiglia nelle architetture tradizionali.}{121}{section*.84}%
+\contentsline {paragraph}{Superamento dei limiti della VRAM.}{122}{section*.86}%
+\contentsline {paragraph}{Metal Performance Shaders (MPS).}{123}{section*.87}%
+\contentsline {paragraph}{Requisiti di privacy: elaborazione locale dei dati clinici.}{123}{section*.88}%
+\contentsline {subsection}{\numberline {6.2}Estrazione e organizzazione delle feature}{123}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Feature families nel dominio clinico}{123}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Feature families nel dominio scientifico}{124}{subsubsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.3}Analisi dell'Effective Rank}{125}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Setup sperimentale}{125}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}Il problema del limite degli autovalori}{126}{subsubsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.3}Risultati: Effective Rank vs.\ Expansion Factor}{126}{subsubsection.6.3.3}%
+\contentsline {subsubsection}{\numberline {6.3.4}Interpretazione dei risultati}{128}{subsubsection.6.3.4}%
+\contentsline {paragraph}{La struttura semantica comprime le rappresentazioni.}{128}{section*.91}%
+\contentsline {paragraph}{L'SCR crescente è consistente con il feature splitting.}{128}{section*.92}%
+\contentsline {subsection}{\numberline {6.4}Discussione e limitazioni}{130}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Punti di forza}{130}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Limitazioni}{130}{subsubsection.6.4.2}%
+\contentsline {paragraph}{Validazione quantitativa limitata.}{131}{section*.93}%
+\contentsline {paragraph}{Dipendenza dal modello di embedding.}{131}{section*.94}%
+\contentsline {paragraph}{Scalabilità dell'interpretazione automatica.}{131}{section*.95}%
+\contentsline {paragraph}{Effective Rank come proxy.}{131}{section*.96}%
+\contentsline {subsection}{\numberline {6.5}Conclusioni}{131}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Sviluppi futuri}{132}{subsection.6.6}%
+\contentsline {subsubsection}{\numberline {6.6.1}Verso una teoria degli invarianti semantici}{132}{subsubsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.2}Candidati invarianti}{133}{subsubsection.6.6.2}%
+\contentsline {subsubsection}{\numberline {6.6.3}Programma di ricerca}{134}{subsubsection.6.6.3}%

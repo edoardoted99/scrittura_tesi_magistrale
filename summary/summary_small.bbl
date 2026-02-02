@@ -1,0 +1,257 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{devlin2018bert}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=13202969e372bc82318f9629cbdd199b}{%
+           family={Devlin},
+           familyi={D\bibinitperiod},
+           given={Jacob},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a45784fe7163b45f11d166564f5d24b6}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Ming-Wei},
+           giveni={M\bibinithyphendelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8dde73b4194f5bc4230c4808f3fc1534}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Kenton},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b92aa283415413bb8d2a1548716d0c7d}{%
+           family={Toutanova},
+           familyi={T\bibinitperiod},
+           given={Kristina},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ad8e2e2a80d28ade21e86852b804fc9b}
+      \strng{fullhash}{e8bccd48302a14eeba57d9dce2f49ef4}
+      \strng{bibnamehash}{ad8e2e2a80d28ade21e86852b804fc9b}
+      \strng{authorbibnamehash}{ad8e2e2a80d28ade21e86852b804fc9b}
+      \strng{authornamehash}{ad8e2e2a80d28ade21e86852b804fc9b}
+      \strng{authorfullhash}{e8bccd48302a14eeba57d9dce2f49ef4}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1810.04805}
+      \field{title}{Bert: Pre-training of deep bidirectional transformers for language understanding}
+      \field{year}{2018}
+    \endentry
+    \entry{elhage2022toy}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=541f016661382ea2cc54ea767573b9c3}{%
+           family={Elhage},
+           familyi={E\bibinitperiod},
+           given={Nelson},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e2328e4d29e6d57481f844919121200c}{%
+           family={Hume},
+           familyi={H\bibinitperiod},
+           given={Tristan},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bd24844b3abaa88e1f3c5c074ad37ab6}{%
+           family={Olsson},
+           familyi={O\bibinitperiod},
+           given={Catherine},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=145ba94765ef92b3094332c3fa573d26}{%
+           family={Schiefer},
+           familyi={S\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{61579b5b16e1bfa48390e215a6b71526}
+      \strng{fullhash}{6d8b189c5fea082f4f579cf91359b886}
+      \strng{bibnamehash}{61579b5b16e1bfa48390e215a6b71526}
+      \strng{authorbibnamehash}{61579b5b16e1bfa48390e215a6b71526}
+      \strng{authornamehash}{61579b5b16e1bfa48390e215a6b71526}
+      \strng{authorfullhash}{6d8b189c5fea082f4f579cf91359b886}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transformer Circuits Thread}
+      \field{title}{Toy Models of Superposition}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://transformer-circuits.pub/2022/toy_model/index.html
+      \endverb
+      \verb{url}
+      \verb https://transformer-circuits.pub/2022/toy_model/index.html
+      \endverb
+    \endentry
+    \entry{oneill2024disentangling}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=69f0f7754cd9377608027f4e9f84d6f1}{%
+           family={O'Neill},
+           familyi={O\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=58397e456d4d4cd5287ec055cc87172f}{%
+           family={Iyer},
+           familyi={I\bibinitperiod},
+           given={Kartheik},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a1b057e8539f7a0e730d81d87fe3e530}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Christine},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=25db2fd4c553d010436719b2056ecb6c}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={John\bibnamedelima F},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0f3b4bd500adafc0db8f7c948acc0d1d}
+      \strng{fullhash}{c05b4ca2833e458b9c2ff3f9c664419d}
+      \strng{bibnamehash}{0f3b4bd500adafc0db8f7c948acc0d1d}
+      \strng{authorbibnamehash}{0f3b4bd500adafc0db8f7c948acc0d1d}
+      \strng{authornamehash}{0f3b4bd500adafc0db8f7c948acc0d1d}
+      \strng{authorfullhash}{c05b4ca2833e458b9c2ff3f9c664419d}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2408.00657}
+      \field{title}{Disentangling Dense Embeddings with Sparse Autoencoders}
+      \field{year}{2024}
+    \endentry
+    \entry{roy2007effective}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=e963ebbeb84e66462245bfe8e4b6639a}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=75e722dac26b8548b09550c9c47606ab}{%
+           family={Vetterli},
+           familyi={V\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{e78fcf735a64042e77a1183b36ad5ee7}
+      \strng{fullhash}{e78fcf735a64042e77a1183b36ad5ee7}
+      \strng{bibnamehash}{e78fcf735a64042e77a1183b36ad5ee7}
+      \strng{authorbibnamehash}{e78fcf735a64042e77a1183b36ad5ee7}
+      \strng{authornamehash}{e78fcf735a64042e77a1183b36ad5ee7}
+      \strng{authorfullhash}{e78fcf735a64042e77a1183b36ad5ee7}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{15th European Signal Processing Conference}
+      \field{title}{The effective rank: A measure of effective dimensionality}
+      \field{year}{2007}
+      \field{pages}{606\bibrangedash 610}
+      \range{pages}{5}
+    \endentry
+    \entry{wang2024disentangledrepresentationlearning}{misc}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=03d3e23852937fa39b0e34246c4ecd1d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b2dcceb92d2313a3f299f0bec1d21c7c}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Hong},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2706f7497430a3e24c27c2c0421ca372}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Si'ao},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=620e472be0dfe4a9b5cb886e4d2e21cf}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Zihao},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0676a6e59032b74998e77a785a02670f}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Wenwu},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{fullhash}{e32a49608d8fa1f36442339ab30dfca7}
+      \strng{bibnamehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{authorbibnamehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{authornamehash}{aeaae95a3851acdb0d7c761eee05b973}
+      \strng{authorfullhash}{e32a49608d8fa1f36442339ab30dfca7}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LG}
+      \field{eprinttype}{arXiv}
+      \field{title}{Disentangled Representation Learning}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2211.11695
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2211.11695
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2211.11695
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
