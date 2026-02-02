@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  2 FEB 2026 15:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  2 FEB 2026 15:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main_summary.tex
-(./main_summary.tex
+**summary/main_summary.tex
+(./summary/main_summary.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -887,7 +887,7 @@ Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'italian'.
 
-No file main_summary.aux.
+(./main_summary.aux)
 \openout1 = `main_summary.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
@@ -910,6 +910,7 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
 LaTeX Font Info:    ... okay on input line 29.
 LaTeX Info: Redefining \it@ocap on input line 29.
 LaTeX Info: Redefining \it@ccap on input line 29.
+
 
 File italian.ldf warning: 
 italian.ldf    With OT1 encoding guillemets are poorly faked
@@ -989,6 +990,8 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 29.
 LaTeX Info: Redefining \pageref on input line 29.
 LaTeX Info: Redefining \nameref on input line 29.
+
+(./main_summary.out) (./main_summary.out)
 \@outlinefile=\write5
 \openout5 = `main_summary.out'.
 
@@ -1032,198 +1035,34 @@ LaTeX Warning: Citation 'devlin2018bert' on page 1 undefined on input line 59.
 LaTeX Warning: Citation 'wang2024disentangledrepresentationlearning' on page 1 
 undefined on input line 59.
 
-<home.png, id=8, 1075.01625pt x 811.03pt>
-File: home.png Graphic file (type png)
-<use home.png>
-Package pdftex.def Info: home.png  used on input line 62.
-(pdftex.def)             Requested size: 247.5389pt x 186.74335pt.
 
-LaTeX Warning: Citation 'elhage2022toy' on page 1 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'elhage2022toy' on page 1 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 1 undefined on input 
-line 66.
-
-
-LaTeX Warning: Reference `fig:home_prisa' on page 1 undefined on input line 67.
-
-
-<ae_no_semantics.png, id=9, 1156.32pt x 505.89pt>
-File: ae_no_semantics.png Graphic file (type png)
-<use ae_no_semantics.png>
-Package pdftex.def Info: ae_no_semantics.png  used on input line 99.
-(pdftex.def)             Requested size: 247.5389pt x 108.29335pt.
-
-LaTeX Warning: Reference `fig:ae_no_semantics' on page 1 undefined on input lin
-e 103.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 1 undefined on input 
-line 106.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 1 undefined on input 
-line 106.
-
-
-Underfull \hbox (badness 3168) in paragraph at lines 106--133
-\OT1/cmr/m/n/10 ta-bi-li, Pri-sma uti-liz-za uno \OT1/cmr/bx/n/10 Spar-se Au-to
-en-co-der
- []
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
- <./home.png> <./ae_no_semantics.png>]
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 2 undefined on input 
-line 134.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 2 undefined on input 
-line 148.
-
-
-LaTeX Warning: Citation 'elhage2022toy' on page 2 undefined on input line 149.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 2 undefined on input 
-line 154.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 2 undefined on input 
-line 162.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 2 undefined on input 
-line 165.
-
-
-Underfull \hbox (badness 1931) in paragraph at lines 165--166
-\OT1/cmr/m/n/10 Per mi-ti-ga-re il pro-ble-ma dei \OT1/cmr/m/it/10 dead la-ten-
-ts \OT1/cmr/m/n/10 (fea-tu-re
- []
-
-
-Underfull \hbox (badness 1067) in paragraph at lines 165--166
-\OT1/cmr/m/n/10 che re-sta-no inat-ti-ve su sca-la di trai-ning, ad esem-
- []
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 2 undefined on input 
-line 170.
-
-<latent_matrix.png, id=37, 722.7pt x 433.62pt>
-File: latent_matrix.png Graphic file (type png)
-<use latent_matrix.png>
-Package pdftex.def Info: latent_matrix.png  used on input line 177.
-(pdftex.def)             Requested size: 247.5389pt x 148.52057pt.
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 2 undefined on input 
-line 183.
-
-[2 <./latent_matrix.png>]
-<architecture.png, id=61, 1103.12125pt x 583.17876pt>
-File: architecture.png Graphic file (type png)
-<use architecture.png>
-Package pdftex.def Info: architecture.png  used on input line 187.
-(pdftex.def)             Requested size: 247.5389pt x 130.8625pt.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 3 undefined on input 
-line 188.
-
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 3 undefined on input 
-line 188.
-
-
-Underfull \hbox (badness 1694) in paragraph at lines 188--188
-[]\OT1/cmr/m/n/10 Figura 6: []Processo di trai-ning e fea-tu-re la-bel-ling
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 188--188
-\OT1/cmr/m/n/10 del SAE: in-ter-pre-ta-zio-ne del-le fea-tu-re tra-mi-te LLM
- []
-
-
-Underfull \hbox (badness 4940) in paragraph at lines 192--192
-[]\OT1/cmr/bx/n/14.4 Analisi del-la Di-men-sio-na-lit^^Ra:
- []
-
-
-LaTeX Warning: Citation 'roy2007effective' on page 3 undefined on input line 19
-3.
-
-<erank_scr_twinaxis_scr_red.png, id=62, 794.97pt x 433.62pt>
-File: erank_scr_twinaxis_scr_red.png Graphic file (type png)
-<use erank_scr_twinaxis_scr_red.png>
-Package pdftex.def Info: erank_scr_twinaxis_scr_red.png  used on input line 208
-.
-(pdftex.def)             Requested size: 247.5389pt x 135.0229pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: Empty bibliography on input line 215.
-
-[3 <./architecture.png> <./erank_scr_twinaxis_scr_red.png>] (./main_summary.aux
-)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main_summary.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main_summary.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  FCFEBA74F6A69CB35FFD37EE2D4E8534;2261.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main_summary
-(biblatex)                and rerun LaTeX afterwards.
-
-Package logreq Info: Writing requests to 'main_summary.run.xml'.
-\openout1 = `main_summary.run.xml'.
-
- ) 
+LaTeX Warning: File `home.png' not found on input line 62.
+
+
+! Package pdftex.def Error: File `home.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.62 ...ncludegraphics[width=\linewidth]{home.png}
+                                                  
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.62 ...ncludegraphics[width=\linewidth]{home.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+ 
 Here is how much of TeX's memory you used:
- 30944 strings out of 480122
- 588446 string characters out of 5893077
- 1300255 words of memory out of 5000000
- 48424 multiletter control sequences out of 15000+600000
- 479467 words of font info for 66 fonts, out of 8000000 for 9000
+ 30742 strings out of 480122
+ 584493 string characters out of 5893077
+ 1271490 words of memory out of 5000000
+ 48248 multiletter control sequences out of 15000+600000
+ 477574 words of font info for 60 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 84i,9n,89p,1268b,1355s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main_summary.pdf (3 pages, 2330801 bytes).
-PDF statistics:
- 154 PDF objects out of 1000 (max. 8388607)
- 105 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 84i,7n,89p,1276b,1165s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

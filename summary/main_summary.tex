@@ -29,13 +29,15 @@
 \begin{document}
 
 
-\AddToShipoutPictureBG*{%
-  \begin{tikzpicture}[remember picture, overlay]
-    \node[anchor=north east, opacity=0.25] 
-      at ([xshift=-2cm, yshift=-2.5cm]current page.north east) 
-      {\includegraphics[width=26cm]{prism.jpg}};
-  \end{tikzpicture}%
-}
+%\AddToShipoutPictureBG*{%
+%  \AtPageUpperRight{%
+%    \raisebox{2.5cm}{%
+%      \hspace{-2cm}%
+%      \transparent{0.25}%
+%      \includegraphics[width=26cm]{prism.jpg}%
+%    }%
+%  }%
+%}
 % --- INTESTAZIONE COMPATTA ---
 \twocolumn[
   \begin{@twocolumnfalse}
@@ -54,9 +56,17 @@
 
 
 \section{Introduzione e Problema}
-L'avvento dei Large Language Models (LLM) ha segnato un punto di svolta nell'elaborazione del linguaggio naturale \parencite{devlin2018bert}, consentendo alle macchine di apprendere complesse sfumature semantiche celate nei simboli testuali. Tuttavia, questa straordinaria capacità predittiva ha un costo significativo: la perdita di interpretabilità. I modelli operano proiettando le parole in spazi vettoriali ad altissima dimensionalità (embedding densi), i cui assi non possiedono un significato intrinseco umanamente comprensibile. In uno scenario ideale, per garantire trasparenza e sicurezza, sarebbe auspicabile che i singoli neuroni della rete corrispondessero a concetti isolati. Ad esempio, vorremmo poter identificare un singolo neurone che si attiva linearmente solo in presenza di concetti interpretabili come ``colore rosso" o ``muso di cane". In termini formali, l'obiettivo è ottenere una rappresentazione in cui il numero di dimensioni (neuroni) corrisponda esattamente ai \textbf{fattori di variazione} dei dati sottostanti \parencite{wang2024disentangledrepresentationlearning}. Empiricamente, tuttavia, si osserva raramente tale corrispondenza. La discrepanza tra i concetti umani e le attivazioni neurali è alla base del \textbf{problema dell'allineamento} \parencite{elhage2022toy}: diventa arduo fidarsi di un sistema se non se ne comprendono i meccanismi decisionali interni. Una risposta teorica a questo fenomeno è fornita dalla \textbf{Superposition Hypothesis} \parencite{elhage2022toy}. Secondo questa ipotesi, le reti neurali sfruttano il fatto che vi sono concetti mutuamente esclusivi per rappresentare un numero di feature molto superiore al numero di neuroni fisici disponibili (e.g. il concetto di ``meccanica quantistica" raramente si attiva in presenza di ``torta al cioccolato"). I modelli simulano una rete molto più grande ``comprimendo" le informazioni tramite interferenza controllata. Sebbene efficiente, questo meccanismo genera \textit{polisemanticità}, rendendo la rete una ``black box". Il presente lavoro di tesi propone l'implementazione di un metodo per invertire questo processo attraverso il \textbf{disentanglement} delle rappresentazioni. L'obiettivo è proiettare gli embedding densi in nuovi spazi semantici sparsi, dotati di assi interpretabili \parencite{oneill2024disentangling}. A tale scopo è stata sviluppata \textbf{Prisma}, un'applicazione che, analogamente a un prisma ottico che scompone la luce bianca nel suo spettro, isola i concetti atomici costitutivi del testo.
+L'avvento dei Large Language Models (LLM) ha segnato un punto di svolta nell'elaborazione del linguaggio naturale \parencite{devlin2018bert}, consentendo alle macchine di apprendere complesse sfumature semantiche celate nei simboli testuali. Tuttavia, questa straordinaria capacità predittiva ha un costo significativo: la perdita di interpretabilità. I modelli operano proiettando le parole in spazi vettoriali ad altissima dimensionalità (embedding densi), i cui assi non possiedono un significato intrinseco umanamente comprensibile. In uno scenario ideale, per garantire trasparenza e sicurezza, sarebbe auspicabile che i singoli neuroni della rete corrispondessero a concetti isolati. Ad esempio, vorremmo poter identificare un singolo neurone che si attiva linearmente solo in presenza di concetti interpretabili come ``colore rosso" o ``muso di cane". In termini formali, l'obiettivo è ottenere una rappresentazione in cui il numero di dimensioni (neuroni) corrisponda esattamente ai \textbf{fattori di variazione} dei dati sottostanti \parencite{wang2024disentangledrepresentationlearning}. Empiricamente, tuttavia, si osserva raramente tale corrispondenza. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{home.png}
+    \caption{Home page di PRISMA. Applicazione sviluppata in tesi con lo scopo di costruire rappresentaizioni latenti interpretabili per i large language models}
+    \label{fig:home_prisa}
+\end{figure}
+La discrepanza tra i concetti umani e le attivazioni neurali è alla base del \textbf{problema dell'allineamento} \parencite{elhage2022toy}: diventa arduo fidarsi di un sistema se non se ne comprendono i meccanismi decisionali interni. Una risposta teorica a questo fenomeno è fornita dalla \textbf{Superposition Hypothesis} \parencite{elhage2022toy}. Secondo questa ipotesi, le reti neurali sfruttano il fatto che vi sono concetti mutuamente esclusivi per rappresentare un numero di feature molto superiore al numero di neuroni fisici disponibili (e.g. il concetto di ``meccanica quantistica" raramente si attiva in presenza di ``torta al cioccolato"). I modelli simulano una rete molto più grande ``comprimendo" le informazioni tramite interferenza controllata. Sebbene efficiente, questo meccanismo genera \textit{polisemanticità}, rendendo la rete una ``black box". Il presente lavoro di tesi propone l'implementazione di un metodo per invertire questo processo attraverso il \textbf{disentanglement} delle rappresentazioni. L'obiettivo è proiettare gli embedding densi in nuovi spazi semantici sparsi, dotati di assi interpretabili \parencite{oneill2024disentangling}.
+A tale scopo è stata sviluppata \textbf{PRISMA} (Figura  \ref{fig:home_prisa}), un'applicazione che, analogamente a un prisma ottico che scompone la luce bianca nel suo spettro, isola i concetti atomici costitutivi del testo.
 
-\section{Prisma: Metodologia}
+\section{PRISMA}
 
 % --- SEZIONE 2 AGGIORNATA ---
 
@@ -82,7 +92,6 @@ Un Autoencoder (AE) è un'architettura di rete neurale non supervisionata addest
     \end{tikzpicture}
     \caption{Architettura di un Autoencoder classico: il bottleneck forza la compressione informativa.}
 \end{figure}
-
 Gli AE classici possono estrarre fattori principali, ma non garantiscono che le dimensioni latenti siano monosemantiche o regolarizzate. L'assenza di vincoli espliciti sulla struttura di $z$ crea uno spazio latente "discontinuo".
 
 \begin{figure}[h]
@@ -91,7 +100,6 @@ Gli AE classici possono estrarre fattori principali, ma non garantiscono che le 
     \caption{Analisi della semantica nell'AE. A destra: lo spazio latente mostra cluster isolati (vincoli imposti dai dati). A sinistra: le generazioni mostrano che nelle zone vuote tra i cluster, dove mancano i vincoli, la semantica scompare lasciando spazio a ricostruzioni incoerenti.}
     \label{fig:ae_no_semantics}
 \end{figure}
-
 Come mostrato in Figura~\ref{fig:ae_no_semantics}, la semantica emerge come sottomanifold indotto dai dati; al di fuori di questi vincoli, il modello non ha capacità generativa coerente.
 
 \subsection{Sparse Autoencoders (SAE)}
@@ -122,9 +130,7 @@ Per ottenere \textit{disentanglement} e feature più interpretabili, Prisma util
     \end{tikzpicture}
     \caption{Sparse Autoencoder: spazio latente overcomplete con attivazioni sparse.}
 \end{figure} L'intuizione è che l'overcompletezza fornisca molte ``direzioni'' potenzialmente disponibili, mentre la sparsità forza il modello a selezionarne poche per rappresentare un dato input, favorendo feature più stabili e interpretabili.
-
-
-\subsection{Architettura Matematica}
+\subsection{Architettura}
 Seguiamo il formalismo di \parencite{oneill2024disentangling}. Sia $x \in \mathbb{R}^d$ l'input (embedding) e $h \in \mathbb{R}^n$ la rappresentazione latente nascosta, con $n > d$. L'architettura è definita da due mappe parametrizzate:
 \[
 \theta = \{W_e, b_e\}, \qquad \phi = \{W_d, b_d\}.
@@ -190,9 +196,7 @@ ER(H) \;=\; \exp\!\left(-\sum_i p_i \log p_i\right),
 \qquad
 p_i \;=\; \frac{\sigma_i}{\|\sigma\|_1},
 \end{equation}
-dove $\{\sigma_i\}$ sono i valori singolari di $H$. Intuitivamente, $ER(H)$ è alto se la varianza è distribuita su molte direzioni (codice più \emph{isotropo}), ed è basso se concentrata in poche direzioni (codice più \emph{compresso}).
-
-Stimiamo $ER(H)$ al variare dell'overcompletezza del SAE (expansion factor, quindi $n=d_{\text{latent}}$) e confrontiamo i dati reali con una \emph{ipotesi nulla} ottenuta addestrando lo stesso SAE su input casuali non strutturati. Per sintetizzare l'effetto introduciamo il \textbf{Semantic Compression Ratio} (SCR), che misura la compressione relativa rispetto al rumore:
+dove $\{\sigma_i\}$ sono i valori singolari di $H$. Intuitivamente, $ER(H)$ è alto se la varianza è distribuita su molte direzioni (codice più \emph{isotropo}), ed è basso se concentrata in poche direzioni (codice più \emph{compresso}). Stimiamo $ER(H)$ al variare dell'overcompletezza del SAE (expansion factor, quindi $n=d_{\text{latent}}$) e confrontiamo i dati reali con una \emph{ipotesi nulla} ottenuta addestrando lo stesso SAE su input casuali non strutturati. Per sintetizzare l'effetto introduciamo il \textbf{Semantic Compression Ratio} (SCR), che misura la compressione relativa rispetto al rumore:
 \begin{equation}
 SCR(\%) \;=\; 100 \cdot \frac{ER_{\text{null}} - ER_{\text{real}}}{ER_{\text{null}}}.
 \end{equation}
@@ -207,40 +211,7 @@ Empiricamente osserviamo che, aumentando la capacità latente, $ER$ cresce in en
 \end{figure}
 % --- SEZIONE 4 AGGIORNATA ---
 \section{Conclusioni}
-Il lavoro svolto con Prisma dimostra che l'interpretabilità dei LLM può essere recuperata invertendo il processo di \textit{superposition}. Proiettando le attivazioni in uno spazio overcomplete e forzando la sparsità, i SAE agiscono come filtri che isolano feature monosemantiche. La tesi centrale è che la \textbf{semantica} non sia un'entità astratta, ma l'espressione di un insieme di \textbf{vincoli} che strutturano lo spazio latente. Senza vincoli (come nell'AE classico in zone non mappate), lo spazio è caotico e privo di informazione. Al contrario, nei dati strutturati, la semantica costringe le attivazioni su varietà a bassa dimensionalità. L'analogia fisica più calzante è quella dello \textbf{spazio delle fasi} di un sistema dinamico (Figura~\ref{fig:pendulum_phase}). Un pendolo libero di muoversi senza leggi fisiche potrebbe occupare qualunque punto $(\theta, \omega)$. Tuttavia, la conservazione dell'energia (il vincolo) lo costringe a evolvere solo lungo orbite specifiche.
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}[scale=0.8]
-    % Assi dello spazio delle fasi
-    \draw[->, thick] (-3.2,0) -- (3.2,0) node[right] {$\theta$};
-    \draw[->, thick] (0,-2.2) -- (0,2.2) node[above] {$\omega = \dot{\theta}$};
-
-    % Orbite del pendolo (Vincoli di energia)
-    \draw[thick, blue!60] (0,0) ellipse (1.2cm and 0.8cm);
-    \draw[thick, blue!80] (0,0) ellipse (2.2cm and 1.5cm);
-    \node[blue!80] at (1.8,1.6) {\scriptsize orbite (vincoli)};
-
-    % Punti sulla varietà (Dati con semantica)
-    \foreach \a in {0, 45, 90, 135, 180, 225, 270, 315} {
-        \fill[black] ({2.2*cos(\a)}, {1.5*sin(\a)}) circle (1.5pt);
-    }
-    \node[anchor=west] at (0.5,0.4) {\textbf{Semantica}};
-
-    % Punti fuori (Ipotesi nulla / Rumore)
-    \foreach \p in {(-2.5,1.8), (1.2,-1.8), (2.8,0.5), (-1.5,-1.2), (0.5,1.9), (-2.8,-0.8)} {
-        \fill[gray!40] \p circle (1.2pt);
-    }
-    \node[gray!60] at (-2.2,-1.8) {\scriptsize null (no semantica)};
-
-    % Annotazione
-    \draw[<-, thin] (1.1, -0.7) -- (2.5, -1.2) node[right, font=\tiny] {Stato vincolato};
-\end{tikzpicture}
-\caption{Analogia: nello spazio delle fasi $(\theta, \omega)$, la fisica vincola il sistema su orbite precise. Analogamente, nei modelli Prisma, la semantica agisce come il vincolo che modella la distribuzione delle attivazioni latenti, separandole dal rumore dell'ipotesi nulla.}
-\label{fig:pendulum_phase}
-\end{figure}
-
-
+Il lavoro con Prisma dimostra che l'interpretabilità dei LLM può essere recuperata invertendo il processo di \textit{superposition}. Proiettando le attivazioni in uno spazio overcomplete e forzando la sparsità, i SAE isolano feature monosemantiche, interpretabili come concetti atomici. Il contributo centrale di questa tesi è l'osservazione che tali concetti non sono indipendenti tra loro. L'analisi dell'Effective Rank rivela che lo spazio latente del SAE ha una dimensionalità effettiva sistematicamente inferiore rispetto all'ipotesi nulla di dati non strutturati. Questa riduzione, quantificata dal Semantic Compression Ratio, non è un artefatto del metodo: riflette \textbf{vincoli semantici reali} che legano i concetti in pattern di co-attivazione (ad esempio, \textit{febbre} e \textit{polmonite} tendono ad attivarsi insieme). In altri termini,\textbf{la semantica si manifesta come una riduzione dei gradi di libertà} nello spazio dei concetti estratti. I SAE non eliminano questa struttura di dipendenza: la rendono osservabile e misurabile.
 \printbibliography
 
 \end{document}
