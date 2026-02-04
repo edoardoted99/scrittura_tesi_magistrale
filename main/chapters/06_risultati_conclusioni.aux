@@ -1,113 +1,245 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Risultati sperimentali}{118}{section.6}\protected@file@percent }
-\newlabel{sec:06_risultati}{{6}{118}{Risultati sperimentali}{section.6}{}}
-\newlabel{sec:06_risultati@cref}{{[section][6][]6}{[1][118][]118}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Setup sperimentale}{119}{subsection.6.1}\protected@file@percent }
-\newlabel{subsec:setup}{{6.1}{119}{Setup sperimentale}{subsection.6.1}{}}
-\newlabel{subsec:setup@cref}{{[subsection][1][6]6.1}{[1][119][]119}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Infrastruttura hardware}{119}{subsubsection.6.1.1}\protected@file@percent }
-\newlabel{subsubsec:hardware}{{6.1.1}{119}{Infrastruttura hardware}{subsubsection.6.1.1}{}}
-\newlabel{subsubsec:hardware@cref}{{[subsubsection][1][6,1]6.1.1}{[1][119][]119}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Specifiche hardware della macchina utilizzata per gli esperimenti.\relax }}{119}{table.caption.81}\protected@file@percent }
-\newlabel{tab:hardware_specs}{{5}{119}{Specifiche hardware della macchina utilizzata per gli esperimenti.\relax }{table.caption.81}{}}
-\newlabel{tab:hardware_specs@cref}{{[table][5][]5}{[1][119][]119}}
-\@writefile{toc}{\contentsline {paragraph}{La Unified Memory Architecture.}{119}{section*.82}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {59}{\ignorespaces Architettura del chip Apple M3 Ultra con Unified Memory Architecture (UMA). I tre componenti computazionali—CPU, GPU e Neural Engine—condividono lo stesso pool di 512 GB di memoria LPDDR5, accessibile attraverso un memory fabric con bandwidth aggregato di 819 GB/s. Il \textbf  {Neural Engine} è un acceleratore hardware dedicato alle operazioni di machine learning (moltiplicazioni matriciali, convoluzioni), capace di 31 trilioni di operazioni al secondo (TOPS); viene sfruttato da Ollama per accelerare l'inferenza dei Large Language Models utilizzati come interpreti delle feature. L'architettura elimina i trasferimenti CPU-GPU tipici dei sistemi con memorie separate, abilitando workflow che alternano preprocessing (CPU), training (GPU) e inferenza LLM (Neural Engine) sugli stessi dati.\relax }}{120}{figure.caption.83}\protected@file@percent }
-\newlabel{fig:m3_ultra_architecture}{{59}{120}{Architettura del chip Apple M3 Ultra con Unified Memory Architecture (UMA). I tre componenti computazionali—CPU, GPU e Neural Engine—condividono lo stesso pool di 512 GB di memoria LPDDR5, accessibile attraverso un memory fabric con bandwidth aggregato di 819 GB/s. Il \textbf {Neural Engine} è un acceleratore hardware dedicato alle operazioni di machine learning (moltiplicazioni matriciali, convoluzioni), capace di 31 trilioni di operazioni al secondo (TOPS); viene sfruttato da Ollama per accelerare l'inferenza dei Large Language Models utilizzati come interpreti delle feature. L'architettura elimina i trasferimenti CPU-GPU tipici dei sistemi con memorie separate, abilitando workflow che alternano preprocessing (CPU), training (GPU) e inferenza LLM (Neural Engine) sugli stessi dati.\relax }{figure.caption.83}{}}
-\newlabel{fig:m3_ultra_architecture@cref}{{[figure][59][]59}{[1][119][]120}}
-\@writefile{toc}{\contentsline {paragraph}{Il collo di bottiglia nelle architetture tradizionali.}{121}{section*.84}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Confronto del memory bandwidth tra architetture. Il bandwidth misura quanti dati possono essere trasferiti al secondo tra memoria e processori—un fattore critico per workload memory-bound come l'inferenza di LLM.\relax }}{121}{table.caption.85}\protected@file@percent }
-\newlabel{tab:bandwidth_comparison}{{6}{121}{Confronto del memory bandwidth tra architetture. Il bandwidth misura quanti dati possono essere trasferiti al secondo tra memoria e processori—un fattore critico per workload memory-bound come l'inferenza di LLM.\relax }{table.caption.85}{}}
-\newlabel{tab:bandwidth_comparison@cref}{{[table][6][]6}{[1][121][]121}}
-\@writefile{toc}{\contentsline {paragraph}{Superamento dei limiti della VRAM.}{122}{section*.86}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metal Performance Shaders (MPS).}{123}{section*.87}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Requisiti di privacy: elaborazione locale dei dati clinici.}{123}{section*.88}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Estrazione e organizzazione delle feature}{123}{subsection.6.2}\protected@file@percent }
-\newlabel{subsec:feature_extraction_results}{{6.2}{123}{Estrazione e organizzazione delle feature}{subsection.6.2}{}}
-\newlabel{subsec:feature_extraction_results@cref}{{[subsection][2][6]6.2}{[1][123][]123}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Feature families nel dominio clinico}{123}{subsubsection.6.2.1}\protected@file@percent }
-\newlabel{subsubsec:clinical_features}{{6.2.1}{123}{Feature families nel dominio clinico}{subsubsection.6.2.1}{}}
-\newlabel{subsubsec:clinical_features@cref}{{[subsubsection][1][6,2]6.2.1}{[1][123][]123}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Feature families nel dominio scientifico}{124}{subsubsection.6.2.2}\protected@file@percent }
-\newlabel{subsubsec:scientific_features}{{6.2.2}{124}{Feature families nel dominio scientifico}{subsubsection.6.2.2}{}}
-\newlabel{subsubsec:scientific_features@cref}{{[subsubsection][2][6,2]6.2.2}{[1][124][]124}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Analisi dell'Effective Rank}{125}{subsection.6.3}\protected@file@percent }
-\newlabel{subsec:effective_rank_results}{{6.3}{125}{Analisi dell'Effective Rank}{subsection.6.3}{}}
-\newlabel{subsec:effective_rank_results@cref}{{[subsection][3][6]6.3}{[1][125][]125}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Setup sperimentale}{125}{subsubsection.6.3.1}\protected@file@percent }
-\newlabel{subsubsec:er_setup}{{6.3.1}{125}{Setup sperimentale}{subsubsection.6.3.1}{}}
-\newlabel{subsubsec:er_setup@cref}{{[subsubsection][1][6,3]6.3.1}{[1][125][]125}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Il problema del limite degli autovalori}{126}{subsubsection.6.3.2}\protected@file@percent }
-\newlabel{subsubsec:eigenvalue_limit}{{6.3.2}{126}{Il problema del limite degli autovalori}{subsubsection.6.3.2}{}}
-\newlabel{subsubsec:eigenvalue_limit@cref}{{[subsubsection][2][6,3]6.3.2}{[1][125][]126}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}Risultati: Effective Rank vs.\ Expansion Factor}{126}{subsubsection.6.3.3}\protected@file@percent }
-\newlabel{subsubsec:er_results}{{6.3.3}{126}{Risultati: Effective Rank vs.\ Expansion Factor}{subsubsection.6.3.3}{}}
-\newlabel{subsubsec:er_results@cref}{{[subsubsection][3][6,3]6.3.3}{[1][126][]126}}
-\@writefile{lof}{\contentsline {figure}{\numberline {60}{\ignorespaces Effective Rank in funzione dell'expansion factor, con limite a 10.000 autovalori. \textbf  {Sopra}: confronto tra dati reali (blu) e ipotesi nulla (arancione). Il plateau oltre $\rho \approx 26$ è un artefatto del limite computazionale. \textbf  {Sotto}: Semantic Compression Ratio. Il calo dopo il picco è dovuto alla saturazione di entrambe le curve al limite degli autovalori, non a una reale diminuzione della compressione semantica.\relax }}{127}{figure.caption.89}\protected@file@percent }
-\newlabel{fig:er_10000}{{60}{127}{Effective Rank in funzione dell'expansion factor, con limite a 10.000 autovalori. \textbf {Sopra}: confronto tra dati reali (blu) e ipotesi nulla (arancione). Il plateau oltre $\rho \approx 26$ è un artefatto del limite computazionale. \textbf {Sotto}: Semantic Compression Ratio. Il calo dopo il picco è dovuto alla saturazione di entrambe le curve al limite degli autovalori, non a una reale diminuzione della compressione semantica.\relax }{figure.caption.89}{}}
-\newlabel{fig:er_10000@cref}{{[figure][60][]60}{[1][126][]127}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4}Interpretazione dei risultati}{128}{subsubsection.6.3.4}\protected@file@percent }
-\newlabel{subsubsec:er_interpretation}{{6.3.4}{128}{Interpretazione dei risultati}{subsubsection.6.3.4}{}}
-\newlabel{subsubsec:er_interpretation@cref}{{[subsubsection][4][6,3]6.3.4}{[1][128][]128}}
-\@writefile{toc}{\contentsline {paragraph}{La struttura semantica comprime le rappresentazioni.}{128}{section*.91}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{L'SCR crescente è consistente con il feature splitting.}{128}{section*.92}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {61}{\ignorespaces Effective Rank in funzione dell'expansion factor, con limite a 40.000 autovalori. \textbf  {Sopra}: senza il limite artificiale, l'Effective Rank continua a crescere. Il gap tra le due condizioni aumenta progressivamente. \textbf  {Sotto}: il Semantic Compression Ratio cresce monotonicamente fino al 60\%, indicando che la struttura semantica comprime sempre più le rappresentazioni all'aumentare della capacità.\relax }}{129}{figure.caption.90}\protected@file@percent }
-\newlabel{fig:er_40000}{{61}{129}{Effective Rank in funzione dell'expansion factor, con limite a 40.000 autovalori. \textbf {Sopra}: senza il limite artificiale, l'Effective Rank continua a crescere. Il gap tra le due condizioni aumenta progressivamente. \textbf {Sotto}: il Semantic Compression Ratio cresce monotonicamente fino al 60\%, indicando che la struttura semantica comprime sempre più le rappresentazioni all'aumentare della capacità.\relax }{figure.caption.90}{}}
-\newlabel{fig:er_40000@cref}{{[figure][61][]61}{[1][128][]129}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Discussione e limitazioni}{130}{subsection.6.4}\protected@file@percent }
-\newlabel{subsec:discussion}{{6.4}{130}{Discussione e limitazioni}{subsection.6.4}{}}
-\newlabel{subsec:discussion@cref}{{[subsection][4][6]6.4}{[1][130][]130}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.1}Punti di forza}{130}{subsubsection.6.4.1}\protected@file@percent }
-\newlabel{subsubsec:strengths}{{6.4.1}{130}{Punti di forza}{subsubsection.6.4.1}{}}
-\newlabel{subsubsec:strengths@cref}{{[subsubsection][1][6,4]6.4.1}{[1][130][]130}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.2}Limitazioni}{130}{subsubsection.6.4.2}\protected@file@percent }
-\newlabel{subsubsec:limitations}{{6.4.2}{130}{Limitazioni}{subsubsection.6.4.2}{}}
-\newlabel{subsubsec:limitations@cref}{{[subsubsection][2][6,4]6.4.2}{[1][130][]130}}
-\@writefile{toc}{\contentsline {paragraph}{Validazione quantitativa limitata.}{131}{section*.93}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dipendenza dal modello di embedding.}{131}{section*.94}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Scalabilità dell'interpretazione automatica.}{131}{section*.95}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Effective Rank come proxy.}{131}{section*.96}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Conclusioni}{131}{subsection.6.5}\protected@file@percent }
-\newlabel{subsec:conclusions}{{6.5}{131}{Conclusioni}{subsection.6.5}{}}
-\newlabel{subsec:conclusions@cref}{{[subsection][5][6]6.5}{[1][131][]131}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Sviluppi futuri}{132}{subsection.6.6}\protected@file@percent }
-\newlabel{subsec:future_work}{{6.6}{132}{Sviluppi futuri}{subsection.6.6}{}}
-\newlabel{subsec:future_work@cref}{{[subsection][6][6]6.6}{[1][132][]132}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1}Verso una teoria degli invarianti semantici}{132}{subsubsection.6.6.1}\protected@file@percent }
-\newlabel{subsubsec:semantic_invariants}{{6.6.1}{132}{Verso una teoria degli invarianti semantici}{subsubsection.6.6.1}{}}
-\newlabel{subsubsec:semantic_invariants@cref}{{[subsubsection][1][6,6]6.6.1}{[1][132][]132}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Parallelo tra fisica relativistica e semantica.\relax }}{133}{table.caption.97}\protected@file@percent }
-\newlabel{tab:relativity_analogy}{{7}{133}{Parallelo tra fisica relativistica e semantica.\relax }{table.caption.97}{}}
-\newlabel{tab:relativity_analogy@cref}{{[table][7][]7}{[1][133][]133}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2}Candidati invarianti}{133}{subsubsection.6.6.2}\protected@file@percent }
-\newlabel{subsubsec:candidate_invariants}{{6.6.2}{133}{Candidati invarianti}{subsubsection.6.6.2}{}}
-\newlabel{subsubsec:candidate_invariants@cref}{{[subsubsection][2][6,6]6.6.2}{[1][133][]133}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.3}Programma di ricerca}{134}{subsubsection.6.6.3}\protected@file@percent }
-\newlabel{subsubsec:research_program}{{6.6.3}{134}{Programma di ricerca}{subsubsection.6.6.3}{}}
-\newlabel{subsubsec:research_program@cref}{{[subsubsection][3][6,6]6.6.3}{[1][133][]134}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Risultati sperimentali}{130}{section.6}\protected@file@percent }
+\newlabel{sec:06_risultati}{{6}{130}{Risultati sperimentali}{section.6}{}}
+\newlabel{sec:06_risultati@cref}{{[section][6][]6}{[1][130][]130}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Setup sperimentale}{131}{subsection.6.1}\protected@file@percent }
+\newlabel{subsec:setup}{{6.1}{131}{Setup sperimentale}{subsection.6.1}{}}
+\newlabel{subsec:setup@cref}{{[subsection][1][6]6.1}{[1][131][]131}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Infrastruttura hardware}{131}{subsubsection.6.1.1}\protected@file@percent }
+\newlabel{subsubsec:hardware}{{6.1.1}{131}{Infrastruttura hardware}{subsubsection.6.1.1}{}}
+\newlabel{subsubsec:hardware@cref}{{[subsubsection][1][6,1]6.1.1}{[1][131][]131}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Specifiche hardware della macchina utilizzata per gli esperimenti.\relax }}{131}{table.caption.83}\protected@file@percent }
+\newlabel{tab:hardware_specs}{{6}{131}{Specifiche hardware della macchina utilizzata per gli esperimenti.\relax }{table.caption.83}{}}
+\newlabel{tab:hardware_specs@cref}{{[table][6][]6}{[1][131][]131}}
+\@writefile{toc}{\contentsline {paragraph}{La Unified Memory Architecture.}{131}{section*.84}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {59}{\ignorespaces Architettura del chip Apple M3 Ultra con Unified Memory Architecture (UMA). I tre componenti computazionali—CPU, GPU e Neural Engine—condividono lo stesso pool di 512 GB di memoria LPDDR5, accessibile attraverso un memory fabric con bandwidth aggregato di 819 GB/s. Il \textbf  {Neural Engine} è un acceleratore hardware dedicato alle operazioni di machine learning (moltiplicazioni matriciali, convoluzioni), capace di 31 trilioni di operazioni al secondo (TOPS); viene sfruttato da Ollama per accelerare l'inferenza dei Large Language Models utilizzati come interpreti delle feature. L'architettura elimina i trasferimenti CPU-GPU tipici dei sistemi con memorie separate, abilitando workflow che alternano preprocessing (CPU), training (GPU) e inferenza LLM (Neural Engine) sugli stessi dati.\relax }}{132}{figure.caption.85}\protected@file@percent }
+\newlabel{fig:m3_ultra_architecture}{{59}{132}{Architettura del chip Apple M3 Ultra con Unified Memory Architecture (UMA). I tre componenti computazionali—CPU, GPU e Neural Engine—condividono lo stesso pool di 512 GB di memoria LPDDR5, accessibile attraverso un memory fabric con bandwidth aggregato di 819 GB/s. Il \textbf {Neural Engine} è un acceleratore hardware dedicato alle operazioni di machine learning (moltiplicazioni matriciali, convoluzioni), capace di 31 trilioni di operazioni al secondo (TOPS); viene sfruttato da Ollama per accelerare l'inferenza dei Large Language Models utilizzati come interpreti delle feature. L'architettura elimina i trasferimenti CPU-GPU tipici dei sistemi con memorie separate, abilitando workflow che alternano preprocessing (CPU), training (GPU) e inferenza LLM (Neural Engine) sugli stessi dati.\relax }{figure.caption.85}{}}
+\newlabel{fig:m3_ultra_architecture@cref}{{[figure][59][]59}{[1][131][]132}}
+\@writefile{toc}{\contentsline {paragraph}{Il collo di bottiglia nelle architetture tradizionali.}{133}{section*.86}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Confronto del memory bandwidth tra architetture. Il bandwidth misura quanti dati possono essere trasferiti al secondo tra memoria e processori—un fattore critico per workload memory-bound come l'inferenza di LLM.\relax }}{133}{table.caption.87}\protected@file@percent }
+\newlabel{tab:bandwidth_comparison}{{7}{133}{Confronto del memory bandwidth tra architetture. Il bandwidth misura quanti dati possono essere trasferiti al secondo tra memoria e processori—un fattore critico per workload memory-bound come l'inferenza di LLM.\relax }{table.caption.87}{}}
+\newlabel{tab:bandwidth_comparison@cref}{{[table][7][]7}{[1][131][]133}}
+\@writefile{toc}{\contentsline {paragraph}{Superamento dei limiti della VRAM.}{134}{section*.88}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metal Performance Shaders (MPS).}{135}{section*.89}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Requisiti di privacy: elaborazione locale dei dati clinici.}{135}{section*.90}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Estrazione e organizzazione delle feature}{135}{subsection.6.2}\protected@file@percent }
+\newlabel{subsec:feature_extraction_results}{{6.2}{135}{Estrazione e organizzazione delle feature}{subsection.6.2}{}}
+\newlabel{subsec:feature_extraction_results@cref}{{[subsection][2][6]6.2}{[1][135][]135}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Dataset e pipeline di embedding}{135}{subsubsection.6.2.1}\protected@file@percent }
+\newlabel{subsubsec:dataset_embedding}{{6.2.1}{135}{Dataset e pipeline di embedding}{subsubsection.6.2.1}{}}
+\newlabel{subsubsec:dataset_embedding@cref}{{[subsubsection][1][6,2]6.2.1}{[1][135][]135}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Interpretazione automatica delle feature}{136}{subsubsection.6.2.2}\protected@file@percent }
+\newlabel{subsubsec:feature_interpretation}{{6.2.2}{136}{Interpretazione automatica delle feature}{subsubsection.6.2.2}{}}
+\newlabel{subsubsec:feature_interpretation@cref}{{[subsubsection][2][6,2]6.2.2}{[1][136][]136}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.3}Esempio: Feature 5648 --- \textit  {Time in physics}}{136}{subsubsection.6.2.3}\protected@file@percent }
+\newlabel{subsubsec:feature_example}{{6.2.3}{136}{Esempio: Feature 5648 --- \textit {Time in physics}}{subsubsection.6.2.3}{}}
+\newlabel{subsubsec:feature_example@cref}{{[subsubsection][3][6,2]6.2.3}{[1][136][]136}}
+\@writefile{toc}{\contentsline {paragraph}{Statistiche di attivazione.}{137}{section*.91}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top activating contexts.}{137}{section*.92}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Top activating contexts per la Feature 5648 (\textit  {Time in physics}).\relax }}{137}{table.caption.93}\protected@file@percent }
+\newlabel{tab:feature_5648_top}{{8}{137}{Top activating contexts per la Feature 5648 (\textit {Time in physics}).\relax }{table.caption.93}{}}
+\newlabel{tab:feature_5648_top@cref}{{[table][8][]8}{[1][137][]137}}
+\@writefile{toc}{\contentsline {paragraph}{Topologia e famiglia semantica.}{137}{section*.94}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correlazioni.}{138}{section*.95}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Correlazioni della Feature 5648 nello spazio dei pesi (S) e dei dati (D).\relax }}{138}{table.caption.96}\protected@file@percent }
+\newlabel{tab:feature_5648_corr}{{9}{138}{Correlazioni della Feature 5648 nello spazio dei pesi (S) e dei dati (D).\relax }{table.caption.96}{}}
+\newlabel{tab:feature_5648_corr@cref}{{[table][9][]9}{[1][138][]138}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.4}Esempio: Feature 1140 --- \textit  {Ising model}}{139}{subsubsection.6.2.4}\protected@file@percent }
+\newlabel{subsubsec:feature_example_ising}{{6.2.4}{139}{Esempio: Feature 1140 --- \textit {Ising model}}{subsubsection.6.2.4}{}}
+\newlabel{subsubsec:feature_example_ising@cref}{{[subsubsection][4][6,2]6.2.4}{[1][138][]139}}
+\@writefile{toc}{\contentsline {paragraph}{Statistiche di attivazione.}{139}{section*.97}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top activating contexts.}{139}{section*.98}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Top activating contexts per la Feature 1140 (\textit  {Ising model}).\relax }}{139}{table.caption.99}\protected@file@percent }
+\newlabel{tab:feature_1140_top}{{10}{139}{Top activating contexts per la Feature 1140 (\textit {Ising model}).\relax }{table.caption.99}{}}
+\newlabel{tab:feature_1140_top@cref}{{[table][10][]10}{[1][139][]139}}
+\@writefile{toc}{\contentsline {paragraph}{Topologia e famiglia semantica.}{140}{section*.100}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Correlazioni della Feature 1140 nello spazio dei pesi (S) e dei dati (D).\relax }}{140}{table.caption.102}\protected@file@percent }
+\newlabel{tab:feature_1140_corr}{{11}{140}{Correlazioni della Feature 1140 nello spazio dei pesi (S) e dei dati (D).\relax }{table.caption.102}{}}
+\newlabel{tab:feature_1140_corr@cref}{{[table][11][]11}{[1][140][]140}}
+\@writefile{toc}{\contentsline {paragraph}{Correlazioni.}{140}{table.caption.102}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Estrazione e organizzazione delle feature}{141}{subsection.6.3}\protected@file@percent }
+\newlabel{subsec:feature_extraction_results}{{6.3}{141}{Estrazione e organizzazione delle feature}{subsection.6.3}{}}
+\newlabel{subsec:feature_extraction_results@cref}{{[subsection][3][6]6.3}{[1][140][]141}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.1}Dataset e pipeline di embedding}{141}{subsubsection.6.3.1}\protected@file@percent }
+\newlabel{subsubsec:dataset_embedding}{{6.3.1}{141}{Dataset e pipeline di embedding}{subsubsection.6.3.1}{}}
+\newlabel{subsubsec:dataset_embedding@cref}{{[subsubsection][1][6,3]6.3.1}{[1][140][]141}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2}Interpretazione automatica delle feature}{141}{subsubsection.6.3.2}\protected@file@percent }
+\newlabel{subsubsec:feature_interpretation}{{6.3.2}{141}{Interpretazione automatica delle feature}{subsubsection.6.3.2}{}}
+\newlabel{subsubsec:feature_interpretation@cref}{{[subsubsection][2][6,3]6.3.2}{[1][141][]141}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3}Esempio: Feature 5648 --- \textit  {Time in physics}}{142}{subsubsection.6.3.3}\protected@file@percent }
+\newlabel{subsubsec:feature_example}{{6.3.3}{142}{Esempio: Feature 5648 --- \textit {Time in physics}}{subsubsection.6.3.3}{}}
+\newlabel{subsubsec:feature_example@cref}{{[subsubsection][3][6,3]6.3.3}{[1][142][]142}}
+\@writefile{toc}{\contentsline {paragraph}{Statistiche di attivazione.}{142}{section*.103}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top activating contexts.}{142}{section*.104}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Top activating contexts per la Feature 5648 (\textit  {Time in physics}).\relax }}{142}{table.caption.105}\protected@file@percent }
+\newlabel{tab:feature_5648_top}{{12}{142}{Top activating contexts per la Feature 5648 (\textit {Time in physics}).\relax }{table.caption.105}{}}
+\newlabel{tab:feature_5648_top@cref}{{[table][12][]12}{[1][142][]142}}
+\@writefile{toc}{\contentsline {paragraph}{Topologia e famiglia semantica.}{143}{section*.106}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correlazioni.}{143}{section*.107}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Correlazioni della Feature 5648 nello spazio dei pesi (S) e dei dati (D).\relax }}{144}{table.caption.108}\protected@file@percent }
+\newlabel{tab:feature_5648_corr}{{13}{144}{Correlazioni della Feature 5648 nello spazio dei pesi (S) e dei dati (D).\relax }{table.caption.108}{}}
+\newlabel{tab:feature_5648_corr@cref}{{[table][13][]13}{[1][143][]144}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4}Esempio: Feature 1140 --- \textit  {Ising model}}{144}{subsubsection.6.3.4}\protected@file@percent }
+\newlabel{subsubsec:feature_example_ising}{{6.3.4}{144}{Esempio: Feature 1140 --- \textit {Ising model}}{subsubsection.6.3.4}{}}
+\newlabel{subsubsec:feature_example_ising@cref}{{[subsubsection][4][6,3]6.3.4}{[1][143][]144}}
+\@writefile{toc}{\contentsline {paragraph}{Statistiche di attivazione.}{144}{section*.109}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top activating contexts.}{144}{section*.110}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Top activating contexts per la Feature 1140 (\textit  {Ising model}).\relax }}{145}{table.caption.111}\protected@file@percent }
+\newlabel{tab:feature_1140_top}{{14}{145}{Top activating contexts per la Feature 1140 (\textit {Ising model}).\relax }{table.caption.111}{}}
+\newlabel{tab:feature_1140_top@cref}{{[table][14][]14}{[1][144][]145}}
+\@writefile{toc}{\contentsline {paragraph}{Topologia e famiglia semantica.}{145}{section*.112}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Correlazioni della Feature 1140 nello spazio dei pesi (S) e dei dati (D).\relax }}{145}{table.caption.114}\protected@file@percent }
+\newlabel{tab:feature_1140_corr}{{15}{145}{Correlazioni della Feature 1140 nello spazio dei pesi (S) e dei dati (D).\relax }{table.caption.114}{}}
+\newlabel{tab:feature_1140_corr@cref}{{[table][15][]15}{[1][145][]145}}
+\@writefile{toc}{\contentsline {paragraph}{Correlazioni.}{146}{table.caption.114}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.5}Feature families nel dominio scientifico}{146}{subsubsection.6.3.5}\protected@file@percent }
+\newlabel{subsubsec:scientific_features}{{6.3.5}{146}{Feature families nel dominio scientifico}{subsubsection.6.3.5}{}}
+\newlabel{subsubsec:scientific_features@cref}{{[subsubsection][5][6,3]6.3.5}{[1][146][]146}}
+\@writefile{toc}{\contentsline {paragraph}{Caso di studio: Famiglia \#10034 --- \textit  {Time in physics}.}{146}{section*.115}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {60}{\ignorespaces Famiglia \#10034 (\textit  {Time in physics}): lista completa dei 47 children nodes. Ogni chip riporta l'etichetta semantica e l'indice della feature. Si noti la diversità disciplinare dei children---dalla fisica fondamentale (\textit  {Special Relativity}, \textit  {Quantum Clocks}) alla matematica applicata (\textit  {Renewal Theory}, \textit  {Diffusion Equations}) fino a domini applicativi (\textit  {Option Pricing}, \textit  {Scheduling Algorithms})---tutti accomunati dalla centralità del concetto di tempo.\relax }}{147}{figure.caption.116}\protected@file@percent }
+\newlabel{fig:time_physics_list}{{60}{147}{Famiglia \#10034 (\textit {Time in physics}): lista completa dei 47 children nodes. Ogni chip riporta l'etichetta semantica e l'indice della feature. Si noti la diversità disciplinare dei children---dalla fisica fondamentale (\textit {Special Relativity}, \textit {Quantum Clocks}) alla matematica applicata (\textit {Renewal Theory}, \textit {Diffusion Equations}) fino a domini applicativi (\textit {Option Pricing}, \textit {Scheduling Algorithms})---tutti accomunati dalla centralità del concetto di tempo.\relax }{figure.caption.116}{}}
+\newlabel{fig:time_physics_list@cref}{{[figure][60][]60}{[1][146][]147}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.6}Le 590 famiglie come assi di una rappresentazione}{147}{subsubsection.6.3.6}\protected@file@percent }
+\newlabel{subsubsec:families_as_axes}{{6.3.6}{147}{Le 590 famiglie come assi di una rappresentazione}{subsubsection.6.3.6}{}}
+\newlabel{subsubsec:families_as_axes@cref}{{[subsubsection][6][6,3]6.3.6}{[1][147][]147}}
+\@writefile{lof}{\contentsline {figure}{\numberline {61}{\ignorespaces Visualizzazione a grafo della Famiglia \#10034 nell'Explorer di PRISMA. Il nodo centrale azzurro è il parent \textit  {Time in physics}; i nodi viola sono i children e le feature correlate di famiglie adiacenti. La topologia a stella---tipica delle feature families---emerge chiaramente: il parent funge da hub concettuale, mentre i children raramente sono connessi direttamente tra loro.\relax }}{148}{figure.caption.117}\protected@file@percent }
+\newlabel{fig:time_physics_graph}{{61}{148}{Visualizzazione a grafo della Famiglia \#10034 nell'Explorer di PRISMA. Il nodo centrale azzurro è il parent \textit {Time in physics}; i nodi viola sono i children e le feature correlate di famiglie adiacenti. La topologia a stella---tipica delle feature families---emerge chiaramente: il parent funge da hub concettuale, mentre i children raramente sono connessi direttamente tra loro.\relax }{figure.caption.117}{}}
+\newlabel{fig:time_physics_graph@cref}{{[figure][61][]61}{[1][146][]148}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Estrazione e organizzazione delle feature}{149}{subsection.6.4}\protected@file@percent }
+\newlabel{subsec:feature_extraction_results}{{6.4}{149}{Estrazione e organizzazione delle feature}{subsection.6.4}{}}
+\newlabel{subsec:feature_extraction_results@cref}{{[subsection][4][6]6.4}{[1][149][]149}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.1}Dataset e pipeline di embedding}{149}{subsubsection.6.4.1}\protected@file@percent }
+\newlabel{subsubsec:dataset_embedding}{{6.4.1}{149}{Dataset e pipeline di embedding}{subsubsection.6.4.1}{}}
+\newlabel{subsubsec:dataset_embedding@cref}{{[subsubsection][1][6,4]6.4.1}{[1][149][]149}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.2}Interpretazione automatica delle feature}{149}{subsubsection.6.4.2}\protected@file@percent }
+\newlabel{subsubsec:feature_interpretation}{{6.4.2}{149}{Interpretazione automatica delle feature}{subsubsection.6.4.2}{}}
+\newlabel{subsubsec:feature_interpretation@cref}{{[subsubsection][2][6,4]6.4.2}{[1][149][]149}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.3}Esempio: Feature 5648 --- \textit  {Time in physics}}{150}{subsubsection.6.4.3}\protected@file@percent }
+\newlabel{subsubsec:feature_example}{{6.4.3}{150}{Esempio: Feature 5648 --- \textit {Time in physics}}{subsubsection.6.4.3}{}}
+\newlabel{subsubsec:feature_example@cref}{{[subsubsection][3][6,4]6.4.3}{[1][150][]150}}
+\@writefile{toc}{\contentsline {paragraph}{Statistiche di attivazione.}{150}{section*.118}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top activating contexts.}{150}{section*.119}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Top activating contexts per la Feature 5648 (\textit  {Time in physics}).\relax }}{151}{table.caption.120}\protected@file@percent }
+\newlabel{tab:feature_5648_top}{{16}{151}{Top activating contexts per la Feature 5648 (\textit {Time in physics}).\relax }{table.caption.120}{}}
+\newlabel{tab:feature_5648_top@cref}{{[table][16][]16}{[1][150][]151}}
+\@writefile{toc}{\contentsline {paragraph}{Topologia e famiglia semantica.}{151}{section*.121}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correlazioni.}{151}{section*.122}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Correlazioni della Feature 5648 nello spazio dei pesi (S) e dei dati (D).\relax }}{152}{table.caption.123}\protected@file@percent }
+\newlabel{tab:feature_5648_corr}{{17}{152}{Correlazioni della Feature 5648 nello spazio dei pesi (S) e dei dati (D).\relax }{table.caption.123}{}}
+\newlabel{tab:feature_5648_corr@cref}{{[table][17][]17}{[1][151][]152}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.4}Esempio: Feature 1140 --- \textit  {Ising model}}{152}{subsubsection.6.4.4}\protected@file@percent }
+\newlabel{subsubsec:feature_example_ising}{{6.4.4}{152}{Esempio: Feature 1140 --- \textit {Ising model}}{subsubsection.6.4.4}{}}
+\newlabel{subsubsec:feature_example_ising@cref}{{[subsubsection][4][6,4]6.4.4}{[1][152][]152}}
+\@writefile{toc}{\contentsline {paragraph}{Statistiche di attivazione.}{152}{section*.124}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top activating contexts.}{153}{section*.125}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Top activating contexts per la Feature 1140 (\textit  {Ising model}).\relax }}{153}{table.caption.126}\protected@file@percent }
+\newlabel{tab:feature_1140_top}{{18}{153}{Top activating contexts per la Feature 1140 (\textit {Ising model}).\relax }{table.caption.126}{}}
+\newlabel{tab:feature_1140_top@cref}{{[table][18][]18}{[1][153][]153}}
+\@writefile{toc}{\contentsline {paragraph}{Topologia e famiglia semantica.}{153}{section*.127}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correlazioni.}{153}{table.caption.129}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Correlazioni della Feature 1140 nello spazio dei pesi (S) e dei dati (D).\relax }}{154}{table.caption.129}\protected@file@percent }
+\newlabel{tab:feature_1140_corr}{{19}{154}{Correlazioni della Feature 1140 nello spazio dei pesi (S) e dei dati (D).\relax }{table.caption.129}{}}
+\newlabel{tab:feature_1140_corr@cref}{{[table][19][]19}{[1][153][]154}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5}Feature families nel dominio scientifico}{154}{subsubsection.6.4.5}\protected@file@percent }
+\newlabel{subsubsec:scientific_features}{{6.4.5}{154}{Feature families nel dominio scientifico}{subsubsection.6.4.5}{}}
+\newlabel{subsubsec:scientific_features@cref}{{[subsubsection][5][6,4]6.4.5}{[1][154][]154}}
+\@writefile{toc}{\contentsline {paragraph}{Caso di studio: Famiglia \#10034 --- \textit  {Time in physics}.}{154}{section*.130}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {62}{\ignorespaces Famiglia \#10034 (\textit  {Time in physics}): lista completa dei 47 children nodes. Ogni chip riporta l'etichetta semantica e l'indice della feature. Si noti la diversità disciplinare dei children---dalla fisica fondamentale (\textit  {Special Relativity}, \textit  {Quantum Clocks}) alla matematica applicata (\textit  {Renewal Theory}, \textit  {Diffusion Equations}) fino a domini applicativi (\textit  {Option Pricing}, \textit  {Scheduling Algorithms})---tutti accomunati dalla centralità del concetto di tempo.\relax }}{155}{figure.caption.131}\protected@file@percent }
+\newlabel{fig:time_physics_list}{{62}{155}{Famiglia \#10034 (\textit {Time in physics}): lista completa dei 47 children nodes. Ogni chip riporta l'etichetta semantica e l'indice della feature. Si noti la diversità disciplinare dei children---dalla fisica fondamentale (\textit {Special Relativity}, \textit {Quantum Clocks}) alla matematica applicata (\textit {Renewal Theory}, \textit {Diffusion Equations}) fino a domini applicativi (\textit {Option Pricing}, \textit {Scheduling Algorithms})---tutti accomunati dalla centralità del concetto di tempo.\relax }{figure.caption.131}{}}
+\newlabel{fig:time_physics_list@cref}{{[figure][62][]62}{[1][154][]155}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.6}Le 590 famiglie come assi di una rappresentazione}{155}{subsubsection.6.4.6}\protected@file@percent }
+\newlabel{subsubsec:families_as_axes}{{6.4.6}{155}{Le 590 famiglie come assi di una rappresentazione}{subsubsection.6.4.6}{}}
+\newlabel{subsubsec:families_as_axes@cref}{{[subsubsection][6][6,4]6.4.6}{[1][155][]155}}
+\@writefile{lof}{\contentsline {figure}{\numberline {63}{\ignorespaces Visualizzazione a grafo della Famiglia \#10034 nell'Explorer di PRISMA. Il nodo centrale azzurro è il parent \textit  {Time in physics}; i nodi viola sono i children e le feature correlate di famiglie adiacenti. La topologia a stella---tipica delle feature families---emerge chiaramente: il parent funge da hub concettuale, mentre i children raramente sono connessi direttamente tra loro.\relax }}{156}{figure.caption.132}\protected@file@percent }
+\newlabel{fig:time_physics_graph}{{63}{156}{Visualizzazione a grafo della Famiglia \#10034 nell'Explorer di PRISMA. Il nodo centrale azzurro è il parent \textit {Time in physics}; i nodi viola sono i children e le feature correlate di famiglie adiacenti. La topologia a stella---tipica delle feature families---emerge chiaramente: il parent funge da hub concettuale, mentre i children raramente sono connessi direttamente tra loro.\relax }{figure.caption.132}{}}
+\newlabel{fig:time_physics_graph@cref}{{[figure][63][]63}{[1][154][]156}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Sviluppi futuri: verso gli invarianti semantici}{157}{subsection.6.5}\protected@file@percent }
+\newlabel{subsec:sviluppi_futuri}{{6.5}{157}{Sviluppi futuri: verso gli invarianti semantici}{subsection.6.5}{}}
+\newlabel{subsec:sviluppi_futuri@cref}{{[subsection][5][6]6.5}{[1][157][]157}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.1}Le ombre sulla parete}{157}{subsubsection.6.5.1}\protected@file@percent }
+\newlabel{subsubsec:ombre_caverna}{{6.5.1}{157}{Le ombre sulla parete}{subsubsection.6.5.1}{}}
+\newlabel{subsubsec:ombre_caverna@cref}{{[subsubsection][1][6,5]6.5.1}{[1][157][]157}}
+\@writefile{lof}{\contentsline {figure}{\numberline {64}{\ignorespaces Mito della Caverna di Platone. Un uomo proietta l'ombra di un uccello su una parete; il prigioniero incatenato osserva l'ombra e la scambia per la realtà. La proiezione è coerente---l'ombra ha la forma di un uccello---ma è una riduzione dell'oggetto originale. Nel contesto del presente lavoro, ogni rappresentazione del significato (densa, sparsa, umana) è un'ombra sulla parete: una proiezione strutturata ma parziale di una realtà semantica sottostante.\relax }}{158}{figure.caption.133}\protected@file@percent }
+\newlabel{fig:caverna_platone}{{64}{158}{Mito della Caverna di Platone. Un uomo proietta l'ombra di un uccello su una parete; il prigioniero incatenato osserva l'ombra e la scambia per la realtà. La proiezione è coerente---l'ombra ha la forma di un uccello---ma è una riduzione dell'oggetto originale. Nel contesto del presente lavoro, ogni rappresentazione del significato (densa, sparsa, umana) è un'ombra sulla parete: una proiezione strutturata ma parziale di una realtà semantica sottostante.\relax }{figure.caption.133}{}}
+\newlabel{fig:caverna_platone@cref}{{[figure][64][]64}{[1][157][]158}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.2}La lezione della fisica: non esiste un sistema privilegiato}{159}{subsubsection.6.5.2}\protected@file@percent }
+\newlabel{subsubsec:lezione_fisica}{{6.5.2}{159}{La lezione della fisica: non esiste un sistema privilegiato}{subsubsection.6.5.2}{}}
+\newlabel{subsubsec:lezione_fisica@cref}{{[subsubsection][2][6,5]6.5.2}{[1][159][]159}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.3}L'etere e la ricerca di un riferimento assoluto}{159}{subsubsection.6.5.3}\protected@file@percent }
+\newlabel{subsubsec:etere}{{6.5.3}{159}{L'etere e la ricerca di un riferimento assoluto}{subsubsection.6.5.3}{}}
+\newlabel{subsubsec:etere@cref}{{[subsubsection][3][6,5]6.5.3}{[1][159][]159}}
+\@writefile{lof}{\contentsline {figure}{\numberline {65}{\ignorespaces Interferenza prodotta da un raggio luminoso rosso con l'esperimento Michelson-Morley. L'esperimento di Michelson-Morley dimostrò l'indipendenza della velocità della luce rispetto all'ipotetico vento d'etere e costituì la prima forte prova contro la teoria dell'etere luminifero. Eseguito nel 1887 nell'attuale Case Western Reserve University, è considerato uno dei più famosi e importanti esperimenti della storia della fisica.\relax }}{160}{figure.caption.134}\protected@file@percent }
+\newlabel{fig:mm_experiment}{{65}{160}{Interferenza prodotta da un raggio luminoso rosso con l'esperimento Michelson-Morley. L'esperimento di Michelson-Morley dimostrò l'indipendenza della velocità della luce rispetto all'ipotetico vento d'etere e costituì la prima forte prova contro la teoria dell'etere luminifero. Eseguito nel 1887 nell'attuale Case Western Reserve University, è considerato uno dei più famosi e importanti esperimenti della storia della fisica.\relax }{figure.caption.134}{}}
+\newlabel{fig:mm_experiment@cref}{{[figure][65][]65}{[1][159][]160}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.4}Il capovolgimento di Einstein}{161}{subsubsection.6.5.4}\protected@file@percent }
+\newlabel{subsubsec:capovolgimento_einstein}{{6.5.4}{161}{Il capovolgimento di Einstein}{subsubsection.6.5.4}{}}
+\newlabel{subsubsec:capovolgimento_einstein@cref}{{[subsubsection][4][6,5]6.5.4}{[1][159][]161}}
+\@writefile{lof}{\contentsline {figure}{\numberline {66}{\ignorespaces Albert Einstein (1879--1955). Con la Relatività Ristretta (1905), Einstein capovolse la domanda sul moto assoluto: anziché cercare un sistema di riferimento privilegiato, mostrò che le leggi della fisica sono le stesse in tutti i sistemi inerziali. La realtà fisica non risiede in un riferimento particolare, ma negli \textbf  {invarianti}---le quantità che si preservano passando da un riferimento all'altro.\relax }}{161}{figure.caption.135}\protected@file@percent }
+\newlabel{fig:einstein}{{66}{161}{Albert Einstein (1879--1955). Con la Relatività Ristretta (1905), Einstein capovolse la domanda sul moto assoluto: anziché cercare un sistema di riferimento privilegiato, mostrò che le leggi della fisica sono le stesse in tutti i sistemi inerziali. La realtà fisica non risiede in un riferimento particolare, ma negli \textbf {invarianti}---le quantità che si preservano passando da un riferimento all'altro.\relax }{figure.caption.135}{}}
+\newlabel{fig:einstein@cref}{{[figure][66][]66}{[1][159][]161}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.5}Tre formulazioni, una sola fisica}{162}{subsubsection.6.5.5}\protected@file@percent }
+\newlabel{subsubsec:tre_formulazioni}{{6.5.5}{162}{Tre formulazioni, una sola fisica}{subsubsection.6.5.5}{}}
+\newlabel{subsubsec:tre_formulazioni@cref}{{[subsubsection][5][6,5]6.5.5}{[1][162][]162}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.6}Applicazione al dominio del significato}{162}{subsubsection.6.5.6}\protected@file@percent }
+\newlabel{subsubsec:applicazione_significato}{{6.5.6}{162}{Applicazione al dominio del significato}{subsubsection.6.5.6}{}}
+\newlabel{subsubsec:applicazione_significato@cref}{{[subsubsection][6][6,5]6.5.6}{[1][162][]162}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.7}La Platonic Representation Hypothesis}{163}{subsubsection.6.5.7}\protected@file@percent }
+\newlabel{subsubsec:platonic_rep}{{6.5.7}{163}{La Platonic Representation Hypothesis}{subsubsection.6.5.7}{}}
+\newlabel{subsubsec:platonic_rep@cref}{{[subsubsection][7][6,5]6.5.7}{[1][162][]163}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.8}Le evidenze}{163}{subsubsection.6.5.8}\protected@file@percent }
+\newlabel{subsubsec:evidenze}{{6.5.8}{163}{Le evidenze}{subsubsection.6.5.8}{}}
+\newlabel{subsubsec:evidenze@cref}{{[subsubsection][8][6,5]6.5.8}{[1][163][]163}}
+\@writefile{lof}{\contentsline {figure}{\numberline {67}{\ignorespaces La Platonic Representation Hypothesis, da Huh et al.~\blx@tocontentsinit {0}\parencite {huh2024platonic}. La realtà sottostante ($Z$)---qui una sfera rossa accanto a un cono blu---genera proiezioni in modalità diverse: un'immagine ($X$) e una descrizione testuale ($Y$). Due encoder indipendenti, $f_{\text  {img}}$ e $f_{\text  {text}}$, trasformano queste proiezioni in rappresentazioni vettoriali. L'ipotesi è che, all'aumentare della scala e della generalità dei modelli, queste rappresentazioni convergano verso la stessa struttura---il modello statistico della realtà $Z$.\relax }}{164}{figure.caption.136}\protected@file@percent }
+\newlabel{fig:platonic_rep}{{67}{164}{La Platonic Representation Hypothesis, da Huh et al.~\parencite {huh2024platonic}. La realtà sottostante ($Z$)---qui una sfera rossa accanto a un cono blu---genera proiezioni in modalità diverse: un'immagine ($X$) e una descrizione testuale ($Y$). Due encoder indipendenti, $f_{\text {img}}$ e $f_{\text {text}}$, trasformano queste proiezioni in rappresentazioni vettoriali. L'ipotesi è che, all'aumentare della scala e della generalità dei modelli, queste rappresentazioni convergano verso la stessa struttura---il modello statistico della realtà $Z$.\relax }{figure.caption.136}{}}
+\newlabel{fig:platonic_rep@cref}{{[figure][67][]67}{[1][162][]164}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.9}Cosa guida la convergenza?}{165}{subsubsection.6.5.9}\protected@file@percent }
+\newlabel{subsubsec:guida_convergenza}{{6.5.9}{165}{Cosa guida la convergenza?}{subsubsection.6.5.9}{}}
+\newlabel{subsubsec:guida_convergenza@cref}{{[subsubsection][9][6,5]6.5.9}{[1][163][]165}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.10}Come si misura la convergenza?}{165}{subsubsection.6.5.10}\protected@file@percent }
+\newlabel{subsubsec:misura_convergenza}{{6.5.10}{165}{Come si misura la convergenza?}{subsubsection.6.5.10}{}}
+\newlabel{subsubsec:misura_convergenza@cref}{{[subsubsection][10][6,5]6.5.10}{[1][165][]165}}
+\newlabel{eq:kernel_alignment}{{80}{165}{Come si misura la convergenza?}{equation.6.80}{}}
+\newlabel{eq:kernel_alignment@cref}{{[equation][80][]80}{[1][165][]165}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.11}Il collegamento con PRISMA}{165}{subsubsection.6.5.11}\protected@file@percent }
+\newlabel{subsubsec:collegamento_prisma}{{6.5.11}{165}{Il collegamento con PRISMA}{subsubsection.6.5.11}{}}
+\newlabel{subsubsec:collegamento_prisma@cref}{{[subsubsection][11][6,5]6.5.11}{[1][165][]165}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.12}La proposta: cercare isomorfismi tra rappresentazioni}{166}{subsubsection.6.5.12}\protected@file@percent }
+\newlabel{subsubsec:proposta_isomorfismi}{{6.5.12}{166}{La proposta: cercare isomorfismi tra rappresentazioni}{subsubsection.6.5.12}{}}
+\newlabel{subsubsec:proposta_isomorfismi@cref}{{[subsubsection][12][6,5]6.5.12}{[1][165][]166}}
+\newlabel{eq:reconstruction}{{81}{166}{La proposta: cercare isomorfismi tra rappresentazioni}{equation.6.81}{}}
+\newlabel{eq:reconstruction@cref}{{[equation][81][]81}{[1][166][]166}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.13}Candidati invarianti semantici}{167}{subsubsection.6.5.13}\protected@file@percent }
+\newlabel{subsubsec:candidati_invarianti}{{6.5.13}{167}{Candidati invarianti semantici}{subsubsection.6.5.13}{}}
+\newlabel{subsubsec:candidati_invarianti@cref}{{[subsubsection][13][6,5]6.5.13}{[1][166][]167}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.14}Il ruolo dell'Effective Rank e dell'SCR}{167}{subsubsection.6.5.14}\protected@file@percent }
+\newlabel{subsubsec:ruolo_er_scr}{{6.5.14}{167}{Il ruolo dell'Effective Rank e dell'SCR}{subsubsection.6.5.14}{}}
+\newlabel{subsubsec:ruolo_er_scr@cref}{{[subsubsection][14][6,5]6.5.14}{[1][167][]167}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.15}Visione d'insieme}{168}{subsubsection.6.5.15}\protected@file@percent }
+\newlabel{subsubsec:visione_insieme}{{6.5.15}{168}{Visione d'insieme}{subsubsection.6.5.15}{}}
+\newlabel{subsubsec:visione_insieme@cref}{{[subsubsection][15][6,5]6.5.15}{[1][168][]168}}
 \@setckpt{chapters/06_risultati_conclusioni}{
-\setcounter{page}{135}
-\setcounter{equation}{80}
-\setcounter{enumi}{4}
+\setcounter{page}{170}
+\setcounter{equation}{81}
+\setcounter{enumi}{3}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{1}
+\setcounter{footnote}{10}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{section}{6}
-\setcounter{subsection}{6}
-\setcounter{subsubsection}{3}
+\setcounter{subsection}{5}
+\setcounter{subsubsection}{15}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{61}
-\setcounter{table}{7}
+\setcounter{figure}{67}
+\setcounter{table}{19}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
 \setcounter{lstnumber}{1}
 \setcounter{parentequation}{0}
-\setcounter{caption@flags}{2}
+\setcounter{caption@flags}{0}
 \setcounter{continuedfloat}{0}
 \setcounter{subfigure}{0}
 \setcounter{subtable}{0}
@@ -127,7 +259,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{0}
+\setcounter{instcount}{56}
 \setcounter{maxnames}{1}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -151,7 +283,7 @@
 \setcounter{parenlevel}{0}
 \setcounter{blx@maxsection}{0}
 \setcounter{blx@maxsegment@0}{0}
-\setcounter{blx@sectionciteorder@0}{42}
+\setcounter{blx@sectionciteorder@0}{76}
 \setcounter{mincomprange}{10}
 \setcounter{maxcomprange}{100000}
 \setcounter{mincompwidth}{1}
@@ -234,13 +366,13 @@
 \setcounter{smartand}{1}
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
-\setcounter{Item}{125}
-\setcounter{Hfootnote}{1}
-\setcounter{bookmark@seq@number}{110}
+\setcounter{Item}{112}
+\setcounter{Hfootnote}{10}
+\setcounter{bookmark@seq@number}{139}
 \setcounter{FancyVerbLine}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{41}
+\setcounter{tcolorbox@number}{39}
 \setcounter{definition}{0}
 \setcounter{lstlisting}{0}
 \setcounter{section@level}{3}

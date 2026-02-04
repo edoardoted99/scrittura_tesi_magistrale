@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  2 FEB 2026 13:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.10.22)  4 FEB 2026 08:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -877,7 +877,7 @@ Package: xparse 2022-01-12 L3 Experimental document command parser
 Package: blx-case-expl3 2022/02/02 v3.17 expl3 case changing code for biblatex
 ))
 Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
- overwriting on input line 33.
+ overwriting on input line 36.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
@@ -1298,35 +1298,164 @@ LaTeX Warning: Label `fig:prisma_home@cref' multiply defined.
 
 ) (./chapters/06_risultati_conclusioni.aux
 
-LaTeX Warning: Label `sec:06_risultati' multiply defined.
+LaTeX Warning: Label `subsec:feature_extraction_results' multiply defined.
 
 
-LaTeX Warning: Label `sec:06_risultati@cref' multiply defined.
+LaTeX Warning: Label `subsec:feature_extraction_results@cref' multiply defined.
 
-))
+
+
+LaTeX Warning: Label `subsubsec:dataset_embedding' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:dataset_embedding@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_interpretation' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_interpretation@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_top' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_top@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_corr' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_corr@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example_ising' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example_ising@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_top' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_top@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_corr' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_corr@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsec:feature_extraction_results' multiply defined.
+
+
+LaTeX Warning: Label `subsec:feature_extraction_results@cref' multiply defined.
+
+
+
+LaTeX Warning: Label `subsubsec:dataset_embedding' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:dataset_embedding@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_interpretation' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_interpretation@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_top' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_top@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_corr' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_5648_corr@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example_ising' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:feature_example_ising@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_top' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_top@cref' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_corr' multiply defined.
+
+
+LaTeX Warning: Label `tab:feature_1140_corr@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:scientific_features' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:scientific_features@cref' multiply defined.
+
+
+LaTeX Warning: Label `fig:time_physics_list' multiply defined.
+
+
+LaTeX Warning: Label `fig:time_physics_list@cref' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:families_as_axes' multiply defined.
+
+
+LaTeX Warning: Label `subsubsec:families_as_axes@cref' multiply defined.
+
+
+LaTeX Warning: Label `fig:time_physics_graph' multiply defined.
+
+
+LaTeX Warning: Label `fig:time_physics_graph@cref' multiply defined.
+
+) (./chapters/07_appendice.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Info: Redefining \it@ocap on input line 98.
-LaTeX Info: Redefining \it@ccap on input line 98.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Info: Redefining \it@ocap on input line 101.
+LaTeX Info: Redefining \it@ccap on input line 101.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count516
 \scratchdimen=\dimen313
@@ -1349,7 +1478,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package translations Info: no dictionary file `translations-basic-dictionary-it
-alian.trsl' found. on input line 98.
+alian.trsl' found. on input line 101.
 \c@lstlisting=\count522
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
@@ -1367,17 +1496,19 @@ Package biblatex Info: Automatic encoding selection.
 \openout4 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-
-
-Package biblatex Warning: File 'main.bbl' is wrong format version - expected 3.
-2.
-
 Package biblatex Info: ... file 'main.bbl' found.
-(./main.bbl
+ (./main.bbl
 
 Package biblatex Warning: The following entry could not be found
 (biblatex)                in the database:
 (biblatex)                elhage2022superposition
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                huh2024platonic
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
@@ -1392,13 +1523,6 @@ Package biblatex Warning: The following entry could not be found
 Package biblatex Warning: The following entry could not be found
 (biblatex)                in the database:
 (biblatex)                makhzani2013ksparse
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                medbit2023
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
@@ -1424,9 +1548,9 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 98.
-Package biblatex Info: Reference segment=0 on input line 98.
-Package hyperref Info: Link coloring OFF on input line 98.
+Package biblatex Info: Reference section=0 on input line 101.
+Package biblatex Info: Reference segment=0 on input line 101.
+Package hyperref Info: Link coloring OFF on input line 101.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -1438,9 +1562,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count523
 )
-LaTeX Info: Redefining \ref on input line 98.
-LaTeX Info: Redefining \pageref on input line 98.
-LaTeX Info: Redefining \nameref on input line 98.
+LaTeX Info: Redefining \ref on input line 101.
+LaTeX Info: Redefining \pageref on input line 101.
+LaTeX Info: Redefining \nameref on input line 101.
 
 (./main.out) (./main.out)
 \@outlinefile=\write7
@@ -1449,7 +1573,7 @@ LaTeX Info: Redefining \nameref on input line 98.
 \openout2 = `style/abstract.aux'.
 
  (./style/abstract.tex
-<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=477, 398.4486pt x 156.585pt>
+<pictures/tesiSCIENZE_TECNOLOGIE.jpg, id=646, 398.4486pt x 156.585pt>
 File: pictures/tesiSCIENZE_TECNOLOGIE.jpg Graphic file (type jpg)
 <use pictures/tesiSCIENZE_TECNOLOGIE.jpg>
 Package pdftex.def Info: pictures/tesiSCIENZE_TECNOLOGIE.jpg  used on input lin
@@ -1459,237 +1583,181 @@ e 4.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./pictures/tesiSCIENZE_TEC
-NOLOGIE.jpg>]) (./main.toc
-LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
+NOLOGIE.jpg>]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Overfull \hbox (2.05836pt too wide) in paragraph at lines 27--27
+))pdfTeX warning (ext4): destination with the same identifier (name{page.i}) ha
+s been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.109 \include{style/abstract}
+                               [1
+
+] (./main.toc [2
+
+
+]
+Overfull \hbox (2.05836pt too wide) in paragraph at lines 37--37
  [][] [][]\T1/cmr/m/n/12 Dall'undercomplete al-l'o-ver-com-ple-te: in-ver-sio-n
 e del pa- 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.28 ...zione matematica}{22}{subsubsection.2.7.2}
-                                                  % [1
-
-
-] [2] [3] [4])
+[3] [4] [5] [6])
 \tf@toc=\write8
 \openout8 = `main.toc'.
 
- [5]
+ [7]
 \openout2 = `chapters/01_introduzione.aux'.
 
-
-(./chapters/01_introduzione.tex) [1
+ (./chapters/01_introduzione.tex [1
 
 
 ]
+Overfull \hbox (2.22499pt too wide) in paragraph at lines 21--22
+[]\T1/cmr/m/n/12 Una ri-spo-sta teo-ri-ca a que-sta opa-ci-tà è la \T1/cmr/bx/n
+/12 Su-per-po-si-tion Hy-po-the-sis \T1/cmr/m/n/12 ([]Elha-
+ []
+
+[2]
+Overfull \hbox (4.92294pt too wide) in paragraph at lines 37--38
+\T1/cmr/m/n/12 me black box, ma \T1/cmr/m/it/12 reverse-engineerandone \T1/cmr/
+m/n/12 i mec-ca-ni-smi interni---analogamente
+ []
+
+[3] [4] [5] [6] [7] [8] [9]
+Overfull \hbox (263.0397pt too wide) in paragraph at lines 128--140
+ [][] 
+ []
+
+[10]
+Overfull \hbox (0.11298pt too wide) in paragraph at lines 152--153
+[]\T1/cmr/m/n/12 Sul pia-no \T1/cmr/bx/n/12 teorico-quantitativo\T1/cmr/m/n/12 
+, que-sto la-vo-ro in-tro-du-ce il \T1/cmr/bx/n/12 Se-man-tic Com-
+ []
+
+
+LaTeX Warning: Reference `sec:02_autoencoders' on page 11 undefined on input li
+ne 158.
+
+[11]
+
+LaTeX Warning: Reference `sec:03_word_embeddings' on page 12 undefined on input
+ line 160.
+
+) [12]
 \openout2 = `chapters/02_autoencoders.aux'.
 
- (./chapters/02_autoencoders.tex
-<pictures/cap2/Richard_Feynman_Nobel.jpg, id=632, 501.875pt x 709.65125pt>
+ (./chapters/02_autoencoders.tex [13
+
+
+
+]
+<pictures/cap2/Richard_Feynman_Nobel.jpg, id=980, 501.875pt x 709.65125pt>
 File: pictures/cap2/Richard_Feynman_Nobel.jpg Graphic file (type jpg)
 <use pictures/cap2/Richard_Feynman_Nobel.jpg>
 Package pdftex.def Info: pictures/cap2/Richard_Feynman_Nobel.jpg  used on input
- line 7.
+ line 14.
 (pdftex.def)             Requested size: 167.69714pt x 237.12012pt.
 
-
-LaTeX Warning: Citation 'feynman_wikipedia' on page 2 undefined on input line 9
-.
-
-
-LaTeX Warning: Citation 'feynman_wikipedia' on page 2 undefined on input line 9
-.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3--11
+Underfull \hbox (badness 10000) in paragraph at lines 10--18
 \T1/cmr/m/it/12 ``What I can-not build, I do not un-der-stand.''
  []
 
-[2
-
-
-
- <./pictures/cap2/Richard_Feynman_Nobel.jpg>]
-
-LaTeX Warning: Citation 'autoencodersbank2020autoencoders' on page 3 undefined 
-on input line 75.
-
-
-LaTeX Warning: Citation 'michelucci2022introductionautoencoders' on page 3 unde
-fined on input line 75.
-
-
-Overfull \hbox (78.74692pt too wide) in paragraph at lines 67--76
-\T1/cmr/m/n/12 ([]; []). 
- []
-
-[3] [4]
-<pictures/cap2/reconstructions.png, id=664, 1084.05pt x 252.945pt>
+[14 <./pictures/cap2/Richard_Feynman_Nobel.jpg>] [15] [16]
+<pictures/cap2/reconstructions.png, id=1017, 1084.05pt x 252.945pt>
 File: pictures/cap2/reconstructions.png Graphic file (type png)
 <use pictures/cap2/reconstructions.png>
 Package pdftex.def Info: pictures/cap2/reconstructions.png  used on input line 
-156.
+164.
 (pdftex.def)             Requested size: 390.0pt x 90.99837pt.
-<pictures/cap2/manifold_grid.png, id=666, 578.16pt x 578.16pt>
+<pictures/cap2/manifold_grid.png, id=1019, 578.16pt x 578.16pt>
 File: pictures/cap2/manifold_grid.png Graphic file (type png)
 <use pictures/cap2/manifold_grid.png>
-Package pdftex.def Info: pictures/cap2/manifold_grid.png  used on input line 16
-6.
+Package pdftex.def Info: pictures/cap2/manifold_grid.png  used on input line 17
+4.
 (pdftex.def)             Requested size: 390.0pt x 389.99414pt.
-<pictures/cap2/latent_scatter.png, id=667, 433.62pt x 433.62pt>
+<pictures/cap2/latent_scatter.png, id=1020, 433.62pt x 433.62pt>
 File: pictures/cap2/latent_scatter.png Graphic file (type png)
 <use pictures/cap2/latent_scatter.png>
 Package pdftex.def Info: pictures/cap2/latent_scatter.png  used on input line 1
-72.
+80.
 (pdftex.def)             Requested size: 390.0pt x 390.0162pt.
- [5 <./pictures/cap2/reconstructions.png>] [6 <./pictures/cap2/manifold_grid.pn
-g>] [7 <./pictures/cap2/latent_scatter.png>] [8] [9] [10]
+ [17 <./pictures/cap2/reconstructions.png>] [18 <./pictures/cap2/manifold_grid.
+png>] [19 <./pictures/cap2/latent_scatter.png>] [20] [21] [22]
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 3
-01.
+09.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 File: pictures/cap2/manifold_grid.png Graphic file (type png)
 <use pictures/cap2/manifold_grid.png>
-Package pdftex.def Info: pictures/cap2/manifold_grid.png  used on input line 38
-6.
+Package pdftex.def Info: pictures/cap2/manifold_grid.png  used on input line 39
+4.
 (pdftex.def)             Requested size: 108.1136pt x 108.1136pt.
 File: pictures/cap2/latent_scatter.png Graphic file (type png)
 <use pictures/cap2/latent_scatter.png>
-Package pdftex.def Info: pictures/cap2/latent_scatter.png  used on input line 3
-95.
+Package pdftex.def Info: pictures/cap2/latent_scatter.png  used on input line 4
+03.
 (pdftex.def)             Requested size: 108.12022pt x 108.12022pt.
 
-Overfull \hbox (11.51898pt too wide) in paragraph at lines 399--400
+Overfull \hbox (11.51898pt too wide) in paragraph at lines 407--408
  [][] 
  []
 
-[11] [12]
-
-LaTeX Warning: Citation 'wang2024disentangledrepresentationlearning' on page 13
- undefined on input line 437.
-
-
-Underfull \hbox (badness 2302) in paragraph at lines 436--438
-\T1/cmr/m/n/12 Si de-fi-ni-sco-no \T1/cmr/m/it/12 fat-to-ri di va-ria-zio-ne \T
-1/cmr/m/n/12 le va-ria-bi-li la-ten-ti, ge-ne-ral-
- []
-
-
-Underfull \hbox (badness 2401) in paragraph at lines 436--438
-\T1/cmr/m/n/12 men-te non os-ser-va-bi-li, che pa-ra-me-triz-za-no il pro-ces-s
-o ge-ne-ra-ti-
- []
-
-
-Underfull \hbox (badness 2951) in paragraph at lines 436--438
-\T1/cmr/m/n/12 vo dei da-ti e ne de-ter-mi-na-no le prin-ci-pa-li mo-da-li-tà d
-i cam-
- []
-
-
-Underfull \hbox (badness 3148) in paragraph at lines 436--438
-\T1/cmr/m/n/12 bia-men-to. Cia-scun fat-to-re cor-ri-spon-de a una di-men-sio-n
-e se-
- []
-
-
-Underfull \hbox (badness 2229) in paragraph at lines 436--438
-\T1/cmr/m/n/12 man-ti-ca di-stin-ta (es. ro-ta-zio-ne, spes-so-re, iden-ti-tà d
-el-la ci-fra)
- []
-
-[13]
-
-LaTeX Warning: Citation 'chen2016infoganinterpretablerepresentationlearning' on
- page 14 undefined on input line 477.
-
-
-Overfull \hbox (0.40733pt too wide) in paragraph at lines 477--478
-\T1/cmr/m/n/12 del-lo In-fo-GAN ([])
- []
-
-<pictures/cap2/mnist_disenangled_info_gan.png, id=749, 1110.1475pt x 668.4975pt
->
+[23] [24] [25]
+<pictures/cap2/mnist_disenangled_info_gan.png, id=1101, 1110.1475pt x 668.4975p
+t>
 File: pictures/cap2/mnist_disenangled_info_gan.png Graphic file (type png)
 <use pictures/cap2/mnist_disenangled_info_gan.png>
 Package pdftex.def Info: pictures/cap2/mnist_disenangled_info_gan.png  used on 
-input line 481.
+input line 489.
 (pdftex.def)             Requested size: 390.0pt x 234.84467pt.
-
-LaTeX Warning: Citation 'chen2016infoganinterpretablerepresentationlearning' on
- page 14 undefined on input line 482.
-
-
-LaTeX Warning: Citation 'chen2016infoganinterpretablerepresentationlearning' on
- page 14 undefined on input line 482.
-
-[14] [15 <./pictures/cap2/mnist_disenangled_info_gan.png>] [16] [17]
-<pictures/cap2/latent_ae.png, id=791, 1016.79875pt x 323.2075pt>
+ [26] [27 <./pictures/cap2/mnist_disenangled_info_gan.png>]
+[28] [29]
+<pictures/cap2/latent_ae.png, id=1147, 1016.79875pt x 323.2075pt>
 File: pictures/cap2/latent_ae.png Graphic file (type png)
 <use pictures/cap2/latent_ae.png>
-Package pdftex.def Info: pictures/cap2/latent_ae.png  used on input line 552.
+Package pdftex.def Info: pictures/cap2/latent_ae.png  used on input line 560.
 (pdftex.def)             Requested size: 390.0pt x 123.96922pt.
-<pictures/cap2/latent_vae.png, id=792, 990.70125pt x 319.1925pt>
+<pictures/cap2/latent_vae.png, id=1148, 990.70125pt x 319.1925pt>
 File: pictures/cap2/latent_vae.png Graphic file (type png)
 <use pictures/cap2/latent_vae.png>
-Package pdftex.def Info: pictures/cap2/latent_vae.png  used on input line 561.
+Package pdftex.def Info: pictures/cap2/latent_vae.png  used on input line 569.
 (pdftex.def)             Requested size: 390.0pt x 125.65347pt.
 
 
-LaTeX Warning: Citation 'gordon2020machine' on page 18 undefined on input line 
-566.
-
-
-LaTeX Warning: Citation 'gordon2020machine' on page 18 undefined on input line 
-566.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 594.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 586.
+(hyperref)                removing `\beta' on input line 594.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\beta' on input line 586.
+(hyperref)                removing `math shift' on input line 594.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 586.
-
-
-LaTeX Warning: Citation 'burgess2018understandingdisentanglingbetavae' on page 
-18 undefined on input line 588.
-
-[18] [19 <./pictures/cap2/latent_ae.png> <./pictures/cap2/latent_vae.png>]
-[20] [21]
-
-LaTeX Warning: Citation 'wang2024disentangledrepresentationlearning' on page 22
- undefined on input line 694.
-
-[22]) [23] [24]
+[30] [31 <./pictures/cap2/latent_ae.png> <./pictures/cap2/latent_vae.png>]
+[32] [33] [34]) [35] [36]
 \openout2 = `chapters/03_embeddings.aux'.
 
- (./chapters/03_embeddings.tex [25
+ (./chapters/03_embeddings.tex [37
 
 
 
 ]
-<pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png, id=861, 501.875pt x 756.82
-75pt>
+<pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png, id=1222, 501.875pt x 756.8
+275pt>
 File: pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png Graphic file (type png
 )
 <use pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png>
@@ -1698,57 +1766,36 @@ ed on input line 57.
 (pdftex.def)             Requested size: 195.0pt x 294.06445pt.
 
 
-LaTeX Warning: Citation 'saussure_wikipedia_image' on page 26 undefined on inpu
-t line 58.
-
-
-LaTeX Warning: Citation 'saussure_wikipedia_image' on page 26 undefined on inpu
-t line 58.
-
-
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[26] [27] [28 <./pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png>] [29]
-
-LaTeX Warning: Citation 'Osgood1957Measurement' on page 30 undefined on input l
-ine 179.
-
-[30] [31]
+[38] [39] [40 <./pictures/cap3/Ferdinand_de_Saussure_by_Jullien.png>] [41]
+[42] [43]
 Overfull \hbox (20.73492pt too wide) in paragraph at lines 266--267
  [][] 
  []
 
-[32]
+[44]
 Overfull \hbox (0.59558pt too wide) in paragraph at lines 282--292
  [][] 
  []
 
-[33]
+[45]
 Overfull \hbox (9.67581pt too wide) in paragraph at lines 303--325
  []\T1/cmr/bx/n/12 Matrice termine-termine.[] \T1/cmr/m/n/12 Un'al-ter-na-ti-va
  al-la ma-tri-ce termine--documento
  []
 
-[34] [35]
-
-LaTeX Warning: Citation 'mikolov2013efficientestimationwordrepresentations' on 
-page 36 undefined on input line 412.
-
-[36] [37]
-<pictures/embeddings_w2vec.png, id=952, 1294.8375pt x 630.355pt>
+[46] [47] [48] [49]
+<pictures/embeddings_w2vec.png, id=1317, 1294.8375pt x 630.355pt>
 File: pictures/embeddings_w2vec.png Graphic file (type png)
 <use pictures/embeddings_w2vec.png>
 Package pdftex.def Info: pictures/embeddings_w2vec.png  used on input line 443.
 
 (pdftex.def)             Requested size: 272.99881pt x 132.89784pt.
- [38 <./pictures/embeddings_w2vec.png>] [39] [40] [41] [42] [43]
+ [50 <./pictures/embeddings_w2vec.png>] [51] [52] [53]
+[54] [55] [56] [57] [58] [59]
 
-LaTeX Warning: Citation 'hochreiter1997long' on page 44 undefined on input line
- 615.
-
-[44] [45] [46] [47]
-
-LaTeX Warning: Citation 'sutskever2014sequence' on page 48 undefined on input l
+LaTeX Warning: Citation 'sutskever2014sequence' on page 60 undefined on input l
 ine 816.
 
 
@@ -1757,90 +1804,57 @@ Overfull \hbox (40.48859pt too wide) in paragraph at lines 815--818
 r ([])
  []
 
-[48] [49]
-
-LaTeX Warning: Citation 'bahdanau2014neural' on page 50 undefined on input line
- 898.
-
-
-Overfull \hbox (39.24513pt too wide) in paragraph at lines 898--900
-\T1/cmr/m/n/12 fi-ca-ti-va-men-te al-l'au-men-ta-re del-la lun-ghez-za del-le s
-e-quen-ze ([]).
- []
-
-
-LaTeX Warning: Citation 'bahdanau2014neural' on page 50 undefined on input line
- 909.
-
-[50] [51]
-
-LaTeX Warning: Citation 'vaswani2017attention' on page 52 undefined on input li
-ne 999.
-
-[52] [53]
-
-LaTeX Warning: Citation 'devlin2019bert' on page 54 undefined on input line 106
-1.
-
+[60] [61] [62] [63] [64] [65]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
 062.
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [54] [55] [56])
-[57]
+) [66] [67] [68])
+[69]
 \openout2 = `chapters/04_disentangling_dense_embeddings_with_sparse_autoencoder
 s.aux'.
 
- (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.tex [58
+ (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.tex [70
 
 
 
-] [59] [60]
+] [71] [72] [73]
 
-LaTeX Warning: Citation 'wang2024disentangledrepresentationlearning' on page 61
- undefined on input line 70.
-
-
-Overfull \hbox (39.6616pt too wide) in paragraph at lines 70--79
-\T1/cmr/m/n/12 rap-pre-sen-ta-zio-ne di-sen-tan-gled ([]): 
- []
-
-[61]
-
-LaTeX Warning: Reference `fig:disentangled_vs_entangled' on page 62 undefined o
+LaTeX Warning: Reference `fig:disentangled_vs_entangled' on page 74 undefined o
 n input line 80.
 
-[62] [63] [64]
+[74] [75] [76]
 Overfull \hbox (0.98364pt too wide) in paragraph at lines 219--223
 \T1/cmr/m/n/12 Questa os-ser-va-zio-ne apre una pos-si-bi-li-tà che il ra-gio-n
 a-men-to pre-ce-den-te esclu-
  []
 
-[65]
+[77]
 
-LaTeX Warning: Citation 'elhage2022superposition' on page 66 undefined on input
+LaTeX Warning: Citation 'elhage2022superposition' on page 78 undefined on input
  line 301.
 
-[66]
+[78]
 Overfull \hbox (21.3167pt too wide) in paragraph at lines 375--376
  [][] 
  []
 
 
-LaTeX Warning: Citation 'elhage2022superposition' on page 67 undefined on input
+LaTeX Warning: Citation 'elhage2022superposition' on page 79 undefined on input
  line 376.
 
 
-LaTeX Warning: Citation 'elhage2022superposition' on page 67 undefined on input
+LaTeX Warning: Citation 'elhage2022superposition' on page 79 undefined on input
  line 376.
 
-[67] [68] [69] [70] [71] [72] [73] [74])
-Overfull \hbox (21.20195pt too wide) in paragraph at lines 611--118
+[79] [80] [81] [82] [83] [84] [85] [86])
+Overfull \hbox (21.20195pt too wide) in paragraph at lines 611--121
 \T1/cmr/m/n/12 to^^Vsaranno og-get-to del pros-si-mo ca-pi-to-lo. Lì pre-sen-te
 -re-mo PRI-SMA (\T1/cmr/bx/n/12 P\T1/cmr/m/n/12 rojection
  []
 
-[75] [76]
+[87] [88]
 \openout2 = `chapters/05_prisma.aux'.
 
  (./chapters/05_prisma.tex
@@ -1848,68 +1862,68 @@ Overfull \hbox (6.04369pt too wide) in paragraph at lines 1--1
 \T1/cmr/bx/n/17.28 In-ter-pre-ta-bi-li-ty via Spar-se Mo-no-se-man-tic Au-
  []
 
-[77
+[89
 
 
 
 ]
-<pictures/cap5/home.png, id=1202, 1075.01625pt x 811.03pt>
+<pictures/cap5/home.png, id=1578, 1075.01625pt x 811.03pt>
 File: pictures/cap5/home.png Graphic file (type png)
 <use pictures/cap5/home.png>
 Package pdftex.def Info: pictures/cap5/home.png  used on input line 15.
 (pdftex.def)             Requested size: 390.0pt x 294.22289pt.
- [78 <./pictures/cap5/home.png>] [79]
+ [90 <./pictures/cap5/home.png>] [91]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 80 undefined on input
+LaTeX Warning: Citation 'oneill2024disentangling' on page 92 undefined on input
  line 68.
 
-[80] [81] [82]
+[92] [93] [94]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 83 undefined on input
+LaTeX Warning: Citation 'oneill2024disentangling' on page 95 undefined on input
  line 213.
 
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 83 undefined on input
+LaTeX Warning: Citation 'oneill2024disentangling' on page 95 undefined on input
  line 261.
 
 
-LaTeX Warning: Reference `subsec:feature_splitting' on page 83 undefined on inp
+LaTeX Warning: Reference `subsec:feature_splitting' on page 95 undefined on inp
 ut line 261.
 
-[83] [84] [85]
+[95] [96] [97]
 Underfull \hbox (badness 2326) in paragraph at lines 296--297
 []\T1/cmr/m/n/12 Le in-ten-si-tà $\OML/cmm/m/it/12 h[]$ \T1/cmr/m/n/12 so-no ca
 l-co-la-te dal-l'en-co-der, che im-pa-ra a
  []
 
-[86] [87]
+[98] [99]
 Underfull \hbox (badness 1546) in paragraph at lines 402--403
 []\T1/cmr/m/n/12 L'\T1/cmr/bx/n/12 encoder \T1/cmr/m/n/12 (non li-nea-re) ri-le
 -va qua-li fea-tu-re so-no pre-sen-ti,
  []
 
-[88]
-<pictures/cap5/1_load_ds.png, id=1292, 1083.04625pt x 930.47626pt>
+[100]
+<pictures/cap5/1_load_ds.png, id=1666, 1083.04625pt x 930.47626pt>
 File: pictures/cap5/1_load_ds.png Graphic file (type png)
 <use pictures/cap5/1_load_ds.png>
 Package pdftex.def Info: pictures/cap5/1_load_ds.png  used on input line 415.
 (pdftex.def)             Requested size: 390.0pt x 335.05638pt.
-<pictures/cap5/2_prepare_experiment.png, id=1293, 1119.18124pt x 888.31876pt>
+<pictures/cap5/2_prepare_experiment.png, id=1667, 1119.18124pt x 888.31876pt>
 File: pictures/cap5/2_prepare_experiment.png Graphic file (type png)
 <use pictures/cap5/2_prepare_experiment.png>
 Package pdftex.def Info: pictures/cap5/2_prepare_experiment.png  used on input 
 line 421.
 (pdftex.def)             Requested size: 390.0pt x 309.5472pt.
-<pictures/cap5/training_2.png, id=1294, 1234.6125pt x 943.525pt>
+<pictures/cap5/training_2.png, id=1668, 1234.6125pt x 943.525pt>
 File: pictures/cap5/training_2.png Graphic file (type png)
 <use pictures/cap5/training_2.png>
 Package pdftex.def Info: pictures/cap5/training_2.png  used on input line 427.
 (pdftex.def)             Requested size: 390.0pt x 298.04697pt.
- [89] [90 <./pictures/cap5/1_load_ds.png>] [91 <./pictures/cap5/2_prepare_exper
-iment.png>] [92 <./pictures/cap5/training_2.png>]
+ [101] [102 <./pictures/cap5/1_load_ds.png>] [103 <./pictures/cap5/2_prepare_ex
+periment.png>] [104 <./pictures/cap5/training_2.png>]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 93 undefined on input
- line 436.
+LaTeX Warning: Citation 'oneill2024disentangling' on page 105 undefined on inpu
+t line 436.
 
 
 Overfull \hbox (57.48459pt too wide) in paragraph at lines 435--437
@@ -1917,14 +1931,14 @@ Overfull \hbox (57.48459pt too wide) in paragraph at lines 435--437
  et al. ([]),
  []
 
-[93]
+[105]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 94 undefined on input
- line 465.
+LaTeX Warning: Citation 'oneill2024disentangling' on page 106 undefined on inpu
+t line 465.
 
 
-LaTeX Warning: Citation 'makhzani2013ksparse' on page 94 undefined on input lin
-e 466.
+LaTeX Warning: Citation 'makhzani2013ksparse' on page 106 undefined on input li
+ne 466.
 
 
 Overfull \hbox (58.97919pt too wide) in paragraph at lines 464--469
@@ -1932,32 +1946,32 @@ Overfull \hbox (58.97919pt too wide) in paragraph at lines 464--469
 2 Top-K \T1/cmr/m/n/12 (o \T1/cmr/m/it/12 k-sparse\T1/cmr/m/n/12 ) ([]).
  []
 
-<pictures/cap5/8_vector_sparse_unsorted.png, id=1327, 1281.78876pt x 562.1pt>
+<pictures/cap5/8_vector_sparse_unsorted.png, id=1702, 1281.78876pt x 562.1pt>
 File: pictures/cap5/8_vector_sparse_unsorted.png Graphic file (type png)
 <use pictures/cap5/8_vector_sparse_unsorted.png>
 Package pdftex.def Info: pictures/cap5/8_vector_sparse_unsorted.png  used on in
 put line 555.
 (pdftex.def)             Requested size: 390.0pt x 171.02426pt.
-<pictures/cap5/6_vector_sparse_sorted.png, id=1328, 1288.815pt x 561.09625pt>
+<pictures/cap5/6_vector_sparse_sorted.png, id=1703, 1288.815pt x 561.09625pt>
 File: pictures/cap5/6_vector_sparse_sorted.png Graphic file (type png)
 <use pictures/cap5/6_vector_sparse_sorted.png>
 Package pdftex.def Info: pictures/cap5/6_vector_sparse_sorted.png  used on inpu
 t line 564.
 (pdftex.def)             Requested size: 390.0pt x 169.78564pt.
-[94]
+[106]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 95 undefined on input
- line 577.
+LaTeX Warning: Citation 'oneill2024disentangling' on page 107 undefined on inpu
+t line 577.
 
 
-LaTeX Warning: Reference `subsec:feature_splitting' on page 95 undefined on inp
-ut line 583.
+LaTeX Warning: Reference `subsec:feature_splitting' on page 107 undefined on in
+put line 583.
 
-[95] [96 <./pictures/cap5/8_vector_sparse_unsorted.png> <./pictures/cap5/6_vect
-or_sparse_sorted.png>]
+[107] [108 <./pictures/cap5/8_vector_sparse_unsorted.png> <./pictures/cap5/6_ve
+ctor_sparse_sorted.png>]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 97 undefined on input
- line 591.
+LaTeX Warning: Citation 'oneill2024disentangling' on page 109 undefined on inpu
+t line 591.
 
 
 Overfull \hbox (109.1428pt too wide) in paragraph at lines 591--592
@@ -1966,8 +1980,8 @@ n/12 dead la-ten-ts\T1/cmr/m/n/12 . O'Neill et al. ([])
  []
 
 
-LaTeX Warning: Citation 'jermyn2023ghostgrads' on page 97 undefined on input li
-ne 638.
+LaTeX Warning: Citation 'jermyn2023ghostgrads' on page 109 undefined on input l
+ine 638.
 
 
 Overfull \hbox (22.74355pt too wide) in paragraph at lines 637--640
@@ -1975,48 +1989,48 @@ Overfull \hbox (22.74355pt too wide) in paragraph at lines 637--640
 ei ``gho-st grads'' ([]).
  []
 
-[97]
+[109]
 Underfull \hbox (badness 10000) in paragraph at lines 647--649
 
  []
 
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 98 undefined on input
- line 660.
+LaTeX Warning: Citation 'oneill2024disentangling' on page 110 undefined on inpu
+t line 660.
 
-[98] [99] [100]
+[110] [111] [112]
 Underfull \hbox (badness 1087) in paragraph at lines 756--757
 \T1/cmr/m/n/12 L'interprete, con-fron-tan-do i due in-sie-mi, iden-ti-fi-che-re
 b-be il te-ma
  []
 
-[101] [102]
+[113] [114]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 103 undefined on inpu
+LaTeX Warning: Citation 'oneill2024disentangling' on page 115 undefined on inpu
 t line 771.
 
-[103] [104]
+[115] [116]
 Overfull \hbox (18.64005pt too wide) in paragraph at lines 929--941
  [][] 
  []
 
-<pictures/cap5/9_fam_1.png, id=1420, 1390.19376pt x 898.35625pt>
+<pictures/cap5/9_fam_1.png, id=1794, 1390.19376pt x 898.35625pt>
 File: pictures/cap5/9_fam_1.png Graphic file (type png)
 <use pictures/cap5/9_fam_1.png>
 Package pdftex.def Info: pictures/cap5/9_fam_1.png  used on input line 953.
 (pdftex.def)             Requested size: 390.0pt x 252.0178pt.
-<pictures/cap5/10_fam_2.png, id=1421, 1335.99126pt x 768.8725pt>
+<pictures/cap5/10_fam_2.png, id=1795, 1335.99126pt x 768.8725pt>
 File: pictures/cap5/10_fam_2.png Graphic file (type png)
 <use pictures/cap5/10_fam_2.png>
 Package pdftex.def Info: pictures/cap5/10_fam_2.png  used on input line 960.
 (pdftex.def)             Requested size: 390.0pt x 224.44554pt.
-<pictures/cap5/11_feature_fam_3.png, id=1422, 1348.03625pt x 781.92125pt>
+<pictures/cap5/11_feature_fam_3.png, id=1796, 1348.03625pt x 781.92125pt>
 File: pictures/cap5/11_feature_fam_3.png Graphic file (type png)
 <use pictures/cap5/11_feature_fam_3.png>
 Package pdftex.def Info: pictures/cap5/11_feature_fam_3.png  used on input line
  967.
 (pdftex.def)             Requested size: 390.0pt x 226.21445pt.
-<pictures/cap5/12_featur_familis_children.png, id=1423, 905.3825pt x 333.245pt>
+<pictures/cap5/12_featur_familis_children.png, id=1797, 905.3825pt x 333.245pt>
 
 File: pictures/cap5/12_featur_familis_children.png Graphic file (type png)
 <use pictures/cap5/12_featur_familis_children.png>
@@ -2024,20 +2038,20 @@ Package pdftex.def Info: pictures/cap5/12_featur_familis_children.png  used on
 input line 974.
 (pdftex.def)             Requested size: 390.0pt x 143.54678pt.
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 105 undefined on inpu
+LaTeX Warning: Citation 'oneill2024disentangling' on page 117 undefined on inpu
 t line 979.
 
-[105] [106 <./pictures/cap5/9_fam_1.png> <./pictures/cap5/10_fam_2.png>]
-[107 <./pictures/cap5/11_feature_fam_3.png> <./pictures/cap5/12_featur_familis_
+[117] [118 <./pictures/cap5/9_fam_1.png> <./pictures/cap5/10_fam_2.png>]
+[119 <./pictures/cap5/11_feature_fam_3.png> <./pictures/cap5/12_featur_familis_
 children.png>]
 Overfull \hbox (4.34747pt too wide) in paragraph at lines 988--989
 []\T1/cmr/bx/n/12 Costruzione del gra-fo pe-sa-to. \T1/cmr/m/n/12 Si par-te dal
 -la ma-tri-ce di co-occorrenza
  []
 
-[108] [109]
+[120] [121]
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 110 undefined on inpu
+LaTeX Warning: Citation 'oneill2024disentangling' on page 122 undefined on inpu
 t line 1085.
 
 
@@ -2076,7 +2090,7 @@ LaTeX Warning: Command \textdegree invalid in math mode on input line 1112.
 LaTeX Warning: Command \textdegree invalid in math mode on input line 1112.
 
 Missing character: There is no ° in font cmr12!
-[110]
+[122]
 
 LaTeX Warning: Command \textdegree invalid in math mode on input line 1124.
 
@@ -2111,7 +2125,7 @@ LaTeX Warning: Command \textdegree invalid in math mode on input line 1128.
 LaTeX Warning: Command \textdegree invalid in math mode on input line 1128.
 
 Missing character: There is no ° in font cmr12!
-[111]
+[123]
 
 LaTeX Warning: Command \textdegree invalid in math mode on input line 1164.
 
@@ -2252,251 +2266,331 @@ LaTeX Warning: Command \textdegree invalid in math mode on input line 1234.
 LaTeX Warning: Command \textdegree invalid in math mode on input line 1234.
 
 Missing character: There is no ° in font cmr12!
-[112] [113]
+[124] [125]
 
-LaTeX Warning: Citation 'roy2007effective' on page 114 undefined on input line 
+LaTeX Warning: Citation 'roy2007effective' on page 126 undefined on input line 
 1292.
 
-[114] [115]
+[126] [127]
 Overfull \hbox (1.6928pt too wide) in paragraph at lines 1411--1412
  [][] 
  []
 
-[116]
+[128]
 
-LaTeX Warning: Reference `chap:results' on page 117 undefined on input line 142
+LaTeX Warning: Reference `chap:results' on page 129 undefined on input line 142
 1.
 
-) [117]
+) [129]
 \openout2 = `chapters/06_risultati_conclusioni.aux'.
 
- (./chapters/06_risultati_conclusioni.tex [118
+ (./chapters/06_risultati_conclusioni.tex [130
 
 
 
-] [119] [120]
-Underfull \hbox (badness 2980) in paragraph at lines 152--153
+]
+Underfull \hbox (badness 2980) in paragraph at lines 141--142
 []\T1/cmr/m/n/12 La \T1/cmr/bx/n/12 ca-pa-ci-tà del-la me-mo-ria \T1/cmr/m/n/12
  (512 GB) cor-ri-spon-de al-la
  []
 
-[121]
+[131] [132] [133]
 
-LaTeX Warning: Reference `app:quantization' on page 122 undefined on input line
- 164.
+LaTeX Warning: Reference `app:quantization' on page 134 undefined on input line
+ 149.
 
-[122] [123]
-
-LaTeX Warning: Citation 'oneill2024disentangling' on page 124 undefined on inpu
-t line 207.
-
-
-Overfull \hbox (97.72928pt too wide) in paragraph at lines 207--208
-[]\T1/cmr/m/n/12 Questi ri-sul-ta-ti so-no con-si-sten-ti con quel-li ri-por-ta
--ti da O'Neill et al. ([]),
- []
-
-[124] [125]
-
-LaTeX Warning: Citation 'roy2007effective' on page 126 undefined on input line 
-244.
-
-
-Overfull \hbox (65.11937pt too wide) in paragraph at lines 244--245
-[]\T1/cmr/m/n/12 Questo fe-no-me-no è do-cu-men-ta-to nel-la let-te-ra-tu-ra su
-l-l'Ef-fec-ti-ve Rank ([]):
+[134]
+Overfull \hbox (33.2716pt too wide) in paragraph at lines 164--166
+\T1/cmr/m/n/12 cir-ca \T1/cmr/bx/n/12 2,5 mi-lio-ni di ab-stract \T1/cmr/m/n/12
+ estrat-ti dal da-ta-set \T1/cmtt/m/n/12 common-pile/arxiv_abstracts\T1/cmr/m/n
+/12 ,
  []
 
 
-Overfull \hbox (13.55312pt too wide) in paragraph at lines 244--245
-\T1/cmr/m/it/12 rank-deficient \T1/cmr/m/n/12 e l'en-tro-pia del-lo spet-tro si
-n-go-la-re sa-tu-ra al va-lo-re $[]\OT1/cmr/m/n/12 ([](\OML/cmm/m/it/12 N; n\OT
-1/cmr/m/n/12 ))$\T1/cmr/m/n/12 . 
+Overfull \hbox (36.76068pt too wide) in paragraph at lines 164--166
+\T1/cmr/m/n/12 men-sio-ne $\OML/cmm/m/it/12 d \OT1/cmr/m/n/12 = 384$ \T1/cmr/m/
+n/12 tra-mi-te il mo-del-lo \T1/cmtt/m/n/12 sentence-transformers/all-MiniLM-L6
+-v2[][][]\T1/cmr/m/n/12 ,
  []
 
-<pictures/cap6/erank_ds11_ksing10000_ksparse16_analysis_1.png, id=1576, 867.24p
-t x 867.24pt>
-File: pictures/cap6/erank_ds11_ksing10000_ksparse16_analysis_1.png Graphic file
- (type png)
-<use pictures/cap6/erank_ds11_ksing10000_ksparse16_analysis_1.png>
-Package pdftex.def Info: pictures/cap6/erank_ds11_ksing10000_ksparse16_analysis
-_1.png  used on input line 265.
-(pdftex.def)             Requested size: 390.0pt x 390.00298pt.
-[126] [127 <./pictures/cap6/erank_ds11_ksing10000_ksparse16_analysis_1.png>]
-<pictures/cap6/erank_ds11_ksing40000_ksparse16_analysis_1.png, id=1594, 867.24p
-t x 867.24pt>
-File: pictures/cap6/erank_ds11_ksing40000_ksparse16_analysis_1.png Graphic file
- (type png)
-<use pictures/cap6/erank_ds11_ksing40000_ksparse16_analysis_1.png>
-Package pdftex.def Info: pictures/cap6/erank_ds11_ksing40000_ksparse16_analysis
-_1.png  used on input line 279.
-(pdftex.def)             Requested size: 390.0pt x 390.00298pt.
+[135]
 
-Overfull \hbox (1.34048pt too wide) in paragraph at lines 290--291
-\T1/cmr/m/n/12 sten-te tra da-ti rea-li e casuali---quantificato dal Se-man-tic
- Com-pres-sion Ratio---
- []
-
-[128] [129 <./pictures/cap6/erank_ds11_ksing40000_ksparse16_analysis_1.png>]
-Overfull \hbox (7.03613pt too wide) in paragraph at lines 317--318
-[]\T1/cmr/bx/n/12 Quantificare la com-pres-sio-ne se-man-ti-ca \T1/cmr/m/n/12 a
-t-tra-ver-so l'Ef-fec-ti-ve Rank,
- []
+LaTeX Warning: Reference `subsubsec:llm_interpreter' on page 136 undefined on i
+nput line 168.
 
 
-LaTeX Warning: Citation 'oneill2024disentangling' on page 130 undefined on inpu
-t line 321.
+LaTeX Warning: Reference `fig:feature_5648' on page 136 undefined on input line
+ 173.
 
-[130] [131] [132]
-Overfull \hbox (110.67213pt too wide) in paragraph at lines 383--394
+[136]
+Overfull \hbox (13.9683pt too wide) in paragraph at lines 185--201
  [][] 
  []
 
-[133]) [134]
+[137] [138]
+Overfull \hbox (47.51628pt too wide) in paragraph at lines 251--266
+ [][] 
+ []
 
-LaTeX Warning: Empty bibliography on input line 127.
+[139]
+Overfull \hbox (33.2716pt too wide) in paragraph at lines 303--305
+\T1/cmr/m/n/12 cir-ca \T1/cmr/bx/n/12 2,5 mi-lio-ni di ab-stract \T1/cmr/m/n/12
+ estrat-ti dal da-ta-set \T1/cmtt/m/n/12 common-pile/arxiv_abstracts\T1/cmr/m/n
+/12 ,
+ []
 
-(./main.aux (./style/abstract.aux) (./chapters/01_introduzione.aux)
-(./chapters/02_autoencoders.aux) (./chapters/03_embeddings.aux)
+
+Overfull \hbox (36.76068pt too wide) in paragraph at lines 303--305
+\T1/cmr/m/n/12 men-sio-ne $\OML/cmm/m/it/12 d \OT1/cmr/m/n/12 = 384$ \T1/cmr/m/
+n/12 tra-mi-te il mo-del-lo \T1/cmtt/m/n/12 sentence-transformers/all-MiniLM-L6
+-v2[][][]\T1/cmr/m/n/12 ,
+ []
+
+[140]
+
+LaTeX Warning: Reference `subsubsec:llm_interpreter' on page 141 undefined on i
+nput line 308.
+
+[141]
+
+LaTeX Warning: Reference `fig:feature_5648' on page 142 undefined on input line
+ 314.
+
+
+Overfull \hbox (13.9683pt too wide) in paragraph at lines 326--342
+ [][] 
+ []
+
+[142] [143]
+Overfull \hbox (47.51628pt too wide) in paragraph at lines 392--407
+ [][] 
+ []
+
+[144] [145]
+<pictures/cap6/time_in_physics_list.png, id=2019, 1176.395pt x 533.995pt>
+File: pictures/cap6/time_in_physics_list.png Graphic file (type png)
+<use pictures/cap6/time_in_physics_list.png>
+Package pdftex.def Info: pictures/cap6/time_in_physics_list.png  used on input 
+line 445.
+(pdftex.def)             Requested size: 390.0pt x 177.02556pt.
+<pictures/cap6/time_in_physics_graph.png, id=2021, 1181.41376pt x 684.5575pt>
+File: pictures/cap6/time_in_physics_graph.png Graphic file (type png)
+<use pictures/cap6/time_in_physics_graph.png>
+Package pdftex.def Info: pictures/cap6/time_in_physics_graph.png  used on input
+ line 452.
+(pdftex.def)             Requested size: 390.0pt x 225.97778pt.
+ [146] [147 <./pictures/cap6/time_in_physics_list.png>] [148 <./pictures/cap6/t
+ime_in_physics_graph.png>]
+Overfull \hbox (33.2716pt too wide) in paragraph at lines 467--469
+\T1/cmr/m/n/12 cir-ca \T1/cmr/bx/n/12 2,5 mi-lio-ni di ab-stract \T1/cmr/m/n/12
+ estrat-ti dal da-ta-set \T1/cmtt/m/n/12 common-pile/arxiv_abstracts\T1/cmr/m/n
+/12 ,
+ []
+
+
+Overfull \hbox (36.76068pt too wide) in paragraph at lines 467--469
+\T1/cmr/m/n/12 men-sio-ne $\OML/cmm/m/it/12 d \OT1/cmr/m/n/12 = 384$ \T1/cmr/m/
+n/12 tra-mi-te il mo-del-lo \T1/cmtt/m/n/12 sentence-transformers/all-MiniLM-L6
+-v2[][][]\T1/cmr/m/n/12 ,
+ []
+
+
+LaTeX Warning: Reference `subsubsec:llm_interpreter' on page 149 undefined on i
+nput line 472.
+
+[149]
+
+LaTeX Warning: Reference `fig:feature_5648' on page 150 undefined on input line
+ 478.
+
+
+Overfull \hbox (13.9683pt too wide) in paragraph at lines 490--506
+ [][] 
+ []
+
+[150] [151] [152]
+Overfull \hbox (47.51628pt too wide) in paragraph at lines 556--571
+ [][] 
+ []
+
+[153]
+File: pictures/cap6/time_in_physics_list.png Graphic file (type png)
+<use pictures/cap6/time_in_physics_list.png>
+Package pdftex.def Info: pictures/cap6/time_in_physics_list.png  used on input 
+line 608.
+(pdftex.def)             Requested size: 390.0pt x 177.02556pt.
+File: pictures/cap6/time_in_physics_graph.png Graphic file (type png)
+<use pictures/cap6/time_in_physics_graph.png>
+Package pdftex.def Info: pictures/cap6/time_in_physics_graph.png  used on input
+ line 615.
+(pdftex.def)             Requested size: 390.0pt x 225.97778pt.
+ [154]
+
+LaTeX Warning: Citation 'oneill2024disentangling' on page 155 undefined on inpu
+t line 621.
+
+[155] [156]
+<pictures/cap6/mito_caverna.jpeg, id=2103, 1120.185pt x 943.525pt>
+File: pictures/cap6/mito_caverna.jpeg Graphic file (type jpg)
+<use pictures/cap6/mito_caverna.jpeg>
+Package pdftex.def Info: pictures/cap6/mito_caverna.jpeg  used on input line 63
+4.
+(pdftex.def)             Requested size: 331.50238pt x 279.21568pt.
+ [157] [158 <./pictures/cap6/mito_caverna.jpeg>]
+<pictures/cap6/Michelson_Interferometer_Red_Laser_Interference.jpg, id=2113, 96
+3.6pt x 851.18pt>
+File: pictures/cap6/Michelson_Interferometer_Red_Laser_Interference.jpg Graphic
+ file (type jpg)
+<use pictures/cap6/Michelson_Interferometer_Red_Laser_Interference.jpg>
+Package pdftex.def Info: pictures/cap6/Michelson_Interferometer_Red_Laser_Inter
+ference.jpg  used on input line 653.
+(pdftex.def)             Requested size: 234.00238pt x 206.69014pt.
+<pictures/cap6/einstein.jpeg, id=2114, 963.6pt x 1192.455pt>
+File: pictures/cap6/einstein.jpeg Graphic file (type jpg)
+<use pictures/cap6/einstein.jpeg>
+Package pdftex.def Info: pictures/cap6/einstein.jpeg  used on input line 665.
+(pdftex.def)             Requested size: 234.00238pt x 289.56119pt.
+ [159] [160 <./pictures/cap6/Michelson_Interferometer_Red_Laser_Interference.jp
+g>] [161 <./pictures/cap6/einstein.jpeg>]
+
+LaTeX Warning: Citation 'huh2024platonic' on page 162 undefined on input line 6
+90.
+
+<pictures/cap6/platonic_rep_less_space_v2.jpg, id=2131, 778.91pt x 739.76375pt>
+
+File: pictures/cap6/platonic_rep_less_space_v2.jpg Graphic file (type jpg)
+<use pictures/cap6/platonic_rep_less_space_v2.jpg>
+Package pdftex.def Info: pictures/cap6/platonic_rep_less_space_v2.jpg  used on 
+input line 694.
+(pdftex.def)             Requested size: 253.49762pt x 240.74771pt.
+
+LaTeX Warning: Citation 'huh2024platonic' on page 162 undefined on input line 6
+95.
+
+
+LaTeX Warning: Citation 'huh2024platonic' on page 162 undefined on input line 6
+95.
+
+
+Underfull \hbox (badness 6268) in paragraph at lines 695--695
+[]\T1/cmr/m/n/12 Figura 67: |La Pla-to-nic Re-pre-sen-ta-tion Hy-po-the-sis, da
+ Huh et
+ []
+
+[162] [163] [164 <./pictures/cap6/platonic_rep_less_space_v2.jpg>] [165]
+
+LaTeX Warning: Reference `subsec:effective_rank_results' on page 166 undefined 
+on input line 751.
+
+[166]
+
+LaTeX Warning: Reference `subsec:effective_rank_results' on page 167 undefined 
+on input line 755.
+
+[167] [168]) [169]
+\openout2 = `chapters/07_appendice.aux'.
+
+ (./chapters/07_appendice.tex [170
+
+
+
+]
+Overfull \hbox (37.22256pt too wide) in paragraph at lines 39--41
+\T1/cmr/m/n/12 dove $\OML/cmm/m/it/12 U \OT1/cmr/m/n/12 = [\OT1/cmr/bx/n/12 u[]
+\OML/cmm/m/it/12 ; [] ; \OT1/cmr/bx/n/12 u[]\OT1/cmr/m/n/12 ]$ \T1/cmr/m/n/12 è
+ la ma-tri-ce or-to-go-na-le de-gli au-to-vet-to-ri e $\OT1/cmr/m/n/12 ^^C = []
+(\OML/cmm/m/it/12 ^^U[]; [] ; ^^U[]\OT1/cmr/m/n/12 )$
+ []
+
+[171] [172] [173
+
+] [174] [175]) [176] [177
+
+
+]
+Overfull \hbox (6.11334pt too wide) in paragraph at lines 133--133
+\T1/cmr/m/it/12 TQ: Ac-cu-ra-te Post-Training Quan-ti-za-tion for Ge-ne-ra-ti-v
+e Pre-trained Tran-
+ []
+
+[178] [179] [180] (./main.aux (./style/abstract.aux)
+(./chapters/01_introduzione.aux) (./chapters/02_autoencoders.aux)
+(./chapters/03_embeddings.aux)
 (./chapters/04_disentangling_dense_embeddings_with_sparse_autoencoders.aux)
-(./chapters/05_prisma.aux) (./chapters/06_risultati_conclusioni.aux))
+(./chapters/05_prisma.aux) (./chapters/06_risultati_conclusioni.aux)
+(./chapters/07_appendice.aux))
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 16C8FC7C4049436770C8EB92D6777C9B;26455
-(rerunfilecheck)             After:  001DE0F9600388B1C8097F8417A81990;26297.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 6E2AB0DD8B2C79066472E43ED94588E6;38792.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54733 strings out of 480122
- 1193273 string characters out of 5893077
- 1831047 words of memory out of 5000000
- 71382 multiletter control sequences out of 15000+600000
- 507307 words of font info for 122 fonts, out of 8000000 for 9000
+ 55283 strings out of 480122
+ 1207649 string characters out of 5893077
+ 1843215 words of memory out of 5000000
+ 71757 multiletter control sequences out of 15000+600000
+ 508994 words of font info for 125 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 127i,18n,122p,1602b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsubsection.7.6.3} has been referenced but does
- not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.6.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.6.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.6} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.5} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.4.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.4.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.4} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.3.4} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.3.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.3.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.3.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.3} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.2.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.2.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.7.1.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.7.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.7} has been referenced but does not exist, 
-replaced by a fixed one
-
- </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0700.600pk> 
-</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcbx0800.600pk> <
-/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </
-home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1200.600pk> </h
-ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </ho
-me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk> </hom
-e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home
-/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/
-edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/e
-do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ed
+ 127i,18n,122p,3072b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk
+> </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk>
+ </home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> 
+</home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0700.600pk> <
+/home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcbx0800.600pk> </
+home/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </h
+ome/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1200.600pk> </ho
+me/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </hom
+e/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0800.600pk> </home
+/edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/
+edo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/e
+do/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ed
 o/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home/edo
 /.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/edo/
-.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/edo/.
-texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/edo/.t
-exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/edo/.te
-xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home/edo/.tex
-live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo/.texl
-ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/edo/.texli
-ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/.texliv
-e2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.texlive
-2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.texlive2
-021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.texlive20
-21/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texlive202
-1/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texlive2021
-/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (140 pages, 7711485 bytes).
+.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/edo/.
+texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/edo/.t
+exlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1095.600pk> </home/edo/.te
+xlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/edo/.tex
+live2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/edo/.texl
+ive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/edo/.texli
+ve2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/edo/.texliv
+e2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/edo/.texlive
+2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/edo/.texlive2
+021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/edo/.texlive20
+21/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/edo/.texlive202
+1/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> </home/edo/.texlive2021
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/edo/.texlive2021/
+texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (188 pages, 8469551 bytes).
 PDF statistics:
- 2757 PDF objects out of 2984 (max. 8388607)
- 1694 compressed objects within 17 object streams
- 572 named destinations out of 1000 (max. 500000)
- 1113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3638 PDF objects out of 4296 (max. 8388607)
+ 2348 compressed objects within 24 object streams
+ 732 named destinations out of 1000 (max. 500000)
+ 1469 words of extra memory for PDF output out of 10000 (max. 10000000)
 

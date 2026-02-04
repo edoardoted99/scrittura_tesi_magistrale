@@ -1,140 +1,203 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
 \contentsline {section}{\numberline {1}Introduzione}{1}{section.1}%
-\contentsline {section}{\numberline {2}Autoencoders}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Definizione e formulazione generale}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Il problema dell'identità e la necessità di vincoli}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Introduzione dei vincoli: architettura e regolarizzazione}{4}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Vincoli architetturali: bottleneck e riduzione della dimensionalità}{4}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Vincoli nella funzione obiettivo: regolarizzazione dello spazio latente}{8}{subsubsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.4}La semantica emerge dai vincoli}{9}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Il manifold dei dati e le regioni vuote}{9}{subsubsection.2.4.1}%
-\contentsline {subsubsection}{\numberline {2.4.2}Analogia fisica: lo spazio delle fasi}{10}{subsubsection.2.4.2}%
-\contentsline {subsubsection}{\numberline {2.4.3}Implicazioni per il design di autoencoder}{11}{subsubsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.5}Interpretabilità e Disentanglement}{11}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Fattori di variazione e rappresentazioni entangled}{13}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}Definizione di Disentanglement}{14}{subsubsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.3}Esempio: InfoGAN su MNIST}{14}{subsubsection.2.5.3}%
-\contentsline {subsubsection}{\numberline {2.5.4}Perché il disentanglement non emerge spontaneamente}{16}{subsubsection.2.5.4}%
-\contentsline {subsection}{\numberline {2.6}Regolarizzare lo spazio latente: i $\beta $-VAE}{17}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Dai vincoli architetturali ai vincoli probabilistici}{17}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Formulazione matematica}{17}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Effetto geometrico del vincolo probabilistico}{18}{subsubsection.2.6.3}%
-\contentsline {subsubsection}{\numberline {2.6.4}Il trade-off tra ricostruzione e regolarizzazione}{18}{subsubsection.2.6.4}%
-\contentsline {subsubsection}{\numberline {2.6.5}$\beta $-VAE e disentanglement}{20}{subsubsection.2.6.5}%
-\contentsline {subsubsection}{\numberline {2.6.6}Limiti dei vincoli probabilistici}{20}{subsubsection.2.6.6}%
-\contentsline {subsection}{\numberline {2.7}Sparse Autoencoders}{21}{subsection.2.7}%
-\contentsline {subsubsection}{\numberline {2.7.1}Dall'undercomplete all'overcomplete: inversione del paradigma}{21}{subsubsection.2.7.1}%
-\contentsline {subsubsection}{\numberline {2.7.2}Formulazione matematica}{22}{subsubsection.2.7.2}%
-\contentsline {paragraph}{Regolarizzazione $\ell _1$.}{22}{section*.11}%
-\contentsline {paragraph}{Vincolo top-$k$.}{22}{section*.12}%
-\contentsline {subsubsection}{\numberline {2.7.3}Interpretazione geometrica e confronto con i vincoli probabilistici}{23}{subsubsection.2.7.3}%
-\contentsline {subsubsection}{\numberline {2.7.4}Perché la sparsità favorisce l'interpretabilità}{23}{subsubsection.2.7.4}%
-\contentsline {subsubsection}{\numberline {2.7.5}Conclusioni e prospettive}{23}{subsubsection.2.7.5}%
-\contentsline {section}{\numberline {3}Word Embeddings}{25}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Dalla semantica alla rappresentazione vettoriale}{26}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Simboli e significati}{26}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Gli assi del linguaggio}{26}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}L'ipotesi distribuzionale}{27}{subsubsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.4}Ipotesi di Osgood: il significato come vettore}{30}{subsubsection.3.1.4}%
-\contentsline {subsubsection}{\numberline {3.1.5}Verso i word embeddings}{31}{subsubsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.2}Embeddings statici}{33}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Embeddings count-based}{33}{subsubsection.3.2.1}%
-\contentsline {paragraph}{Matrice termine-documento.}{33}{section*.18}%
-\contentsline {paragraph}{Matrice termine-termine.}{34}{section*.20}%
-\contentsline {paragraph}{Riduzione dimensionale tramite SVD.}{35}{section*.22}%
-\contentsline {paragraph}{Cosine similarity.}{36}{section*.23}%
-\contentsline {subsubsection}{\numberline {3.2.2}Word2Vec: un approccio predittivo}{36}{subsubsection.3.2.2}%
-\contentsline {paragraph}{Il classificatore e la funzione sigmoide.}{37}{section*.25}%
-\contentsline {paragraph}{Perché due matrici? Il ruolo di $W$ e $C$.}{38}{section*.26}%
-\contentsline {paragraph}{Finestra di contesto e precisione semantica.}{38}{section*.28}%
-\contentsline {paragraph}{Geometria dell'analogia: il modello del parallelogramma.}{39}{section*.29}%
-\contentsline {subsubsection}{\numberline {3.2.3}Limiti degli embeddings statici}{39}{subsubsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.3}Embeddings dinamici (contestuali)}{41}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}RNN: memoria sequenziale}{43}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}LSTM: controllare il flusso di informazione}{44}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Bidirezionalità}{46}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Encoder-Decoder: trasformare sequenze}{48}{subsubsection.3.3.4}%
-\contentsline {subsubsection}{\numberline {3.3.5}Attenzione: superare il bottleneck}{50}{subsubsection.3.3.5}%
-\contentsline {subsubsection}{\numberline {3.3.6}Transformer: attenzione senza ricorrenza}{52}{subsubsection.3.3.6}%
-\contentsline {subsubsection}{\numberline {3.3.7}BERT: codifica bidirezionale}{54}{subsubsection.3.3.7}%
-\contentsline {paragraph}{Pre-training e fine-tuning.}{56}{section*.38}%
-\contentsline {paragraph}{Il problema dell'opacità.}{56}{section*.39}%
-\contentsline {section}{\numberline {4}Il problema del Disentanglement}{58}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Il mondo ideale: rappresentazioni disentangled}{59}{subsection.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.1}La rete ideale}{60}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}Due spazi vettoriali}{60}{subsubsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.3}Definizione di disentanglement}{61}{subsubsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.2}Il paradosso della capacità}{62}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Neuroni e feature: una distinzione cruciale}{64}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}L'analogia geografica}{64}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}Direzioni e capacità}{65}{subsubsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.4}La Superposition Hypothesis}{66}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}Il caso ideale: direzioni ortogonali}{66}{subsubsection.4.4.1}%
-\contentsline {subsubsection}{\numberline {4.4.2}Superposition: più feature che neuroni}{66}{subsubsection.4.4.2}%
-\contentsline {subsubsection}{\numberline {4.4.3}Perché la superposition funziona: la sparsità}{67}{subsubsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.5}I due problemi della superposition}{68}{subsection.4.5}%
-\contentsline {subsubsection}{\numberline {4.5.1}Problema 1: l'opacità}{69}{subsubsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.2}Problema 2: l'interferenza}{70}{subsubsection.4.5.2}%
-\contentsline {subsubsection}{\numberline {4.5.3}Un esempio concreto}{70}{subsubsection.4.5.3}%
-\contentsline {subsubsection}{\numberline {4.5.4}Riepilogo}{71}{subsubsection.4.5.4}%
-\contentsline {subsection}{\numberline {4.6}L'idea del disentanglement}{72}{subsection.4.6}%
-\contentsline {subsubsection}{\numberline {4.6.1}Invertire la superposition}{72}{subsubsection.4.6.1}%
-\contentsline {subsubsection}{\numberline {4.6.2}Lo spazio overcomplete}{73}{subsubsection.4.6.2}%
-\contentsline {subsubsection}{\numberline {4.6.3}La sparsità come vincolo}{73}{subsubsection.4.6.3}%
-\contentsline {subsubsection}{\numberline {4.6.4}Il risultato: feature separate}{75}{subsubsection.4.6.4}%
-\contentsline {subsection}{\numberline {4.7}Verso una soluzione: PRISMA}{75}{subsection.4.7}%
-\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{77}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embedding}{78}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Architettura dello Sparse Autoencoder}{80}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Panoramica dell'architettura}{80}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Lo spazio latente overcomplete}{83}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}La linearità del decoder: la chiave del disentanglement}{85}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Feature come direzioni nello spazio degli embedding}{87}{subsubsection.5.2.4}%
-\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{93}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}La funzione di perdita complessiva}{93}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Il vincolo di sparsità Top-K}{94}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Auxiliary loss e il problema dei dead latents}{97}{subsubsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.4}Interpretabilità automatica delle feature}{99}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{99}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{101}{subsubsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.5}Analisi della struttura delle feature}{102}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Notazione e matrici fondamentali}{103}{subsubsection.5.5.1}%
-\contentsline {paragraph}{Matrice delle attivazioni.}{103}{section*.63}%
-\contentsline {paragraph}{Matrice delle attivazioni binaria.}{103}{section*.64}%
-\contentsline {paragraph}{Matrice di co-occorrenza.}{103}{section*.66}%
-\contentsline {paragraph}{Matrice di similarità delle attivazioni.}{104}{section*.67}%
-\contentsline {paragraph}{Similarità geometrica tra SAE.}{104}{section*.68}%
-\contentsline {subsubsection}{\numberline {5.5.2}Feature families: struttura gerarchica intra-SAE}{105}{subsubsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{110}{subsubsection.5.5.3}%
-\contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{114}{subsubsection.5.5.4}%
-\contentsline {section}{\numberline {6}Risultati sperimentali}{118}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Setup sperimentale}{119}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}Infrastruttura hardware}{119}{subsubsection.6.1.1}%
-\contentsline {paragraph}{La Unified Memory Architecture.}{119}{section*.82}%
-\contentsline {paragraph}{Il collo di bottiglia nelle architetture tradizionali.}{121}{section*.84}%
-\contentsline {paragraph}{Superamento dei limiti della VRAM.}{122}{section*.86}%
-\contentsline {paragraph}{Metal Performance Shaders (MPS).}{123}{section*.87}%
-\contentsline {paragraph}{Requisiti di privacy: elaborazione locale dei dati clinici.}{123}{section*.88}%
-\contentsline {subsection}{\numberline {6.2}Estrazione e organizzazione delle feature}{123}{subsection.6.2}%
-\contentsline {subsubsection}{\numberline {6.2.1}Feature families nel dominio clinico}{123}{subsubsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2}Feature families nel dominio scientifico}{124}{subsubsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.3}Analisi dell'Effective Rank}{125}{subsection.6.3}%
-\contentsline {subsubsection}{\numberline {6.3.1}Setup sperimentale}{125}{subsubsection.6.3.1}%
-\contentsline {subsubsection}{\numberline {6.3.2}Il problema del limite degli autovalori}{126}{subsubsection.6.3.2}%
-\contentsline {subsubsection}{\numberline {6.3.3}Risultati: Effective Rank vs.\ Expansion Factor}{126}{subsubsection.6.3.3}%
-\contentsline {subsubsection}{\numberline {6.3.4}Interpretazione dei risultati}{128}{subsubsection.6.3.4}%
-\contentsline {paragraph}{La struttura semantica comprime le rappresentazioni.}{128}{section*.91}%
-\contentsline {paragraph}{L'SCR crescente è consistente con il feature splitting.}{128}{section*.92}%
-\contentsline {subsection}{\numberline {6.4}Discussione e limitazioni}{130}{subsection.6.4}%
-\contentsline {subsubsection}{\numberline {6.4.1}Punti di forza}{130}{subsubsection.6.4.1}%
-\contentsline {subsubsection}{\numberline {6.4.2}Limitazioni}{130}{subsubsection.6.4.2}%
-\contentsline {paragraph}{Validazione quantitativa limitata.}{131}{section*.93}%
-\contentsline {paragraph}{Dipendenza dal modello di embedding.}{131}{section*.94}%
-\contentsline {paragraph}{Scalabilità dell'interpretazione automatica.}{131}{section*.95}%
-\contentsline {paragraph}{Effective Rank come proxy.}{131}{section*.96}%
-\contentsline {subsection}{\numberline {6.5}Conclusioni}{131}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Sviluppi futuri}{132}{subsection.6.6}%
-\contentsline {subsubsection}{\numberline {6.6.1}Verso una teoria degli invarianti semantici}{132}{subsubsection.6.6.1}%
-\contentsline {subsubsection}{\numberline {6.6.2}Candidati invarianti}{133}{subsubsection.6.6.2}%
-\contentsline {subsubsection}{\numberline {6.6.3}Programma di ricerca}{134}{subsubsection.6.6.3}%
+\contentsline {subsection}{\numberline {1.1}Il problema: rappresentazioni potenti ma opache}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Stato dell'arte e posizionamento del lavoro}{3}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Interpretabilità meccanicistica: dai circuiti alle feature}{3}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}La Superposition Hypothesis e il suo fondamento teorico}{4}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Sparse Autoencoder per l'interpretabilità dei LLM}{5}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Interpretazione automatica delle feature}{7}{subsubsection.1.2.4}%
+\contentsline {subsubsection}{\numberline {1.2.5}Approcci alternativi all'interpretabilità}{7}{subsubsection.1.2.5}%
+\contentsline {subsubsection}{\numberline {1.2.6}Convergenza delle rappresentazioni e la Platonic Representation Hypothesis}{8}{subsubsection.1.2.6}%
+\contentsline {subsubsection}{\numberline {1.2.7}Posizionamento di PRISMA}{9}{subsubsection.1.2.7}%
+\contentsline {subsection}{\numberline {1.3}Contributi del lavoro e struttura della tesi}{10}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Autoencoders}{13}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Definizione e formulazione generale}{15}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Il problema dell'identità e la necessità di vincoli}{15}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Introduzione dei vincoli: architettura e regolarizzazione}{16}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Vincoli architetturali: bottleneck e riduzione della dimensionalità}{16}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Vincoli nella funzione obiettivo: regolarizzazione dello spazio latente}{20}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}La semantica emerge dai vincoli}{21}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Il manifold dei dati e le regioni vuote}{21}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Analogia fisica: lo spazio delle fasi}{22}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Implicazioni per il design di autoencoder}{23}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Interpretabilità e Disentanglement}{23}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Fattori di variazione e rappresentazioni entangled}{25}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Definizione di Disentanglement}{26}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}Esempio: InfoGAN su MNIST}{26}{subsubsection.2.5.3}%
+\contentsline {subsubsection}{\numberline {2.5.4}Perché il disentanglement non emerge spontaneamente}{28}{subsubsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.6}Regolarizzare lo spazio latente: i $\beta $-VAE}{29}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Dai vincoli architetturali ai vincoli probabilistici}{29}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Formulazione matematica}{29}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Effetto geometrico del vincolo probabilistico}{30}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Il trade-off tra ricostruzione e regolarizzazione}{30}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}$\beta $-VAE e disentanglement}{32}{subsubsection.2.6.5}%
+\contentsline {subsubsection}{\numberline {2.6.6}Limiti dei vincoli probabilistici}{32}{subsubsection.2.6.6}%
+\contentsline {subsection}{\numberline {2.7}Sparse Autoencoders}{33}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Dall'undercomplete all'overcomplete: inversione del paradigma}{33}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}Formulazione matematica}{34}{subsubsection.2.7.2}%
+\contentsline {paragraph}{Regolarizzazione $\ell _1$.}{34}{section*.13}%
+\contentsline {paragraph}{Vincolo top-$k$.}{34}{section*.14}%
+\contentsline {subsubsection}{\numberline {2.7.3}Interpretazione geometrica e confronto con i vincoli probabilistici}{35}{subsubsection.2.7.3}%
+\contentsline {subsubsection}{\numberline {2.7.4}Perché la sparsità favorisce l'interpretabilità}{35}{subsubsection.2.7.4}%
+\contentsline {subsubsection}{\numberline {2.7.5}Conclusioni e prospettive}{35}{subsubsection.2.7.5}%
+\contentsline {section}{\numberline {3}Word Embeddings}{37}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Dalla semantica alla rappresentazione vettoriale}{38}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Simboli e significati}{38}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Gli assi del linguaggio}{38}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}L'ipotesi distribuzionale}{39}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Ipotesi di Osgood: il significato come vettore}{42}{subsubsection.3.1.4}%
+\contentsline {subsubsection}{\numberline {3.1.5}Verso i word embeddings}{43}{subsubsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.2}Embeddings statici}{45}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Embeddings count-based}{45}{subsubsection.3.2.1}%
+\contentsline {paragraph}{Matrice termine-documento.}{45}{section*.20}%
+\contentsline {paragraph}{Matrice termine-termine.}{46}{section*.22}%
+\contentsline {paragraph}{Riduzione dimensionale tramite SVD.}{47}{section*.24}%
+\contentsline {paragraph}{Cosine similarity.}{48}{section*.25}%
+\contentsline {subsubsection}{\numberline {3.2.2}Word2Vec: un approccio predittivo}{48}{subsubsection.3.2.2}%
+\contentsline {paragraph}{Il classificatore e la funzione sigmoide.}{49}{section*.27}%
+\contentsline {paragraph}{Perché due matrici? Il ruolo di $W$ e $C$.}{50}{section*.28}%
+\contentsline {paragraph}{Finestra di contesto e precisione semantica.}{50}{section*.30}%
+\contentsline {paragraph}{Geometria dell'analogia: il modello del parallelogramma.}{51}{section*.31}%
+\contentsline {subsubsection}{\numberline {3.2.3}Limiti degli embeddings statici}{51}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Embeddings dinamici (contestuali)}{53}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}RNN: memoria sequenziale}{54}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}LSTM: controllare il flusso di informazione}{56}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Bidirezionalità}{58}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Encoder-Decoder: trasformare sequenze}{60}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Attenzione: superare il bottleneck}{62}{subsubsection.3.3.5}%
+\contentsline {subsubsection}{\numberline {3.3.6}Transformer: attenzione senza ricorrenza}{64}{subsubsection.3.3.6}%
+\contentsline {subsubsection}{\numberline {3.3.7}BERT: codifica bidirezionale}{67}{subsubsection.3.3.7}%
+\contentsline {paragraph}{Pre-training e fine-tuning.}{68}{section*.40}%
+\contentsline {paragraph}{Il problema dell'opacità.}{68}{section*.41}%
+\contentsline {section}{\numberline {4}Il problema del Disentanglement}{70}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Il mondo ideale: rappresentazioni disentangled}{71}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}La rete ideale}{72}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Due spazi vettoriali}{72}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Definizione di disentanglement}{73}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}Il paradosso della capacità}{74}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Neuroni e feature: una distinzione cruciale}{76}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}L'analogia geografica}{76}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Direzioni e capacità}{77}{subsubsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.4}La Superposition Hypothesis}{78}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Il caso ideale: direzioni ortogonali}{78}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Superposition: più feature che neuroni}{78}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Perché la superposition funziona: la sparsità}{79}{subsubsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.5}I due problemi della superposition}{80}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Problema 1: l'opacità}{81}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Problema 2: l'interferenza}{82}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Un esempio concreto}{82}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Riepilogo}{83}{subsubsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.6}L'idea del disentanglement}{84}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Invertire la superposition}{84}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Lo spazio overcomplete}{85}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}La sparsità come vincolo}{85}{subsubsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.4}Il risultato: feature separate}{87}{subsubsection.4.6.4}%
+\contentsline {subsection}{\numberline {4.7}Verso una soluzione: PRISMA}{87}{subsection.4.7}%
+\contentsline {section}{\numberline {5}PRISMA: Projection of Representations for Interpretability via Sparse Monosemantic Autoencoders}{89}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Fare luce nella black box degli embedding}{90}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Architettura dello Sparse Autoencoder}{92}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Panoramica dell'architettura}{92}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Lo spazio latente overcomplete}{95}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}La linearità del decoder: la chiave del disentanglement}{97}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Feature come direzioni nello spazio degli embedding}{99}{subsubsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.3}Funzione di perdita e addestramento}{105}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}La funzione di perdita complessiva}{105}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Il vincolo di sparsità Top-K}{106}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Auxiliary loss e il problema dei dead latents}{109}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Interpretabilità automatica delle feature}{111}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}L'Interpreter LLM}{111}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Implementazione in PRISMA}{113}{subsubsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.5}Analisi della struttura delle feature}{114}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Notazione e matrici fondamentali}{115}{subsubsection.5.5.1}%
+\contentsline {paragraph}{Matrice delle attivazioni.}{115}{section*.65}%
+\contentsline {paragraph}{Matrice delle attivazioni binaria.}{115}{section*.66}%
+\contentsline {paragraph}{Matrice di co-occorrenza.}{115}{section*.68}%
+\contentsline {paragraph}{Matrice di similarità delle attivazioni.}{116}{section*.69}%
+\contentsline {paragraph}{Similarità geometrica tra SAE.}{116}{section*.70}%
+\contentsline {subsubsection}{\numberline {5.5.2}Feature families: struttura gerarchica intra-SAE}{117}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Feature splitting: evoluzione inter-SAE}{122}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Quantificare la struttura: Effective Rank}{126}{subsubsection.5.5.4}%
+\contentsline {section}{\numberline {6}Risultati sperimentali}{130}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Setup sperimentale}{131}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Infrastruttura hardware}{131}{subsubsection.6.1.1}%
+\contentsline {paragraph}{La Unified Memory Architecture.}{131}{section*.84}%
+\contentsline {paragraph}{Il collo di bottiglia nelle architetture tradizionali.}{133}{section*.86}%
+\contentsline {paragraph}{Superamento dei limiti della VRAM.}{134}{section*.88}%
+\contentsline {paragraph}{Metal Performance Shaders (MPS).}{135}{section*.89}%
+\contentsline {paragraph}{Requisiti di privacy: elaborazione locale dei dati clinici.}{135}{section*.90}%
+\contentsline {subsection}{\numberline {6.2}Estrazione e organizzazione delle feature}{135}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Dataset e pipeline di embedding}{135}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Interpretazione automatica delle feature}{136}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Esempio: Feature 5648 --- \textit {Time in physics}}{136}{subsubsection.6.2.3}%
+\contentsline {paragraph}{Statistiche di attivazione.}{137}{section*.91}%
+\contentsline {paragraph}{Top activating contexts.}{137}{section*.92}%
+\contentsline {paragraph}{Topologia e famiglia semantica.}{137}{section*.94}%
+\contentsline {paragraph}{Correlazioni.}{138}{section*.95}%
+\contentsline {subsubsection}{\numberline {6.2.4}Esempio: Feature 1140 --- \textit {Ising model}}{139}{subsubsection.6.2.4}%
+\contentsline {paragraph}{Statistiche di attivazione.}{139}{section*.97}%
+\contentsline {paragraph}{Top activating contexts.}{139}{section*.98}%
+\contentsline {paragraph}{Topologia e famiglia semantica.}{140}{section*.100}%
+\contentsline {paragraph}{Correlazioni.}{140}{table.caption.102}%
+\contentsline {subsection}{\numberline {6.3}Estrazione e organizzazione delle feature}{141}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Dataset e pipeline di embedding}{141}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}Interpretazione automatica delle feature}{141}{subsubsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.3}Esempio: Feature 5648 --- \textit {Time in physics}}{142}{subsubsection.6.3.3}%
+\contentsline {paragraph}{Statistiche di attivazione.}{142}{section*.103}%
+\contentsline {paragraph}{Top activating contexts.}{142}{section*.104}%
+\contentsline {paragraph}{Topologia e famiglia semantica.}{143}{section*.106}%
+\contentsline {paragraph}{Correlazioni.}{143}{section*.107}%
+\contentsline {subsubsection}{\numberline {6.3.4}Esempio: Feature 1140 --- \textit {Ising model}}{144}{subsubsection.6.3.4}%
+\contentsline {paragraph}{Statistiche di attivazione.}{144}{section*.109}%
+\contentsline {paragraph}{Top activating contexts.}{144}{section*.110}%
+\contentsline {paragraph}{Topologia e famiglia semantica.}{145}{section*.112}%
+\contentsline {paragraph}{Correlazioni.}{146}{table.caption.114}%
+\contentsline {subsubsection}{\numberline {6.3.5}Feature families nel dominio scientifico}{146}{subsubsection.6.3.5}%
+\contentsline {paragraph}{Caso di studio: Famiglia \#10034 --- \textit {Time in physics}.}{146}{section*.115}%
+\contentsline {subsubsection}{\numberline {6.3.6}Le 590 famiglie come assi di una rappresentazione}{147}{subsubsection.6.3.6}%
+\contentsline {subsection}{\numberline {6.4}Estrazione e organizzazione delle feature}{149}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Dataset e pipeline di embedding}{149}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Interpretazione automatica delle feature}{149}{subsubsection.6.4.2}%
+\contentsline {subsubsection}{\numberline {6.4.3}Esempio: Feature 5648 --- \textit {Time in physics}}{150}{subsubsection.6.4.3}%
+\contentsline {paragraph}{Statistiche di attivazione.}{150}{section*.118}%
+\contentsline {paragraph}{Top activating contexts.}{150}{section*.119}%
+\contentsline {paragraph}{Topologia e famiglia semantica.}{151}{section*.121}%
+\contentsline {paragraph}{Correlazioni.}{151}{section*.122}%
+\contentsline {subsubsection}{\numberline {6.4.4}Esempio: Feature 1140 --- \textit {Ising model}}{152}{subsubsection.6.4.4}%
+\contentsline {paragraph}{Statistiche di attivazione.}{152}{section*.124}%
+\contentsline {paragraph}{Top activating contexts.}{153}{section*.125}%
+\contentsline {paragraph}{Topologia e famiglia semantica.}{153}{section*.127}%
+\contentsline {paragraph}{Correlazioni.}{153}{table.caption.129}%
+\contentsline {subsubsection}{\numberline {6.4.5}Feature families nel dominio scientifico}{154}{subsubsection.6.4.5}%
+\contentsline {paragraph}{Caso di studio: Famiglia \#10034 --- \textit {Time in physics}.}{154}{section*.130}%
+\contentsline {subsubsection}{\numberline {6.4.6}Le 590 famiglie come assi di una rappresentazione}{155}{subsubsection.6.4.6}%
+\contentsline {subsection}{\numberline {6.5}Sviluppi futuri: verso gli invarianti semantici}{157}{subsection.6.5}%
+\contentsline {subsubsection}{\numberline {6.5.1}Le ombre sulla parete}{157}{subsubsection.6.5.1}%
+\contentsline {subsubsection}{\numberline {6.5.2}La lezione della fisica: non esiste un sistema privilegiato}{159}{subsubsection.6.5.2}%
+\contentsline {subsubsection}{\numberline {6.5.3}L'etere e la ricerca di un riferimento assoluto}{159}{subsubsection.6.5.3}%
+\contentsline {subsubsection}{\numberline {6.5.4}Il capovolgimento di Einstein}{161}{subsubsection.6.5.4}%
+\contentsline {subsubsection}{\numberline {6.5.5}Tre formulazioni, una sola fisica}{162}{subsubsection.6.5.5}%
+\contentsline {subsubsection}{\numberline {6.5.6}Applicazione al dominio del significato}{162}{subsubsection.6.5.6}%
+\contentsline {subsubsection}{\numberline {6.5.7}La Platonic Representation Hypothesis}{163}{subsubsection.6.5.7}%
+\contentsline {subsubsection}{\numberline {6.5.8}Le evidenze}{163}{subsubsection.6.5.8}%
+\contentsline {subsubsection}{\numberline {6.5.9}Cosa guida la convergenza?}{165}{subsubsection.6.5.9}%
+\contentsline {subsubsection}{\numberline {6.5.10}Come si misura la convergenza?}{165}{subsubsection.6.5.10}%
+\contentsline {subsubsection}{\numberline {6.5.11}Il collegamento con PRISMA}{165}{subsubsection.6.5.11}%
+\contentsline {subsubsection}{\numberline {6.5.12}La proposta: cercare isomorfismi tra rappresentazioni}{166}{subsubsection.6.5.12}%
+\contentsline {subsubsection}{\numberline {6.5.13}Candidati invarianti semantici}{167}{subsubsection.6.5.13}%
+\contentsline {subsubsection}{\numberline {6.5.14}Il ruolo dell'Effective Rank e dell'SCR}{167}{subsubsection.6.5.14}%
+\contentsline {subsubsection}{\numberline {6.5.15}Visione d'insieme}{168}{subsubsection.6.5.15}%
+\contentsline {section}{\numberline {7}Appendice}{170}{section.7}%
+\contentsline {subsection}{\numberline {7.1}PCA come caso particolare di un autoencoder lineare}{170}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Formulazione del problema}{170}{subsubsection.7.1.1}%
+\contentsline {subsubsection}{\numberline {7.1.2}Riformulazione come problema di approssimazione di rango basso}{171}{subsubsection.7.1.2}%
+\contentsline {subsubsection}{\numberline {7.1.3}Il teorema di Eckart--Young--Mirsky}{171}{subsubsection.7.1.3}%
+\contentsline {subsubsection}{\numberline {7.1.4}Equivalenza con l'autoencoder lineare}{171}{subsubsection.7.1.4}%
+\contentsline {subsubsection}{\numberline {7.1.5}Implicazioni}{172}{subsubsection.7.1.5}%
+\contentsline {subsection}{\numberline {7.2}Quantizzazione degli LLM per l'inferenza}{173}{subsection.7.2}%
+\contentsline {subsubsection}{\numberline {7.2.1}Il problema: la memoria dei modelli}{173}{subsubsection.7.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2}Principio della quantizzazione}{173}{subsubsection.7.2.2}%
+\contentsline {subsubsection}{\numberline {7.2.3}Quantizzazione per gruppi}{174}{subsubsection.7.2.3}%
+\contentsline {subsubsection}{\numberline {7.2.4}Tecniche di quantizzazione post-addestramento}{174}{subsubsection.7.2.4}%
+\contentsline {subsubsection}{\numberline {7.2.5}Il trade-off precisione--memoria}{175}{subsubsection.7.2.5}%
+\contentsline {subsubsection}{\numberline {7.2.6}Applicazione nel contesto di PRISMA}{176}{subsubsection.7.2.6}%
